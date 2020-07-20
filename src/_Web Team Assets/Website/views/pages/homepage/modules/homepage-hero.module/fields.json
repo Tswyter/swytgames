@@ -1,0 +1,81 @@
+[ {
+  "id" : "bfc65f0e-6b2d-9856-5ea2-32f168a2b3b7",
+  "name" : "smartlist_id",
+  "label" : "Smart List ID",
+  "help_text" : "If defined, this module will only show to visitors NOT on that smart-list (i.e. everyone else).",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "88240af9-06e6-ca43-ac79-b1ff37c72f03",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "9463208d-40cd-4e91-f8e8-ca8c16fdb0c8",
+  "name" : "subheader",
+  "label" : "Subheader",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "142d96ab-ea95-62e9-c501-f6cd085397f2",
+  "name" : "cta_text",
+  "label" : "CTA Text",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "bdb30702-0a9c-4b10-2bae-93ac15eb0d88",
+  "name" : "cta_url",
+  "label" : "CTA URL",
+  "required" : false,
+  "locked" : false,
+  "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+  "type" : "url",
+  "default" : {
+    "content_id" : null,
+    "href" : "",
+    "type" : "EXTERNAL"
+  }
+}, {
+  "id" : "b23f0bf3-f0a6-46fd-5bc4-ee291b6b8b79",
+  "name" : "cta_class",
+  "label" : "CTA Class",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "c4f115b0-6090-c516-147a-643458aefe34",
+  "name" : "microcopy",
+  "label" : "Microcopy",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+} ]

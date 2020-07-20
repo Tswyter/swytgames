@@ -1,0 +1,107 @@
+[ {
+  "id" : "3fd57bf6-1e76-8387-d114-1c0acbce614d",
+  "name" : "items",
+  "label" : "Items",
+  "help_text" : "The accordion items (up to 10 items allowed).",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 12,
+    "sorting_label_field" : "8d07b0e2-e817-ec3d-a538-2ac7cf8903ad",
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "8d07b0e2-e817-ec3d-a538-2ac7cf8903ad",
+    "name" : "title",
+    "label" : "Title",
+    "help_text" : "The visible header text of the accordion item.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Fancy new header goes here"
+  }, {
+    "id" : "796915e2-387d-6280-86ad-85cb31bed453",
+    "name" : "content",
+    "label" : "Content",
+    "help_text" : "The hidden content of the accordion item, which appears when the user clicks on the accordion title.",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  }, {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  } ]
+}, {
+  "id" : "f33ac239-8af6-fc19-d7fe-a08568f17139",
+  "name" : "footer",
+  "label" : "Footer",
+  "help_text" : "(Optional). Additional information — typically used for disclaimer content — that appears beneath all accordion items.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "9c1358df-9fcd-b4a9-e081-41e6dd20fafa",
+  "name" : "options",
+  "label" : "Display Options",
+  "help_text" : "Sizing and display settings for the items in this module.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "89f1d5ad-416e-01d5-bdfb-3b51b55b4392",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "off-white"
+  }, {
+    "id" : "7517016f-3c0e-8c84-91e5-d2dfd0af1f96",
+    "name" : "display_style",
+    "label" : "Style",
+    "help_text" : "Determines the display style of each accordion item in this module.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a display style",
+    "choices" : [ [ "plain", "Basic" ], [ "card", "Card" ] ],
+    "type" : "choice",
+    "default" : "card"
+  }, {
+    "id" : "eb27982b-4f55-8b82-05a7-60da7e17dd9a",
+    "name" : "display_sizing",
+    "label" : "Sizing",
+    "help_text" : "Determines the display size of each accordion item in this module.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "small", "Small" ], [ "medium", "Medium" ], [ "large", "Large" ] ],
+    "type" : "choice",
+    "default" : "medium"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "off-white",
+    "display_style" : "card",
+    "display_sizing" : "medium"
+  }
+} ]

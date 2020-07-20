@@ -1,0 +1,23 @@
+{
+  "content_tags" : [ {
+    "name" : "CTA",
+    "source" : "USER"
+  }, {
+    "name" : "ANIMATION",
+    "source" : "USER"
+  }, {
+    "name" : "IMAGE",
+    "source" : "USER"
+  }, {
+    "name" : "CONVERSION",
+    "source" : "USER"
+  }, {
+    "name" : "INTERACTION",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 30863708761,
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,296 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 4,
+  "attachedStylesheets" : [ {
+    "type" : "cos_extension_resource",
+    "path" : "/Coded files/Custom/page/css/Vast-style.css"
+  } ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "site-page three-column",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Header",
+        "label" : "hubtheme Theme/Header",
+        "type" : "global_group",
+        "params" : {
+          "css_class" : "",
+          "css_style" : "",
+          "generated_template_path" : "generated_global_groups/4317369719.html",
+          "html" : "",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369719.html",
+          "wrapping_html" : ""
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_167526790681230742379962743181838322836",
+        "label" : "Title Background",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "title-background padding20tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_271443102449827149962161827295696753260",
+            "label" : "Page Center",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "page-center",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_279932655895910608498545406574798780908",
+                "label" : "Page Title",
+                "type" : "header",
+                "params" : {
+                  "header_tag" : "h1",
+                  "overrideable" : true,
+                  "value" : "Enter the on-page title"
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_183767004336378289714976650869939064739",
+        "label" : "Page Center, Content Wrapper",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "page-center content-wrapper padding60tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 6,
+            "name" : "wizard_module_281967023200232751281114880245501443421",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_177095203247416962168428755685830405345",
+                "label" : "Left Column",
+                "type" : "widget_container",
+                "params" : {
+                  "overrideable" : false,
+                  "value" : ""
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          },
+          "6" : {
+            "x" : 6,
+            "w" : 6,
+            "name" : "wizard_module_167791802200310451963110981330029025233",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_236828452838509705068002006982774887859",
+                "label" : "Right Column",
+                "type" : "widget_container",
+                "params" : {
+                  "overrideable" : false
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Full Width Blog Subscription Module",
+        "label" : "hubtheme Theme/Full Width Blog Subscription Module",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369759.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369759.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Footer",
+        "label" : "hubtheme Theme/Footer",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369739.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369739.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

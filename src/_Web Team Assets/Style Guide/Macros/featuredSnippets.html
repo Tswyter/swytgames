@@ -1,0 +1,38 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+MACRO BASED STYLEGUIDE MODULES 
+Featurd Snippets for Blogs
+
+Docs for using a data structure: https://docs.google.com/document/d/1CGZu02UErxltkTIgxnF36hKd0ZlCnfbqErO_5piom_g/edit
+#}
+
+
+{% macro render_ftSnippet(module) %}
+  {%- set list_tag = "ol" if module.content_type == "ordered_list" else "ul" -%}
+  
+  <div class="hsg-featured-snippet">
+    <div class="hsg-featured-snippet__wrapper">
+      <h2>{{ module.header }}</h2>
+      <div class="hsg-featured-snippet__wrapper--content" data-type="{{ module.content_type }}">
+        {% if module.content_type is equalto 'paragraph' -%}
+          <p>{{ module.paragraph.content }}</p>
+        {% else %}
+          {% if module.list.header -%}
+          <h5 class="hsg-featured-snippet__wrapper--list-header">{{ module.list.header }}</h5>
+          {% endif -%}
+
+          {%- if module.list.items|length -%}
+            <{{ list_tag }}>
+              {% for item in module.list.items -%}
+                <li>{{ item }}</li>
+              {% endfor -%}
+            </{{ list_tag }}>
+          {% endif -%}
+        {% endif -%}
+      </div>
+    </div>
+  </div>
+{% endmacro %}

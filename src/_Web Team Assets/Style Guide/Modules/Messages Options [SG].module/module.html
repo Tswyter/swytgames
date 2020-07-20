@@ -1,0 +1,20 @@
+{% unless moduleLang is defined %}
+  {%- set moduleLang = "en" -%}
+  {% if is_english -%}
+    {%- set moduleLang = "en" -%}
+  {% elif is_french %}
+    {%- set moduleLang = "fr" -%}
+  {% elif is_german %}
+    {%- set moduleLang = "de" -%}
+  {% elif is_japanese %}
+    {%- set moduleLang = "jp" -%}
+  {% elif is_portuguese %}
+    {%- set moduleLang = "pt" -%}
+  {% elif is_spanish %}
+    {%- set moduleLang = "es" -%}
+  {% endif -%}
+{% endunless %}
+
+{% if widget.add_messages == true and widget.proactive_chat_seconds != "0" -%}
+<div id="hsg-messages" data-seconds="{{ widget.proactive_chat_seconds|int * 1000 }}"></div>
+{% endif -%}

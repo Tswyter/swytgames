@@ -1,0 +1,24 @@
+{#
+CHANGE LOG:
+--------------
+
+#}
+
+{%- if (module.firebase_endpoint is truthy) -%}
+<section class="hsg-up-down-vote">
+  <div class="section-header section-header--none" data-background="white">
+    <div class="hsg-page-width-normal">
+      {% if module.header -%}
+        <h2>{{ module.header }}</h2>
+      {% endif -%}
+
+      {%- if module.tagline -%}
+      <p>{{ module.tagline }}</p>
+      {% endif -%}
+    </div>
+  </div>
+
+  <ol class="hsg-up-down-vote__list hsg-page-width-normal hsg-upvote-list"
+    data-url="{{ module.firebase_endpoint }}"></ol>
+</section>
+{% endif -%}

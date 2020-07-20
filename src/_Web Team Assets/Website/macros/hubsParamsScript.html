@@ -1,0 +1,147 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{% macro hubsParamsScript(language) %}
+
+  {%- set domainTrackingList = {
+	  'en': [
+		  'app.hubspot.com/signup',
+      'offers.hubspot.com/demo',
+      'offers.hubspot.com/ima',
+      'offers.hubspot.com/contact-sales',
+      'offers.hubspot.com/free-trial',
+      'offers.hubspot.com/service-demo'
+		],
+		'es': [
+		  'app.hubspot.com/signup',
+			'offers.hubspot.es/demo',
+			'offers.hubspot.es/contact-sales',
+			'offers.hubspot.es/inbound-marketing-assessment',
+			'offers.hubspot.es/free-trial',
+			'offers.hubspot.es/service-demo'
+		],
+		'de': [
+			'app.hubspot.com/signup',
+			'offers.hubspot.de/demo',
+			'offers.hubspot.de/contact-sales',
+			'offers.hubspot.de/inbound-marketing-beratung',
+			'offers.hubspot.de/free-trial',
+			'offers.hubspot.de/service-demo'
+		],
+		'fr': [
+			'app.hubspot.com/signup',
+			'offers.hubspot.fr/demo',
+			'offers.hubspot.fr/contact-sales',
+			'offers.hubspot.fr/inbound-marketing-assessment',
+			'offers.hubspot.fr/free-trial',
+			'offers.hubspot.fr/service-demo'
+		],
+		'pt': [
+			'app.hubspot.com/signup',
+			'br.hubspot.com/ofertas/demo',
+			'br.hubspot.com/ofertas/contact-sales',
+			'br.hubspot.com/ofertas/contato-vendas',
+			'br.hubspot.com/ofertas/inbound-marketing-avaliacao',
+			'br.hubspot.com/ofertas/free-trial',
+			'br.hubspot.com/ofertas/service-demo'
+		],
+		'jp': [
+		  'app.hubspot.com/signup',
+			'offers.hubspot.jp/demo',
+			'offers.hubspot.jp/contact-sales',
+			'offers.hubspot.jp/inbound-marketing-assessment',
+			'offers.hubspot.jp/free-trial',
+			'offers.hubspot.jp/service-demo'
+		]
+	} -%}
+
+  {%- set currentDomainList = domainTrackingList[language] -%}
+  <script type="text/javascript">
+      // Object.assign Polyfill
+      (function () {
+          if (typeof Object.assign !== 'function') {
+              // Must be writable: true, enumerable: false, configurable: true
+              Object.defineProperty(Object, "assign", {
+                  value: function assign(target, varArgs) { // .length of function is 2
+                      'use strict';
+                      if (target === null || target === undefined) {
+                          throw new TypeError('Cannot convert undefined or null to object');
+                      }
+
+                      var to = Object(target);
+
+                      for (var index = 1; index < arguments.length; index++) {
+                          var nextSource = arguments[index];
+
+                          if (nextSource !== null && nextSource !== undefined) {
+                              for (var nextKey in nextSource) {
+                                  // Avoid bugs when hasOwnProperty is shadowed
+                                  if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                                      to[nextKey] = nextSource[nextKey];
+                                  }
+                              }
+                          }
+                      }
+                      return to;
+                  },
+                  writable: true,
+                  configurable: true
+              });
+          }
+      })();
+
+
+      // create namespace
+      var pageQueryFilter = {};
+      pageQueryFilter.search = location.search.substring(1);
+      // get the page base path
+      pageQueryFilter.pageBasePath = location.href.split('?')[0];
+      // keys that has to be removed
+      pageQueryFilter.ignoreKeys = ['hs_preview', 'hsDebug', 'page'];
+      if (pageQueryFilter.search.length > 0) {
+          pageQueryFilter.searchQueryObj = JSON.parse('{"' + decodeURI(pageQueryFilter.search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+          // filter out keys to ignore
+          Object.keys(pageQueryFilter.searchQueryObj).forEach(function (key) {
+              if (pageQueryFilter.ignoreKeys.includes(key)) {
+                  delete pageQueryFilter.searchQueryObj[key];
+              }
+          });
+      }
+
+      var hrefElements = document.querySelectorAll('a[href]:not([href*="#"])');
+      for (var i = 0; i < hrefElements.length; i++) {
+          // get the link href
+          var currentHref = hrefElements[i].href;
+          if (~hrefElements[i].href.indexOf('www.snowflake.com')) continue;
+          // split the link from basepath and query params
+          var itemParams = currentHref.split('?');
+          var itemParamsObj = {};
+          // if the link has query params
+          if (itemParams[1]) {
+              try {
+                  itemParamsObj = JSON.parse('{"' + decodeURI(itemParams[1]).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+              } catch (e) {
+              }
+          }
+          // create an object by merging search query params with item query params
+          var newQuery = Object.assign({}, pageQueryFilter.searchQueryObj, itemParamsObj);
+          if (Object.keys(newQuery).length > 0) {
+              var newQueryString = '?' + Object.keys(newQuery).map(function (key) {
+                  return key + '=' + newQuery[key]
+              }).join('&');
+              hrefElements[i].href = itemParams[0] + newQueryString;
+          }
+      }
+  </script>
+  <script>
+      var g_domainTrackingListTest = [
+          {%- for trackedUrl in currentDomainList -%}
+              '{{ trackedUrl }}'{%- unless loop.index0 == currentDomainList|length - 1 -%}, {%- endunless -%}
+          {% endfor %}
+      ];
+      function a(a,b){if(a!==b)throw new TypeError('Cannot instantiate an arrow function')}
+      (function(b,c){var d=this,e={alreadyTracked:function e(b,c){return a(this,d),0!==c.filter(function(c){return a(this,d),-1!==b.indexOf(c)}.bind(this)).length}.bind(this),nodeListToArray:function f(b){a(this,d);for(var c=[],e=b.length;e--;)c[e]=b[e];return c}.bind(this),removeProtocol:function c(b){return a(this,d),b.replace(/(^\w+:|^)\/\//,'')}.bind(this)},f={addParamsToUrl:function g(b,c,e){a(this,d);var f=-1===b.indexOf('?')?'?':'&';return''+b+f+c+'='+e}.bind(this),addMissingParams:function h(b,c){a(this,d);var g=['hubs_signup-url','hubs_signup-cta'];return b.filter(function(b){a(this,d);var h=b.href,i=!1;if(-1===h.indexOf(g[0])){var l=e.removeProtocol(c.split('?')[0]);b.href=f.addParamsToUrl(h,g[0],l),h=b.href,i=!0}if(-1===h.indexOf(g[1])){var j=b.classList.length,k=b.classList.item(j-1);b.href=f.addParamsToUrl(h,g[1],k),h=b.href,i=!0}return i||void 0,i}.bind(this))}.bind(this)},g=function(){a(this,d);var g=window.location.href;if(!e.alreadyTracked(g,['utm_medium=am','utm_medium=cpc','utm_medium=paid'])){var h=c===void 0?[]:c,i=e.nodeListToArray(document.getElementsByClassName('body-container-wrapper')[0].getElementsByTagName('a'));var j=i.filter(function(b){a(this,d);var c=b.href+'#';return-1===c.indexOf(g)&&0!==h.reduce(function(b,e){return a(this,d),b+c.indexOf(e)+1}.bind(this),0)}.bind(this));var k=f.addMissingParams(j,g);return{urlTrackingList:h,aTagsMatchingTrackingList:j,updatedATags:k}}return null}.bind(this);g()})(document,g_domainTrackingListTest);
+  </script>
+
+{% endmacro %}

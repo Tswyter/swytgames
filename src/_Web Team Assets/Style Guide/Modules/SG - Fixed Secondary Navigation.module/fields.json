@@ -1,0 +1,168 @@
+[ {
+  "id" : "1754623a-755e-358f-5a55-e18a75a58584",
+  "name" : "link_type",
+  "label" : "Link Type",
+  "help_text" : "Choose whether the navigation links manually entered, auto-generated from the Section Header modules on this page, or derived from a HubDB table. **Note: please contact the Web Team for support in creating the HubDB table.",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "placeholder" : "Select an option",
+  "choices" : [ [ "basic", "Basic" ], [ "auto", "Auto-generated from Section Headers" ], [ "hubdb", "HubDB-powered" ] ],
+  "type" : "choice",
+  "default" : "basic"
+}, {
+  "id" : "e3266be2-69a0-16ec-8785-057da26b3284",
+  "name" : "links",
+  "label" : "Links",
+  "help_text" : "Up to 8 primary navigation links.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 8,
+    "sorting_label_field" : "cf852a1b-245d-e3ff-5283-c18c4319b6cb",
+    "default" : 2
+  },
+  "visibility" : {
+    "controlling_field" : "1754623a-755e-358f-5a55-e18a75a58584",
+    "controlling_value_regex" : "basic",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "cf852a1b-245d-e3ff-5283-c18c4319b6cb",
+    "name" : "link_label",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Overview"
+  }, {
+    "id" : "a5bc1741-bd29-fdc2-f030-ee690dad9fee",
+    "name" : "link_url",
+    "label" : "URL",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "https://...",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "https://www.hubspot.com"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "link_label" : "Overview",
+    "link_url" : "https://www.hubspot.com"
+  }, {
+    "link_label" : "Overview",
+    "link_url" : "https://www.hubspot.com"
+  } ]
+}, {
+  "id" : "ada68659-5c8a-bae6-4a7d-97c49f1cabfc",
+  "name" : "hubdb_table_id",
+  "label" : "HubDB Table",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "1754623a-755e-358f-5a55-e18a75a58584",
+    "controlling_value_regex" : "hubdb",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "type" : "hubdbtable",
+  "default" : null
+}, {
+  "id" : "d1b8ba17-3e46-6dac-96e8-338aae468136",
+  "name" : "optional_fields",
+  "label" : "Additional Fields (Optional)",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "d66ba3bb-3aea-d621-00fd-b6a3cb125b98",
+    "name" : "mobile_title",
+    "label" : "Mobile Title",
+    "help_text" : "(Optional). Add a title to help provide context for the navigation on mobile screens (collapsed). **Note: this title should be short (1-2 words).",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "Sections",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "669d24cd-4c74-7581-b166-6d5d27c7d085",
+    "name" : "cta",
+    "label" : "CTA",
+    "help_text" : "(Optional). A small CTA that appears to the right of the navigation links.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "c0dbcdc5-25bd-0b00-e08b-628e59e38e42",
+      "name" : "cta_label",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Get started",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    }, {
+      "id" : "a0ebdcfe-79de-eeef-e57b-715e18c65796",
+      "name" : "cta_link",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "cta_label" : "",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "cta" : {
+      "cta_label" : "",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }
+} ]

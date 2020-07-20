@@ -1,0 +1,312 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 4,
+  "attachedStylesheets" : [ {
+    "type" : "cos_extension_resource",
+    "path" : "/Coded files/Custom/page/css/Vast-style.css"
+  } ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "landing-page two-column",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Header",
+        "label" : "hubtheme Theme/Header",
+        "type" : "global_group",
+        "params" : {
+          "css_class" : "",
+          "css_style" : "",
+          "generated_template_path" : "generated_global_groups/4317369719.html",
+          "html" : "",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369719.html",
+          "wrapping_html" : ""
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_42114564860575791738866660627851064913",
+        "label" : "Title Background",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "title-background padding20tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_295832035517805361329896262946771353613",
+            "label" : "Page Center",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "page-center",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_296856306965158319605444014340876395417",
+                "label" : "Page Title",
+                "type" : "header",
+                "params" : {
+                  "header_tag" : "h1",
+                  "overrideable" : true,
+                  "value" : "Enter the on-page title"
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_204545178231792444782805079504647075496",
+        "label" : "Page Center, Content Wrapper",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "page-center content-wrapper",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 8,
+            "name" : "wizard_module_229942870556162796405443434124342327989",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_154000702288513769303677762790291390472",
+                "label" : "Left Column",
+                "type" : "widget_container",
+                "params" : {
+                  "overrideable" : false
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          },
+          "8" : {
+            "x" : 8,
+            "w" : 4,
+            "name" : "wizard_module_87127046556317972112662316217915929741",
+            "label" : "Sidebar, Right",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "sidebar right",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_196845559795097368496967656249572729643",
+                "label" : "Sidebar Rich Text",
+                "type" : "rich_text",
+                "params" : {
+                  "html" : "<h2>Something Powerful</h2>\n<h3>Tell The Reader More</h3>\n<p>The headline and subheader tells us what you're <a href=\"#\">offering</a>, and the form header closes the deal. Over here you can explain why your offer is so great it's worth filling out a form for.</p>\n<p>Remember:</p>\n<ul>\n    <li>Bullets are great</li>\n    <li>For spelling out <a href=\"#\">benefits</a> and</li>\n    <li>Turning visitors into leads.</li>\n</ul>",
+                  "overrideable" : true
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            }, {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_49407241245919982511671403148575504383",
+                "label" : "Call-to-Action",
+                "type" : "cta",
+                "params" : {
+                  "overrideable" : false
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            }, {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_161037124996457581740224097306662881788",
+                "label" : "Flexible Column",
+                "type" : "widget_container",
+                "params" : {
+                  "overrideable" : false
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Footer",
+        "label" : "hubtheme Theme/Footer",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369739.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369739.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

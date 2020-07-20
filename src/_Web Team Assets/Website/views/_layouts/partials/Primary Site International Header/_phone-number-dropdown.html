@@ -1,0 +1,201 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{#
+CHANGE LOG:
+-----------
+- Pat (2.6.19) Officially removed old {{ phoneNumber }} import :fingerscrossed:
+#}
+
+{# Sales number markup macro #}
+{% unless generateSalesNumber is defined -%}
+  {% from '../../../../macros/salesNumber.html' import generateSalesNumber %}
+{% endunless -%}
+
+{%- set phoneNumberLabel = 'Sales:' -%}
+{%- set mainPhoneNumberLabel = 'Main' -%}
+
+{% if is_spanish -%}
+  {%- set phoneNumberLabel = 'Ventas' -%}
+  {%- set mainPhoneNumberLabel = 'Principal' -%}
+{% elif is_german -%}
+  {%- set phoneNumberLabel = 'Vertrieb' -%}
+  {%- set mainPhoneNumberLabel = 'Hauptnummer' -%}
+{% elif is_french -%}
+  {%- set phoneNumberLabel = 'Contact commercial' -%}
+  {%- set mainPhoneNumberLabel = 'Réception' -%}
+{% elif is_portuguese -%}
+  {# No translations #}
+{% elif is_japanese -%}
+  {%- set phoneNumberLabel = '製品のお問合せ' -%}
+  {%- set mainPhoneNumberLabel = '代表番号' -%}
+{% endif -%}
+
+{% if is_english -%}
+  {% if request.path == "/" -%}
+    {%- set invocaHeaderNumber = "1 844 414 8020" -%}
+  {% elif request.path == "/products/sales/get-started" -%}
+    {%- set invocaHeaderNumber = "1 888 622 9397" -%}
+  {% elif request.path == "/products/service/get-started" -%}
+    {%- set invocaHeaderNumber = "1 844 407 7185" -%}
+  {% elif request.path is string_containing "/sales-pro-special-promotion" -%}
+    {%- set invocaHeaderNumber = "1 888 847 0586" -%}
+  {% elif request.path is string_containing "/pricing/crm" -%}
+    {%- set invocaHeaderNumber = "1 855 403 3415" -%}
+  {% elif request.path is string_containing "our-story" -%}
+    {%- set invocaHeaderNumber = "1 844 206 5698" -%}
+  {% elif request.path is string_containing "/what-is-hubspot" -%}
+    {%- set invocaHeaderNumber = "1 844 265 4341" -%}
+  {% elif request.path is string_containing "/why-go-hubspot" -%}
+    {%- set invocaHeaderNumber = "1 855 999 9601" -%}
+  {% elif request.path is string_containing "/company/contact" -%}
+    {%- set invocaHeaderNumber = "1 877 929 0687" -%}
+  {% elif request.path is string_containing "/thank-you/contact-sales" -%}
+    {%- set invocaHeaderNumber = "1 888 506 8692" -%}
+  {% elif request.path is string_containing "/thank-you/inbound-marketing-assessment" -%}
+    {%- set invocaHeaderNumber = "1 844 862 9316" -%}
+  {% elif request.path is string_containing "/pricing/growth-suite" -%}
+    {%- set invocaHeaderNumber = "1 855 222 7414" -%}
+  {% elif request.path is string_containing "/pricing/service" -%}
+    {%- set invocaHeaderNumber = "1 877 569 8875" -%}
+  {% elif request.path is string_containing "/pricing/marketing/free" -%}
+    {%- set invocaHeaderNumber = "1 855 698 3206" -%}
+  {% elif request.path is string_containing "/products/marketing/analytics" -%}
+    {%- set invocaHeaderNumber = "1 844 289 1084" -%}
+  {% elif request.path is string_containing "/pricing/service-limits" -%}
+    {%- set invocaHeaderNumber = "1 855 701 7391" -%}
+  {% elif request.path is string_containing "/partners/marketing/pricing" -%}
+    {%- set invocaHeaderNumber = "1 855 690 6322" -%}
+  {% elif request.path is string_containing "/products/marketing/free" -%}
+    {%- set invocaHeaderNumber = "1 877 512 7726" -%}
+  {% elif request.path is string_containing "/products/marketing/lead-flows" -%}
+    {%- set invocaHeaderNumber = "1 844 366 6092" -%}
+  {% elif request.path is string_containing "/products/marketing/ads" -%}
+    {%- set invocaHeaderNumber = "1 844 632 6691" -%}
+  {% elif request.path is string_containing "/products/marketing/blog" -%}
+    {%- set invocaHeaderNumber = "1 855 290 1251" -%}
+  {% elif request.path is string_containing "/products/marketing/content-optimization-system" -%}
+    {%- set invocaHeaderNumber = "1 888 865 1898" -%}
+  {% elif request.path is string_containing "/products/marketing/calls-to-action" -%}
+    {%- set invocaHeaderNumber = "1 844 239 9349" -%}
+  {% elif request.path is string_containing "/products/marketing/email" -%}
+    {%- set invocaHeaderNumber = "1 855 610 2911" -%}
+  {% elif request.path is string_containing "/products/marketing/forms" -%}
+    {%- set invocaHeaderNumber = "1 844 226 2905" -%}
+  {% elif request.path is string_containing "/products/marketing/landing-pages" -%}
+    {%- set invocaHeaderNumber = "1 844 358 9784" -%}
+  {% elif request.path is string_containing "/products/marketing/lead-management" -%}
+    {%- set invocaHeaderNumber = "1 844 817 6621" -%}
+  {% elif request.path is string_containing "/products/marketing/marketing-automation" -%}
+    {%- set invocaHeaderNumber = "1 844 520 4716" -%}
+  {% elif request.path is string_containing "/products/marketing/projects" -%}
+    {%- set invocaHeaderNumber = "1 855 760 3948" -%}
+  {% elif request.path is string_containing "/products/marketing/reporting-add-on" -%}
+    {%- set invocaHeaderNumber = "1 844 508 4536" -%}
+  {% elif request.path is string_containing "/products/marketing/salesforce" -%}
+    {%- set invocaHeaderNumber = "1 855 848 1824" -%}
+  {% elif request.path is string_containing "/products/marketing/seo" -%}
+    {%- set invocaHeaderNumber = "1 888 201 8117" -%}
+  {% elif request.path is string_containing "/products/marketing/social-inbox" -%}
+    {%- set invocaHeaderNumber = "1 855 645 0786" -%}
+  {% elif request.path is string_containing "/products/marketing/website" -%}
+    {%- set invocaHeaderNumber = "1 855 820 3830" -%}
+  {% elif request.path is string_containing "/products/crm/contact-management" -%}
+    {%- set invocaHeaderNumber = "1 844 869 1301" -%}
+  {% elif request.path is string_containing "/products/crm/email-templates" -%}
+    {%- set invocaHeaderNumber = "1 844 358 9782" -%}
+  {% elif request.path is string_containing "/products/crm/email-tracking" -%}
+    {%- set invocaHeaderNumber = "1 855 668 7419" -%}
+  {% elif request.path is string_containing "/products/crm/insights" -%}
+    {%- set invocaHeaderNumber = "1 844 282 2596" -%}
+  {% elif request.path is string_containing "/products/crm/lead-management" -%}
+    {%- set invocaHeaderNumber = "1 855 562 5807" -%}
+  {% elif request.path is string_containing "/products/crm/pipeline-management" -%}
+    {%- set invocaHeaderNumber = "1 844 618 8496" -%}
+  {% elif request.path is string_containing "/products/sales/click-to-call" -%}
+    {%- set invocaHeaderNumber = "1 855 668 5061" -%}
+  {% elif request.path is string_containing "/products/sales/document-tracking" -%}
+    {%- set invocaHeaderNumber = "1 855 583 4564" -%}
+  {% elif request.path is string_containing "/products/sales/email-scheduling" -%}
+    {%- set invocaHeaderNumber = "1 877 804 7279" -%}
+  {% elif request.path is string_containing "/products/sales/sales-automation" -%}
+    {%- set invocaHeaderNumber = "1 844 406 5092" -%}
+  {% elif request.path is string_containing "/products/sales/email-templates-sales" -%}
+    {%- set invocaHeaderNumber = "1 888 652 1445" -%}
+  {% elif request.path is string_containing "/products/sales/email-tracking" -%}
+    {%- set invocaHeaderNumber = "1 877 650 8270" -%}
+  {% elif request.path is string_containing "/products/sales/contact-profiles" -%}
+    {%- set invocaHeaderNumber = "1 855 757 3175" -%}
+  {% elif request.path is string_containing "/products/sales/schedule-meeting" -%}
+    {%- set invocaHeaderNumber = "1 844 529 9304" -%}
+  {% elif request.path is string_containing "/products/sales/live-chat" -%}
+    {%- set invocaHeaderNumber = "1 888 315 3998" -%}
+  {% elif request.path is string_containing "/products/sales/outlook" -%}
+    {%- set invocaHeaderNumber = "1 888 509 7398" -%}
+  {% elif request.path is string_containing "/products/sales/sales-leads" -%}
+    {%- set invocaHeaderNumber = "1 844 203 3763" -%}
+  {% elif request.path is string_containing "/products/get-started-free" -%}
+    {%- set invocaHeaderNumber = "1 855 995 1709" -%}
+  {% elif request.path is string_containing "/products/crm/sales-marketing-integration" -%}
+    {%- set invocaHeaderNumber = "1 888 450 3618" -%}
+  {% elif request.path is string_containing "/products/growth-stack" -%}
+    {%- set invocaHeaderNumber = "1 855 487 6595" -%}
+  {% elif request.path is string_containing "/products/ads" -%}
+    {%- set invocaHeaderNumber = "1 888 786 8361" -%}
+  {% elif request.path is string_containing "/partners/marketing" -%}
+    {%- set invocaHeaderNumber = "1 888 376 0493" -%}
+  {% elif request.path is string_containing "/partners/sales" -%}
+    {%- set invocaHeaderNumber = "1 855 843 2932" -%}
+  {% elif request.path is string_containing "/partners/connect" -%}
+    {%- set invocaHeaderNumber = "1 877 804 0159" -%}
+  {% elif request.path is string_containing "/partners/find-an-agency" -%}
+    {%- set invocaHeaderNumber = "1 844 483 5963" -%}
+  {% elif request.path is string_containing "/partners" -%}
+    {%- set invocaHeaderNumber = "1 888 490 0508" -%}
+  {% elif request.path is string_containing "/pricing/sales" -%}
+    {%- set invocaHeaderNumber = "1 844 260 4484" -%}
+  {% elif request.path is string_containing "/pricing/marketing" -%}
+    {%- set invocaHeaderNumber = "1 844 310 6848" -%}
+  {% elif request.path is string_containing "/products/crm" -%}
+    {%- set invocaHeaderNumber = "1 855 778 3118" -%}
+  {% elif request.path is string_containing "/products/sales" -%}
+    {%- set invocaHeaderNumber = "1 888 382 7207" -%}
+  {% elif request.path is string_containing "/products/marketing" -%}
+    {%- set invocaHeaderNumber = "1 844 439 2588" -%}
+  {% elif request.path is string_containing "/products/marketing/get-started" -%}
+    {%- set invocaHeaderNumber = "1 844 699 2905" -%}
+  {% elif request.path is string_containing "/inbound-marketing-assessment" -%}
+    {%- set invocaHeaderNumber = "1 877 649 6254" -%}
+  {% elif request.path is string_containing "/inbound-marketing" -%}
+    {%- set invocaHeaderNumber = "1 855 757 2049" -%}
+  {% elif request.path == "/demo" -%}
+    {%- set invocaHeaderNumber = "1 855 407 9903" -%}
+  {% elif request.path == "/sales-demo" -%}
+    {%- set invocaHeaderNumber = "1 877 739 6402" -%}
+  {% elif request.path is string_containing "/thank-you/demo" -%}
+    {%- set invocaHeaderNumber = "1 877 289 0336" -%}
+  {% elif request.path is string_containing "/get-started" -%}
+    {%- set invocaHeaderNumber = "1 855 760 8394" -%}
+  {% elif request.path is string_containing "/contact-sales" -%}
+    {%- set invocaHeaderNumber = "1 844 237 9405" -%}
+  {% elif request.path is string_containing "/products/service" -%}
+    {%- set invocaHeaderNumber = "1 844 524 9102" -%}
+  {% elif request.path is string_containing "/service-demo" -%}
+    {%- set invocaHeaderNumber = "1 866 245 0887" -%}
+  {% endif -%}
+{% endif -%}
+
+{# Should be placed in standard HubSpot navigation group #}
+
+<li class="hsg-nav__group-item">
+  {% for item in contactUsLinks -%}
+    {% if item.has_dropdown -%}
+      <div class="hsg-nav__link-wrapper">
+        <a href="{{ item.url }}" class="hsg-nav__link">
+          <span class="hsg-nav__link-label hsg-nav__link-label--contact-us">{{ item.text }}</span>
+        </a>
+      </div>
+    {% endif -%}
+  {% endfor -%}
+</li>

@@ -1,0 +1,117 @@
+{#
+CHANGE LOG:
+---------------
+#}
+
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- unless smartConditionSatisfied is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/smartContent.html' import smartConditionSatisfied %}
+{% endunless -%}
+
+{%- set image = module.content.image -%}
+{%- set header = module.content.header -%}
+{%- set description = module.content.description -%}
+{%- set cta = {
+  'type': module.content.cta.type,
+  'cta_label': module.content.cta.cta_label,
+  'cta_link': module.content.cta.cta_link,
+  'product_cta': module.content.cta.product_cta,
+  'modal_id': module.content.cta.modal_id,
+  'options': {
+    'custom_class': module.content.cta.custom_class
+  }
+} -%}
+
+{% if module.content.smart_rules|length -%}
+  {%- set rule = module.content.smart_rules[0] -%}
+  {{ smartConditionSatisfied(rule) }}
+
+  {% if rule.satisfied -%}
+    {%- set image = rule.rule_image -%}
+    {%- set header = rule.rule_header -%}
+    {%- set description = rule.rule_description -%}
+    {%- set cta = {
+      'type': 'link',
+      'cta_label': rule.rule_label,
+      'cta_link': rule.rule_link,
+      'options': {
+        'custom_class': rule.rule_custom_class
+      }
+    } -%}
+  {% endif -%}
+{% endif -%}
+
+{%- set containerClasses = 'hsg-wistia-playlist-preview' ~ (' hsg-wistia-playlist-preview--with-cta' if (header or description)) -%}
+
+{% if module.playlist_id -%}
+<section class="{{ containerClasses }}"
+  data-background="{{ module.options.background_theme }}"
+  data-playlist-id="{{ module.playlist_id }}"
+  data-playlist-color="{{ module.options.player_theme }}"
+  data-playlist-autoplay="{{ module.options.player_autoplay }}">
+  <div class="hsg-wistia-playlist-preview__wrapper hsg-page-width-normal">
+    <div class="hsg-wistia-playlist-preview__video-player">
+      <div class="hsg-wistia-playlist-preview__mobile-controls">
+        <button class="hsg-wistia-playlist-preview__mobile-next">
+          <img class="hsg-slider__next" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+        </button>
+
+        {# VIDEO CONTAINER #}
+        <div id="wistia_{{ module.playlist_id }}"
+          class="wistia_embed"
+          data-video-width="767"
+          data-video-height="431"
+          style="width: 100%; height: 431px;">&nbsp;</div>
+
+        <button class="hsg-wistia-playlist-preview__mobile-prev">
+          <img class="hsg-slider__prev" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+        </button>
+      </div>
+
+      {# DYNAMIC VIDEO INFO #}
+      <div class="hsg-wistia-playlist-preview__video-text">
+        <h3 class="hsg-wistia-playlist-preview__video-title"></h3>
+        <p class="hsg-wistia-playlist-preview__video-description"></p>
+      </div>
+
+      <div class="hsg-wistia-playlist-preview__playlist-links hsg-slider"
+        data-slides-to-scroll="1"
+        data-slides-to-scroll-mobile="1"
+        data-enable-mouse-events="true"
+        data-show-progress-dots="true"
+        data-rewind="true">
+        <figure class="hsg-slider__container">
+          <ul class="hsg-slider__slides hsg-wistia-playlist-preview__slide-injector"></ul>
+        </figure>
+        <img class="hsg-slider__prev" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+        <img class="hsg-slider__next" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+        <div class="hsg-slider__indicators"></div>
+      </div>
+    </div>
+
+    {%- if header or description -%}
+    <div class="hsg-wistia-playlist-preview__cta-area">
+      {% if image.src -%}
+      <img src="{{ image.src }}" alt="{{ image.alt }}" width="{{ image.width }}" height="{{ image.height }}">
+      {% endif -%}
+
+      {% if header -%}
+      <h3>{{ header }}</h3>
+      {% endif -%}
+
+      {% if description -%}
+      <p>{{ description }}</p>
+      {% endif -%}
+
+      {{ generateModuleCtas({
+        'ctas': [cta],
+        'sizingClass': 'cta--medium'
+      }) }}
+    </div>
+    {% endif -%}
+  </div>
+</section>
+{% endif -%}

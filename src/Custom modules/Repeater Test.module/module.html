@@ -1,0 +1,8 @@
+<div class="accordion">
+	{{ widget.title }}
+	<ul>
+		{% for item in widget.accordion_items %}
+		  <li>{{ item.title }}</li>
+		{% endfor %}
+	</ul>
+</div>

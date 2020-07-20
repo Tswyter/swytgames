@@ -1,0 +1,285 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 4,
+  "attachedStylesheets" : [ {
+    "type" : "cos_extension_resource",
+    "path" : "/Coded files/Custom/page/css/Vast-style.css"
+  } ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "landing-page three-column",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 3,
+        "name" : "wizard_module_225608119379890366817249155338298205171",
+        "label" : "Logo",
+        "type" : "logo",
+        "params" : {
+          "overrideable" : true
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      },
+      "3" : {
+        "x" : 3,
+        "w" : 9,
+        "name" : "wizard_module_4544074643958541971354827696966243784",
+        "label" : "Horizontal Spacer",
+        "type" : "space",
+        "params" : {
+          "overrideable" : true
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_250830980315765405035023860783502707956",
+        "label" : "Title Background",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "title-background padding20tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_299928191728962701972637581182156510019",
+            "label" : "Page Center",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "page-center",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_103020971523727933265971114187098166009",
+                "label" : "Page Title",
+                "type" : "header",
+                "params" : {
+                  "header_tag" : "h1",
+                  "overrideable" : true,
+                  "value" : "Enter the on-page title"
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_111206875723178557952573614948284095294",
+        "label" : "Page Center, Content Wrapper",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "page-center content-wrapper padding60tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 6,
+            "name" : "wizard_module_251644889938680899131857500237735348582",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_96144662085961238402428955913407957759",
+                "label" : "Left Column",
+                "type" : "widget_container",
+                "params" : {
+                  "overrideable" : false
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          },
+          "6" : {
+            "x" : 6,
+            "w" : 6,
+            "name" : "wizard_module_22942196762987715796435461460301364810",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_307675144501726318921428737522124253184",
+                "label" : "Sidebar Form",
+                "type" : "form",
+                "params" : {
+                  "overrideable" : true
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_282064199480264107193142175326565555661",
+        "label" : "HubL Template",
+        "type" : "raw_jinja",
+        "params" : {
+          "overrideable" : false,
+          "value" : "<!-- main js -->\n<script type=\"text/javascript\" src='{{ get_public_template_url(\"hubspot_default/shared/responsive/hubtheme-main.js\") }}'></script>\n\n<!-- Theme Foundation Javascript Package -->\n<script type=\"text/javascript\" src='{{ get_public_template_url(\"hubspot_default/shared/responsive/theme-foundation-v1-0.js\") }}'></script>"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

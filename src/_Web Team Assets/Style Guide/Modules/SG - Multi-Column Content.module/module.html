@@ -1,0 +1,62 @@
+{#
+CHANGE LOG:
+-------------
+
+#}
+
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- set containerClasses = 'hsg-multi-col' ~ (' {{ module.options.custom_class }}' if module.options.custom_class) -%}
+
+{%- if module.columns|length -%}
+<section class="{{ containerClasses }}" data-background="{{ module.options.background_theme }}">
+  <div class="hsg-multi-col__wrapper hs-page-width-module">
+  {% for column in module.columns -%}
+    {% if column.icon.src or column.header or column.description -%}
+    <div class="hsg-multi-col__item">
+      {% if column.icon.src -%}
+      {%- set imageClasses = ('hsg-multi-col__image ' ~ (module.options.icon_size if (not module.options.icon_size is equalto 'natural')))|trim -%}
+      <div class="hsg-multi-col__image-wrapper">
+        <img
+          class="{{ imageClasses }}"
+          src="{{ column.icon.src }}"
+          alt="{{ column.icon.alt }}">
+      </div>
+      {% endif -%}
+
+      <div class="hsg-multi-col-item__text-content">
+        {% if column.header -%}
+					{% if canvasAudit -%}
+						<h3 class="hsg-multi-col__name">{{ column.header }}</h3>
+					{% else %}
+						<h5 class="hsg-multi-col__name">{{ column.header }}</h5>
+					{% endif -%}
+        {% endif -%}
+
+        {%- if column.description -%}
+        <div class="hsg-multi-col__description">{{ column.description }}</div>
+        {% endif -%}
+
+        {{ generateModuleCtas({
+          'ctas': [{
+            'type': column.cta.type,
+            'cta_label': column.cta.cta_label,
+            'cta_link': column.cta.cta_link,
+            'product_cta': column.cta.product_cta,
+            'modal_id': column.cta.modal_id,
+            'options': {
+              'custom_class': column.cta.custom_class
+            }
+          }],
+          'noStyle': true,
+          'moduleClass': 'hsg-multi-col__learn-more'
+        }) }}
+      </div>
+    </div>
+    {% endif -%}
+  {% endfor -%}
+  </div>
+</section>
+{% endif -%}

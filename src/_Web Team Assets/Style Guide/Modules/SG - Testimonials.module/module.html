@@ -1,0 +1,152 @@
+{#
+CHANGE LOG:
+------------------------
+
+#}
+
+{%- unless generateVideoModal is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/video.html' import generateVideoModal %}
+{% endunless -%}
+
+{# Slider boolean #}
+{%- set isSlider = (module.testimonials|length > 1) -%}
+
+{# Prevents white bg selection for card style #}
+{%- set adjustedBackgroundColor = 'off-white' if ((module.options.display_type is equalto 'card') and (module.options.background_theme is equalto 'white')) else module.options.background_theme -%}
+
+{%- if module.testimonials|length -%}
+<section class="testimonial"
+  data-display-option="{{ module.options.display_type }}"
+  data-background="{{ adjustedBackgroundColor }}">
+  <div class="{{ 'testimonial__layout' ~ (' hsg-slider' if isSlider) }}"
+    {% if isSlider -%}
+    data-slides-to-scroll="1"
+    data-slides-to-scroll-mobile="1"
+    data-slide-speed="600"
+    data-enable-mouse-events="true"
+    data-show-progress-dots="true"
+    data-rewind="true"
+    data-rewind-speed="1000"
+    data-autoplay="{{ '4' if module.slider_options.autoplay else '0' }}"
+    {% endif -%}>
+
+    {%- if isSlider -%}
+    <div class="hsg-slider__container">
+      <ul class="hsg-slider__slides">
+    {% endif -%}
+
+    {%- for testimonial in module.testimonials -%}
+      {%- set contentTag = 'li' if isSlider else 'div' -%}
+      {%- set videoModalId = name ~ '-' ~ loop.index ~ '__modal' -%}
+      {%- set bottomContentClasses = 'testimonial__bottom-content' ~ (' has-logo' if testimonial.author.company_logo.src) -%}
+      {# Making these objects easier to reference #}
+      {%- set companyWebsiteLink = testimonial.author.company_website_link -%}
+      {%- set ctaLink = testimonial.cta.cta_link -%}
+
+      {%- if testimonial.quote -%}
+      <{{ contentTag }} class="{{ 'testimonial__content' ~ (' hsg-slider__slide' if isSlider) }}">
+        {% if testimonial.video.id -%}
+        {{ generateVideoModal({
+          'modalId': videoModalId,
+          'videoOptions': {
+            'type': testimonial.video.type,
+            'id': testimonial.video.id,
+            'url': testimonial.video.url,
+            'controls': testimonial.video.controls,
+            'uniqueId': (name ~ '-' ~ loop.index ~ '-' ~ testimonial.video.id)
+          }
+        }) }}
+        {% endif -%}{# END VIDEO MODAL #}
+
+        {%- if testimonial.author.headshot.src -%}
+        <div class="testimonial__img-wrapper">
+          {% if testimonial.video.id -%}
+          <a href="#"
+            data-type="{{ testimonial.video.type }}"
+            data-src="{{ testimonial.video.id }}"
+            data-target-modal="{{ videoModalId }}">
+          {% endif -%}
+          <img class="testimonial__headshot" src="{{ testimonial.author.headshot.src }}" alt="{{ testimonial.author.headshot.alt }}">
+          {% if testimonial.video.id -%}
+          <span class="hsg-icon hsg-icon-play testimonial__play-btn"></span>
+          </a>
+          {% endif -%}
+        </div>
+        {% endif -%}{# END HEADSHOT #}
+
+        <div class="testimonial__text-wrapper">
+          <blockquote class="testimonial__quote">
+            <span>{{ testimonial.quote }}</span>
+          </blockquote>
+
+          <div class="{{ bottomContentClasses }}">
+            <div class="testimonial__attribution">
+              <p class="testimonial__name">{{ testimonial.author.full_name }}</p>
+
+              {%- if testimonial.author.title -%}
+              <p class="testimonial__title">{{ testimonial.author.title }}</p>
+              {% endif -%}
+
+              {%- unless testimonial.author.company_logo.src -%}
+                {% if testimonial.author.company_name -%}
+                <p class="testimonial__company">
+                  {% if companyWebsiteLink.url.href -%}
+                  <a href="{{ companyWebsiteLink.url.href }}"
+                    class="testimonial__company-link"
+                    {% if companyWebsiteLink.open_in_new_tab %}target="_blank"{% endif %}
+                    {% if companyWebsiteLink.no_follow %}rel="nofollow"{% endif %}>
+                  {% endif -%}
+                  <em>{{ testimonial.author.company_name }}</em>
+                  {% if companyWebsiteLink.url.href -%}
+                  </a>
+                  {% endif -%}
+                </p>
+                {% endif -%}
+              {% endunless -%}
+            </div>{# END ATTRIBUTION #}
+
+            {%- if testimonial.author.company_logo.src -%}
+            <div class="testimonial__logo">
+              {% if companyWebsiteLink.url.href -%}
+              <a href="{{ companyWebsiteLink.url.href }}"
+                {% if companyWebsiteLink.open_in_new_tab %}target="_blank"{% endif %}
+                {% if companyWebsiteLink.no_follow %}rel="nofollow"{% endif %}>
+              {% endif -%}
+              <img src="{{ testimonial.author.company_logo.src }}"
+                alt="{{ testimonial.author.company_logo.alt }}"
+                width="{{ testimonial.author.company_logo.width }}">
+              {% if companyWebsiteLink.url.href -%}
+              </a>
+              {% endif -%}
+            </div>
+            {% endif -%}
+          </div>{# END BOTTOM CONTENT #}
+
+          {%- if testimonial.cta.cta_label and ctaLink.url.href -%}
+          <div class="testimonial__case-study">
+            <a href="{{ ctaLink.url.href }}"
+              {% if ctaLink.open_in_new_tab %}target="_blank"{% endif %}
+              {% if ctaLink.no_follow %}rel="nofollow"{% endif %}>
+              {{ testimonial.cta.cta_label }}
+            </a>
+          </div>
+          {% endif -%}
+        </div>{# END TEXT WRAPPER #}
+      </{{ contentTag }}>
+      {% endif -%}
+    {% endfor -%}
+
+    {%- if isSlider -%}
+      </ul>
+    </div>
+
+    <img class="hsg-slider__prev"
+      src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+    <img class="hsg-slider__next"
+      src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+
+    <div class="hsg-slider__indicators"></div>
+    {% endif -%}
+  </div>
+</section>
+{% endif -%}

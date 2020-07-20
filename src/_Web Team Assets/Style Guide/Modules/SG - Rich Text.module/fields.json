@@ -1,0 +1,56 @@
+[ {
+  "id" : "be463bb1-e167-a799-62e0-c5c440a10cda",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "default" : null
+}, {
+  "id" : "3a14a3a9-49dc-22d6-31a3-3380279510c9",
+  "name" : "optional_fields",
+  "label" : "Additional Fields (Optional)",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "db4e598e-fed1-4e35-3780-e8f9ed76f0db",
+    "name" : "anchor_id",
+    "label" : "Anchor ID",
+    "help_text" : "Use this field to add an HTML id tag to this module, allowing you to use an anchor link directing to this section of the page. Format: no spaces or special characters, and must be unique to this page (\"about-us\" or \"meet-the-team\").",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "^(?!(#|\\d)).*",
+    "placeholder" : "meet-the-team",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : { }
+}, {
+  "id" : "2c1bc2d3-e75b-36e9-9fa3-5537e4b08e9c",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "eab9ccd6-38f3-50d1-8bd3-df5bd74bbf16",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "gradient1", "Lorax (Orange)" ], [ "gradient2", "Norman (Pink)" ], [ "gradient3", "Thunderdome (Blue)" ], [ "gradient4", "Calypso (Green)" ], [ "gradient5", "Sorbet (Light Orange)" ], [ "gradient6", "Candy Apple (Red)" ], [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

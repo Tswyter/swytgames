@@ -1,0 +1,68 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{%- set is_german = (site_settings.domain is string_containing ".de") or (content.domain is string_containing ".de") -%}
+{%- set is_french = (site_settings.domain is string_containing ".fr") or (content.domain is string_containing ".fr") -%}
+{%- set is_japanese = (site_settings.domain is string_containing ".jp") or (content.domain is string_containing ".jp") -%}
+{%- set is_portuguese = (site_settings.domain is string_containing "br.") or (content.domain is string_containing "br.") -%}
+{%- set is_spanish = (site_settings.domain is string_containing ".es") or (content.domain is string_containing ".es") -%}
+{%- set is_india = (site_settings.domain is string_containing ".in") or (content.domain is string_containing ".in") -%} {# only defined here for pricing, no is_india logic used in below definitions for this global module, defaults to EN 2/2019 MNO #}
+{%- set is_english = not is_german and not is_french and not is_japanese and not is_portuguese and not is_spanish and not is_india -%}
+{%- set is_customers_blog = (request.full_url is string_containing "blog.hubspot.com/customers") -%}
+
+{# SET DEFAULT ModuleLang TO en #}
+{%- set moduleLang = "en" -%}
+{%- set contentLang = 'English' -%}
+
+{% if is_customers_blog -%}
+  {%- set moduleLang = "customers" -%}
+{% elif is_french -%}
+  {%- set moduleLang = "fr" -%}
+  {%- set contentLang = 'French' -%}
+{% elif is_german -%}
+  {%- set moduleLang = "de" -%}
+  {%- set contentLang = 'German' -%}
+{% elif is_japanese -%}
+  {%- set moduleLang = "jp" -%}
+  {%- set contentLang = 'Japanese' -%}
+{% elif is_portuguese -%}
+  {%- set moduleLang = "pt" -%}
+  {%- set contentLang = 'Portuguese' -%}
+{% elif is_spanish -%}
+  {%- set moduleLang = "es" -%}
+  {%- set contentLang = 'Spanish' -%}
+{% endif -%}
+
+{%- set pageLang = moduleLang -%}
+
+{# SET DEFAULT GDPR NOTICE #}
+{%- set gdprPolicyLink = '<a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>' -%}
+{%- set gdprNoticeText = "We're committed to your privacy. HubSpot uses the information you provide to us to contact you about our relevant content, products, and services. You may unsubscribe from these communications at any time. For more information, check out our {{ gdprPolicyLink }}." -%}
+
+{% if is_french -%}
+  {%- set gdprPolicyLink = '<a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">politique de confidentialité</a>' -%}
+  {%- set gdprNoticeText = "La protection des données nous tient à cœur. HubSpot utilise les informations que vous fournissez afin de vous proposer des informations et du contenu pertinent sur nos produits et services. Vous pouvez vous désinscrire de ce type de communications à tout moment. Pour plus d'informations, consultez notre {{ gdprPolicyLink }}." -%}
+{% elif is_german -%}
+  {%- set gdprPolicyLink = '<a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>' -%}
+  {%- set gdprNoticeText = "Ihr Datenschutz ist uns wichtig. HubSpot nutzt Ihre Angaben, um Sie hinsichtlich relevanter Inhalte, Produkte und Dienstleistungen zu kontaktieren. Sie können sich jederzeit von jeglicher Kommunikation seitens HubSpot abmelden. Weitere Informationen finden Sie in unserer {{ gdprPolicyLink }}." -%}
+{% elif is_japanese -%}
+  {%- set gdprPolicyLink = '<a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">プライバシーポリシー」</a>' -%}
+  {%- set gdprNoticeText = "ハブスポットはお客様のプライバシー保護に全力で取り組んでいます。ハブスポットは、コンテンツ、製品、サービスに関連する情報を配信するため、お客様から提供された情報を利用します。この情報配信はいつでも停止できます。詳細については弊社の「{{ gdprPolicyLink }}をご覧ください。" -%}
+{% elif is_portuguese -%}
+  {%- set gdprPolicyLink = '<a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>' -%}
+  {%- set gdprNoticeText = "Somos comprometidos com a sua privacidade. A HubSpot usa as informações que você nos fornece para entrar em contato sobre conteúdo, produtos e serviços relevantes. Você pode cancelar a assinatura dessas comunicações a qualquer momento. Para ter mais informações, consulte a nossa {{ gdprPolicyLink }}." -%}
+{% elif is_spanish -%}
+  {%- set gdprPolicyLink = '<a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>' -%}
+  {%- set gdprNoticeText = "Tu privacidad es importante para nosotros. HubSpot utiliza la información que proporcionas para ponerse en contacto contigo en relación con contenido, productos y servicios relevantes para ti. Puedes darte de baja para dejar de recibir este tipo de comunicaciones en cualquier momento. Si deseas obtener más información sobre la protección de tus datos en HubSpot, consulta nuestra {{ gdprPolicyLink }}." -%}
+{% endif -%}
+
+{# DEFAULT DOMAIN ROOT AS TLD #}
+{%- set domain_root = '/' -%}
+
+{# DEFINE ROOT ON BLOGS #}
+{% if widget_data.is_blog -%}
+  {% if is_portuguese -%}
+    {%- set domain_root = '/blog' -%}
+  {% endif -%}
+{% endif -%}

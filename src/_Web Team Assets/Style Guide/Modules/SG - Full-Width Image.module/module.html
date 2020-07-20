@@ -1,0 +1,16 @@
+{#
+CHANGE LOG:
+-------------------
+04.08.19 Pat - Add default image (HQ photo)
+#}
+
+{%- if module.image.src -%}
+<section class="full-width-img" data-background="{{ module.options.background_theme }}">
+  <div class="full-width-img__wrapper" data-image-size="{{ module.options.display_sizing }}">
+      {%- if module.caption_bool and module.caption -%}
+        <p class="hsg-image-caption">{{ module.caption }}</p>
+      {%- endif -%}
+    <img class="full-width-img__img" src="{{ module.image.src }}" alt="{{ module.image.alt }}" width="{{ module.image.width }}">
+  </div>
+</section>
+{% endif -%}

@@ -1,0 +1,186 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 11,
+  "attachedStylesheets" : [ {
+    "type" : "cos_extension_resource",
+    "path" : "/Coded files/Custom/page/css/Vast-style.css"
+  } ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "error-template one-column",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Header",
+        "label" : "hubtheme Theme/Header",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369719.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369719.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_243874834396015460342463647042954530334",
+        "label" : "Page Center, Content Wrapper",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "page-center content-wrapper padding60tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_112612817262337241846420703001085738621",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "main_copy",
+                "label" : "Main Copy",
+                "type" : "rich_text",
+                "params" : {
+                  "css_class" : "custom_error_message",
+                  "html" : "<h1>Something isn't quite right</h1>\n                                        <h2>Error 500</h2>\n                                        <p>Sorry, an internal server error occurred. But have no fear, we're on the case!</p>\n                                        ",
+                  "overrideable" : true
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            }, {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "google_search",
+                "label" : "Google Search",
+                "type" : "google_search",
+                "params" : {
+                  "overrideable" : true,
+                  "prefill_input_with_pathname" : true
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Footer",
+        "label" : "hubtheme Theme/Footer",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369739.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369739.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

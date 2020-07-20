@@ -1,0 +1,349 @@
+[ {
+  "id" : "e33e098a-d25a-87b2-db0a-54088731cd06",
+  "name" : "testimonials",
+  "label" : "Testimonials",
+  "help_text" : "Add up to 6 testimonials. When more than one testimonial is added, it will automatically display as a testimonial slider.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 6,
+    "sorting_label_field" : "f51e133b-7ac7-c13c-bca2-9ae1fb0ee087",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "07efdac9-9264-4bf4-87b0-8caf60daf41a",
+    "name" : "quote",
+    "label" : "Quote",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "f51e133b-7ac7-c13c-bca2-9ae1fb0ee087",
+    "name" : "author",
+    "label" : "Author",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "41a2fbe0-5c48-4af2-d71c-a37b68a84cb4",
+      "name" : "full_name",
+      "label" : "Full Name",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Kathleen Knapp",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    }, {
+      "id" : "83ff4d20-cebc-4453-246a-fdf42b259c15",
+      "name" : "title",
+      "label" : "Title",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Marketing Manager",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "c4d7e2fe-be8b-0a1e-2304-331789445afa",
+      "name" : "headshot",
+      "label" : "Headshot",
+      "help_text" : "(Optional). ",
+      "required" : false,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : false,
+      "type" : "image",
+      "default" : {
+        "src" : "",
+        "alt" : null
+      }
+    }, {
+      "id" : "c5ddea74-5b70-dc17-7f67-5d8c5e066575",
+      "name" : "company_name",
+      "label" : "Company Name",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "HubSpot",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "3b4779e9-af75-0575-9c8c-52ef607d1cf3",
+      "name" : "company_logo",
+      "label" : "Company Logo",
+      "help_text" : "(Optional). A white logo is recommended for the dark background theme. A full-color logo is recommended for the light background themes.",
+      "required" : false,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : true,
+      "type" : "image",
+      "default" : {
+        "src" : "",
+        "alt" : null
+      }
+    }, {
+      "id" : "f8c087b5-980e-a76c-30e2-60aa37302a6c",
+      "name" : "company_website_link",
+      "label" : "Company Website Link (optional)",
+      "help_text" : "This link will be used to hyperlink the Company Name or Company Logo (whichever is used).",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL" ],
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "full_name" : "",
+      "headshot" : {
+        "src" : "",
+        "alt" : null
+      },
+      "company_logo" : {
+        "src" : "",
+        "alt" : null
+      },
+      "company_website_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }, {
+    "id" : "7fe5ee43-7009-a6ed-8932-97a6de1fae1e",
+    "name" : "cta",
+    "label" : "CTA",
+    "help_text" : "(Optional). A link to a relevant page, blog post, or case study related to this testimonial.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "3bb17969-a3fb-8f8b-fcbe-b40d5e3e7b58",
+      "name" : "cta_label",
+      "label" : "Label",
+      "help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Read more",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "a4023ce3-5d90-aa6c-51b8-9bc43d7b5399",
+      "name" : "cta_link",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL" ],
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }, {
+    "id" : "63de1144-8265-6598-7e5c-dc733b2b1a58",
+    "name" : "video",
+    "label" : "Video",
+    "help_text" : "(Optional). Add a link to a relevant video testimonial, which will open within a modal. *Requires an author headshot.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "57cbaac9-6c1a-f9c9-d9b0-02c48f418997",
+      "name" : "type",
+      "label" : "Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Select a video type",
+      "choices" : [ [ "wistia", "Wistia" ], [ "youtube", "YouTube" ], [ "url", "MP4 URL" ] ],
+      "type" : "choice",
+      "default" : "wistia"
+    }, {
+      "id" : "15cbeea0-5279-87b7-3d2c-1bcaff2df623",
+      "name" : "video_id",
+      "label" : "Video ID",
+      "help_text" : "Enter only the ID value for the video. This ID is typically found in the video's web URL.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "57cbaac9-6c1a-f9c9-d9b0-02c48f418997",
+        "controlling_value_regex" : "url",
+        "operator" : "NOT_EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "placeholder" : "454f51lbca",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "abc3c7b7-1e70-301f-67db-31cd23d4f5be",
+      "name" : "url",
+      "label" : "MP4 URL",
+      "help_text" : "The mp4 video file path.",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "57cbaac9-6c1a-f9c9-d9b0-02c48f418997",
+        "controlling_value_regex" : "url",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "supported_types" : [ "EXTERNAL", "FILE" ],
+      "type" : "url",
+      "default" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      }
+    }, {
+      "id" : "27650fd3-9e36-8632-7dbb-a4dd8eb22a3f",
+      "name" : "controls",
+      "label" : "Show controls",
+      "help_text" : "Determines whether the player controls (play, pause, volume, etc) are displayed.",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : true
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "type" : "wistia",
+      "url" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      },
+      "controls" : true
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "author" : {
+      "full_name" : "",
+      "headshot" : {
+        "src" : "",
+        "alt" : null
+      },
+      "company_logo" : {
+        "src" : "",
+        "alt" : null
+      }
+    },
+    "cta" : { },
+    "video" : {
+      "type" : "wistia",
+      "controls" : true
+    }
+  } ]
+}, {
+  "id" : "5f0b4da7-36d3-8e8c-685f-d5257ffc9904",
+  "name" : "slider_options",
+  "label" : "Slider Options",
+  "help_text" : "Additional configuration options for the testimonial slider option.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "6156cd8b-7bb6-769d-b917-23ec483df155",
+    "name" : "autoplay",
+    "label" : "Autoplay",
+    "help_text" : "(Optional). If enabled, the testimonial slider will automatically advance slides over time.",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "autoplay" : false
+  }
+}, {
+  "id" : "c162e1be-d14d-ae4a-b11a-7f8d8f6d1d9f",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4ace1214-644c-3911-1539-5cc32d485c70",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "1c41e135-ac90-6e7a-6b18-135ae0ea7a9f",
+    "name" : "display_type",
+    "label" : "Display Type",
+    "help_text" : "Choose between a basic or card style testimonial.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a display type",
+    "choices" : [ [ "plain", "Plain" ], [ "card", "Card" ] ],
+    "type" : "choice",
+    "default" : "plain"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white",
+    "display_type" : "plain"
+  }
+} ]

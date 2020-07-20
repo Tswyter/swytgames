@@ -1,0 +1,243 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<nav class="hsg-nav-menu">
+  <div class="hsg-page-width-normal">
+    <div class="hsg-nav__inner">
+      <a href="{{ (content.domain is string_containing 'ir.hubspot.com') ? 'https://www.hubspot.com' : domain_root }}" id="hsg-nav__logo">
+{#        <img id="hsg-nav__logo-desktop" src="https://www.hubspot.com/hubfs/HubSpot_Logos/HSLogo_color.svg" alt="HubSpot logo">#}
+{#        <img id="hsg-nav__logo-mobile" class="hide" src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/global/Sprocket.svg" alt="HubSpot sprocket">#}
+        <svg id="hsg-nav__logo-desktop"><use xlink:href="#HSLogo_color" /></svg>
+        <svg id="hsg-nav__logo-mobile" class="hide"><use xlink:href="#Sprocket" /></svg>
+        {% if blog_show_h1 %}
+          <h1 class="wt-blog__title">{{ blog_name or content.parent_blog.public_title }}</h1>
+        {% endif %}
+      </a>
+
+      <div id="hsg-nav__logo-caret">
+{#        <img id="hsg-nav__logo-caret-img" src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/global/CaretRight.svg" alt="Left caret to go back to home view">#}
+        <svg id="hsg-nav__logo-caret-img" alt="Left caret to go back to home view"><use xlink:href="#CaretRight" /></svg>
+        {% for home in home %}
+          <span id="hsg-nav__logo-caret-home">{{ home.text }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="hsg-nav__group-item--search-container hide">
+        {% for search in search %}
+          {{ wtMacros.siteSearch(false, search.description) }}
+        {% endfor %}
+      </div>
+
+      <div class="hsg-nav__burger-wrapper">
+        <div class="hsg-nav__burger">
+          <span class="hsg-nav__burger-label"></span>
+        </div>
+      </div>
+
+      <div class="hsg-nav__groups-wrapper">
+        <ul class="hsg-nav__group hsg-nav__group--primary">
+          {% for menuItem in navMenu %}
+            <li class="hsg-nav__group-item hsg-nav__group-item--order-{{ menuItem.order }} {% if menuItem.has_dropdown == 1 %} hsg-nav__group-item--has-dropdown {% endif %}">
+              <div class="hsg-nav__link-wrapper">
+                <a href="{{ menuItem.url }}" class="hsg-nav__link">
+                  <span class="hsg-nav__link-label">{{ menuItem.text }}</span>
+                </a>
+              </div>
+
+              {% if menuItem.has_dropdown %}
+                {% if menuItem.order == 1 %}
+                  <!-- Software -->
+                  <ul class="hsg-nav__dropdown-list hsg-nav__dropdown-cards hsg-nav__dropdown-list--1-col">
+                    <li class="hsg-nav__dropdown-list-title">{{ menuItem.text }}</li>
+                    <li class="hsg-nav__dropdown-row hsg-nav__dropdown-row--links">
+                      <div class="hsg-nav__dropdown-column">
+                        {% for title in listTitles %}
+                          {% if title.parent_id == 1 and title.child_id == 0 %}
+                            <a href="{{ title.url }}" class="hsg-nav__box-link" {% if !is_english and listItem.is_english_url %} class="hsg-en-link" {% endif %}>
+{#                              <img class="hsg-nav__box-link-icon" src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/global/{{ title.gtm }}.png">#}
+                              <div class="hsg-nav__box-link-icon"><svg><use xlink:href="#{{ title.gtm }}" /></svg></div>
+                              <div class="hsg-nav__header-container">
+                                <h3 class="hsg-nav__header hsg-nav__header">{{ title.text }}</h3>
+                                <p class="hsg-nav__subheader" gtm="{{ title.gtm }}">{{ title.description }}</p>
+                              </div>
+                            </a>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </li>
+                    <li class="hsg-nav__dropdown-row">
+                      {% for dropdownItem in softwareDropdown %}
+                        <a href="{{ dropdownItem.url }}" class="hsg-nav__box-link" gtm="{{ dropdownItem.gtm }}">
+{#                          <img class="hsg-nav__box-link-icon" src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/global/{{ dropdownItem.gtm }}.png">#}
+                          <div class="hsg-nav__box-link-icon"><svg><use xlink:href="#{{ dropdownItem.gtm }}" /></svg></div>
+                          <div class="hsg-nav__header-container">
+                            <h4 class="hsg-nav__header" gtm="{{ dropdownItem.gtm }}">
+                              {{ dropdownItem.text }}{% if dropdownItem.ribbon %} <span class="hsg-nav__ribbon">{{ dropdownItem.ribbon }}</span>{% endif %}
+                            </h4>
+                            <p class="hsg-nav__subheader" gtm="{{ dropdownItem.gtm }}">{{ dropdownItem.description }}</p>
+                          </div>
+                        </a>
+                      {% endfor %}
+                    </li>
+                    <li class="hsg-nav__dropdown-row hsg-nav__dropdown-row--links hsg-nav__dropdown-row--links-horizontal">
+                      <div class="hsg-nav__dropdown-column">
+                        {% for title in listTitles %}
+                          {% if title.parent_id == 1 and title.child_id == 1 %}
+                            <a href="{{ title.url }}" class="hsg-nav__box-link" {% if !is_english and listItem.is_english_url %} class="hsg-en-link" {% endif %}>
+                              <h3 class="hsg-nav__header hsg-nav__header">{{ title.text }}</h3>
+                              <p class="hsg-nav__subheader" gtm="{{ title.gtm }}">{{ title.description }}</p>
+                            </a>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </li>
+                  </ul>
+                {% elif menuItem.order == 3 %}
+                  <!-- Resources -->
+                  {% if is_english %}
+                    <ul class="hsg-nav__dropdown-list hsg-nav__dropdown-list--3-col-wide">
+                      <li class="hsg-nav__dropdown-list-title">{{ menuItem.text }}</li>
+                      <li class="hsg-nav__dropdown-row hsg-nav__dropdown-row--links">
+                        {% for title in listTitles %}
+                          {% if title.parent_id == 3 and title.child_id <= 3 %}
+                            <a href="{{ title.url }}" class="hsg-nav__box-link" gtm="{{ title.gtm }}">
+                              <h4 class="hsg-nav__header" gtm="{{ title.gtm }}">
+                                {{ title.text }}{% if title.ribbon %} <span class="hsg-nav__ribbon">{{ title.ribbon }}</span>{% endif %}
+                              </h4>
+                              {% for listItem in listItems %}
+                                {% if title.child_id == listItem.child_id %}
+                                  <p class="hsg-nav__subheader" gtm="{{ title.gtm }}"><span class="hsg-visible-gt-mobile">{{ listItem.text }}</span></p>
+                                {% endif %}
+                              {% endfor %}
+                            </a>
+                          {% endif %}
+                        {% endfor %}
+                      </li>
+
+                      <li class="hsg-nav__dropdown-row hsg-nav__dropdown-row--links">
+                        {% for title in listTitles %}
+                          {% if title.parent_id == 3 and title.child_id > 3 and title.child_id <= 6 %}
+                            <a href="{{ title.url }}" class="hsg-nav__box-link" gtm="{{ title.gtm }}">
+                              <h4 class="hsg-nav__header" gtm="{{ title.gtm }}">
+                                {{ title.text }}{% if title.ribbon %} <span class="hsg-nav__ribbon">{{ title.ribbon }}</span>{% endif %}
+                              </h4>
+                              {% for listItem in listItems %}
+                                {% if title.child_id == listItem.child_id %}
+                                  <p class="hsg-nav__subheader" gtm="{{ title.gtm }}"><span class="hsg-visible-gt-mobile">{{ listItem.text }}</span></p>
+                                {% endif %}
+                              {% endfor %}
+                            </a>
+                          {% endif %}
+                        {% endfor %}
+                      </li>
+                      <li class="hsg-nav__dropdown-row hsg-nav__dropdown-row--links">
+                        {% for title in listTitles %}
+                          {% if title.parent_id == 3 and title.child_id > 6 %}
+                            <a href="{{ title.url }}" class="hsg-nav__box-link" gtm="{{ title.gtm }}">
+                              <h4 class="hsg-nav__header" gtm="{{ title.gtm }}">
+                                {{ title.text }}{% if title.ribbon %} <span class="hsg-nav__ribbon">{{ title.ribbon }}</span>{% endif %}
+                              </h4>
+                              {% for listItem in listItems %}
+                                {% if title.child_id == listItem.child_id %}
+                                  <p class="hsg-nav__subheader" gtm="{{ title.gtm }}"><span class="hsg-visible-gt-mobile">{{ listItem.text }}</span></p>
+                                {% endif %}
+                              {% endfor %}
+                            </a>
+                          {% endif %}
+                        {% endfor %}
+                      </li>
+                    </ul>
+                  {% else %}
+                    <ul class="hsg-nav__dropdown-list hsg-nav__dropdown-list--3-col">
+                      <li class="hsg-nav__dropdown-row hsg-nav__dropdown-row--links">
+                        {% for title in listTitles %}
+                          {% if title.parent_id == 3 %}
+                            <div class="hsg-nav__dropdown-column">
+                              <h4 class="hsg-nav__header">{{ title.text }}</h4>
+                              <ul class="hsg-nav__link-group">
+                                {% for listItem in listItems %}
+                                  {% if title.child_id == listItem.child_id %}
+                                    {% if !listItem.hidden %}
+                                      <li>
+                                        <a href="{{ listItem.url }}" {% if !is_english and listItem.is_english_url %} class="hsg-en-link" {% endif %}><span>{{ listItem.text }}</span></a>
+                                      </li>
+                                    {% endif %}
+                                  {% endif %}
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                      </li>
+                    </ul>
+                  {% endif %}
+                {% elif menuItem.order == 4 %}
+                  <!-- Partners -->
+                  <ul class="hsg-nav__dropdown-list hsg-nav__dropdown-cards hsg-nav__dropdown-list--2-col">
+                    <li class="hsg-nav__dropdown-list-title">{{ menuItem.text }}</li>
+                    <li class="hsg-nav__dropdown-row">
+                      {% for title in listTitles %}
+                        {% if title.parent_id == 4 %}
+                          <a href="{{ title.url }}" class="hsg-nav__box-link" gtm="{{ title.gtm }}">
+                            <h4 class="hsg-nav__header" gtm="{{ title.gtm }}">{{ title.text }}</h4>
+                            {% for listItem in listItems %}
+                              {% if title.child_id == listItem.child_id %}
+                                <p class="hsg-nav__subheader" gtm="{{ title.gtm }}">{{ listItem.text }}</p>
+                              {% endif %}
+                            {% endfor %}
+                          </a>
+                        {% endif %}
+                      {% endfor %}
+                    </li>
+                  </ul>
+                {% elif menuItem.order == 5 %}
+                  <!-- About -->
+                  <ul class="hsg-nav__dropdown-list hsg-nav__dropdown-list--3-col">
+                    <li class="hsg-nav__dropdown-list-title">{{ menuItem.text }}</li>
+                    <li class="hsg-nav__dropdown-row hsg-nav__dropdown-row--links">
+                      {% for title in listTitles %}
+                        {% if title.parent_id == 5 %}
+                          <div class="hsg-nav__dropdown-column">
+                            <h4 class="hsg-nav__header hsg-nav__header-subheader">{{ title.text }}</h4>
+                            <ul class="hsg-nav__link-group">
+                              {% for listItem in listItems %}
+                                {% if title.child_id == listItem.child_id %}
+                                  {% if !listItem.hidden %}
+                                    <li>
+                                      <a href="{{ listItem.url }}" {% if !is_english and listItem.is_english_url %} class="hsg-en-link" {% endif %}><span>{{ listItem.text }}</span></a>
+                                    </li>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </li>
+                  </ul>
+                {% endif %}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        <ul class="hsg-nav__group hsg-nav__group--search">
+          <li class="hsg-nav__group-item hsg-nav__group-item--cta">
+            {% for cta in navCta %}
+              <a class="cta cta--primary cta--small homepage-nav" href="{{ cta.url }}">{{ cta.text }}</a>
+            {% endfor %}
+          </li>
+          <li class="hsg-nav__group-item hsg-nav__group-item--cta">
+            {% for login in login %}
+              {% set loggedInRow = goToAccount[loop.index0] %}
+              {% set textDataAttr = loggedInRow[3] if loggedInRow else false %}
+              {% set urlDataAttr = loggedInRow.url if loggedInRow else false %}
+              <a class="cta--secondary" {%- if loggedInRow[3] -%} data-logged-in-text="{{ loggedInRow[3] }}" {%- endif -%} {%- if urlDataAttr -%} data-logged-in-href="{{ urlDataAttr }}" {%- endif -%} href="{{ login.url }}">{{ login.text }}</a>
+            {% endfor %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

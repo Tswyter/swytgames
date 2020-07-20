@@ -1,0 +1,107 @@
+[ {
+  "id" : "299d2598-8f74-f84c-5873-6bf5a6925fa3",
+  "name" : "map",
+  "label" : "Map Options",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "bc23a857-cba4-4417-c8ed-5ef64633c733",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Headquarters"
+  }, {
+    "id" : "d19033ee-0a7d-b5af-7f33-eb3a17d1d3f7",
+    "name" : "address",
+    "label" : "Address Line",
+    "help_text" : "Each line in a full address. You may use up to 3 address lines.",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 3,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : [ "Cambridge, MA 02141" ]
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "title" : "Headquarters",
+    "address" : [ "Cambridge, MA 02141" ]
+  }
+}, {
+  "id" : "a866e5a8-7c25-f72b-40c1-e6f8f86db8bc",
+  "name" : "info",
+  "label" : "Additional Info",
+  "help_text" : "Use this for more detailed instructions such as directions by car or public transportation.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 4,
+    "sorting_label_field" : "5c11983d-b594-730c-9f10-4c18b580a0d2",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "5c11983d-b594-730c-9f10-4c18b580a0d2",
+    "name" : "header",
+    "label" : "Header",
+    "help_text" : "",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Tell me more!"
+  }, {
+    "id" : "1da21179-1569-5e95-3639-dfa97be68c29",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit!"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "header" : "Tell me more!",
+    "description" : "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit!"
+  } ]
+}, {
+  "id" : "92b29310-c33b-9382-ada8-b3a6faccd963",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "10215625-139e-bdb1-270b-911c561e8683",
+    "name" : "background_theme",
+    "label" : "Background theme",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : { }
+} ]

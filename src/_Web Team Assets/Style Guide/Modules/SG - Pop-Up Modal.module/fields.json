@@ -1,0 +1,448 @@
+[ {
+  "id" : "24403b90-3cc4-9a23-af8f-9f01254e1a53",
+  "name" : "modal_id",
+  "label" : "Modal ID",
+  "help_text" : "A unique ID for this modal. This value should match the Modal ID value for a corresponding CTA trigger on this page. Format: \"example-modal-id\".",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "^(?!(#|\\d)).*",
+  "placeholder" : "example-modal-id",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "e519c709-4aa8-f81e-8f5f-14d0513d8559",
+  "name" : "type",
+  "label" : "Modal Type",
+  "help_text" : "Video (full-size video modal); Content (header + description + CTA); Video + Content (two-column layout with video and accompanying content).",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "placeholder" : "Select a modal type",
+  "choices" : [ [ "video", "Video" ], [ "content", "Content" ], [ "video_content", "Video + Content" ], [ "form", "Form" ] ],
+  "type" : "choice",
+  "default" : "video_content"
+}, {
+  "id" : "500273ac-1ef5-99d5-2aa4-677aed9c038e",
+  "name" : "video",
+  "label" : "Video",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "e519c709-4aa8-f81e-8f5f-14d0513d8559",
+    "controlling_value_regex" : "^(video).*",
+    "operator" : "MATCHES_REGEX",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "8bd2c455-9e26-c15a-45f0-28d4e2dc8351",
+    "name" : "type",
+    "label" : "Video Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a video type",
+    "choices" : [ [ "youtube", "YouTube" ], [ "wistia", "Wistia" ], [ "url", "MP4 URL" ] ],
+    "type" : "choice",
+    "default" : "wistia"
+  }, {
+    "id" : "e2321152-41ca-4ba4-d958-db55233f7ff5",
+    "name" : "video_id",
+    "label" : "Video ID",
+    "help_text" : "Enter only the ID value for the YouTube or Wistia video. This ID is typically found in the video's web URL.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "8bd2c455-9e26-c15a-45f0-28d4e2dc8351",
+      "controlling_value_regex" : "url",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "placeholder" : "454f51lbca",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "1bccb774-fb4c-e150-6101-dd99116b5d4a",
+    "name" : "url",
+    "label" : "MP4 URL",
+    "help_text" : "The mp4 video file path.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "8bd2c455-9e26-c15a-45f0-28d4e2dc8351",
+      "controlling_value_regex" : "url",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "supported_types" : [ "EXTERNAL", "FILE" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "368347be-d62a-f924-faf3-45f434d360f5",
+    "name" : "autoplay",
+    "label" : "Autoplay",
+    "help_text" : "Determines whether the video autoplays when the modal is opened.",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "cd1de517-8aa9-5247-0bd2-a2302de02d2b",
+    "name" : "controls",
+    "label" : "Show controls",
+    "help_text" : "Determines whether the player controls (play, pause, volume, etc) are displayed.",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "type" : "wistia",
+    "url" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    },
+    "autoplay" : false,
+    "controls" : true
+  }
+}, {
+  "id" : "17cd4b51-ac9e-dcda-0557-346ca150671d",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "e519c709-4aa8-f81e-8f5f-14d0513d8559",
+    "controlling_value_regex" : "^.*(content)",
+    "operator" : "MATCHES_REGEX",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "bf450099-91bd-9675-9001-1c5e1864e880",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "3a646134-409b-d0d5-8d29-c76c4063da64",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : null
+  }, {
+    "id" : "6ffe3998-05ef-1464-09ef-7793b9a5e365",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "name" : "type",
+      "label" : "Type",
+      "help_text" : "Link (default option); Product (choose a CTA from the CTA tool).",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "link", "Link" ], [ "product", "Product CTA" ] ],
+      "type" : "choice",
+      "default" : "link"
+    }, {
+      "id" : "e54416f4-c207-9406-2681-14dfd061b535",
+      "name" : "cta_label",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "product",
+        "operator" : "NOT_EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Get started"
+    }, {
+      "id" : "a42328f5-7188-7c3d-5cca-85f5805cfffb",
+      "name" : "cta_link",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "link",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "id" : "b8baba23-746a-b999-00cd-e5085e5a6fae",
+      "name" : "product_cta",
+      "label" : "Product CTA",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "product",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "type" : "cta",
+      "default" : null
+    }, {
+      "id" : "80cb7237-ab4a-206d-3ada-42ea8c60d8f0",
+      "name" : "custom_class",
+      "label" : "Custom Class",
+      "help_text" : "(Optional). A custom class for this CTA (generally used for tracking purposes).",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "product",
+        "operator" : "NOT_EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "type" : "link",
+      "cta_label" : "Get started",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "cta" : {
+      "type" : "link",
+      "cta_label" : "Get started",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }
+}, {
+  "id" : "02ba6fa1-dc2e-b723-f972-227fb16597ff",
+  "name" : "form",
+  "label" : "Form",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "e519c709-4aa8-f81e-8f5f-14d0513d8559",
+    "controlling_value_regex" : "form",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "504eb9db-98f6-48aa-8316-e2918eeae652",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "Apply to Be a HubSpot Agency Partner",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Apply to Be a HubSpot Agency Partner"
+  }, {
+    "id" : "6b99a602-8676-a67c-c6f6-bc16575f70f8",
+    "name" : "form_field",
+    "label" : "Form field",
+    "required" : false,
+    "locked" : false,
+    "type" : "form",
+    "default" : {
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form."
+    }
+  }, {
+    "id" : "f603bfb2-2e14-df12-fa57-85e17d29989a",
+    "name" : "follow_up_email_id",
+    "label" : "Follow-up Email ID",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "1e5d41b1-9aa1-b85d-1aab-998ff2894da5",
+    "name" : "gdpr_partner_notice",
+    "label" : "GDPR Partner Notice",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : null
+    },
+    "children" : [ {
+      "id" : "67eac018-6ccd-bc4f-edba-47bfffbcbaee",
+      "name" : "partner_name",
+      "label" : "Partner Name",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "13a8e64b-afd1-dd7f-a0ac-ad091cb62ed3",
+      "name" : "privacy_partner_url",
+      "label" : "Privacy Partner URL",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : { }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "header" : "Apply to Be a HubSpot Agency Partner",
+    "form_field" : {
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form."
+    },
+    "gdpr_partner_notice" : { }
+  }
+}, {
+  "id" : "f759244b-f4b8-5173-fbac-83dc303fac3e",
+  "name" : "options",
+  "label" : "Display Options",
+  "help_text" : "(Optional). Additional options for how and when the modal will display.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "fb6e9079-206b-8679-8730-18f61e65896e",
+    "name" : "show_on_exit_intent",
+    "label" : "Show modal on exit intent",
+    "help_text" : "Toggle this option if you'd like this modal to appear when the user tries to leave the current page.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "ecfb87de-f245-d82b-5527-3e568e007500",
+      "controlling_value_regex" : "true",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "ecfb87de-f245-d82b-5527-3e568e007500",
+    "name" : "show_after_time_delay",
+    "label" : "Show modal after time delay",
+    "help_text" : "** HIDDEN : Modal JS does not handle timed delay, needs refactoring before this can be enabled. When enabled, remove display condition for delay_time field. **\n\nToggle this option if you'd like this modal to appear on the page after a set time delay (after the page is loaded).",
+    "required" : false,
+    "locked" : true,
+    "visibility" : {
+      "controlling_field" : "fb6e9079-206b-8679-8730-18f61e65896e",
+      "controlling_value_regex" : "true",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "4d27fd95-4bfa-43f5-42c0-afbb5cefe59b",
+    "name" : "delay_time",
+    "label" : "Delay (in seconds)",
+    "help_text" : "If \"exit intent\" option enabled: the exit intent action will trigger the modal after the specified delay (after page load). If \"time delay\" option enabled: the modal will appear after the specified delay (after page load).",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "fb6e9079-206b-8679-8730-18f61e65896e",
+      "controlling_value_regex" : "true",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "display" : "slider",
+    "min" : 0,
+    "max" : 30,
+    "step" : 1,
+    "type" : "number",
+    "default" : 3
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "show_on_exit_intent" : false,
+    "show_after_time_delay" : false,
+    "delay_time" : 3
+  }
+} ]

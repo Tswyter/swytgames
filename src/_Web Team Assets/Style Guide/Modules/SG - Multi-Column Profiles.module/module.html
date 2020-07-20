@@ -1,0 +1,157 @@
+{#
+CHANGE LOG:
+--------------
+04.08.19 Pat - Add default profile image ("Kathleen Knapp")
+#}
+
+{# Local macro for social icon markup #}
+{%- macro createSocialIcon(options={}) -%}
+  {%- set type = options.type or '' -%}
+  {%- set href = options.href or '' -%}
+
+  {%- if type and href -%}
+  <a href="{{ href }}"
+    class="hsg-social-icons__item"
+    data-type="{{ type }}"
+    target="_blank">
+    <span class="hsg-icon hsg-icon-{{ type }}"></span>
+  </a>
+  {% endif -%}
+{% endmacro -%}
+{%- if canvasAudit %}
+
+{%- if module.profiles|length %}
+  <section class="hsg-multi-col-profiles" data-background="{{ module.options.background_theme }}">
+	  {%- if module.optional_fields.section_header %}
+		  <h2 class="hsg-multi-col-profiles__heading">
+			  {{ module.optional_fields.section_header }}
+			</h2>
+		{%- endif %}
+		<ul class="hsg-multi-col-profiles__items hsg-multi-col-profiles__wrapper hs-page-width-normal">
+			{% for profile in module.profiles %}
+			  {% if profile.headshot.src or profile.full_name %}
+			    <li class="hsg-multi-col-profiles__item">
+						{% if profile.headshot.src -%}
+							{%- set headshotImageClasses = 'hsg-multi-col-profiles__image' ~ (' hsg-multi-col-profiles__image-landscape' if (profile.headshot.width > profile.headshot.height)) -%}
+							<div class="hsg-multi-col-profiles__image-cropper">
+								<img class="{{ headshotImageClasses }}"
+									src="{{ profile.headshot.src }}"
+									alt="{{ profile.headshot.alt }}"
+									width="250">
+							</div>
+						{% endif -%}
+						{% if profile.full_name %}
+							<h3 class="hsg-multi-col-profiles__full-name">
+								{{ profile.full_name }}
+							</h3>
+						{% endif %}
+						{% if profile.title %}
+						  <span class="hsg-multi-col-profiles__title">
+								{{ profile.title }}
+							</span>
+						{% endif %}
+						{% if profile.description %}
+						  <p>
+								{{ profile.description }}
+							</p>
+						{% endif %}
+						{%- if profile.twitter_link.href or profile.linkedin_link.href or profile.facebook_link.href -%}
+							<div class="hsg-social-icons" data-size="small">
+								{% if profile.twitter_link.href -%}
+								{{ createSocialIcon({
+									'type': 'twitter',
+									'href': profile.twitter_link.href
+								}) }}
+								{% endif -%}
+
+								{%- if profile.linkedin_link.href -%}
+								{{ createSocialIcon({
+									'type': 'linkedin',
+									'href': profile.linkedin_link.href
+								}) }}
+								{% endif -%}
+
+								{%- if profile.facebook_link.href -%}
+								{{ createSocialIcon({
+									'type': 'facebook',
+									'href': profile.facebook_link.href
+								}) }}
+								{% endif -%}
+							</div>
+						{% endif -%}
+			    </li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</section>
+{%- endif %}
+
+{% else %}
+
+{%- if module.profiles|length -%}
+<section class="hsg-multi-col-profiles" data-background="{{ module.options.background_theme }}">
+  {% if module.optional_fields.section_header -%}
+  {%- set tag = module.optional_fields.header_type -%}
+  <{{ tag }} class="hsg-multi-col-profiles__heading">
+    {{ module.optional_fields.section_header }}
+  </{{ tag }}>
+  {% endif -%}
+
+  <ul class="hsg-multi-col-profiles__items hsg-multi-col-profiles__wrapper hs-page-width-normal">
+    {% for profile in module.profiles -%}
+      {% if profile.headshot.src or profile.full_name -%}
+      <li class="hsg-multi-col-profiles__item">
+        {% if profile.headshot.src -%}
+          {%- set headshotImageClasses = 'hsg-multi-col-profiles__image' ~ (' hsg-multi-col-profiles__image-landscape' if (profile.headshot.width > profile.headshot.height)) -%}
+          <div class="hsg-multi-col-profiles__image-cropper">
+            <img class="{{ headshotImageClasses }}"
+              src="{{ profile.headshot.src }}"
+              alt="{{ profile.headshot.alt }}"
+              width="250">
+          </div>
+        {% endif -%}
+
+        {%- if profile.full_name -%}
+        <h4>{{ profile.full_name }}</h4>
+        {% endif -%}
+
+        {%- if profile.title -%}
+        <h6>{{ profile.title }}</h6>
+        {% endif -%}
+
+        {%- if profile.description -%}
+        <p>{{ profile.description }}</p>
+        {% endif -%}
+      
+        {%- if profile.twitter_link.href or profile.linkedin_link.href or profile.facebook_link.href -%}
+        <div class="hsg-social-icons" data-size="small">
+          {% if profile.twitter_link.href -%}
+          {{ createSocialIcon({
+            type: 'twitter',
+            href: profile.twitter_link.href
+          }) }}
+          {% endif -%}
+
+          {%- if profile.linkedin_link.href -%}
+          {{ createSocialIcon({
+            type: 'linkedin',
+            href: profile.linkedin_link.href
+          }) }}
+          {% endif -%}
+
+          {%- if profile.facebook_link.href -%}
+          {{ createSocialIcon({
+            type: 'facebook',
+            href: profile.facebook_link.href
+          }) }}
+          {% endif -%}
+        </div>
+        {% endif -%}
+      </li>
+      {% endif -%}
+    {% endfor -%}
+  </ul>
+  {% endif -%}
+</section>
+{% endif -%}
+{% endif %}

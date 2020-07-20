@@ -1,0 +1,16 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{% macro dynamicPricing(options) %}
+	{% set usd = options.usd %}
+  {% set eur = options.eur %}
+  {% set gbp = options.gbp %}
+  {% set aud = options.aud %}
+  {% set sgd = options.sgd %}
+  {% set jpy = options.jpy %}
+  {% set cop = options.cop %}
+  {% set default = options.default %}
+	<span class="hsg-currency" data-currency="{{ default|upper }}" data-usd="{{ usd }}" data-eur="{{ eur }}" data-gbp="{{ gbp }}" data-aud="{{ aud }}" data-sgd="{{ sgd }}" data-jpy="{{ jpy }}" data-cop="{{ cop }}">
+  </span>
+{% endmacro %}

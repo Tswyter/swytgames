@@ -1,0 +1,86 @@
+[ {
+  "id" : "88bfb417-f00c-8781-eddc-4d21afc0880d",
+  "name" : "content_type",
+  "label" : "Content Type",
+  "help_text" : "Choose whether the content of the slide-in CTA will be a Product CTA or a custom image.",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "placeholder" : "Select a content type",
+  "choices" : [ [ "cta", "Product CTA" ], [ "image", "Custom Image" ] ],
+  "type" : "choice",
+  "default" : "cta"
+}, {
+  "id" : "3f9222a4-3822-98c8-d225-83063b9c18a2",
+  "name" : "product_cta",
+  "label" : "Product CTA",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "88bfb417-f00c-8781-eddc-4d21afc0880d",
+    "controlling_value_regex" : "cta",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "type" : "cta",
+  "default" : null
+}, {
+  "id" : "4467908f-851c-427b-65e1-bdac002460f2",
+  "name" : "image",
+  "label" : "Custom Image",
+  "help_text" : "Pro tip: an image of size 500px by 200px is best.",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "88bfb417-f00c-8781-eddc-4d21afc0880d",
+    "controlling_value_regex" : "image",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "responsive" : false,
+  "resizable" : false,
+  "type" : "image",
+  "default" : {
+    "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/_defaults/sg-defaults_slidebox.png",
+    "alt" : "sg-defaults_slidebox",
+    "width" : 503,
+    "height" : 200
+  }
+}, {
+  "id" : "6edbaad8-f7dd-55a8-c16a-686a7e3a9970",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "9416b12c-c509-081e-015d-b7fd0af00fb4",
+    "name" : "activation_position",
+    "label" : "Page position to activate",
+    "help_text" : "The approximate point on the page, as the user scrolls, that the slidebox will activate.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select an activation position",
+    "choices" : [ [ "short", "Top Third" ], [ "medium", "Middle Third" ], [ "long", "Bottom Third" ] ],
+    "type" : "choice",
+    "default" : "medium"
+  }, {
+    "id" : "03f18f6b-55ca-0db7-7dce-1e37fe789b17",
+    "name" : "show_in_editor_preview",
+    "label" : "Show in editor preview",
+    "help_text" : "When toggled off, the CTA content will be hidden from the page editor preview pane. (This option does not affect how the module displays on the live page).",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "activation_position" : "medium",
+    "show_in_editor_preview" : true
+  }
+} ]

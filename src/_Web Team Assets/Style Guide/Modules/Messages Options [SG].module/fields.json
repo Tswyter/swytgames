@@ -1,0 +1,25 @@
+[ {
+  "id" : "3cca481a-71f7-565f-38fb-62d5b9e17694",
+  "name" : "add_messages",
+  "label" : "Enable Proactive Chat?",
+  "help_text" : "Do you want to enable Proactive chat on this page?",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "placeholder" : "Search",
+  "choices" : [ [ "false", "No" ], [ "true", "Yes" ] ],
+  "type" : "choice",
+  "default" : "false"
+}, {
+  "id" : "c2694e51-68d9-330c-4ee7-7f7573529c22",
+  "name" : "proactive_chat_seconds",
+  "label" : "Proactive Chat Seconds",
+  "help_text" : "How many seconds until the chat box opens?",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+} ]

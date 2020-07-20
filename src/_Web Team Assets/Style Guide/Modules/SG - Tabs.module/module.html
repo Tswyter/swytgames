@@ -1,0 +1,38 @@
+{#
+CHANGE LOG:
+---------------------------
+04.08.19 Pat - Remove featured image group (no longer used)
+#}
+
+{%- set prefix = module.tab_options.anchor_link_prefix or name -%}
+
+{%- if module.tabs|length -%}
+<section class="hsg-tabs"
+  data-background="{{ module.options.background_theme }}"
+  data-mobile-theme="{{ module.options.mobile_sizing }}">
+  <div class="hsg-page-width-normal">
+    <ul class="hsg-tabs__titles hsg-visible-gt-mobile">
+      {% for tab in module.tabs -%}
+        {%- set labelClasses = 'hsg-tabs__heading' ~ (' hsg-tabs__active' if loop.first is truthy) -%}
+
+        {%- if tab.tab_label is truthy -%}
+        <li id="{{ prefix ~ loop.index }}" data-tab="{{ loop.index0 }}" class="{{ labelClasses }}">{{ tab.tab_label }}</li>
+        {% endif -%}
+      {% endfor -%}
+    </ul>
+
+    {%- for tab in module.tabs -%}
+      {%- set headerClasses = 'hsg-tabs__heading hsg-visible-lte-mobile' ~ (' hsg-tabs__active-mobile' if loop.first is truthy) -%}
+      {%- set contentClasses = 'hsg-tabs__content' ~ (' hsg-tabs__active hsg-tabs__active-mobile' if loop.first is truthy) -%}
+
+      {%- if tab.tab_label is truthy -%}
+      <h4 class="{{ headerClasses }}" data-tab="{{ loop.index0 }}">{{ tab.tab_label }}</h4>
+
+      <div data-tab="{{ loop.index0 }}" class="{{ contentClasses }}">
+        {{ tab.content }}
+      </div>
+      {% endif -%}
+    {% endfor -%}
+  </div>
+</section>
+{% endif -%}

@@ -1,0 +1,70 @@
+[ {
+  "id" : "da42fe1a-a2a1-32a9-4a75-8cddb28d182b",
+  "name" : "slides",
+  "label" : "Slides",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 10,
+    "sorting_label_field" : "",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "090fc9e1-4639-84b5-d651-f36ef4dacd17",
+    "name" : "image",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "image_field" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  } ]
+}, {
+  "id" : "6156cd8b-7bb6-769d-b917-23ec483df155",
+  "name" : "autoplay",
+  "label" : "Autoplay",
+  "help_text" : "(Optional). If enabled, the testimonial slider will automatically advance slides over time.",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "default" : false
+}, {
+  "id" : "4ace1214-644c-3911-1539-5cc32d485c70",
+  "name" : "background_theme",
+  "label" : "Background Theme",
+  "help_text" : "The background color theme for the module container.",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "placeholder" : "Select a theme",
+  "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+  "type" : "choice",
+  "default" : "white"
+}, {
+  "id" : "172c3bcc-9cd0-c27d-a52e-771b39ea4b0c",
+  "name" : "title",
+  "label" : "Title",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+} ]

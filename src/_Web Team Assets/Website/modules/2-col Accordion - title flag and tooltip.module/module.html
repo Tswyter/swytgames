@@ -1,0 +1,58 @@
+{#
+#}
+
+{# Style accordions differently when background is white (value for attribute: data-display-option) #}
+{%- set displayOption = module.options.display_style -%}
+
+{%- macro generateList(items, class='') -%}
+  {% if items|length %}
+    <ul class="hsg-accordion {{ class }}" data-size="{{ module.options.display_sizing }}" data-display-option="{{ displayOption }}">
+      {% for item in items -%}
+        {%- set uId = name ~ '-' ~ loop.index ~ '-' ~ class -%}
+
+        {%- if item.title is truthy -%}
+
+          {% if item.flag == 'beta' %}
+            {% set flagColor = 'thunderdome' %}
+          {% elif item.flag == 'popular' %}
+            {% set flagColor = 'sorbet' %}
+          {% else %}
+            {% set flagColor = 'oz' %}
+          {% endif %}
+
+          <li class="hsg-accordion__item">
+            <input type="checkbox" class="hsg-accordion__checkbox" name="{{ uId }}" id="{{ uId }}">
+            <label class="hsg-accordion__label" for="{{ uId }}">
+              <h3>{{ item.title }}
+                {% if item.flag != 'none' %}<span class="hsg-ribbon hsg-ribbon--{{ flagColor }}">{{ item.flag }}</span>{% endif %}
+                {% if item.tooltip_text %}<i class="hsg-icon hsg-icon-tooltip"><span class="hsg-icon-tooltip__icon">{{ item.tooltip_text }}</span></i>{% endif %}
+              </h3>
+            </label>
+            <div class="hsg-accordion__content">
+              <div>{{ item.content }}</div>
+            </div>
+          </li>
+        {% endif -%}
+      {% endfor -%}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+
+<section class="accordion-2-col" data-background="{{ module.options.background_theme }}">
+  <div class="hsg-page-width-normal">
+    {% if module.header %}
+      <h2 class="accordion-2-col__header">{{ module.header }}</h2>
+    {% endif %}
+    {% if module.accordion_type == '1-col' %}
+      {{ generateList(module.items) }}
+    {% else %}
+      {{ generateList(module.left_column, 'accordion-2-col__left') }}
+      {{ generateList(module.right_column, 'accordion-2-col__right') }}
+    {% endif %}
+      
+    {%- if module.footer is truthy-%}
+    <p class="hsg-microcopy">{{ module.footer|striptags }}</p>
+    {% endif -%}
+  </div>
+</section>

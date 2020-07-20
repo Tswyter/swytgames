@@ -1,0 +1,110 @@
+{#
+CHANGE LOG
+--------------
+
+#}
+
+{%- set wrapperClass = ('hsg-numbers__wrapper' ~ module.options.layout)|trim -%}
+
+{%- if canvasAudit -%}
+<!-- Updated Design -->
+  {%- if module.stats|length -%}
+  <div class="hsg-numbers hsg-slider"
+    data-background="{{ module.options.background_theme }}"
+    data-slides-to-scroll-mobile="1"
+    data-enable-mouse-events="true"
+    data-show-progress-dots="true"
+    data-rewind="true"
+    data-breakpoint="767">
+    <figure class="hsg-slider__container">
+      <ul class="{{ wrapperClass }} hsg-slider__slides">
+      {% for stat in module.stats -%}
+        {% if stat.value -%}
+        <li class="hsg-slider__slide">
+          <div class="hsg-numbers__block" 
+            data-value="{{ stat.value }}">
+
+            <!-- Header -->
+            {%- if stat.optional_fields.header -%}
+            <h6 class="hsg-numbers__block-header">{{ stat.optional_fields.header }}</h6>
+            {% endif -%}
+
+            <!-- Graph -->
+            <div class="hsg-numbers__block-graph">
+              <svg class="svg" viewBox="0 0 280 280">
+                <defs>
+                  <linearGradient id="hsg-numbers-gradient-light" x1="0%" x2="100%" y1="0%" y2="100%" gradientTransform="rotate(45)">
+                    <stop offset="0%" stop-color="#FF8F59" />
+                    <stop offset="100%" stop-color="#FF7A59" />
+                  </linearGradient>
+                  <linearGradient id="hsg-numbers-gradient-dark" x1="0%" x2="100%" y1="0%" y2="100%" gradientTransform="rotate(45)">
+                    <stop offset="0%" stop-color="#00A4BD" />
+                    <stop offset="100%" stop-color="#00BDA5" />
+                  </linearGradient>
+                </defs>
+                <circle class="hsg-numbers__block-outerRing" />
+                <circle class="hsg-numbers__block-innerRing" />
+              </svg>  
+              <div class="hsg-numbers__block-stat">
+                <h4 class="hsg-numbers__block-value">{{ stat.value }}</h4>
+              </div>
+            </div>        
+
+            <!-- Footer Description -->
+            {%- if stat.optional_fields.description -%}
+            <p class="hsg-numbers__block-description">{{ stat.optional_fields.description }}</p>
+            {% endif -%}
+
+          </div>
+        </li>
+        {% endif -%}
+      {% endfor -%}
+      </ul>
+    </figure>
+
+    <div class="hsg-slider__indicators"></div>
+  </div>
+  {% endif -%}
+
+{%- else -%}
+<!-- Legacy Design -->
+  {%- if module.stats|length -%}
+  <div class="hsg-numbers hsg-slider"
+    data-background="{{ module.options.background_theme }}"
+    data-slides-to-scroll-mobile="1"
+    data-enable-mouse-events="true"
+    data-show-progress-dots="true"
+    data-rewind="true"
+    data-breakpoint="767">
+    <figure class="hsg-slider__container">
+      <ul class="{{ wrapperClass }} hsg-slider__slides">
+      {% for stat in module.stats -%}
+        {% if stat.value -%}
+        <li class="hsg-slider__slide">
+          <div class="hsg-numbers__block">
+            {% if stat.optional_fields.icon.src -%}
+            <img class="hsg-numbers__block-icon"
+              src="{{ stat.optional_fields.icon.src }}"
+              alt="{{ stat.optional_fields.icon.alt }}">
+            {% endif -%}
+
+            {%- if stat.optional_fields.header -%}
+            <h6 class="hsg-numbers__block-header">{{ stat.optional_fields.header }}</h6>
+            {% endif -%}
+
+            <h4 class="hsg-numbers__block-stat">{{ stat.value }}</h4>
+
+            {%- if stat.optional_fields.description -%}
+            <p class="hsg-numbers__block-description">{{ stat.optional_fields.description }}</p>
+            {% endif -%}
+          </div>
+        </li>
+        {% endif -%}
+      {% endfor -%}
+      </ul>
+    </figure>
+
+    <div class="hsg-slider__indicators"></div>
+  </div>
+  {% endif -%}
+{% endif -%}

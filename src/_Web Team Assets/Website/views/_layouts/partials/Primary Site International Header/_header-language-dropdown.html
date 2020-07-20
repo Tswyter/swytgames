@@ -1,0 +1,107 @@
+<!--
+  templateType: "page"
+  isAvailableForNewContent: false
+-->
+
+{# DEFAULT TO EN #}
+{%- set currentLanguageName = 'English' -%}
+{%- set localizedCaseStudiesPath = '/case-studies' -%}
+
+{% if is_spanish -%}
+  {%- set currentLanguageName = 'Español' -%}
+  {%- set localizedCaseStudiesPath = '/clientes' -%}
+{% elif is_german -%}
+  {%- set currentLanguageName = 'Deutsch' -%}
+  {%- set localizedCaseStudiesPath = '/kunde' -%}
+{% elif is_french -%}
+  {%- set currentLanguageName = 'Français' -%}
+  {%- set localizedCaseStudiesPath = '/clients' -%}
+{% elif is_portuguese -%}
+  {%- set currentLanguageName = 'Português' -%}
+{% elif is_japanese -%}
+  {%- set currentLanguageName = '日本語' -%}
+  {%- set localizedCaseStudiesPath = '/customers' -%}
+{% endif -%}
+
+{# Slugs that should not show the language dropdown #}
+{%- set blacklistedLanguageSlugs = [ "data-privacy/gdpr/hubspot-product-playbook" ] -%}
+{%- set hideLanguageDropdown = content.slug in blacklistedLanguageSlugs -%}
+
+{# Correct URL path for localized Case Studies URLs #}
+{%- set caseStudiesPaths = {
+  'en': '/case-studies',
+  'es': '/clientes',
+  'de': '/kunde',
+  'jp': '/customers',
+  'fr': '/clients'
+} -%}
+
+{% set filter = "&language=" ~ pageLang %}
+
+{%- set filteredQueryString = [] -%}
+{% for k, v in request.query_dict.items() -%}
+  {%- set filteredKey = k|striptags|urlencode -%}
+  {%- set filteredValue = v|striptags|urlencode -%}
+  {% if k -%}
+    {%- set filteredPair = filteredKey ~ '=' ~ filteredValue -%}
+    {% if filteredQueryString.append(filteredPair) -%}{%- endif %}
+  {%- endif %}
+{%- endfor %}
+
+{# Should be placed in standard HubSpot navigation group #}
+{%- set languageLinks = [
+    {
+        'lang': 'jp',
+        'langString': '日本語',
+        'url': widget_data.associated_pages.jp
+    },
+    {
+        'lang': 'de',
+        'langString': 'Deutsch',
+        'url': widget_data.associated_pages.de
+    },
+    {
+        'lang': 'en',
+        'langString': 'English',
+        'url': widget_data.associated_pages.en
+    },
+    {
+        'lang': 'es',
+        'langString': 'Español',
+        'url': widget_data.associated_pages.es
+    },
+    {
+        'lang': 'pt',
+        'langString': 'Português',
+        'url': widget_data.associated_pages.pt
+    },
+    {
+        'lang': 'fr',
+        'langString': 'Français',
+        'url': widget_data.associated_pages.fr
+    }
+] -%}
+<ul class="hsg-nav__group">
+  <li class="hsg-nav__group-item hsg-nav__group-item--has-dropdown"{% if hideLanguageDropdown %} style="display:none;"{% endif %}>
+    <div id="nav-main-link" class="hsg-nav__link-wrapper">
+      <a href="{{ request.full_url }}" class="hsg-nav__link">
+        <span class="hsg-nav__link-label hsg-nav__link-label--globe"><svg class="hsg-nav__globe-icon"><use xlink:href="#hs-icon-globe" /></svg>{{ currentLanguageName }}</span>
+      </a>
+    </div>
+    <ul class="hsg-nav__dropdown-list">
+      {%- for link in languageLinks %}
+        {%- set activeLink = (link.url|length > 0) and (link.url != 'none') -%}
+        {%- set inactiveLink = (link.url == 'none') -%}
+        {%- set currentLink = link.url is equalto request.full_url -%}
+
+        <li class="hsg-nav__dropdown-item">
+          <a class="hsg-nav__dropdown-country-link {%- if currentLink %} active {% endif -%} {%- unless activeLink %} disabled {% endunless -%} "
+             {% if activeLink %}href="{{ wtMacros.generateSafeQueryUrl(link.url) }}"{% endif %}>{{ link.langString }}</a>
+        </li>
+      {% endfor -%}
+    </ul>
+  </li>
+
+  {% include './_phone-number-dropdown.html' %}
+{#  {% global_module "global_phone_number_dropdown" overrideable=False, label="Smart Sales Number Dropdown" %}#}
+</ul>

@@ -1,0 +1,224 @@
+{% set tableId = "pricing-cards-localization-tokens" %}
+{% set benefitTableId = "pricing-card-benefits-localization-tokens" %}
+{% set moduleLang = "en" %}
+{%- set country = request.geoip_country -%}
+
+{% if is_english %}
+    {% set moduleLang = "en" %}
+{% elif is_french %}
+    {% set moduleLang = "fr" %}
+{% elif is_german %}
+    {% set moduleLang = "de" %}
+{% elif is_japanese %}
+    {% set moduleLang = "jp" %}
+{% elif is_portuguese %}
+    {% set moduleLang = "pt" %}
+{% elif is_spanish %}
+    {% set moduleLang = "es" %}
+{% endif %}
+
+{% set filter = "&language=" ~ moduleLang ~ "&type=" ~ module.product_type ~ "-page" %}
+{% set benefitFilter = "&language=" ~ moduleLang %}
+
+{% set rows = hubdb_table_rows(tableId, filter) %}
+
+{# INBOUND LAUNCH #}
+{% set benefits = hubdb_table_rows(benefitTableId, benefitFilter) %}
+
+{% if absolute_url is string_containing "products/sales" %}
+    {% set pageType = 'sales' %}
+{% elif absolute_url is string_containing "products/marketing" %}
+    {% set pageType = 'marketing' %}
+{% elif absolute_url is string_containing "products/service" %}
+    {% set pageType = 'service' %}
+{% elif absolute_url is string_containing "/cms-product-page" %}
+    {% set pageType = 'cms' %}
+{% else %}
+    {% set pageType = 'other' %}
+{% endif %}
+
+{% if widget_data.ss_approved %}
+    {# NEW S&S #}
+    {% set prefix = 'products-pricing-cards' %}
+    {% set headings = rows|selectattr('name', 'equalto', 'left-text') %}
+    {% set cards = rows|selectattr('name', 'equalto', 'card') %}
+    {% set disclaimer = rows|selectattr('name', 'equalto', 'disclaimer-text') %}
+
+    {% set notifications = rows|selectattr('name', 'equalto', 'notification') %}
+    <section class="{{ prefix }}">
+      <div class="{{ prefix }}__wrapper hsg-page-width-normal">
+        <div class="{{ prefix }}__heading">
+          {% for heading in headings %}
+            <h2>{{ heading.header }}</h2>
+            <p>{{ heading.subheader }}</p>
+          {% endfor %}
+        </div>
+        <div class="products-pricing-cards__card-container">
+        {% if notification.subheader %}
+            {% for notification in notifications %}
+              <div class="products-pricing-cards__notification">
+                <p>{{ notification.subheader }}<a href="{{ notification.cta_link }}">{{ notification.cta_text }}</a></p>
+              </div>
+            {% endfor %}
+         {% endif %}
+          <div class="products-pricing-cards__cards">
+            {% for card in cards %}
+            <div class="{{ prefix }}__card">
+              <div class="{{ prefix }}__product-name">
+                <h4>{{ card.header }}</h4>
+              </div>
+              <div class="{{ prefix }}__product-price">
+                {% if request.full_url is string_containing "/marketing" %}
+                  <div class="{{ prefix }}__card-from-text">
+                    {% if card.from %}
+						          {{ card.from }}
+                    {% endif %}
+					        </div>
+                  <h3 class="{{ prefix }}__price">
+                    {% if is_spanish and country == 'es' %}{{ card.smart_symbol }}{{ card.smart_price }} {% else %}{{ card.symbol }}{{ card.price }}{% endif %}
+                  </h3>
+                  {% if card.rate %}<p><small>{{ card.rate }}</small></p>{% endif %}
+                {% elif is_japanese %}
+                    <h3 class="{{ prefix }}__price">{{ card.symbol }}{{ card.price }}
+                        {% if card.from %}<aside style="left: 100%;"><p><small>{{ card.from }}</small></p></aside>{% endif %}
+                    </h3>
+                    {% if card.rate %}<p><small>{{ card.rate }}</small></p>{% endif %}
+
+                {% else %}
+                    <div class="{{ prefix }}__card-from-text">
+                      {% if card.from %}
+                        {{ card.from }}
+                      {% endif %}
+                    </div>
+                    <h3 class="{{ prefix }}__price">
+                        {% if is_spanish and country == 'es' %}{{ card.smart_symbol }}{{ card.smart_price }} {% else %}{{ card.symbol }}{{ card.price }}{% endif %}
+                    </h3>
+                    {% if card.rate %}<p><small>{{ card.rate }}</small></p>{% endif %}
+                {% endif %}
+
+                <p class="{{ prefix }}__description">{{ card.small_text }}</p>
+              </div>
+              <div class="{{ prefix }}__product-features">
+                <ul>
+                  {% for benefit in benefits -%}
+                    {% if benefit.product == card.product %}
+                      <li><i class="hsg-icon hsg-icon-orange-checkmark"></i>{{ benefit.text }}</li>
+                    {% endif %}
+                  {%- endfor %}
+                </ul>
+              </div>
+              <div class="{{ prefix }}__product-link">
+                {%- set salesCustomerList = 126998 -%}
+                {% if salesCustomerList|int in request_contact.list_memberships and card.product == 'sales-pro'%} <!-- IN THE LIST! {{ request_contact.list_memberships }} --> {% else %} <!-- NOT IN THE LIST {{ request_contact.list_memberships }} --> {% endif %}
+
+                {% if module.product_type == "sales" %}
+                  <a href="
+
+                    {% if card.product == 'sales-pro' %}
+                      {% if salesCustomerList|int in request_contact.list_memberships %} {{ card.smart_cta_link }} {% else %} {{ card.cta_link }} {% endif %}
+                    {% else %}
+                      {{ card.cta_link }}
+                    {% endif %}" {% if salesCustomerList|int in request_contact.list_memberships %}class="cta cta--primary-dark cta--medium">
+                      {% else %}class="cta cta--primary-dark cta--medium {% if loop.index0 == 0 %}{{ module.left_column_class }}{% elif loop.index0 == 1 %}{{ module.right_column_class }}{% endif %}">{% endif %}
+                    {% if card.product == 'sales-pro' %}
+                      {% if salesCustomerList|int in request_contact.list_memberships %} {{ card.smart_cta_text }} {% else %} {{ card.cta_text }} {% endif %}
+                    {% else %}
+                      {{ card.cta_text }}
+                    {% endif %}
+                  </a>
+                {% endif %}
+                {% if module.product_type == "marketing" or module.product_type == "cms" %}
+                  <a href="{{ card.cta_link }}"
+                     class="cta cta--primary-dark cta--medium
+                        {% if loop.index0 == 0 %}
+                            {{ module.left_column_class }}
+                        {% elif loop.index0 == 1 %}
+                            {{ module.right_column_class }}
+                        {% endif %}">{{ card.cta_text }}</a>
+                {% endif %}
+                {% if module.product_type == "service" %}
+                  <a href="{{ card.cta_link }}"
+                     class="cta cta--primary-dark cta--medium
+                        {% if loop.index0 == 0 %}
+                            {{ module.left_column_class }}
+                        {% elif loop.index0 == 1 %}
+                            {{ module.right_column_class }}
+                        {% endif %}">{{ card.cta_text }}</a>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="products-pricing-cards__disclaimer hsg-page-width-normal">
+        <small class="hsg-microcopy hsg-cta-block__disclaimer">{{ disclaimer[0].header }}</small>
+      </div>
+    </section>
+{% else %}
+
+    {# LEGACY #}
+    <!-- This component to be used when there are multiple card elements in columns, supporting 1-4 columns -->
+    <div style="background-color: #F9F8F7; width: 100%; padding-bottom: 50px;border-top: 1px solid #E4E5E6; border-bottom: 1px solid #E4E5E6;">
+    <div class="hsg-product-pricing-points hs-page-width-normal">
+        <div class="hsg-product-pricing-points__left">
+          {% for row in rows %}
+            {% if row.name == "left-text" %}
+              <h3>{{ row.header }}</h3>
+              <p>{{ row.subheader }}</p>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="hsg-product-pricing-points__right">
+          {% for row in rows %}
+            {% if row.name == "card" %}
+              <div class="hsg-product-pricing-points-card clickable-card">
+                  <div class="hsg-product-pricing-points-card__heading">
+                    {% if row.product == "marketing" %}
+                      <svg><use xlink:href="#hubspot-marketing" /></svg>
+                    {% else %}
+                      <svg><use xlink:href="#hubspot-{{ row.product }}-logo" /></svg>
+                    {% endif %}
+                  </div>
+                  <div class="hsg-product-pricing-points-card__content">
+                    <div class="price smaller bolded">{% if row.from %}{{ row.from }}{% else %} &nbsp; {% endif %}</div>
+                      <div class="price cost">
+                        {% if is_japanese %}
+                            <span class="frequency">{{ row.rate }}</span>
+                            <span class="symbol">{{ row.symbol }}</span>
+                            <span class="number">{{ row.price }}</span>
+                        {% else %}
+                            <span class="symbol">{{ row.symbol }}</span>
+                            <span class="number">{{ row.price }}</span>
+                            <span class="frequency">{{ row.rate }}</span>
+                        {% endif %}
+                      </div>
+                      <div class="price smaller">
+                        <small>{{ row.small_text }}</small>
+                      </div>
+                      <div class="benefits">
+                          <ul class="benefit-listing">
+                            {% for benefit in benefits %}
+                              {% if benefit.product == row.product %}
+                                <li>{{ benefit.text }}</li>
+                              {% endif %}
+                            {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+                  {% set salesCustomerList = 126998 %}
+                  {% if salesCustomerList|int in request_contact.list_memberships and row.product == 'sales-pro'%} <!-- IN THE LIST! {{ request_contact.list_memberships }} --> {% else %} <!-- NOT IN THE LIST {{ request_contact.list_memberships }} --> {% endif %}
+
+                  <div class="hsg-product-pricing-points-card__cta">
+                    {% if module.product_type == "sales" %}<a href="{% if row.product == 'sales-pro' %}{% if salesCustomerList|int in request_contact.list_memberships %} {{ row.smart_cta_link }} {% else %} {{ row.cta_link }} {% endif %}{% else %}{{ row.cta_link }}{% endif %}" class="cta--tertiary cta--large {% if loop.index0 == 1 %}{{ module.left_column_class }}{% elif loop.index0 == 2 %}{{ module.right_column_class }}{% endif %}">{% if row.product == 'sales-pro' %}{% if salesCustomerList|int in request_contact.list_memberships %} {{ row.smart_cta_text }} {% else %} {{ row.cta_text }} {% endif %}{% else %}{{ row.cta_text }}{% endif %}</a> {% endif %}
+                    {% if module.product_type == "marketing" %}<a href="{{ row.cta_link }}" class="cta--tertiary cta--large {% if loop.index0 == 1 %}{{ module.left_column_class }}{% elif loop.index0 == 2 %}{{ module.right_column_class }}{% endif %}">{{ row.cta_text }}</a> {% endif %}
+                 </div>
+
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endif %}

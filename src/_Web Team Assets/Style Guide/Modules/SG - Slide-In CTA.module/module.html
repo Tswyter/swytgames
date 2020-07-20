@@ -1,0 +1,28 @@
+{#
+CHANGE LOG:
+---------------
+
+#}
+
+{# Conditions #}
+{%- set displayProductCta = (module.content_type is equalto 'cta') and (module.product_cta is truthy) -%}
+{%- set displayImage = (module.content_type is equalto 'image') and (module.image.src is truthy) -%}
+
+{%- if (request.query_dict.inpageEditorUI and not module.options.show_in_editor_preview is truthy) -%}
+<!-- SG - Slide-In CTA (id: {{ name }}) hidden. Enable "Show in editor preview" to view -->
+{%- elif (displayProductCta or displayImage) -%}
+<div class="hsg-slidebox"
+  data-position="{{ module.options.activation_position }}">
+  <a class="hsg-slidebox__close"></a>
+
+  <div class="hsg-slidebox__image">
+    {% if displayImage -%}
+    <img
+      src="{{ module.image.src }}"
+      alt="{{ module.image.alt }}">
+    {% else %}
+    {{ cta(module.product_cta) }}
+    {% endif -%}
+  </div>
+</div>
+{% endif -%}

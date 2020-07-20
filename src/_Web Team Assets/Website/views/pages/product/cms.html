@@ -1,0 +1,42 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Core Product CMS
+!-->
+
+{% extends "../../_layouts/master.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ get_asset_url('../../../assets/css/styles.css') }}{{ qaTimestamp }}" type="text/css">
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+    {% module "module_1583771212026328" path='/_Web Team Assets/modules/Page Header with Feature Img no Frame', label="Page Header with Feature Img no Frame" %}
+
+    {% include './partials/tabs.html' %}
+
+    {% module "module_1583760529571233" path="/_Web Team Assets/modules/Image Slider", label="Image Slider" %}
+
+    {% module "module_1583760549117235" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="SG - Section Header" %}
+
+    {% module "module_1583760582542236" path="/_Web Team Assets/modules/Full-Width Image with Mobile Option", label="Full-Width Image with Mobile Option" %}
+
+    {% module "module_1584092605285301" path="/_Web Team Assets/modules/CTA Content Block with Vidyard", label="CTA Content Block with Vidyard" %}
+
+    {% module "module_1584092975182331" path="/_Web Team Assets/modules/2-col Accordion - title flag and tooltip", label="2-col Accordion" %}
+
+    {% module "module_158435852312441" path='/_Web Team Assets/modules/Full-Width CTA w Header options', label="Full-Width CTA w Header" %}
+
+    {% module "module_1583760791503261" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="SG - Section Header" %}
+
+    {% module "module_1583760799660262" path="/_Web Team Assets/Style Guide/Modules/SG - Logo Carousel", label="SG - Logo Carousel" %}
+
+    {% module "module_1583760996566281" path="/_Web Team Assets/modules/Multi-Row Content with Vidyard", label="Multi-Row Content with Vidyard" %}
+
+    {% module "module_158453234147953" path="/_Web Team Assets/modules/Pricing Cards", label="Pricing Cards" %}
+
+    {% module "module_1583761069244283" path="/_Web Team Assets/Style Guide/Modules/SG - CTA Content Block", label="SG - CTA Content Block" %}
+{% endblock content %}

@@ -1,0 +1,33 @@
+[ {
+  "id" : "aa7175c1-7c78-ced3-2d9d-b9134a47770b",
+  "name" : "product_type",
+  "label" : "Product Type",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "marketing", "Marketing" ], [ "sales", "Sales" ], [ "service", "Service" ], [ "cms", "CMS" ] ],
+  "type" : "choice",
+  "default" : "marketing"
+}, {
+  "id" : "67aa3143-5992-c7f7-3808-d3d30b26f8ce",
+  "name" : "left_column_class",
+  "label" : "Left Column Class",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "7705e3a8-6b3b-1647-06c8-8dbce044c5a3",
+  "name" : "right_column_class",
+  "label" : "Right Column Class",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+} ]

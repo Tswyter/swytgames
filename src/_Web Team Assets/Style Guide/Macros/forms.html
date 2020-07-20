@@ -1,0 +1,47 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{%- macro generateGDPRCompliantForm(options={}) -%}
+  {% unless hscmMacros is defined -%}
+    {% from "./gdprLocalizedNotice.html" import gdprLocalizedNotice %}
+  {% endunless %}
+
+{# Destructure options - indicates what keys should be available #}
+  {%- set header = options.header or '' -%}
+  {%- set partners = options.partners or [] -%}
+  {%- set partner_names = partners|map(attribute='partner_name')|join(' | ') or [] -%}
+  {%- set privacy_urls = partners|map(attribute='privacy_partner_url')|join(' | ') or [] -%} 
+  {%- set form = options.form or {} -%}
+  {%- set form_email = options.formEmail or '' -%}
+  {%- set notice_language = options.notice_lang or 'en' -%}
+  {%- set kickback_email = options.formEmail ? true : false -%}
+
+  
+  {% if header %}
+    <h2>{{ header }}</h2>
+  {% endif %}
+
+  {%- if partner_names and privacy_urls -%}
+    <div class="hs_gdpr_notice" data-form-id="hs_form_target_Bottom_Form">
+
+      {{ gdprLocalizedNotice({
+        partnerName: partner_names,
+        partnerPrivacyUrl: privacy_urls,
+        lang: notice_language
+      }) }}
+    </div>
+  {%- endif -%}
+
+  {% form
+    form_to_use='{{ form.form_id }}',
+    extra_classes= '',
+    response_redirect_id="{{ form.redirect_id }}",
+    response_redirect_url="{{ form.redirect_url}}",
+    simple_email_for_live_id="{{ form_email }}",
+    follow_up_email_id="{{ form_email }}",
+    follow_up_type_simple="{{ kickback_email }}",
+
+	%}
+
+{%- endmacro -%}

@@ -1,0 +1,43 @@
+{#
+CHANGE LOG:
+--------------
+Kara: Aug 8, 2019 -- Added "dark" background option
+#}
+
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- unless renderSmartContent is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/smartContent.html' import renderSmartContent %}
+{% endunless -%}
+
+{%- set moduleClasses = ('hsg-promo-bar__wrapper ' ~ module.options.custom_class)|trim -%}
+
+{%- if module.teaser.teaser or module.teaser.smart_rules|length -%}
+<section class="{{ moduleClasses }}"
+  data-background="{{ module.options.background_theme }}">
+  <div class="hsg-page-width-normal"
+    {% if module.options.background_circles -%}
+    data-background-image="circle1"
+    {% endif -%}>
+    <div class="hsg-promo-bar">
+      {% call renderSmartContent({
+        'contentKey': 'teaser',
+        'replaceToken': '[%_TEASER]',
+        'defaultContent': module.teaser.teaser,
+        'smartRules': module.teaser.smart_rules
+      }) -%}
+      <p class="hsg-promo-bar__text">[%_TEASER]</p>
+      {% endcall -%}
+
+      <div class="hsg-promo-bar__cta">
+        {{ generateModuleCtas({
+          'ctas': [module.cta],
+          'sizingClass': 'cta--medium'
+        }) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif -%}

@@ -1,0 +1,17 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<!-- HREFLANG MACRO -->
+{%- set hreflangLang = 'en' -%}
+{%- if is_spanish -%}
+  {%- set hreflangLang = 'es' -%}
+{%- elif is_french -%}
+  {%- set hreflangLang = 'fr' -%}
+{%- elif is_german -%}
+  {%- set hreflangLang = 'de' -%}
+{%- elif is_japanese -%}
+  {%- set hreflangLang = 'jp' -%}
+{%- elif is_portuguese -%}
+  {%- set hreflangLang = 'pt' -%}
+{%- endif -%}

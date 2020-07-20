@@ -1,0 +1,19 @@
+{% set prefix = 'home-customers' %}
+
+<section class="{{ prefix }}">
+  <div class="hsg-page-width-normal">
+  <div class="{{ prefix }}__content-wrapper">
+    <div class="{{ prefix }}__text-wrapper">
+      <h2 class="{{ prefix }}__stat">{{ module.statistic }}</h2>
+      <p class="{{ prefix }}__stat-description">{{ module.description }}</p>
+    </div>
+    <div class="{{ prefix }}__logos-grid">
+      {% for item in module.logo %}
+      <div class="{{ prefix }}__logo-wrapper">
+        <img data-src="{{ item.logo_image.src }}" alt="{{ item.logo_image.alt }}" class="{{ prefix }}__logo hsg-deferred">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</section>

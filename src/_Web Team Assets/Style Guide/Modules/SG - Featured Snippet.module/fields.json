@@ -1,0 +1,128 @@
+[ {
+  "id" : "a50bb839-8e6f-b830-97f2-0bce32bdb1c3",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "6eef9b61-7cdd-df84-2007-7da3c843ba83",
+  "name" : "content_type",
+  "label" : "Content Type",
+  "help_text" : "Choose between a simple paragraph of content, or a listing of ordered (numbered) or unordered (bulleted) items. Paragraphs are best when defining a concept or word; lists are best for \"How-To\" content.",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "placeholder" : "Select a content type",
+  "choices" : [ [ "paragraph", "Paragraph" ], [ "ordered_list", "List (Ordered)" ], [ "unordered_list", "List (Unordered)" ] ],
+  "type" : "choice",
+  "default" : "paragraph"
+}, {
+  "id" : "3f74351e-c98c-5db5-9535-d9c5a394654c",
+  "name" : "paragraph",
+  "label" : "Paragraph",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "6eef9b61-7cdd-df84-2007-7da3c843ba83",
+    "controlling_value_regex" : "paragraph",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "460aab49-e67b-8c3b-730b-046520e15848",
+    "name" : "content",
+    "label" : "Content",
+    "help_text" : "Note: only enter basic text here, i.e. do not add any HTML content. This is important in order for this snippet to be recognized properly by Google.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "Enter paragraph content here",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : { }
+}, {
+  "id" : "260c3e7e-06f1-c7b8-d707-33ce1baddee0",
+  "name" : "list",
+  "label" : "List",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "6eef9b61-7cdd-df84-2007-7da3c843ba83",
+    "controlling_value_regex" : "(list)",
+    "operator" : "MATCHES_REGEX",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "81018a72-c0c0-9334-87a8-9a6eccc7510f",
+    "name" : "header",
+    "label" : "List Header",
+    "help_text" : "(Optional). An additional header for the list items.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "db51090f-eaeb-c0fe-c52d-f0216771b450",
+    "name" : "items",
+    "label" : "List Items",
+    "help_text" : "Up to 20 list items.",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 20,
+      "sorting_label_field" : null,
+      "default" : 3
+    },
+    "validation_regex" : "",
+    "placeholder" : "Enter list item content here",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : [ "", "", "" ]
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "items" : [ "", "", "" ]
+  }
+}, {
+  "id" : "08a7a50c-d57b-6c8b-c11e-222be9ee00a5",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "983477bf-6ddb-0b1e-65b4-50aed83a733d",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

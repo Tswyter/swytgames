@@ -1,0 +1,19 @@
+<aside class="hsg-currency-control hsg-currency-control-static">
+  
+  {% set currencies = [
+    { 'code': "usd", 'label': "USD $" },
+    { 'code': "eur", 'label': "EUR €" },
+    { 'code': "gbp", 'label': "GBP £" },
+    { 'code': "aud", 'label': "AUD $" },
+    { 'code': "sgd", 'label': "SGD $" },
+    { 'code': "jpy", 'label': "JPY ¥" },
+    { 'code': "cop", 'label': "COP $" }
+    ]%}
+  
+  {% for item in currencies %}
+    {% if module.currency_options[item.code] %}
+      <button data-currency="{{ item.code }}">{{ item.label }}</button>
+    {% endif %}
+  {% endfor %}
+  
+</aside>

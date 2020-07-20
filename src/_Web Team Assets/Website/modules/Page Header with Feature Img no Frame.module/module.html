@@ -1,0 +1,310 @@
+{#
+CHANGE LOG:
+-------------------
+  Taylor Dec 12, 2019 - Adds ability to change wave color to white, light, or dark
+
+#}
+
+{# customized cta macro for vidyard #}
+{% from '/_Web Team Assets/Website/macros/customCta.html' import generateModuleCtas %}
+
+
+{%- unless generateSvgWaveEdge is defined -%}
+  {% macro generateSvgWaveEdge(options) -%}
+    {% set fillColor = options.fillColor || '#FFF' %}
+    <svg viewBox="0 0 500 50" preserveAspectRatio="xMinYMin meet">
+      <path d="M0,50 L0,4 C95,-23 285,115 500,2 L500,50 L0,50 Z" style="stroke: none; fill: {{ options.fillColor }};"></path>
+    </svg>
+  {% endmacro -%}
+{% endunless -%}
+
+{% set waveColors = {
+  white: '#FFF',
+	light: '#f5f8fa',
+	dark: '#425b76'
+} %}
+
+{# Determines whether multiple Page Header modules exist on page #}
+{%- if widget_data.hasPageHeader is truthy -%}
+  {%- set hTag = 'h2' -%}
+{% else %}
+  {%- set hTag = 'h1' -%}
+{% endif -%}
+{# End logic #}
+
+{%- set maxBackgroundWidth = '1800' -%}
+
+{# module settings check variables #}
+{%- set hasOverlayBackgroundImage = (module.options.background_theme is string_containing 'gradient') and module.images.background_image.src -%}
+{%- set hasBackgroundImage = (module.images.background_image.src is truthy) -%}
+{%- set hasFeaturedImage = (module.images.featured_image.src is truthy) -%}
+{%- set hasEdgeStyle = (module.options.edge_style is equalto 'wave') -%}
+
+{# Container attribute declarations #}
+{%- set containerAttributes = '' -%}
+{% if hasEdgeStyle -%}
+  {%- set containerAttributes = containerAttributes ~ ' data-edge-style="wave"' -%}
+{% endif -%}
+{% if hasOverlayBackgroundImage -%}
+  {%- set containerAttributes = containerAttributes ~ ' data-background-overlay="{{ module.options.background_theme }}"' -%}
+{% elif hasBackgroundImage %}
+  {%- set containerAttributes = containerAttributes ~ ' data-background="dark" style="background-image: url({{ module.images.background_image.src }}); background-size: cover;"' -%}
+{% else %}
+  {%- set containerAttributes = containerAttributes ~ ' data-background="{{ module.options.background_theme }}"' -%}
+{% endif -%}
+{# END Container attributes #}
+
+{# Smart CTA #}
+{% if 178314 in contact.list_memberships %}
+  {{ module.ctas[0].update({'cta_label':'Start a free trial', 'cta_link':'https://app.hubspot.com/signup/trial-signup?intent=trial&trialId=2&hubs_signup-url=www.hubspot.com/products/marketing/enterprise&hubs_signup-cta=marketingenterprise-hero-smart'}) }}
+{% endif %}
+{# END Smart CTA #}
+
+{# Flag Color #}
+{% if module.top_label.flag == 'beta' %}
+  {% set flagColor = 'thunderdome' %}
+{% elif module.top_label.flag == 'popular' %}
+  {% set flagColor = 'sorbet' %}
+{% else %}
+  {% set flagColor = 'oz' %}
+{% endif %}
+{# END Flag Color #}
+
+{# Flag Text #}
+{% if module.top_label.flag_text is truthy %}
+  {% set flagText = module.top_label.flag_text %}
+{% else %}
+  {% set flagText = module.top_label.flag %}
+{% endif %}
+{# END Flag Text #}
+
+
+{#
+  SPLIT BETWEEN AUDIT VERSION AND CURRENT VERSION 12/16/2019
+#}
+{%- if !canvasAudit %}
+  <!-- not audit -->
+	{%- if module.header -%}
+	<section
+		class="hsg-page-header"
+		{{ containerAttributes|trim }}>
+		{# If overlay attribute applied, render this #}
+		{%- if hasOverlayBackgroundImage -%}
+		<img data-background-overlay-img src="{{ module.images.background_image.src }}" alt="{{ module.images.background_image.alt }}" width="{{ maxBackgroundWidth }}" />
+		{% endif -%}
+
+		<div class="hsg-page-header__container">
+			<div class="hsg-page-header__content">
+				{% if hasFeaturedImage  -%}
+          <div class="hsg-page-header__featured-img">
+						<img
+							src="{{ module.images.featured_image.src }}"
+							alt="{{ module.images.featured_image.alt }}"
+							width="800">
+					</div>
+				{% endif -%}
+
+				<div class="hsg-page-header__text">
+                    {% if module.top_label.text %}
+                        <h3 class="top-label">
+                            <img class="top-label__image" src="{{ module.top_label.icon.src }}" alt="{{ module.top_label.icon.alt }}">
+                            {{ module.top_label.text }}
+
+                            {% if module.top_label.flag != 'none' %}<span class="hsg-ribbon hsg-ribbon--{{ flagColor }}">{{ flagText }}</span>{% endif %}
+                        </h3>
+                    {% endif %}
+					{% if module.header -%}
+					<{{ hTag }}>{{ module.header }}</{{ hTag }}>
+					{% endif -%}
+                    {% if module.secondary_title %}
+                      <h3>{{ module.secondary_title }}</h3>
+                    {% endif %}
+
+					{%- if module.description -%}
+					<p>{{ module.description }}</p>
+					{% endif -%}
+
+					{%- if module.ctas|length -%}
+						<div class="hsg-page-header__ctas">
+							{{ generateModuleCtas({
+								ctas: module.ctas,
+								sizingClass: 'cta--large'
+							}) }}
+						</div><!-- /.hsg-page-header__ctas -->
+
+						{%- if module.ctas_disclaimer -%}
+						<p class="hsg-meta-copy">{{ module.ctas_disclaimer }}</p>
+						{% endif -%}
+					{% endif -%}
+				</div><!-- /.hsg-page-header__text -->
+                {% set hasDesktopImage = (module.logo_image.desktop.src is truthy) %}
+                {% set hasMobileImage = (module.logo_image.mobile.src is truthy) %}
+                {% if hasDesktopImage and hasMobileImage %}
+                    <div class="hsg-page-header__logos">
+                        <picture>
+                            <source media="(max-width: 500px)" srcset="{{ module.logo_image.mobile.src }}">
+                            <img src="{{ module.logo_image.desktop.src }}" alt="{{ module.logo_image.desktop.alt }}">
+                        </picture>
+                    </div>
+                {% endif %}
+			</div><!-- /.hsg-page-header__content -->
+		</div><!-- /.hsg-page-header__container -->
+
+		{%- if hasEdgeStyle -%}
+		<div class="hsg-page-header__edge">
+			{{ generateSvgWaveEdge({ fillColor: waveColors[module.options.background_of_next_module] }) }}
+		</div>
+		{% endif -%}
+	</section>
+	{% endif -%}{# END IF HEADER #}
+
+
+
+
+{% else %}
+
+
+
+
+
+<!-- audit -->
+	{% macro svgWaveRender(color) %}
+		<svg preserveAspectRatio="xMinYMin meet" class="hsg-page-header__wave-desktop" version="1.0" encoding="utf-8" standalone="no" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 158">
+			<defs/>
+			<path class="hsg-page-header__wave-edge--{{ color }}" fill-rule="evenodd" d="M1440-27h2v185H0V8c88-20.667 267.333 3 538 71s571.333 45.333 902-68v-38z"/>
+		</svg>
+		<svg preserveAspectRatio="xMinYMin meet" class="hsg-page-header__wave-mobile"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 375 50">
+			<defs/>
+			<path class="hsg-page-header__wave-edge--{{ color }}" fill-rule="evenodd" d="M376 .414V50H0V5.48C141.126 31.757 266.126 30.182 375 .756l1-.342z"/>
+		</svg>
+	{% endmacro %}
+	{% macro svgBlobRender(style) %}
+		{%- if style == 'style1' %}
+			<svg class="hsg-page-header__blob--left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 516 268">
+				<defs/>
+				<g fill="none" fill-rule="evenodd">
+					<path class="hsg-page-header__blob--blue" d="M-138.903 327c-82.513-91.002 36.891-233.206 81.381-272.985 44.49-39.779 128.41-94.951 210.922-3.95 82.513 91.003 337.728 64.255 180.379 274.64-157.35 210.386-390.17 93.297-472.682 2.295z"/>
+					<path class="hsg-page-header__blob--yellow" d="M544.125 433.384c24.067 74.503-78.431 147.63-199.442 128.53-121.01-19.1-168.435-144.983-99.744-251.914 68.691-106.931 90.708-144.883 196.726-114.604 106.019 30.279 78.393 163.485 102.46 237.988z"/>
+				</g>
+			</svg>
+		{% elif style == 'style2' %}
+			<svg class="hsg-page-header__blob--right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 558 233">
+				<defs/>
+				<g fill="none" fill-rule="evenodd">
+					<path class="hsg-page-header__blob--green" fill="#00BDA5" d="M219.836 117.459C383.53 77.219 429.706-25.34 582.449 7.127 735.19 39.594 765.566 262.537 729.21 433.573 692.857 604.61 584.146 705.747 388.754 664.215 193.362 622.683 56.14 157.699 219.836 117.459z"/>
+					<path class="hsg-page-header__blob--yellow" fill="#F5C26B" d="M285.262 321.947c46.147 57.379-19.17 156.346-131.72 180.468C40.994 526.537-42.907 431.872-18.601 314.61 5.704 197.35 12.258 156.53 115.417 147.307c103.158-9.222 123.698 117.26 169.845 174.64z"/>
+				</g>
+			</svg>
+		{% elif style == 'style3' %}
+			<svg class="hsg-page-header__blob--right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 676 286">
+				<defs/>
+				<g fill="none" fill-rule="evenodd">
+					<path class="hsg-page-header__blob--blue" fill="#00A4BD" d="M802 73c26.767 73.509-35.55 211.462-70.895 244.082-35.344 32.62-183.336 63.294-176.954-66.777 6.382-130.072-107.088-127.883 9.204-205.403C679.645-32.618 775.233-.508 802 73z"/>
+					<path class="hsg-page-header__blob--yellow" fill="#F5C26B" d="M687.574 162.314c105.746 32.323 107.082 209.884-13.321 334.388-120.403 124.505-304.568 77.709-372.476-88.053-67.909-165.76-93.93-221.86 27.227-320.004 121.157-98.144 252.825 41.347 358.57 73.67z"/>
+					<path class="hsg-page-header__blob--green" fill="#00BDA5" d="M157.845 418.22C66.205 405.017-5.486 356.18-2.283 309.137.921 262.095 24.495 178.234 110.87 198.035c86.374 19.8 116.805-133.44 237.765 75.64 120.96 209.079-99.15 157.745-190.79 144.544z"/>
+				</g>
+			</svg>
+		{% elif style == 'style4' %}
+			<svg class="hsg-page-header__blob--left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 458 399">
+				<defs/>
+				<g fill="none" fill-rule="evenodd">
+					<path class="hsg-page-header__blob--green" d="M-20.233 524.436C-96.258 411.69-98.95 150.33-67.011 89.718c31.938-60.613 272.276-183.745 316.245 38.324 43.97 222.069 234.235 170.73 70.908 350.314-163.326 179.585-264.35 158.826-340.375 46.08z"/>
+					<path class="hsg-page-header__blob--yellow" d="M200.845 614.754C73.901 566.004-92.478 374.734-95.008 291.22-97.538 207.707 30.827-21.2 194.218 135.487c163.391 156.688 289.8 5.502 259.017 246.29-30.784 240.787-125.445 281.727-252.39 232.977z"/>
+					<path class="hsg-page-header__blob--blue"  d="M-71.73 425.167c-98.726-109.611-133.69-210.539-81.955-285.603C-101.95 64.5.573 24.637 99.298 134.247c98.726 109.611 404.891 76.665 215.623 330.98-189.268 254.315-287.926 69.55-386.652-40.06z"/>
+				</g>
+			</svg>
+		{% elif style == 'style5' %}
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419 210" class="hsg-page-header__blob--left">
+				<defs/>
+				<path class="hsg-page-header__blob--green" fill="#00BDA5" fill-rule="evenodd" d="M-151.412 306.221c-108.298-100.846-23.3-175.724 25.917-228.429C-76.277 25.088 18.612-50.39 126.91 50.456 235.21 151.302 538.35 91.746 371.475 362.15c-166.873 270.405-414.588 44.916-522.887-55.93z"/>
+			</svg>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509 264" class="hsg-page-header__blob--right">
+				<defs/>
+				<g fill="none" fill-rule="evenodd">
+					<path class="hsg-page-header__blob--blue" fill="#00A4BD" d="M634.725 422.854c-119.099 71.562-377.768 85.17-446.61 34.638-68.842-50.533-172.44-298.026 56.502-330.997 228.941-32.972 186.7-229.963 361.238-53.592 174.538 176.37 147.969 278.39 28.87 349.951z"/>
+					<path class="hsg-page-header__blob--yellow" fill="#F5C26B" d="M52.825 468.52c76.817-8.338 112.78 28.588 173.484-9.345 60.705-37.932 38.85-138.705-3.614-206.661-42.464-67.956-105.14-94.465-182.794-45.94-77.655 48.524-63.892 270.286 12.924 261.947z"/>
+				</g>
+			</svg>
+		{% endif -%}
+	{% endmacro %}
+
+	{%- if module.header -%}
+	<section class="hsg-page-header" {{ containerAttributes|trim }}>
+		<div class="hsg-page-header__container">
+			<div class="hsg-page-header__content">
+				{% if hasFeaturedImage  -%}
+          <div class="hsg-page-header__featured-img">
+						<img
+							src="{{ module.images.featured_image.src }}"
+							alt="{{ module.images.featured_image.alt }}"
+							width="800">
+					</div>
+				{% endif -%}
+
+				<div class="hsg-page-header__text">
+                    {% if module.top_label.text %}
+                        <h3 class="top-label">
+                            <img class="top-label__image" src="{{ module.top_label.icon.src }}" alt="{{ module.top_label.icon.alt }}">
+                            {{ module.top_label.text }}
+
+                            {% if module.top_label.flag != 'none' %}<span class="hsg-ribbon hsg-ribbon--{{ flagColor }}">{{ flagText }}</span>{% endif %}
+                        </h3>
+                    {% endif %}
+					{% if module.header -%}
+					<{{ hTag }}>{{ module.header }}</{{ hTag }}>
+					{% endif -%}
+                    {% if module.secondary_title %}
+                      <h3>{{ module.secondary_title }}</h3>
+                    {% endif %}
+
+					{%- if module.description -%}
+					<p>{{ module.description }}</p>
+					{% endif -%}
+
+					{%- if module.ctas|length -%}
+						<div class="hsg-page-header__ctas">
+							{{ generateModuleCtas({
+								ctas: module.ctas,
+								sizingClass: 'cta--large'
+							}) }}
+						</div><!-- /.hsg-page-header__ctas -->
+
+						{%- if module.ctas_disclaimer -%}
+						<p class="hsg-meta-copy">{{ module.ctas_disclaimer }}</p>
+						{% endif -%}
+					{% endif -%}
+				</div><!-- /.hsg-page-header__text -->
+                {% set hasDesktopImage = (module.logo_image.desktop.src is truthy) %}
+                {% set hasMobileImage = (module.logo_image.mobile.src is truthy) %}
+                {% if hasDesktopImage and hasMobileImage %}
+                    <div class="hsg-page-header__logos">
+                        <picture>
+                            <source media="(max-width: 500px)" srcset="{{ module.logo_image.mobile.src }}">
+                            <img src="{{ module.logo_image.desktop.src }}" alt="{{ module.logo_image.desktop.alt }}">
+                        </picture>
+                    </div>
+                {% endif %}
+			</div><!-- /.hsg-page-header__content -->
+		</div><!-- /.hsg-page-header__container -->
+
+		{%- if hasEdgeStyle -%}
+		<div class="hsg-page-header__edge">
+			{{ svgWaveRender(module.options.background_of_next_module) }}
+		</div>
+		{% endif -%}
+		{%- if module.options.blob_style != 'none' %}
+		  <div class="hsg-page-header__blobs hsg-page-header__blobs--{{ module.options.blob_style }}">
+			  	{{ svgBlobRender(module.options.blob_style) }}
+		  </div>
+		{% endif -%}
+	</section>
+	{% endif -%}{# END IF HEADER #}
+{% endif -%}
+
+
+{# Logic that determines whether multiple Page Header modules exist on page (counterpart to above logic) #}
+{%- if module.header and (not widget_data.hasPageHeader is truthy) -%}
+{{ widget_data.update({
+    hasPageHeader: true
+}) }}
+{% endif -%}

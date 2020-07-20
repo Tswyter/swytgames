@@ -1,0 +1,41 @@
+ {#
+
+CHANGE LOG:
+-----------
+
+#}
+
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- if module.ctas|length -%}
+<section class="hsg-full-width-cta"
+  {% if module.optional_fields.background_image.src -%}
+  data-background="dark"
+  style="background-image: url({{ module.optional_fields.background_image.src }}); background-size: cover; background-position: center; background-repeat: no-repeat;"
+  {% else %}
+  data-background="{{ module.options.background_theme }}"
+  {% endif -%}>
+  <div class="hsg-full-width-cta__wrapper">
+    {% if module.optional_fields.header -%}
+			{% if canvasAudit %}
+			  <h3 class="hsg-full-width-cta__header">{{ module.optional_fields.header }}</h3>
+		  {% else %}
+				<h5>{{ module.optional_fields.header }}</h5>
+			{% endif %}
+    {% endif -%}
+
+    {%- if module.optional_fields.description -%}
+    <p>{{ module.optional_fields.description }}</p>
+    {% endif -%}
+
+    <div class="hsg-full-width-cta__buttons">
+      {{ generateModuleCtas({
+        'ctas': module.ctas,
+        'sizingClass': 'cta--medium'
+      }) }}
+    </div>
+  </div>
+</section>
+{% endif -%}

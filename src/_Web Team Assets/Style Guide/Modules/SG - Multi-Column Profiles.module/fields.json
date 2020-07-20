@@ -1,0 +1,185 @@
+[ {
+  "id" : "3134f13c-14e6-ec51-69db-1475fee5f6a0",
+  "name" : "profiles",
+  "label" : "Profiles",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 4,
+    "sorting_label_field" : "59c46567-1f14-db3f-6847-35597af6d838",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "1d949960-dd74-1d12-803d-a8dd0a16c714",
+    "name" : "headshot",
+    "label" : "Headshot",
+    "help_text" : "Upload a square headshot image, ideally 250px by 250px in size.",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/testimonial/sg-defaults_testimonial-avatar-1.svg",
+      "alt" : "sg-defaults_testimonial-avatar-1",
+      "width" : 100,
+      "height" : 100
+    }
+  }, {
+    "id" : "59c46567-1f14-db3f-6847-35597af6d838",
+    "name" : "full_name",
+    "label" : "Full Name",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "Kathleen Knapp",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "3c8cf8d8-a2a5-0222-7337-89fc0f00e6b6",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "SEO Guru",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "9add85c5-17cf-e50c-7f9d-a2b9391ed692",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "b01d80df-9965-f3d9-4364-9b0d99432bde",
+    "name" : "twitter_link",
+    "label" : "Twitter Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "7ca387c2-c3b6-6989-211c-446a57c57b9d",
+    "name" : "linkedin_link",
+    "label" : "LinkedIn Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "3d270086-a4df-332f-d163-a987ccfa064e",
+    "name" : "facebook_link",
+    "label" : "Facebook Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "headshot" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/testimonial/sg-defaults_testimonial-avatar-1.svg",
+      "alt" : "sg-defaults_testimonial-avatar-1",
+      "width" : 100,
+      "height" : 100
+    },
+    "twitter_link" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    },
+    "linkedin_link" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    },
+    "facebook_link" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }
+}, {
+  "id" : "38e7ee3b-51c1-e354-05c3-f6e4a69f5fbc",
+  "name" : "optional_fields",
+  "label" : "Additional Fields (Optional)",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "367b393b-476d-8491-225d-cec96755371b",
+    "name" : "section_header",
+    "label" : "Section Header",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "f9c9a638-e3a3-e2cb-47f3-3f12bba4c96d",
+    "name" : "header_type",
+    "label" : "Header Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a header type",
+    "choices" : [ [ "h2", "Standard (H2)" ], [ "h3", "Secondary (H3)" ] ],
+    "type" : "choice",
+    "default" : "h2"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "header_type" : "h2"
+  }
+}, {
+  "id" : "7184e6ee-cb73-614c-81e0-ce8646643345",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "873438bc-cf2d-4f03-77bc-27baf0421c70",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

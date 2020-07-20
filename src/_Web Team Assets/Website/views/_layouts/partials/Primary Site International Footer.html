@@ -1,0 +1,207 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% set NAV_FOOTER_HUBDB_ID = '{#NAV_FOOTER_HUBDB_ID#}' %}
+{%- if (NAV_FOOTER_HUBDB_ID is string_containing "{#NAV_FOOTER_HUBDB_ID#}") %}
+  {%- set footerTable = "nav_primary_footer" -%} {# PROD #}
+{% else %}
+  {% set footerTable = NAV_FOOTER_HUBDB_ID %}
+{% endif %}
+
+{% if is_french %}
+  {%- set moduleLang = "fr" -%}
+{% elif is_german %}
+  {%- set moduleLang = "de" -%}
+{% elif is_japanese %}
+  {%- set moduleLang = "jp" -%}
+{% elif is_portuguese %}
+  {%- set moduleLang = "pt" -%}
+{% elif is_spanish %}
+  {%- set moduleLang = "es" -%}
+{% else %}
+  {%- set moduleLang = "en" -%}
+{%- endif -%}
+
+{# DEFINE ROOT FOR FOOTER LOGO #}
+{%- if is_spanish -%}
+  {%- set footer_root = "//www.hubspot.es" -%}
+{% elif is_german %}
+  {%- set footer_root = "//www.hubspot.de" -%}
+{% elif is_portuguese %}
+  {%- set footer_root = "//br.hubspot.com" -%}
+{% elif is_japanese %}
+  {%- set footer_root = "//www.hubspot.jp" -%}
+{% elif is_french %}
+  {%- set footer_root = "//www.hubspot.fr" -%}
+{% else %}
+  {%- set footer_root = "//www.hubspot.com" -%}
+{%- endif -%}
+
+{%- set filter = "&language=" ~ moduleLang -%}
+{%- set rows = hubdb_table_rows(footerTable, filter) -%}
+{%- set englishBottomBar = hubdb_table_rows(footerTable, "&language=en&name=bottom-bar") -%}
+
+{%- set supportBtn = rows|selectattr("name","equalto","support-button") -%}
+{%- set socialMedia = rows|selectattr("name", "equalto", "social") -%}
+{%- set copyright = rows|selectattr("name","equalto","copyright") -%}
+{%- set bottomBar = rows|selectattr("name","equalto","bottom-bar") -%}
+{%- set dropDownChildren = rows|selectattr("name","equalto","nav-child") -%}
+{%- set navChildren = rows|selectattr("name","equalto","nav") -%}
+{%- set navParents = navChildren|selectattr("is_parent","truthy") -%}
+
+<footer class="hsg-footer">
+  <div class="hsg-footer__layout">
+    <nav class="hsg-footer__nav">
+      <ul>
+        {% for parent in navParents -%}
+          {% if parent.order == loop.index0 -%}
+            <li class="hsg-footer__nav-column">
+              <input type="checkbox" id="hsg-footer-column-{{ loop.index|string }}" name="hsg-footer-column-{{ loop.index|string }}">
+              <label for="hsg-footer-column-{{ loop.index|string }}">{{ parent.text }}</label>
+              <ul>
+                {%- set linkOrder = 0 -%}
+                {% for child in navChildren -%}
+                  {% if child.parent == parent.order and child.order -%}
+                    {% if child.link_url -%}
+                      <li class="hsg-footer__nav-item" data-order="{{ child.order }}">
+                        {%- if child.has_dropdown %}
+                          <div class="hsg-footer__dropdown" data-order="{{ child.order }}" data-linkOrder="{{ linkOrder }}">
+                            <input type="checkbox" id="hsg-footer-dropdown-{{ parent.order }}-{{ loop.index|string }}" name="hsg-footer-dropdown-{{ parent.order }}-{{ loop.index|string }}">
+                            <label for="hsg-footer-dropdown-{{ parent.order }}-{{ loop.index|string }}">{{ child.text }}</label>
+                            <span>
+                        {% for dropDownChild in dropDownChildren -%}
+                          <a {% if not is_english and dropDownChild.is_english_url %}class="hsg-en-link"{% endif %}href="{{ dropDownChild.link_url }}">{{ dropDownChild.text }}</a>
+                        {% endfor -%}
+                      </span>
+                          </div>
+                        {% else %}
+                          <a {% if not is_english and child.is_english_url %}class="hsg-en-link"{% endif %}href="{{ child.link_url }}" data-order="{{ child.order }}" data-linkOrder="{{ linkOrder }}">{{ child.text }}</a>
+                        {%- endif %}
+                      </li>
+                    {% endif -%}
+
+                    {% if parent.order == 3 and linkOrder == 4 -%}
+                      <li class="hsg-footer__nav-item--contact-links">
+                        {% for button in supportBtn -%}
+                          <div class="hsg-footer__cta">
+                            <a href="{{ button.link_url }}" target="_blank" class="cta cta--primary-light cta--small">{{ button.text }}</a>
+                          </div>
+                        {% endfor -%}
+
+                        <ul class="hsg-footer__social">
+                          {%- for social in socialMedia|sort(False, False, 'order') %}
+                            <li>
+                              <a href="{{ social.link_url }}" target="_blank" {% if social.tracking_class %} class="{{ social.tracking_class }}"{% endif %}>
+                                <i class="hsg-icon hsg-icon-{{ social.text }}"></i><span class="hidden-social">{{ social.text|title }}</span>
+                              </a>
+                            </li>
+                          {%- endfor %}
+                        </ul>
+                      </li>
+                    {% endif -%}
+
+                    {%- set linkOrder = linkOrder + 1 -%}
+                  {% endif -%}
+                {% endfor -%}
+              </ul>
+            </li>
+          {% endif -%}
+        {% endfor -%}
+      </ul>
+    </nav>{# END NAV COLUMNS #}
+
+    <section class="hsg-footer__contact-links">
+      {% for button in supportBtn -%}
+        <div class="hsg-footer__cta">
+          <a href="{{ button.link_url }}" target="_blank" class="cta cta--primary-light cta--small">{{ button.text }}</a>
+        </div>
+      {% endfor -%}
+
+      <ul class="hsg-footer__social">
+        {% for social in socialMedia|sort(False, False, 'order') -%}
+          <li>
+            <a href="{{ social.link_url }}" target="_blank" {% if social.tracking_class %} class="{{ social.tracking_class }}"{% endif %}>
+              <i class="hsg-icon hsg-icon-{{ social.text }}"></i><span class="hidden-social">{{ social.text|title }}</span>
+            </a>
+          </li>
+        {% endfor -%}
+      </ul>
+    </section>{# END MOBILE CTA & SOCIAL LINKS #}
+
+    <section class="hsg-footer__languages">
+      <ul>
+        <li><a href="//www.hubspot.com">English</a></li>
+        <li><a href="//www.hubspot.de">Deutsch</a></li>
+        <li><a href="//www.hubspot.jp">日本語</a></li>
+        <li><a href="//www.hubspot.es">Español</a></li>
+        <li><a href="//br.hubspot.com">Português</a></li>
+        <li><a href="//www.hubspot.fr">Français</a></li>
+      </ul>
+    </section>{# END FOOTER LANGS #}
+
+    <section class="hsg-footer__bottom">
+      <div class="hsg-footer__apps">
+        {% if is_spanish %}
+          <a class="hsg-footer__app" href="https://apps.apple.com/us/app/hubspot/id1107711722">
+            <img class="hsg-deferred es-homepage-mobile-footer-apple" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/app-store-es.svg" alt="App store">
+          </a>
+          <a class="hsg-footer__app" href="https://play.google.com/store/apps/details?id=com.hubspot.android&hl=en_US">
+            <img class="hsg-deferred es-homepage-mobile-footer-google" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/google-play-badge-es.png" alt="Google Play">
+          </a>
+        {% elif is_french %}
+          <a class="hsg-footer__app" href="https://apps.apple.com/us/app/hubspot/id1107711722">
+            <img class="hsg-deferred fr-homepage-mobile-footer-apple" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/app-store-fr.svg" alt="App store">
+          </a>
+          <a class="hsg-footer__app" href="https://play.google.com/store/apps/details?id=com.hubspot.android&hl=en_US">
+            <img class="hsg-deferred fr-homepage-mobile-footer-google" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/google-play-badge-fr.png" alt="Google Play">
+          </a>
+        {% elif is_german %}
+          <a class="hsg-footer__app" href="https://apps.apple.com/us/app/hubspot/id1107711722">
+            <img class="hsg-deferred de-homepage-mobile-footer-apple" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/app-store-de.svg" alt="App store">
+          </a>
+          <a class="hsg-footer__app" href="https://play.google.com/store/apps/details?id=com.hubspot.android&hl=en_US">
+            <img class="hsg-deferred de-homepage-mobile-footer-google" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/google-play-badge-de.png" alt="Google Play">
+          </a>
+        {% elif is_japanese %}
+          <a class="hsg-footer__app" href="https://apps.apple.com/us/app/hubspot/id1107711722">
+            <img class="hsg-deferred jp-homepage-mobile-footer-apple" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/app-store-jp.svg" alt="App store">
+          </a>
+          <a class="hsg-footer__app" href="https://play.google.com/store/apps/details?id=com.hubspot.android&hl=en_US">
+            <img class="hsg-deferred jp-homepage-mobile-footer-google" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/google-play-badge-jp.png" alt="Google Play">
+          </a>
+        {% elif is_portuguese %}
+          <a class="hsg-footer__app" href="https://apps.apple.com/us/app/hubspot/id1107711722">
+            <img class="hsg-deferred br-homepage-mobile-footer-apple" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/app-store-pt.svg" alt="App store">
+          </a>
+          <a class="hsg-footer__app" href="https://play.google.com/store/apps/details?id=com.hubspot.android&hl=en_US">
+            <img class="hsg-deferred br-homepage-mobile-footer-google" data-src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/footer/google-play-badge-pt.png" alt="Google Play">
+          </a>
+        {% else %}
+          <a class="hsg-footer__app" href="https://apps.apple.com/us/app/hubspot/id1107711722">
+            <img class="hsg-deferred homepage-mobile-footer-apple" data-src="https://cdn2.hubspot.net/hubfs/53/app%20store%20high%20res.png" alt="App store">
+          </a>
+          <a class="hsg-footer__app" href="https://play.google.com/store/apps/details?id=com.hubspot.android&hl=en_US">
+            <img class="hsg-deferred homepage-mobile-footer-google" data-src="https://cdn2.hubspot.net/hubfs/53/google%20play%20high%20res.png" alt="Google Play">
+          </a>
+        {% endif %}
+      </div>
+      <div class="hsg-footer__logo">
+        <a href="//www.hubspot.com"><img class="hsg-deferred" data-src="https://www.hubspot.com/hubfs/HubSpot_Logos/HSLogo_gray.svg" alt="HubSpot Logo"></a>
+        {% for text in copyright -%}
+          <p>{{ text.text }}</p>
+        {% endfor -%}
+      </div>
+      <div class="hsg-footer__copyright">
+        <ul>
+          {% for link in bottomBar|sort(False, False, 'order') -%}
+            {%- set linkUrl = link.link_url if link.link_url else englishBottomBar[loop.index0].link_url -%}
+            {% if linkUrl -%}
+              <li><a href="{{ linkUrl }}">{{ link.text }}</a></li>
+            {% endif -%}
+          {% endfor -%}
+        </ul>
+      </div>
+    </section>
+  </div>
+</footer>

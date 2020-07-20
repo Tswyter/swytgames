@@ -1,0 +1,150 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 18,
+  "attachedStylesheets" : [ ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "subscribe-form padding40tb",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_251146022869407623607363146760168122079",
+        "label" : "Page Center",
+        "type" : "cell",
+        "params" : {
+          "cell" : false,
+          "cells" : [ ],
+          "css_class" : "page-center",
+          "css_id" : "",
+          "css_id_str" : "",
+          "css_style" : "",
+          "ending_html" : "",
+          "overrideable" : false,
+          "root" : false,
+          "row" : false,
+          "starting_html" : "",
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_3109410251932626295871863172582560141",
+            "label" : "Header",
+            "type" : "header",
+            "params" : {
+              "cell" : false,
+              "cells" : [ ],
+              "css_class" : "text-center",
+              "css_id" : "",
+              "css_id_str" : "",
+              "css_style" : "",
+              "ending_html" : "",
+              "header_tag" : "h2",
+              "overrideable" : false,
+              "root" : false,
+              "row" : false,
+              "starting_html" : "",
+              "value" : "Stay in the Know!",
+              "wrapping_html" : ""
+            },
+            "rows" : [ ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        }, {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_221063945363247692312933240714853957808",
+            "label" : "One Line of Text",
+            "type" : "text",
+            "params" : {
+              "cell" : false,
+              "cells" : [ ],
+              "css_class" : "text-center",
+              "css_id" : "",
+              "css_id_str" : "",
+              "css_style" : "",
+              "ending_html" : "",
+              "overrideable" : false,
+              "root" : false,
+              "row" : false,
+              "starting_html" : "",
+              "value" : "Subscribe to our newsletter to learn about our latest and greatest games and offers.",
+              "wrapping_html" : ""
+            },
+            "rows" : [ ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        }, {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_20527234857105369194528248202601516298",
+            "label" : "Blog Email Subscription",
+            "type" : "blog_subscribe",
+            "params" : {
+              "cell" : false,
+              "cells" : [ ],
+              "css_class" : "text-center padding10tb",
+              "css_id" : "",
+              "css_id_str" : "",
+              "css_style" : "",
+              "edit_form_link" : "<a href=\"#\" target=\"_blank\">Edit Subscription Form</a>",
+              "ending_html" : "",
+              "overrideable" : false,
+              "response_message" : "Thanks for subscribing to our blog. You're awesome.",
+              "root" : false,
+              "row" : false,
+              "select_blog" : "default",
+              "starting_html" : "",
+              "title" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

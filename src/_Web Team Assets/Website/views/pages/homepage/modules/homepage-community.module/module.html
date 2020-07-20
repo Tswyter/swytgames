@@ -1,0 +1,17 @@
+{% set prefix = 'home-community-board' %}
+
+<div class="hsg-page-width-normal">
+  <div class="{{ prefix }}__grid-wrapper">
+    {% for item in module.grid %}
+      <div class="{{ prefix }}__grid-item">
+        <div class="{{ prefix }}__grid-icon-wrapper">
+          <img data-src="{{ item.grid_image.src }}" alt="{{ item.grid_image.alt }}" class="{{ prefix }}__grid-icon hsg-deferred">
+        </div>
+        <div class="{{ prefix }}__grid-stat-wrapper">
+          <h2 class="{{ prefix }}__grid-stat{% if item.grid_number is string_containing '+' %} stat-plus-after{% endif %}">{{ item.grid_number|replace('+', '') }}</h2>
+          <p class="{{ prefix }}__grid-stat-description">{{ item.grid_description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

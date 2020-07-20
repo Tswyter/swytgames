@@ -1,0 +1,229 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+CHANGELOG:
+---------------
+- ( Lisa | 7th Jan 2020 ) Added if-statement for Vidyard, and vidyard option to watch-video CTA.
+
+#}
+{%- unless generateVideoModal is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/video.html' import generateVideoModal %}
+{% endunless -%}
+
+{%- macro generateCta(options={}) -%}
+  {# Destructure options - indicates what keys should be available #}
+  {%- set productCtaId = options.productCtaId or '' -%}
+	{%- set label = options.label or '' -%}
+	{%- set link = options.link or '' -%}
+	{%- set videoId = options.videoId or '' -%}
+	{%- set class = options.class if (options.class is defined) else 'cta--primary cta--large' -%}
+	{%- set customClass = options.customClass or '' -%}
+  {%- set targetModalId = options.targetModalId or '' -%}
+  {%- set openInNewTab = options.openInNewTab if (options.openInNewTab is defined) else false -%}
+  {%- set noCrawl = options.noCrawl if (options.noCrawl is defined) else false -%}
+	{%- set smartRules = options.smartRules or [] -%}{# array of objects: type, list_id, lifecycle_stage, lifecycle_stage_other, rule_label, rule_link (text), modal_id, custom_class #}
+
+  {%- set smartConditions = { satisfied: false } -%}
+
+  {# loop smart rules #}
+  {%- for rule in smartRules -%}
+    {%- set lifecycleStage = (rule.lifecycle_stage_other if ((rule.lifecycle_stage|lower) is equalto 'other') else rule.lifecycle_stage)|lower -%}
+    {%- set listId = rule.list_id|int if (type(rule.list_id) is equalto 'str') else rule.list_id -%}
+
+    {%- set matchesLifecycleStage = (rule.type is equalto 'lifecycle') and (lifecycleStage is equalto (request_contact.lifecycle_stage|lower)) -%}
+    {%- set isListMember = (rule.type is equalto 'list-member') and (listId in request_contact.list_memberships) -%}
+
+    {%- set ruleConditionSatisfied = matchesLifecycleStage or isListMember -%}
+
+    {%- if not smartConditions.satisfied and ruleConditionSatisfied -%}
+      <a class="{{ class ~ (' ' ~ rule.custom_class if rule.custom_class is truthy) }}"
+        {% if rule.modal_id -%}
+        data-target-modal="{{ rule.modal_id }}"
+        {% else %}
+        href="{{ rule.rule_link }}"
+        {% endif -%}
+        {% if openInNewTab -%}
+        target="_blank" data-mce-target="_blank"
+        {% endif -%}
+        {% if noCrawl -%}
+        rel="nofollow" data-mce-rel="nofollow"
+        {% endif -%}>
+        {{ rule.rule_label }}
+      </a>
+      {{ smartConditions.update({ satisfied: true }) }}
+    {% endif -%}
+  {% endfor -%}
+  
+  {%- if not smartConditions.satisfied -%}{# Default case #}
+    {% if productCtaId is truthy -%}
+      {{ cta(productCtaId) }}
+		{% elif label is truthy -%}
+    <a class="{{ class ~ (' ' ~ customClass if customClass is truthy) }}"
+      {% if targetModalId -%}
+      data-target-modal="{{ targetModalId }}"
+      {% else %}
+      href="{{ link }}"
+      {% endif -%}
+      {% if openInNewTab %}target="_blank" data-mce-target="_blank"{% endif -%}
+      {% if noCrawl %}rel="nofollow" data-mce-rel="nofollow"{% endif -%}>
+      {{ label }}
+    </a>
+    {% endif -%}
+  {% endif -%}
+{% endmacro -%}
+
+{#
+  Use to replicate full CTA logic (smart rules, video logic, etc).
+  ** Assumes a `ctas` repeater is passed in from module with relevant fields. See `https://app.hubspot.com/beta-design-manager/2406023/modules/6529361005` for example boilerplate of fields.
+
+  Logic assumes that in most cases, up to two CTAs will be used (e.g. Page Header, Full-Width CTA) and CTA classes determined accordingly.
+  ** If all classes should be the same, use the `noStyle` option to disable this logic and pass in other relevant classes via the `moduleClass` option to apply classes to all ctas.
+#}
+{% macro generateModuleCtas(options={}) -%}
+  {%- set ctas = options.ctas or [] -%}
+  {%- set sizingClass = options.sizingClass or 'cta--large' -%}
+  {%- set noStyle = options.noStyle if (options.noStyle is defined) else false -%}{# Remove button styling, simple link #}
+  {%- set moduleClass = options.moduleClass or '' -%}{# CTA class from module scope, applies to all CTAs #}
+
+  {%- for cta in ctas -%}
+    {%- set ctaIndex = cta.customIndex or loop.index -%}{# Custom property for managing indeces (e.g. for nested loops) #}
+    {% if cta.cta_link.url -%}
+      {# CTA uses Link field for URL and options #}
+      {%- set ctaLink = ('mailto:' if ((cta.cta_link.url.type|lower) is string_containing 'email')) ~ cta.cta_link.url.href -%}
+      {%- set ctaNewTab = cta.cta_link.open_in_new_tab -%}
+      {%- set ctaNoCrawl = cta.cta_link.no_follow -%}
+    {% else %}
+      {# CTA uses Text field for URL, options object for new_tab & no_crawl #}
+      {%- set ctaLink = cta.cta_link -%}
+      {%- set ctaNewTab = cta.options.new_tab -%}
+      {%- set ctaNoCrawl = cta.options.no_crawl -%}
+    {% endif -%}
+
+    {# cta.video.url as URL field type, or Text field type #}
+    {%- set videoUrl = cta.video.url.href if (cta.video.url.href is defined) else cta.video.url -%}
+
+    {# CTA type options #}
+    {%- set displayLinkCta = ((cta.type is equalto 'link') and (cta.cta_label is truthy and ctaLink is truthy))-%}
+    {%- set displayProductCta = (cta.type is equalto 'product') and (cta.product_cta is truthy) -%}
+    {%- set displayVideoCta = (cta.type is equalto 'video') and (
+      ((cta.video.type is equalto 'url') and (videoUrl is truthy)) or
+      ((not cta.video.type is equalto 'url') and (not cta.video.type is equalto 'vidyard') and (cta.video.id is truthy or cta.video.v_id is truthy))
+		) -%}
+		{%- set displayVidYardCta = (((cta.type is equalto 'video') and (
+      (cta.video.type is equalto 'vidyard') and (cta.video.v_id is truthy))) or (cta.type is equalto 'vidyard_in_modal' and cta.video_id is truthy)  
+    ) -%}
+    {%- set displayModalTriggerCta = (cta.type is equalto 'modal') and (cta.cta_label is truthy and cta.modal_id is truthy) -%}
+
+    {%- set ctaClass = (
+      ((moduleClass ~ ' ') if moduleClass is truthy) ~ (
+        (('cta--primary' if loop.first else 'cta--secondary') ~ ' ' ~ sizingClass) if not noStyle is truthy
+      )
+    )|trim -%}
+
+    {%- if displayModalTriggerCta is truthy -%}
+      {%- call generateCta({
+        label: cta.cta_label,
+        targetModalId: cta.modal_id,
+        class: ctaClass,
+        customClass: cta.options.custom_class
+      }) %}{% endcall -%}
+    {% elif displayLinkCta is truthy -%}
+      {%- call generateCta({
+        label: cta.cta_label,
+        link: ctaLink,
+        class: ctaClass,
+        customClass: cta.options.custom_class,
+        openInNewTab: ctaNewTab,
+        noCrawl: ctaNoCrawl,
+        smartRules: cta.smart_rules,
+        videoId: cta.video_id
+      }) %}{% endcall -%}
+    {% elif displayProductCta is truthy -%}
+      {#
+      {%- call generateCta({
+        label: cta.cta_label,
+        link: ('http://cta-redirect.hubspot.com/cta/redirect/' ~ portal_id ~ '/' ~ cta.product_cta),
+        class: ctaClass,
+        customClass: cta.options.custom_class,
+        smartRules: cta.smart_rules
+      }) %}{% endcall -%} #}
+      {% call generateCta({
+        productCtaId: cta.product_cta
+      }) %}{% endcall -%}
+		{% elif displayVideoCta is truthy -%}
+      {%- set videoId = name ~ '-' ~ ctaIndex ~ '-' ~ cta.video.type -%}
+      {%- set modalId = videoId ~ '-modal' -%}
+
+      <a class="{{ ctaClass }} {{ cta.options.custom_class is truthy ? cta.options.custom_class : '' }}" href="#" data-target-modal="{{ modalId }}">
+        {{ cta.cta_label }} <span class="hsg-icon hsg-icon-play"></span> 
+      </a>
+
+      {%- call generateVideoModal({
+        modalId: modalId,
+        videoOptions: {
+          type: cta.video.type,
+          id: cta.video.id || cta.video.v_id,
+          url: videoUrl,
+          controls: true,
+          autoplay: false,
+          mute: false,
+          uniqueId: videoId
+        }
+			}) %}{% endcall -%}
+			
+			{% elif displayVidYardCta is truthy -%}
+
+        {% set video = cta.video.v_id || cta.video_id %}
+        {%- set videoId = name ~ '-' ~ ctaIndex ~ '-' ~ cta.video.type  ~ '-' ~ video -%}
+        {%- set modalId = videoId ~ '-modal' -%}
+  
+        <a class="{{ ctaClass }} {{ cta.options.custom_class is truthy ? cta.options.custom_class : '' }}" href="#" data-target-modal="{{ modalId }}">
+          {{ cta.cta_label }} {% if (not cta.type is equalto 'vidyard_in_modal')%} <span class="hsg-icon hsg-icon-play"></span> {% endif %}
+        </a>
+
+          {%- call generateVideoModal({
+            modalId: modalId,
+            videoOptions: {
+              type: 'hsvideo',
+              id: video,
+              url: '',
+              controls: true,
+              autoplay: true,
+              mute: false,
+              uniqueId: videoId,
+              defer: true
+            }
+          }) %}{% endcall -%}
+
+    {% endif -%}
+  {% endfor -%}
+{% endmacro -%}
+
+{# Use when rendering a Product CTA (by ID) from an external portal, e.g. not Portal 53 #}
+{%- macro renderExternalPortalCta(options={}) -%}
+  {%- set portalId = options.portalId or 53 -%}
+  {%- set ctaId = options.ctaId or '' -%}
+
+  {%- if ctaId is truthy -%}
+  <!-- Custom CTA Code -->
+  <span class="hs-cta-wrapper" id="hs-cta-wrapper-{{ ctaId }}">
+    <span class="hs-cta-node hs-cta-{{ ctaId }}" id="hs-cta-{{ ctaId }}">
+      <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]-->
+      <a href="/hs/cta/cta/redirect/{{ portalId }}/{{ ctaId }}">
+        <img class="hs-cta-img" id="hs-cta-img-{{ ctaId }}"
+          style="border-width:0px;"
+          src="/hs/cta/cta/default/{{ portalId }}/{{ ctaId }}.png"
+          alt="">
+      </a>
+    </span>
+    <script charset="utf-8" src="/hs/cta/cta/current.js"></script>
+    <script type="text/javascript">
+      hbspt.cta._relativeUrls = true;
+      hbspt.cta.load({{ portalId }}, '{{ ctaId }}', {});
+    </script>
+  </span>
+  <!-- end Custom CTA Code -->
+  {% endif -%}
+{% endmacro -%}

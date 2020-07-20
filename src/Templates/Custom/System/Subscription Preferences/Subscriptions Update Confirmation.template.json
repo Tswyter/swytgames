@@ -1,0 +1,168 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 13,
+  "attachedStylesheets" : [ {
+    "type" : "cos_extension_resource",
+    "path" : "/Coded files/Custom/page/css/Vast-style.css"
+  } ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "subscription-template one-column",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Header",
+        "label" : "hubtheme Theme/Header",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369719.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369719.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_149464247335044389457126578184999172695",
+        "label" : "Page Center, Content Wrapper",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "page-center content-wrapper padding60tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_144722463983872668691040124324512087667",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "email_subscriptions_confirmation",
+                "label" : "Subscriptions Update Confirmation",
+                "type" : "email_subscriptions_confirmation",
+                "params" : {
+                  "overrideable" : true,
+                  "subheader_text" : "<p>\n                                If this is not your email address, please ignore this page since the email associated with this page was most likely forwarded to you.\n                            </p>",
+                  "subscription_update_success" : "You have successfully updated your email preferences.",
+                  "unsubscribe_all_success" : "You have successfully unsubscribed from all email communications."
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Footer",
+        "label" : "hubtheme Theme/Footer",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369739.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369739.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

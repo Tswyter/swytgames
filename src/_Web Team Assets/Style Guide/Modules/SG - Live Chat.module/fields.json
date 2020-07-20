@@ -1,0 +1,10 @@
+[ {
+  "id" : "ca11b249-ac3e-d826-3c9b-e02a15d7c0eb",
+  "name" : "load_immediately",
+  "label" : "Load Immediately",
+  "help_text" : "If unchecked, widget will load when it enters the window. ",
+  "required" : false,
+  "locked" : false,
+  "type" : "boolean",
+  "default" : false
+} ]

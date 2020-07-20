@@ -1,0 +1,235 @@
+{#
+CHANGE LOG:
+------------------
+
+#}
+
+{%- if canvasAudit -%}
+
+  {# Aggregate descriptions here for easy check if descriptions row should be rendered #}
+  {%- set columnDescriptionsArray = [] -%}
+
+  {%- if module.columns|length or module.rows|length -%}
+  <section class="hsg-table" data-background="{{ module.options.background_theme }}">
+    {% if module.header -%}
+    <h2 class="hsg-table__header">{{ module.header }}</h2>
+    {% endif -%}
+
+    <div class="hsg-table__wrapper hsg-table__scrollable">
+      {% if module.scroll_helper_tooltip -%}
+      <div class="hsg-tooltip hsg-tooltip__scrollable">
+        <span class="hsg-tooltip__content">
+          {{ module.scroll_helper_tooltip }}
+        </span>
+      </div>
+      {% endif -%}
+      
+      <div class="hsg-table__scrollable-container">
+        <div class="hsg-table__scrollable-scroller">
+          <table>
+            {# COLUMN LABEL ROW #}
+            <thead>
+              <tr>
+                <!-- EMPTY CELL (needed to offset for row labels) -->
+                <th>&nbsp;</th>
+                {%- for column in module.columns -%}
+                  {%- set label = column.column_label -%}
+                  {%- set description = column.description -%}
+                
+                  {%- if description -%}
+                  {%- do columnDescriptionsArray.append(description) -%}
+                  {% endif -%}
+                
+                  {%- if label -%}
+                    <th>{{ label }}</th>
+                  {% endif -%}
+                {% endfor -%}
+              </tr>
+            </thead>
+            {# END COLUMN LABEL ROW #}
+            
+            <tbody>
+              {# COLUMN DESCRIPTION ROW #}
+              <tr>
+                {%- if columnDescriptionsArray|length -%}
+                  <td>&nbsp;</td>
+                  {%- for column in module.columns -%}
+                    {%- set description = column.description -%}
+                    <td>{{ description or '&nbsp;' }}</td>
+                  {% endfor -%}
+                {% endif -%}
+              </tr>
+              {# END COLUMN DESCRIPTION ROW #}
+              {# ROWS #}
+              {%- for row in module.rows -%}
+                {%- set cells = row.cells -%}
+              
+                {# OPTIONAL ROW HEADER #}
+                {%- if row.header -%}
+                  <tr>
+                    <th colspan="{{module.columns|length + 1}}">{{ row.header }}</th>
+                  </tr>
+                {% endif -%}
+                {# ACTUAL ROW CONTENTS #}
+                {%- if row.row_label -%}
+                <tr>
+                  <td>
+                    <span>{{ row.row_label }}</span>
+                    {% if row.tooltip -%}
+                    <div class="hsg-tooltip">
+                      <i class="hsg-icon hsg-icon-tooltip"></i>
+                      <span class="hsg-tooltip__content">
+                        {{ row.tooltip }}
+                      </span>
+                    </div>
+                    {% endif -%}
+                  </td>
+                  {# CELLS (match # of columns) #}
+                  {%- for i in range(0, module.columns|length) -%}
+                    {%- set cell = cells[i] -%}
+                    <td>
+                      <p>
+                        {% if cell.show_checkmark -%}
+                        <i class="hsg-icon hsg-icon-orange-checkmark"></i><br />
+                        {% endif -%}
+                        {% if cell.content -%}
+                        {{ cell.content }}
+                        {% elif not cell.show_checkmark -%}
+                        &nbsp;
+                        {% endif -%}
+                      </p>
+                    </td>                  
+                  {% endfor -%}                  
+                  {# END CELLS #}
+                </tr>
+                {% endif -%}
+                {# END ACTUAL ROW CONTENTS #}
+              {% endfor -%}
+              {# END ROWS #}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    {# FOOTER #}
+    {%- if module.footer -%}
+    <div class="hs-page-width-module">
+      <p class="hsg-microcopy">{{ module.footer }}</p>
+    </div>
+    {% endif -%}
+    {# END FOOTER #}    
+  </section>
+  {% endif -%}
+
+{% else -%}
+
+  {# Aggregate descriptions here for easy check if descriptions row should be rendered #}
+  {%- set columnDescriptionsArray = [] -%}
+
+  {%- if module.columns|length or module.rows|length -%}
+  <section class="hsg-table" data-background="{{ module.options.background_theme }}">
+    {% if module.header -%}
+    <h2 style="text-align: center;">{{ module.header }}</h2>
+    {% endif -%}
+
+    <div class="hsg-table__wrapper">
+      {# COLUMN LABEL ROW #}
+      <div class="hsg-table__row hsg-table__row--header">
+        {# EMPTY CELL (needed to offset for row labels) #}
+        <div class="hsg-table__head hsg-table__cell hsg-table__cell--name">&nbsp;</div>
+
+        {%- for column in module.columns -%}
+          {%- set label = column.column_label -%}
+          {%- set description = column.description -%}
+
+          {%- if description -%}
+          {%- do columnDescriptionsArray.append(description) -%}
+          {% endif -%}
+
+          {%- if label -%}
+          <div class="hsg-table__head hsg-table__cell hsg-table__cell--name">
+            <span>{{ label }}</span>
+          </div>
+          {% endif -%}
+        {% endfor -%}
+      </div>
+      {# END COLUMN LABEL ROW #}
+
+      {# COLUMN DESCRIPTION ROW #}
+      {%- if columnDescriptionsArray|length -%}
+      <div class="hsg-table__row hsg-table__row--header-description">
+        {# EMPTY CELL (needed to offset for row labels) #}
+        <div class="hsg-table__head hsg-table__cell hsg-table__cell--description">&nbsp;</div>
+
+        {%- for column in module.columns -%}
+          {%- set description = column.description -%}
+
+          <div class="hsg-table__head hsg-table__cell hsg-table__cell--description">
+            <span>{{ description or '&nbsp;' }}</span>
+          </div>
+        {% endfor -%}
+      </div>
+      {% endif -%}
+      {# END COLUMN DESCRIPTION ROW #}
+
+      {# ROWS #}
+      {%- for row in module.rows -%}
+        {%- set cells = row.cells -%}
+
+        {%- if row.header -%}
+        <div class="hsg-table__row hsg-merged-header">
+          <div class="hsg-table__head hsg-table__cell hsg-table__cell--description">
+            <span>{{ row.header }}</span>
+          </div>
+        </div>
+        {% endif -%}
+
+        {%- if row.row_label -%}
+        <div class="hsg-table__row hsg-table__row--body">
+          <div class="hsg-table__body hsg-table__cell hsg-table__cell--name">
+            <span>{{ row.row_label }}</span>
+            {% if row.tooltip -%}
+            <div class="hsg-tooltip">
+              <i class="hsg-icon hsg-icon-tooltip"></i><span class="hsg-tooltip__content">{{ row.tooltip }}</span>
+            </div>
+            {% endif -%}
+          </div>
+
+          {# CELLS (match # of columns) #}
+          {%- for i in range(0, module.columns|length) -%}
+            {%- set cell = cells[i] -%}
+            {# Corresponding column label, for mobile #}
+            {%- set columnLabel = module.columns[i].column_label -%}
+
+            <div class="hsg-table__body hsg-table__cell hsg-table__cell--description">
+              <p class="hsg-table__head hsg-table__cell--name">{{ columnLabel }}</p>
+              <p>
+                {% if cell.show_checkmark -%}
+                <i class="hsg-icon hsg-icon-orange-checkmark"></i><br />
+                {% endif -%}
+                {% if cell.content -%}
+                {{ cell.content }}
+                {% elif not cell.show_checkmark -%}
+                &nbsp;
+                {% endif -%}
+              </p>
+            </div>
+          {% endfor -%}
+          {# END CELLS #}
+        </div>
+        {% endif -%}
+      {% endfor -%}
+      {# END ROWS #}
+
+      {# FOOTER #}
+      {%- if module.footer -%}
+      <div class="hs-page-width-module">
+        <p class="hsg-microcopy">{{ module.footer }}</p>
+      </div>
+      {% endif -%}
+      {# END FOOTER #}
+    </div>
+  </section>
+  {% endif -%}
+
+{% endif -%}

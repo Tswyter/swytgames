@@ -1,0 +1,69 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{% macro generateHubDBSecondaryNavigation(options={}) -%}
+  {#
+    Accepts either:
+    - HubDB tableId/filters (will make call for rows)
+    - array of items (if call for rows already made)
+  #}
+  {%- set tableId = options.tableId or '' -%}
+  {%- set filters = options.filters or '' -%}
+  {%- set items = options.items or [] -%}
+
+  {%- if ((items|length) is equalto 0) and (tableId is truthy) -%}
+    {# Makes HubDB call when no items and tableId exists #}
+    {%- set items = hubdb_table_rows(tableId, filters) -%}
+  {% endif -%}
+
+  {%- set navParents = items|selectattr('parent_id', 'equalto', 0) -%}
+
+  <ul class="hsg-fixed-secondary__nav">
+    {% for parent in navParents -%}
+      {%- set uId = 'nav-parent_' ~ parent.name|md5 -%}
+      {%- set isActive = (parent.url is equalto request.path) or (parent.url is equalto request.full_url) or (parent.url is equalto request.path_and_query) -%}
+      {%- set hasDestination = parent.url is truthy -%}
+      {%- set children = items|selectattr('parent_id', 'equalto', parent.row_id) -%}
+      {%- set hasChild = children|length > 0 -%}
+ 
+      <li class="hsg-fixed-secondary__nav-item--primary{{ ' active' if isActive }}" data-children="{{ hasChild }}">
+        {% if hasChild -%}
+        <input
+          id="{{ uId }}"
+          name="{{ uId }}"
+          type="checkbox" />
+        <label for="{{ uId }}">{{ parent.name }}</label>
+        {% endif -%}
+
+        <a
+          {% if parent.custom_class -%}
+          class="{{ parent.custom_class }}"
+          {% endif -%}
+          {% if hasDestination -%}
+          href="{{ parent.url }}"
+          {% endif -%}
+          >
+          {{ parent.name }}
+        </a>
+
+        {% if hasChild -%}
+        <ul class="hsg-fixed-secondary__subnav">
+          {% for child in children -%}
+            {%- if loop.first and parent.url %}
+            <li
+              class="hsg-fixed-secondary__nav-item--secondary"
+              data-root="true">
+              <a {% if parent.custom_class %}class="{{ parent.custom_class }}"{% endif %}href="{{ parent.url }}">{{ parent.name }}</a>
+            </li>
+            {% endif -%}
+            <li class="hsg-fixed-secondary__nav-item--secondary {{ child.custom_class }}">
+              <a {% if child.custom_class %}class="{{ child.custom_class }}"{% endif %}href="{{ child.url }}">{{ child.name }}</a>
+            </li>
+          {% endfor -%}
+        </ul>
+        {% endif -%}
+      </li>
+    {% endfor -%}
+  </ul>
+{% endmacro -%}

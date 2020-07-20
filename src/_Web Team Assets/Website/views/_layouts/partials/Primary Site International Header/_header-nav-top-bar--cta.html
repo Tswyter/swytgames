@@ -1,0 +1,593 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{# OVERRIDE FOR HUBSPOT FOR STARTUPS PAGE (https://www.hubspot.com/startups) #}
+{% if content.absolute_url is equalto "https://www.hubspot.com/startups" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="//app.hubspot.com/signup/hubspot-for-startups">Apply Now</a>
+
+{# OVERRIDE FOR HUBSPOT FOR INBOUND PAGE (https://www.hubspot.com/inbound19-pricing-faq) #}
+{% elif content.absolute_url is equalto "https://www.hubspot.com/inbound19-pricing-faq" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/contact-sales?hubs_signup-url=www.hubspot.com/inbound19-pricing-faq&hubs_signup-cta=homepage-nav">
+    Talk to Sales
+  </a>
+{# OVERRIDE FOR HUBSPOT FOR MHE PAGE (https://www.hubspot.com/products/marketing/enterprise) #}
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/enterprise" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/contact-sales?hubs_signup-url=www.hubspot.com/products/marketing/enterprise&hubs_signup-cta=homepage-nav">
+    Talk to Sales
+  </a>
+
+{# OVERRIDE FOR HUBSPOT FOR ABM PAGE (https://www.hubspot.com/products/abm-software) #}
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/abm-software" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/contact-sales?hubs_signup-url=www.hubspot.com/products/abm-software&hubs_signup-cta=homepage-nav">
+    Talk to Sales
+  </a>
+
+{# OVERRIDE FOR PRICING PAGES (https://www.hubspot.com/pricing) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/pricing" %}
+  <a class="cta cta--small cta--primary homepage-nav" href="https://www.hubspot.com/products/get-started">Get started</a>
+
+{# OVERRIDE FOR SALES HUB SEQUENCES FEATURE PAGE (https://www.hubspot.com/products/sales/sales-automation) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/sales/sales-automation" %}
+  <a class="cta cta--small cta--primary homepage-nav" href="https://www.hubspot.com/products/sales/get-started">Get started</a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/marketing/content-management-system/best/wordpress-alternatives) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/marketing/content-management-system/best/wordpress-alternatives" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/demo?hubs_signup-url=www.hubspot.com/products/marketing/content-management-system/best/wordpress-alternatives&hubs_signup-cta=wordpress-nav">
+    Get a demo
+  </a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/marketing/marketing-automation/best/marketo-alternatives) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/marketing/marketing-automation/best/marketo-alternatives" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/demo?hubs_signup-url=www.hubspot.com/products/marketing/marketing-automation/best/marketo-alternatives&hubs_signup-cta=marketo-nav">
+    Get a demo
+  </a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/marketing/marketing-automation/best/active-campaign-alternative) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/marketing/marketing-automation/best/active-campaign-alternative" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/demo?hubs_signup-url=www.hubspot.com/products/marketing/marketing-automation/best/active-campaign-alternative&hubs_signup-cta=activecampaign-nav">
+    Get a demo
+  </a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/faq/hubspot-eloqua-comparison) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/faq/hubspot-eloqua-comparison" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/demo?hubs_signup-url=www.hubspot.com/products/faq/hubspot-eloqua-comparison&hubs_signup-cta=eloqua-nav">
+    Get a demo
+  </a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/marketing/content-management-system/best/wix-alternatives) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/marketing/content-management-system/best/wix-alternatives" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/demo?hubs_signup-url=www.hubspot.com/products/marketing/content-management-system/best/wix-alternatives&hubs_signup-cta=wix-nav">
+    Get a demo
+  </a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/faq/hubspot-acton-comparison) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/faq/hubspot-acton-comparison" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/demo?hubs_signup-url=www.hubspot.com/products/faq/hubspot-acton-comparison&hubs_signup-cta=acton-nav">
+    Get a demo
+  </a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/marketing/email/best/mailchimp-alternatives) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/marketing/email/best/mailchimp-alternatives" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup-v2/marketing?hubs_signup-url=www.hubspot.com/products/marketing/email/best/mailchimp-alternatives&hubs_signup-cta=mailchimp-nav">
+    Get started free
+  </a>
+
+{# OVERRIDE FOR PRODUCTS MARKETING PAGES (https://www.hubspot.com/products/s/sales/best/microsoft-dynamics-alternative) #}
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/s/sales/best/microsoft-dynamics-alternative" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/sales-demo?hubs_signup-url=www.hubspot.com/products/s/sales/best/microsoft-dynamics-alternative&hubs_signup-cta=microsoftdynamics-nav">
+    Get a demo
+  </a>
+
+{# OVERRIDE FOR MARKETING SPECIFIC PAGES #}
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/free" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/marketing?hubs_signup-url=www.hubspot.com/products/marketing/free&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/pop-up-form" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/marketing?hubs_signup-url=www.hubspot.com/products/marketing/pop-up-form&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/email" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/marketing?hubs_signup-url=www.hubspot.com/products/marketing/email&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/ads" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/marketing?hubs_signup-url=www.hubspot.com/products/marketing/ads&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/analytics" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/marketing?hubs_signup-url=www.hubspot.com/products/marketing/analytics&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/forms" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/marketing?hubs_signup-url=www.hubspot.com/products/marketing/forms&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif (content.absolute_url is string_startingwith "https://www.hubspot.de/products/marketing") or
+              (content.absolute_url is equalto "https://www.hubspot.de/products/salesforce") %}
+  <a class="cta cta--small cta--primary homepage-nav-variation" href="https://www.hubspot.de/products/get-started">Direkt loslegen</a>
+
+{% elif (content.absolute_url is string_containing "/partners") %}
+  {% if is_english %}
+    {% unless request.path is string_containing "/app" -%}
+      {% if request.path is string_containing "/solutions" %}
+        <a class="cta cta--small cta--primary homepage-nav" href="https://www.hubspot.com/partners/solutions#pricing-cards">
+          Become a solutions partner
+        </a>
+      {% else %}
+        <a class="cta cta--small cta--primary homepage-nav" href="https://www.hubspot.com/partners/solutions">Become a solutions partner</a>
+      {% endif %}
+    {% else %}
+      <a class="cta cta--small cta--primary homepage-nav" href="https://developers.hubspot.com/docs/api/listing-your-app">Become an app partner</a>
+    {% endunless -%}
+  {% elif is_french %}
+    {% if request.path is string_containing "/solutions" %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.fr/partners/solutions" data-target-modal="marketing">
+        Devenir partenaire solutions
+      </a>
+    {% else %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.fr/partners/solutions#pricing-cards">
+        Devenir partenaire solutions
+      </a>
+    {% endif %}
+  {% elif is_spanish %}
+    {% if request.path is string_containing "/solutions" %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.es/partners/solutions" data-target-modal="marketing">
+        Conviértete en Solutions Partner</a>
+    {% else %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.es/partners/solutions#pricing-cards">
+        Conviértete en Solutions Partner
+      </a>
+    {% endif %}
+  {% elif is_german %}
+    {% if request.path is string_containing "/solutions" %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.de/partners/solutions" data-target-modal="marketing">
+        Solutions Partner werden
+      </a>
+    {% else %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.de/partners/solutions#pricing-cards">
+        Solutions Partner werden
+      </a>
+    {% endif %}
+  {% elif is_japanese %}
+    {% if request.path is string_containing "/solutions" %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.jp/partners/solutions"
+         data-target-modal="marketing">営業担当者に相談する</a>
+    {% else %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://www.hubspot.jp/partners/solutions#pricing-cards">営業担当者に相談する</a>
+    {% endif %}
+  {% elif is_portuguese %}
+    {% if request.path is string_containing "/solutions" %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://br.hubspot.com/partners/solutions" data-target-modal="marketing">Torne-se um Solutions Partner</a>
+    {% else %}
+      <a class="cta cta--small cta--primary homepage-nav"
+         href="https://br.hubspot.com/partners/solutions#pricing-cards">
+        Torne-se um Solutions Partner</a>
+    {% endif %}
+  {% endif %}
+
+{% elif pageType == "marketing-specific" and is_english %}
+  {% if content.absolute_url is equalto "https://www.hubspot.com/products/marketing" %}
+    <a class="cta cta--small cta--primary homepage-nav {% if content.ab_variation %}homepage-nav-variation{% endif %}" href="https://www.hubspot.com/products/marketing/get-started">Get started</a>
+  {% elif content.absolute_url is equalto "https://www.hubspot.com/products/marketing/starter" %}
+    <a class="cta cta--small cta--primary homepage-nav" href="https://offers.hubspot.com/contact-sales?hubs_signup-url=www.hubspot.com/products/marketing/starter&hubs_signup-cta=homepage-nav">
+      Talk to Sales
+    </a>
+  {% elif content.absolute_url is string_containing "https://www.hubspot.com/products/marketing" %}
+    <a class="cta cta--small cta--primary homepage-nav" href="https://www.hubspot.com/products/marketing/get-started">Get started</a>
+  {% else %}
+    <a class="cta cta--small cta--primary homepage-nav {% if content.ab_variation %}homepage-nav-variation{% endif %}" href="https://www.hubspot.com/products/get-started">Get started</a>
+  {% endif %}
+
+{# OVERRIDE FOR CRM SPECIFIC PAGES #}
+{% elif pageType == "crm" %}
+  {% set defaultLabelEN = "Get free CRM" %}
+  {% set defaultLabelENAccount = "Create free CRM account" %}
+  {% set defaultLabelFR = "Créer un compte gratuit" %}
+  {% set defaultLabelES = "Obtén HubSpot CRM" %}
+  {% set defaultLabelDE = "HubSpot CRM kostenlos nutzen" %}
+  {% set defaultLabelJP = "完全無料のCRMを使ってみる" %}
+  {% set defaultLabelPT = "Tenha um CRM grátis" %}
+
+  {% if content.absolute_url is equalto "https://www.hubspot.com/products/crm/best/zoho-alternative" %}
+    {% set href = "http://app.hubspot.com/signup/crm?hubs_signup-url=crm-pages&hubs_signup-cta=homepage-nav" %}
+    {% set label = defaultLabelEN %}
+
+  {% elif content.absolute_url is equalto "https://www.hubspot.com/products/crm" %}
+    {% set href = "http://app.hubspot.com/signup/crm?hubs_signup-url=crm-pages&hubs_signup-cta=homepage-nav" %}
+    {% set label = defaultLabelEN %}
+
+  {% elif content.absolute_url is equalto "https://www.hubspot.com/products/crm-account" %}
+    {% set href = "http://app.hubspot.com/signup/crm?hubs_signup-url=crm-pages&hubs_signup-cta=homepage-nav" %}
+    {% set label = defaultLabelENAccount %}
+
+  {% elif content.absolute_url is equalto "https://www.hubspot.es/products/crm" %}
+    {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm&hubs_signup-cta=homepage-nav" %}
+    {% set label = defaultLabelES %}
+
+  {% elif content.absolute_url is equalto "https://www.hubspot.fr/products/crm" %}
+    {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=fr-crm-pages&hubs_signup-cta=homepage-nav&=undefined" %}
+    {% set label = defaultLabelFR %}
+
+  {% elif content.absolute_url is equalto "https://www.hubspot.jp/products/crm" %}
+    {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=jp-crm-pages&hubs_signup-cta=homepage-nav&=undefined" %}
+    {% set label = defaultLabelJP %}
+
+  {% elif content.absolute_url is equalto "https://br.hubspot.com/products/crm" %}
+    {% set href = "https://app.hubspot.com/signup/sales?hubs_signup-url=br.hubspot.com/products/crm&hubs_signup-cta=homepage-nav" %}
+    {% set label = defaultLabelPT %}
+
+  {% elif content.absolute_url is equalto "https://www.hubspot.de/products/crm" %}
+    {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=de-crm-pages&hubs_signup-cta=homepage-nav&=undefined" %}
+    {% set label = defaultLabelDE %}
+
+  {% elif content.absolute_url is string_containing "/chatbot-builder" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.fr/products/crm/chatbot-builder&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelFR %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm/chatbot-builder&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelES %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.de/products/crm/chatbot-builder&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelDE %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.jp/products/crm/chatbot-builder&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelJP %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=br.hubspot.com/products/crm/chatbot-builder&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelPT %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.com/products/crm/chatbot-builder&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelEN %}
+    {% endif %}
+
+  {% elif content.absolute_url is string_containing "/contact-management" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.fr/products/crm/contact-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelFR %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm/contact-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelES %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.de/products/crm/contact-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelDE %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.jp/products/crm/contact-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelJP %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=br.hubspot.com/products/crm/contact-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelPT %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.com/products/crm/contact-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelEN %}
+    {% endif %}
+
+  {% elif content.absolute_url is string_containing "/insights" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.fr/products/crm/insights&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelFR %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm/insights&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelES %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.de/products/crm/insights&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelDE %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.jp/products/crm/insights&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelJP %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=br.hubspot.com/products/crm/insights&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelPT %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.com/products/crm/insights&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelEN %}
+    {% endif %}
+
+  {% elif content.absolute_url is string_containing "/lead-management" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.fr/products/crm/lead-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelFR %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm/lead-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelES %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.de/products/crm/lead-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelDE %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.jp/products/crm/lead-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelJP %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=br.hubspot.com/products/crm/lead-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelPT %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.com/products/crm/lead-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelEN %}
+    {% endif %}
+
+  {% elif content.absolute_url is string_containing "/live-chat" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.fr/products/crm/live-chat&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelFR %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm/live-chat&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelES %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.de/products/crm/live-chat&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelDE %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.jp/products/crm/live-chat&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelJP %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=br.hubspot.com/products/crm/live-chat&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelPT %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.com/products/crm/live-chat&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelEN %}
+    {% endif %}
+
+  {% elif content.absolute_url is string_containing "/pipeline-management" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.fr/products/crm/pipeline-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelFR %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm/pipeline-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelES %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.de/products/crm/pipeline-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelDE %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.jp/products/crm/pipeline-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelJP %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=br.hubspot.com/products/crm/pipeline-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelPT %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.com/products/crm/pipeline-management&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelEN %}
+    {% endif %}
+
+  {% elif content.absolute_url is string_containing "/team-email" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.fr/products/crm/team-email&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelFR %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.es/products/crm/team-email&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelES %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.de/products/crm/team-email&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelDE %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.jp/products/crm/team-email&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelJP %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=br.hubspot.com/products/crm/team-email&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelPT %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm?hubs_signup-url=www.hubspot.com/products/crm/team-email&hubs_signup-cta=homepage-nav" %}
+      {% set label = defaultLabelEN %}
+    {% endif %}
+
+  {% elif content.absolute_url is string_containing "/conversations" %}
+    {% if is_french %}
+      {% set href = "https://app.hubspot.com/signup/crm/?hubs_signup-url=www.hubspot.fr/products/crm/conversations&hubs_signup-cta=homepage-nav&intent=conversations" %}
+      {% set label = "Obtenez l'outil Conversations gratuitement" %}
+    {% elif is_spanish %}
+      {% set href = "https://app.hubspot.com/signup/crm/?hubs_signup-url=www.hubspot.es/products/crm/conversations&hubs_signup-cta=homepage-nav&intent=conversations" %}
+      {% set label = "Obtener Conversaciones gratis" %}
+    {% elif is_german %}
+      {% set href = "https://app.hubspot.com/signup/crm/?hubs_signup-url=www.hubspot.de/products/crm/conversations&hubs_signup-cta=homepage-nav&intent=conversations" %}
+      {% set label = "Conversations jetzt kostenlos nutzen" %}
+    {% elif is_japanese %}
+      {% set href = "https://app.hubspot.com/signup/crm/?hubs_signup-url=www.hubspot.jp/products/crm/conversations&hubs_signup-cta=homepage-nav&intent=conversations" %}
+      {% set label = "コミュニケーション機能を無料で試す" %}
+    {% elif is_portuguese %}
+      {% set href = "https://app.hubspot.com/signup/crm/?hubs_signup-url=br.hubspot.com/products/crm/conversations&hubs_signup-cta=homepage-nav&intent=conversations" %}
+      {% set label = "Baixe grátis o Conversas" %}
+    {% else %}
+      {% set href = "https://app.hubspot.com/signup/crm/?hubs_signup-url=www.hubspot.com/products/crm/conversations&hubs_signup-cta=homepage-nav&intent=conversations" %}
+      {% set label = "Get Conversations free" %}
+    {% endif %}
+  {% endif %}
+
+<a class="cta cta--small cta--primary {% if content.ab_variation %}homepage-nav-variation{% else %}homepage-nav{% endif %}" href="{{ href }}">{{ label }}</a>
+
+{# OVERRIDE FOR SERVICE SPECIFIC PAGES #}
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/service/help-desk" %}
+<a class="cta cta--small cta--primary homepage-nav"
+   href="https://app.hubspot.com/signup/service?hubs_signup-url=www.hubspot.com/products/service/help-desk&hubs_signup-cta=homepage-nav">
+  Get started free
+</a>
+{% elif content.absolute_url is string_containing "https://www.hubspot.com/products/service" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.com/products/service/get-started">Get started</a>
+
+{# OVERRIDE FOR SALES SPECIFIC PAGES #}
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/click-to-call" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/click-to-call&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/contact-profiles" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/contact-profiles&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/document-tracking" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/document-tracking&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/email-scheduling" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/email-scheduling&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/email-templates-sales" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/email-templates-sales&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/email-tracking" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/email-tracking&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/outlook" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/outlook&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/sales-leads" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/sales-leads&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/schedule-meeting" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=www.hubspot.com/products/sales/schedule-meeting&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+
+{% elif content.absolute_url is equalto "https://www.hubspot.com/products/sales/salesforce-vs-hubspot" %}
+  <a class="cta cta--small cta--primary homepage-nav"
+    href="https://www.hubspot.com/products/get-started">
+    Get started free
+  </a>
+
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/video-hosting") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/contact-sales?hubs_signup-url=www.hubspot.com/products/video-hosting&hubs_signup-cta=homepage-nav">
+    Talk to Sales
+  </a>
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/salesforce") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/contact-sales?hubs_signup-url=www.hubspot.com/products/salesforce&hubs_signup-cta=homepage-nav">
+    Talk to Sales
+  </a>
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/sales") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.com/products/sales/get-started">Get started</a>
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/sales-hub") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.com/products/sales/get-started">Get started</a>
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/sales-bot") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav-variation"
+     href="https://www.hubspot.com/products/sales/get-started">Get started</a>
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/sales/playbooks") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.com/products/sales/get-started">Get started</a>
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/sales/quotes") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.com/products/sales/get-started">Get started</a>
+{% elif (content.absolute_url is string_containing "/products/sales") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://app.hubspot.com/signup/sales?hubs_signup-url=salesfree-pages&hubs_signup-cta=homepage-nav">
+    Get started free
+  </a>
+{% elif (content.absolute_url is string_containing "/products/sales") and (is_spanish) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.es/products/sales/get-started">Comienza ahora</a>
+{% elif (content.absolute_url is string_containing "/products/sales") and (is_french) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.fr/products/sales/get-started">Faites vos premiers pas</a>
+{% elif (content.absolute_url is string_containing "/products/sales") and (is_german) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.de/products/sales/get-started">Direkt loslegen</a>
+{% elif (content.absolute_url is string_containing "/products/sales") and (is_japanese) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://www.hubspot.jp/products/sales/get-started">無料で試す</a>
+{% elif (content.absolute_url is string_containing "/products/sales") and (is_portuguese) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://br.hubspot.com/products/sales/get-started">Comece agora</a>
+
+{% elif (content.absolute_url is equalto "https://offers.hubspot.com/upgrade-to-sales-hub-professional") and (is_english) %}
+  <a class="cta cta--small cta--primary homepage-nav"
+     href="https://offers.hubspot.com/contact-sales?hubs_signup-url=offers.hubspot.com/upgrade-to-sales-hub-professional&hubs_signup-cta=homepage-nav">
+    Talk to Sales
+  </a>
+
+{# OVERRIDE FOR CMS SPECIFIC PAGES #}
+{% elif (content.absolute_url is equalto "https://www.hubspot.com/products/cms") %}
+  <a class="cta cta--small cta--primary cms-overview-nav"
+     href="https://www.hubspot.com/products/cms/demo?hubs_signup-cta=cms-overview-nav&hubs_signup-url=www.hubspot.com/products/cms">
+    Get a demo
+  </a>
+
+{% elif (content.absolute_url is equalto "https://www.hubspot.jp/products/cms") %}
+  <a class="cta cta--small cta--primary cms-overview-nav"
+     href="https://www.hubspot.jp/products/cms/demo?hubs_signup-cta=cms-overview-nav&hubs_signup-url=www.hubspot.jp/products/cms">無料のデモを申し込む</a>
+
+{% elif (content.absolute_url is equalto "https://www.hubspot.de/products/cms") %}
+  <a class="cta cta--small cta--primary cms-overview-nav"
+     href="https://www.hubspot.de/products/cms/demo?hubs_signup-cta=cms-overview-nav&hubs_signup-url=www.hubspot.de/products/cms">
+    Kostenlose Demo anfordern
+  </a>
+
+{% elif (content.absolute_url is equalto "https://www.hubspot.es/products/cms") %}
+  <a class="cta cta--small cta--primary cms-overview-nav"
+     href="https://www.hubspot.es/products/cms/demo?hubs_signup-cta=cms-overview-nav&hubs_signup-url=www.hubspot.es/products/cms">
+    Pedir una demostración gratuita
+  </a>
+
+{% elif (content.absolute_url is equalto "https://br.hubspot.com/products/cms") %}
+  <a class="cta cta--small cta--primary cms-overview-nav"
+     href="https://br.hubspot.com/products/cms/demo?hubs_signup-cta=cms-overview-nav&hubs_signup-url=br.hubspot.com/products/cms">
+    Receba sua demonstração gratuita
+  </a>
+
+{% elif (content.absolute_url is equalto "https://www.hubspot.fr/products/cms") %}
+  <a class="cta cta--small cta--primary cms-overview-nav"
+     href="https://www.hubspot.fr/products/cms/demo?hubs_signup-cta=cms-overview-nav&hubs_signup-url=www.hubspot.fr/products/cms">
+    Demander une démonstration
+  </a>
+
+{# DEFAULT #}
+{% else %}
+  {% for cta in navCta %}
+    <a class="cta cta--small cta--primary {% if content.ab_variation %}homepage-nav-variation{% else %}homepage-nav{% endif %}"
+       href="{{ cta.url }}">{{ cta.text }}</a>
+  {% endfor %}
+{% endif %}

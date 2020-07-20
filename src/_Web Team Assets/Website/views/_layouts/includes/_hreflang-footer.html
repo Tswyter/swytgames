@@ -1,0 +1,21 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import "../../../macros/hubsParamsScript.html" as paramsMacro %}
+
+<!-- HREFLANG MACRO -->
+{% set footerLang = 'en' %}
+{% if is_spanish %}
+    {% set footerLang = 'es' %}
+{% elif is_french %}
+    {% set footerLang = 'fr' %}
+{% elif is_german %}
+    {% set footerLang = 'de' %}
+{% elif is_japanese %}
+    {% set footerLang = 'jp' %}
+{% elif is_portuguese %}
+    {% set footerLang = 'pt' %}
+{% endif %}
+
+{{ paramsMacro.hubsParamsScript(footerLang) }}

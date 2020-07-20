@@ -1,0 +1,17 @@
+{#
+CHANGE LOG:
+---------------
+04.08.19 Pat - Fix default image
+#}
+
+{%- if module.photos|length -%}
+<section class="hsg-photo-grid">
+  <div class="hsg-photo-grid__container hsg-page-width-normal">
+    {% for item in module.photos -%}
+      {% if item.photo.src -%}
+       <img src="{{ resize_image_url(item.photo.src, 349) }}" alt="{{ item.photo.alt }}">
+      {% endif -%}
+    {% endfor -%}
+  </div>
+</section>
+{% endif -%}

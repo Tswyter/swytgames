@@ -1,0 +1,10 @@
+[ {
+  "id" : "25125f7d-c5da-9d0e-6a75-3f7fa489497b",
+  "name" : "html",
+  "label" : "HTML",
+  "help_text" : "The HTML field will not render HubL. Pages will not publish if HubL is present.",
+  "required" : false,
+  "locked" : false,
+  "type" : "html",
+  "default" : null
+} ]

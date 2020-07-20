@@ -1,0 +1,90 @@
+[ {
+  "id" : "d009301c-7790-662e-4d00-d6183ff43152",
+  "name" : "logos",
+  "label" : "Logos",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 4,
+    "sorting_label_field" : null,
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "f3f61d65-8732-790e-4fca-82161b61ac1a",
+    "name" : "image",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    }
+  }, {
+    "id" : "813dc774-b79e-2b59-1bfc-e68e98b58fe2",
+    "name" : "logo_link",
+    "label" : "Logo Link",
+    "help_text" : "Link the logo to another page. Please include http:// or https://",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL" ],
+    "type" : "link",
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "image" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    },
+    "logo_link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    }
+  }
+}, {
+  "id" : "8c07773b-bcbe-c083-442f-961df3a14e86",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "6760455a-e0b7-4666-06b3-ac416e19bbe4",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ] ],
+    "type" : "choice",
+    "default" : "white"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

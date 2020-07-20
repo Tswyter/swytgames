@@ -1,0 +1,76 @@
+[ {
+  "id" : "f5a33bd7-0ac4-9c98-dc92-a33bd58cef7e",
+  "name" : "image",
+  "label" : "Image",
+  "required" : false,
+  "locked" : false,
+  "responsive" : false,
+  "resizable" : false,
+  "type" : "image",
+  "default" : {
+    "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/tabs/sg-defaults_hq-large.png",
+    "alt" : "sg-defaults_hq-large",
+    "width" : 900,
+    "height" : 600
+  }
+}, {
+  "id" : "ed0434bf-7b6b-d079-b6ff-88e7c915d396",
+  "name" : "caption_bool",
+  "label" : "Add image caption",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "default" : false
+}, {
+  "id" : "00a5fed3-915b-2a5f-e23b-37bf73ec3e19",
+  "name" : "caption",
+  "label" : "Caption",
+  "help_text" : "Optional. A brief description of your image that appears as microcopy, left-aligned above the image.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "visibility" : {
+    "controlling_field" : "ed0434bf-7b6b-d079-b6ff-88e7c915d396",
+    "controlling_value_regex" : "true",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "7e6766d3-0744-8065-f710-497eb85685d1",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "ffe6b2ff-7414-58a4-cc3d-2d5008953a69",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "off-white", "Light" ], [ "white", "White" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : null
+  }, {
+    "id" : "6c65e9de-06ce-1a28-6c9c-1ca26eecf5f4",
+    "name" : "display_sizing",
+    "label" : "Sizing",
+    "required" : false,
+    "locked" : false,
+    "display" : "radio",
+    "choices" : [ [ "small", "Small" ], [ "medium", "Medium" ], [ "large", "Large" ] ],
+    "type" : "choice",
+    "default" : "large"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "display_sizing" : "large"
+  }
+} ]

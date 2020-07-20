@@ -1,0 +1,35 @@
+<!--
+    templateType: global_partial
+    isAvailableForNewContent: false
+-->
+<!-- Primary Site International Header -->
+{% include './_config.html' %}
+{% include "../../../../assets/svg/header-SVG.symbols.html" %}
+
+<div id="hsg-nav-global" class="hsg-nav__wrapper {% if widget_data.is_legacy %}hsg-nav__legacy{% endif %}">
+  <div class="hsg-nav__product-nav-bar">
+    <div id="hs-nav-v4" class="nav-width-flex placeholder-nav">
+      <div class="hs-nav-section main-nav"></div>
+    </div>
+  </div>
+
+  {% include './_header-nav-top-bar.html' %}
+
+  {% include './_header-nav-menu.html' %}
+</div>
+
+{% include './_blog-sticky-nav.html' %}
+
+{# Browser Upgrade Notification #}
+<!--[if lte IE 10]>
+<a href="http://outdatedbrowser.com" class="browser-upgrade-notification" style="width: 100%; text-align: center; color: #FFF; background-color: #11434c; display: block;">
+  <p style="font-size: .875em; color: #FFF; padding: 15px 0px; margin: 0px;">
+    <img class="browser-upgrade-notification__emoji"
+          src="https://www.hubspot.com/hubfs/assets/hubspot.com/icons/Sad_Face_Emoji_large.png?t=1494954070529" alt=""
+          style="max-height: 1.3em; position: relative; top: 4px; right: 3px;">
+      Looks like your browser is stuck in the past. Update to the latest version for a better, faster, stronger (and safer) browsing experience.
+    <img class="browser-upgrade-notification__arrow"
+          src="https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/icons/Arrow.png" style="position: relative; left: 0%;">
+  </p>
+</a>
+<![endif]-->

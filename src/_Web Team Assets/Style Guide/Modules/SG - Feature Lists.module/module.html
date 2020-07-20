@@ -1,0 +1,118 @@
+{#
+CHANGE LOG:
+--------------------
+
+#}
+
+{%- unless generateCta is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateCta %}
+{% endunless -%}
+
+{% set backgroundColors = {
+  white: {
+	  background: 'white',
+		cardColor: 'white',
+		cta: 'cta--primary'
+	},
+	light: {
+		background: 'off-white',
+		cardColor: 'white',
+		cta: 'cta--primary'
+	},
+	dark: {
+	  background: 'dark',
+		cardColor: 'white',
+		cta: 'cta--primary'
+	}
+} %}
+
+{# Force card display for > 1 feature list #}
+{%- set displayOption = 'card' if (module.feature_lists|length > 1) else module.options.display_type -%}
+{# Reset background color to off-white for cards #}
+{%- set backgroundColor = backgroundColors[module.options.background_theme].background|default('white') %}
+{# CTA class #}
+{%- set ctaClassList = {
+  card: 'cta--primary-dark',
+	inline: 'cta--primary'
+} -%}
+{% if canvasAudit %}
+  {%- set ctaClasses = 'hsg-feature-list__primary-cta' -%}
+{% else %}
+  {%- set ctaClasses = backgroundColors[module.options.background_theme].cta|default('cta--primary') ~ ' cta--medium hsg-feature-list__primary-cta' -%}
+{% endif %}
+
+{%- if module.feature_lists|length -%}
+<section class="hsg-feature-list"
+  data-display-option="{{ displayOption }}"
+  data-background="{{ backgroundColor }}">
+  <div class="hsg-feature-list__layout">
+    {% for list in module.feature_lists -%}
+
+      {%- if list.available_features|length or list.unavailable_features -%}
+      <div class="hsg-feature-list__item">
+        <header class="hsg-feature-list__header">
+					{% if canvasAudit %}
+					  <h3 class="hsg-feature-list__header-text">{{ list.header }}</h3>
+					{% else %}
+            <h5>{{ list.header }}</h5>
+					{% endif %}
+
+          {%- if list.description -%}
+          <p>{{ list.description }}</p>
+          {% endif -%}
+        </header>
+
+        <ul class="hsg-feature-list__features">
+          {% for feature in list.available_features -%}
+          <li>
+            <i class="hsg-icon hsg-icon-orange-checkmark"></i>
+            {{ feature }}
+          </li>
+          {% endfor -%}
+
+          {%- for feature in list.unavailable_features -%}
+          <li class="unavailable-feature">
+            <i class="hsg-icon hsg-icon-orange-checkmark"></i>
+            {{ feature }}
+          </li>
+          {% endfor -%}
+        </ul>
+
+        {%- if list.primary_cta.cta_label or list.secondary_link.cta_label -%}
+        <div class="hsg-feature-list__ctas">
+          {% if list.primary_cta.cta_label -%}
+						{% if list.primary_cta.type == 'modal' -%}
+						{{ generateCta({
+							label: list.primary_cta.cta_label,
+							class: ctaClasses,
+							targetModalId: list.primary_cta.modal_id,
+							noCrawl: list.primary_cta.cta_link.no_follow,
+						}) }}
+						{% else %}
+						 {{ generateCta({
+							label: list.primary_cta.cta_label,
+							link: list.primary_cta.cta_link.url.href,
+							class: ctaClasses,
+							openInNewTab: list.primary_cta.cta_link.open_in_new_tab,
+							noCrawl: list.primary_cta.cta_link.no_follow,
+						}) }}
+						{% endif -%}
+					{% endif -%}
+
+          {%- if list.secondary_link.cta_label -%}
+          {{ generateCta({
+            label: list.secondary_link.cta_label,
+            link: list.secondary_link.cta_link.url.href,
+            class: '',
+            openInNewTab: list.secondary_link.cta_link.open_in_new_tab,
+            noCrawl: list.secondary_link.cta_link.no_follow,
+          }) }}
+          {% endif -%}
+        </div>
+        {% endif -%}
+      </div>
+      {% endif -%}
+    {% endfor -%}
+  </div>
+</section>
+{% endif -%}

@@ -1,0 +1,33 @@
+<section class="image-slider" data-display-option="plain" data-background="{{ module.background_theme }}">
+  <h2 class="image-slider__title">{{ module.title }}</h2>
+  <div class="image-slider__layout hsg-slider" 
+       data-slides-to-scroll="1"
+       data-slides-to-scroll-mobile="1"
+       data-slide-speed="600"
+       data-enable-mouse-events="true"
+       data-show-progress-dots="true"
+       data-rewind="true"
+       data-rewind-speed="1000"
+       data-autoplay="{{ '4' if module.autoplay else '0' }}">
+    <div class="hsg-slider__container">
+      <ul class="hsg-slider__slides" style="transition-timing-function: ease; transition-duration: 200ms; transform: translate3d(-787px, 0px, 0px);">
+        
+        {% for slide in module.slides %}
+          <li class="image-slider__content hsg-slider__slide">
+            <div class="image-slider__text-wrapper">
+              <img class="image-slider__img" src="{{ slide.image.src }}" alt="{{ slide.image.alt }}">
+            </div>
+          </li>
+        {% endfor %}
+    
+      </ul>
+    </div>
+
+    <img class="hsg-slider__prev"
+      src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+    <img class="hsg-slider__next"
+      src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+
+    <div class="hsg-slider__indicators"></div>
+    </div>
+</section>

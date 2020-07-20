@@ -1,0 +1,30 @@
+{#
+CHANGE LOG:
+-------------
+04.08.19 Pat - Fix default image
+#}
+
+{%- if module.photos|length -%}
+<section class="hsg-photo-gallery" data-background="{{ module.options.background_theme }}">
+  <div class="hsg-slider hsg-page-width-normal"
+    data-slides-to-scroll-mobile="1"
+    data-enable-mouse-events="true"
+    data-show-progress-dots="true"
+    data-rewind="true"
+    data-breakpoint="767">
+    <figure class="hsg-slider__container">
+      <ul class="hsg-slider__slides">
+        {% for item in module.photos -%}
+          {% if item.photo.src -%}
+          <li class="hsg-slider__slide">
+            <img src="{{ item.photo.src }}" alt="{{ item.photo.alt }}">
+          </li>
+          {% endif -%}
+        {% endfor -%}
+      </ul>
+    </figure>
+
+    <div class="hsg-slider__indicators"></div>
+  </div>
+</section>
+{% endif -%}

@@ -1,0 +1,146 @@
+{#
+CHANGE LOG:
+------------------
+04.08.19 Pat - Consolidate video macro imports
+#}
+
+{%- unless videoMacros is defined -%}
+  {% import '/_Web Team Assets/Style Guide/Macros/video.html' as videoMacros %}
+{% endunless -%}
+
+{%- if canvasAudit -%}
+{# ================= UPDATED CANVAS AUDIT MODULE #}
+  {%- if module.videos|length -%}
+  <section
+    class="hsg-video-gallery"
+    data-background="{{ module.options.background_theme }}"
+    data-count="{{ module.videos|length }}">
+    <div class="hsg-video-gallery__layout">
+      {% for video in module.videos -%}
+        {%- set videoSrc = video.facebook_url if (video.type is equalto 'facebook') else video.id  -%}
+        {%- set videoId = video.facebook_url|md5 if (video.type is equalto 'facebook') else video.id -%}
+        {%- set videoContainerId = name ~ '-' ~ loop.index ~ '-' ~ videoId -%}
+        {%- set videoModalId = name ~ '-' ~ loop.index ~ '__modal' -%}
+
+        {%- if videoSrc -%}
+          {# MODAL MARKUP #}
+          {{ videoMacros.generateVideoModal({
+            'modalId': videoModalId,
+            'videoOptions': {
+              'type': video.type,
+              'id': videoSrc,
+              'mute': false,
+              'controls': video.controls,
+              'autoplay': true,
+              'facebookUrl': (video.facebook_url if (video.type is equalto 'facebook') else ''),
+              'uniqueId': videoContainerId
+            }
+          }) }}
+
+          <div class="hsg-video-gallery__single">
+            <a href="#" class="hsg-video-gallery__item"
+              data-type="{{ video.type }}"
+              data-src="{{ videoSrc }}"
+              data-target-modal="{{ videoModalId }}">
+
+              {%- if not video.type is equalto 'facebook' -%}
+                <i class="hsg-icon hsg-icon-play hsg-video-gallery__playbar-button"></i>
+              {% endif -%}
+
+              {# ================= generate a video for the preview #}
+              <div class="hsg-video-gallery__img-wrapper">
+                {% if video.type is equalto 'youtube' -%}
+                  <img src="//img.youtube.com/vi/{{ videoSrc }}/hqdefault.jpg" alt="{{ video.caption }}">
+                {% elif video.type == 'facebook' -%}
+                  {{ videoMacros.generateVideo({
+                    'type': video.type,
+                    'id': videoSrc,
+                    'mute': (true if video.autoplay else false),
+                    'controls': video.controls,
+                    'autoplay': video.autoplay,
+                    'facebookUrl': video.facebook_url,
+                    'defer': false,
+                    'uniqueId': (videoContainerId ~ '-inline')
+                  }) }}
+                {% endif -%}
+              </div>
+            </a>
+            {%- if video.caption -%}
+              <h3 class="hsg-video-gallery__caption">{{ video.caption }}</h3>
+            {% endif -%}
+          </div>
+
+        {% endif -%}
+      {% endfor -%}
+    </div>
+  </section>
+  {% endif -%}
+
+{% else -%}
+{# ================= CURRENT OLD VIDEO GALLERY #}
+  {%- if module.videos|length -%}
+  <section
+    class="hsg-video-gallery"
+    data-background="{{ module.options.background_theme }}"
+    data-count="{{ module.videos|length }}">
+    <div class="hsg-video-gallery__layout">
+      {% for video in module.videos -%}
+        {%- set videoSrc = video.facebook_url if (video.type is equalto 'facebook') else video.id  -%}
+        {%- set videoId = video.facebook_url|md5 if (video.type is equalto 'facebook') else video.id -%}
+        {%- set videoContainerId = name ~ '-' ~ loop.index ~ '-' ~ videoId -%}
+        {%- set videoModalId = name ~ '-' ~ loop.index ~ '__modal' -%}
+
+        {# MODAL MARKUP #}
+        {%- if videoSrc -%}
+        {{ videoMacros.generateVideoModal({
+          'modalId': videoModalId,
+          'videoOptions': {
+            'type': video.type,
+            'id': videoSrc,
+            'mute': (true if video.autoplay else false),
+            'controls': video.controls,
+            'autoplay': video.autoplay,
+            'facebookUrl': (video.facebook_url if (video.type is equalto 'facebook') else ''),
+            'uniqueId': videoContainerId
+          }
+        }) }}
+
+        <a href="#" class="hsg-video-gallery__item"
+          data-type="{{ video.type }}"
+          data-src="{{ videoSrc }}"
+          data-target-modal="{{ videoModalId }}">
+
+          {%- if not video.type is equalto 'facebook' -%}
+          <div class="hsg-video-gallery__playbar">
+            {%- if video.caption -%}
+            <h5>{{ video.caption }}</h5>
+            <span class="hsg-video-gallery__playbar-line"></span>
+            {% endif -%}
+          </div>
+
+          <i class="hsg-icon hsg-icon-play hsg-video-gallery__playbar-button"></i>
+          {% endif -%}
+
+          <div class="hsg-video-gallery__img-wrapper">
+            {% if video.type is equalto 'youtube' -%}
+            <img src="//img.youtube.com/vi/{{ videoSrc }}/hqdefault.jpg" alt="{{ video.caption }}">
+            {% elif video.type is equalto 'facebook' -%}
+            {{ videoMacros.generateVideo({
+              'type': video.type,
+              'id': videoSrc,
+              'mute': (true if video.autoplay else false),
+              'controls': video.controls,
+              'autoplay': video.autoplay,
+              'facebookUrl': video.facebook_url,
+              'defer': false,
+              'uniqueId': (videoContainerId ~ '-inline')
+            }) }}
+            {% endif -%}
+          </div>
+        </a>
+        {% endif -%}
+      {% endfor -%}
+    </div>
+  </section>
+  {% endif -%}
+{% endif -%}

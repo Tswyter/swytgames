@@ -1,0 +1,149 @@
+[ {
+  "id" : "b07e7939-0da0-ca8c-07d6-6a492cc32fb5",
+  "name" : "videos",
+  "label" : "Videos",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 4,
+    "sorting_label_field" : "6b0c2d27-929d-b930-61d2-c90a47b801f5",
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "6b0c2d27-929d-b930-61d2-c90a47b801f5",
+    "name" : "type",
+    "label" : "Video Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a video type",
+    "choices" : [ [ "youtube", "YouTube" ], [ "wistia", "Wistia" ], [ "facebook", "Facebook" ] ],
+    "type" : "choice",
+    "default" : "youtube"
+  }, {
+    "id" : "f8c63f93-9c13-69c0-f8a2-fa15bcc774ee",
+    "name" : "video_id",
+    "label" : "Video ID",
+    "help_text" : "Enter only the ID value for the YouTube or Wistia video. This ID is typically found in the video's web URL.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "6b0c2d27-929d-b930-61d2-c90a47b801f5",
+      "controlling_value_regex" : "facebook",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "placeholder" : "eb6v2Ktdn8s",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "eb6v2Ktdn8s"
+  }, {
+    "id" : "8202d779-e9bf-0cae-2896-0b906d000267",
+    "name" : "caption",
+    "label" : "Caption",
+    "help_text" : "(Optional). A text caption that appears on hover (beside the play button icon).",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "6b0c2d27-929d-b930-61d2-c90a47b801f5",
+      "controlling_value_regex" : "^(?!facebook).*$",
+      "operator" : "MATCHES_REGEX",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "placeholder" : "Watch the full video",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Watch the full video"
+  }, {
+    "id" : "3111463a-e37f-7e09-443d-eab039eaef80",
+    "name" : "facebook_url",
+    "label" : "Video URL",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "6b0c2d27-929d-b930-61d2-c90a47b801f5",
+      "controlling_value_regex" : "facebook",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "8b11c8b7-b0fc-9350-190c-6fe52fe01e4e",
+    "name" : "autoplay",
+    "label" : "Autoplay",
+    "help_text" : "Determines whether the video autoplays when the page is loaded (or for modals, when the modal is opened).",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "0451b226-b6e5-ecae-0f99-e39f6bedb13c",
+    "name" : "controls",
+    "label" : "Show controls",
+    "help_text" : "Determines whether the player controls (play, pause, volume, etc) are displayed.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "6b0c2d27-929d-b930-61d2-c90a47b801f5",
+      "controlling_value_regex" : "^(?!facebook).*$",
+      "operator" : "MATCHES_REGEX",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "type" : "youtube",
+    "id" : "eb6v2Ktdn8s",
+    "caption" : "Watch the full video",
+    "autoplay" : false,
+    "controls" : true
+  }, {
+    "type" : "youtube",
+    "id" : "eb6v2Ktdn8s",
+    "caption" : "Watch the full video",
+    "autoplay" : false,
+    "controls" : true
+  } ]
+}, {
+  "id" : "980140a7-4757-4a8c-2063-f433290891a1",
+  "name" : "options",
+  "label" : "Display options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "81eedc1f-4e11-dd1c-b917-b34271ff87a9",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

@@ -1,0 +1,63 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+  Usage: reference using {% call ... %}
+    - markup to render should be placed within the call
+    - markup should include the replaceToken value
+    - only supports one piece of content to replace
+
+  Used in:
+  1. SG - Promo Bar
+
+#}
+{% macro renderSmartContent(options={}) -%}
+  {%- set contentKey = options.contentKey or '' -%}{# Name of content field in smart_rules group to be looked up #}
+  {%- set replaceToken = options.replaceToken or '' -%}{# Example: %_token (could be any token) #}
+  {%- set defaultContent = options.defaultContent or '' -%}{# Value to use when no rules match #}
+  {%- set smartRules = options.smartRules or [] -%}{# array of objects with basic smart rule keys: type, list_id, lifecycle_stage, lifecycle_stage_other #}
+
+  {%- set smartConditions = { satisfied: false } -%}
+
+  {%- for rule in smartRules -%}
+    {%- set lifecycleStage = (rule.lifecycle_stage_other if ((rule.lifecycle_stage|lower) is equalto 'other') else rule.lifecycle_stage)|lower -%}
+    {%- set listId = rule.list_id|int if (type(rule.list_id) is equalto 'str') else rule.list_id -%}
+
+    {%- set matchesLifecycleStage = (rule.type is equalto 'lifecycle') and (lifecycleStage is equalto request_contact.lifecycle_stage|lower) -%}
+    {%- set isListMember = (rule.type is equalto 'list-member') and (listId in request_contact.list_memberships) -%}
+
+    {%- set ruleConditionSatisfied = matchesLifecycleStage or isListMember -%}
+
+    {%- if not smartConditions.satisfied and ruleConditionSatisfied -%}{# Match found #}
+      {{ caller()|replace(replaceToken, rule[contentKey]) }}
+      {{ smartConditions.update({ satisfied: true }) }}
+    {% endif -%}
+  {% endfor -%}
+
+  {%- if not smartConditions.satisfied -%}{# Default case #}
+    {{ caller()|replace(replaceToken, defaultContent) }}
+  {% endif -%}
+{% endmacro -%}
+
+{% macro smartConditionSatisfied(rule={}) -%}
+  {%- do rule.update({ satisfied: false }) -%}{# Clear any previous value #}
+
+  {%- set type = rule.type or null -%}
+  {%- set list_id = rule.list_id or '' -%}
+  {%- set lifecycle_stage = rule.lifecycle_stage or '' -%}
+  {%- set lifecycle_stage_other = rule.lifecycle_stage_other or '' -%}
+
+  {%- unless type is none -%}
+    {%- set lifecycleStage = (lifecycle_stage_other if ((lifecycle_stage|lower) is equalto 'other') else lifecycle_stage)|lower -%}
+    {%- set listId = list_id|int if (type(list_id) is equalto 'str') else list_id -%}
+
+    {%- set matchesLifecycleStage = (type is equalto 'lifecycle') and (lifecycleStage is equalto request_contact.lifecycle_stage|lower) -%}
+    {%- set isListMember = (type is equalto 'list-member') and (listId in request_contact.list_memberships) -%}
+    {%- set ruleConditionSatisfied = matchesLifecycleStage or isListMember -%}
+
+    {%- if ruleConditionSatisfied -%}
+    {%- do rule.update({ satisfied: true }) -%}
+    {% endif -%}
+  {% endunless -%}
+{% endmacro -%}

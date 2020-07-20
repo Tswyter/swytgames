@@ -1,0 +1,283 @@
+[ {
+  "id" : "fab7480c-9844-9721-661f-f6fb4cfec8d3",
+  "name" : "columns",
+  "label" : "Content Columns",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 4,
+    "sorting_label_field" : "b3547c22-7a09-568f-6ca1-93ac3f5ad74e",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "47c6f695-7aac-5137-541a-7bd6c3fb2807",
+    "name" : "icon",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : true,
+    "type" : "image",
+    "default" : {
+      "src" : "",
+      "alt" : null
+    }
+  }, {
+    "id" : "b3547c22-7a09-568f-6ca1-93ac3f5ad74e",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "b61fc686-67b9-649e-a044-9b2e084d5f96",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : null
+  }, {
+    "id" : "a970a77a-0860-0aa7-64c2-26c693c6a522",
+    "name" : "flag",
+    "label" : "Flag",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "none" ], [ "add-on", "add-on" ], [ "beta", "beta" ], [ "new", "new" ], [ "popular", "popular" ] ],
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "944ec518-d5d0-715d-1693-56e2d9c2bc52",
+    "name" : "tooltip_text",
+    "label" : "Tooltip Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "c72eaf55-57b0-ee35-21d5-1d35bf7bffdf",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "name" : "type",
+      "label" : "Type",
+      "help_text" : "Link (default option); Product (choose a CTA from the CTA tool); Modal Trigger (triggers a modal with the ID specified).",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "link", "Link" ], [ "product", "Product CTA" ], [ "modal", "Modal Trigger" ], [ "vidyard_in_modal", "Vidyard in Modal" ] ],
+      "type" : "choice",
+      "default" : "link"
+    }, {
+      "id" : "e54416f4-c207-9406-2681-14dfd061b535",
+      "name" : "cta_label",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "product",
+        "operator" : "NOT_EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Get started"
+    }, {
+      "id" : "99a579b9-7e9d-d2aa-8d89-b0456c483389",
+      "name" : "cta_link",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "link",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "type" : "EXTERNAL",
+          "href" : "https://www.hubspot.com",
+          "content_id" : null
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "id" : "b8baba23-746a-b999-00cd-e5085e5a6fae",
+      "name" : "product_cta",
+      "label" : "Product CTA",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "product",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "type" : "cta",
+      "default" : null
+    }, {
+      "id" : "e1e8318b-10a0-6be8-4323-fab156f4928c",
+      "name" : "modal_id",
+      "label" : "Modal ID",
+      "help_text" : "The id value for the corresponding modal that will launch when the CTA is clicked. Format: \"example-modal-id\".",
+      "required" : true,
+      "locked" : false,
+      "validation_regex" : "^(?!(#|\\d)).*",
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "modal",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "placeholder" : "example-modal-id",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "61d55373-6c38-7491-6d72-d77fbe22a270",
+      "name" : "video_id",
+      "label" : "Video ID",
+      "required" : true,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "vidyard_in_modal",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "80cb7237-ab4a-206d-3ada-42ea8c60d8f0",
+      "name" : "custom_class",
+      "label" : "Custom Class",
+      "help_text" : "(Optional). A custom class for this CTA (generally used for tracking purposes).",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+        "controlling_value_regex" : "product",
+        "operator" : "NOT_EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "type" : "link",
+      "cta_label" : "Get started",
+      "cta_link" : {
+        "url" : {
+          "type" : "EXTERNAL",
+          "href" : "https://www.hubspot.com",
+          "content_id" : null
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "icon" : {
+      "src" : "",
+      "alt" : null
+    },
+    "flag" : "none",
+    "cta" : {
+      "type" : "link",
+      "cta_label" : "Get started",
+      "cta_link" : {
+        "url" : {
+          "type" : "EXTERNAL",
+          "href" : "https://www.hubspot.com",
+          "content_id" : null
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }
+}, {
+  "id" : "dd2c32f9-969b-1cd6-032c-24a1ec25d312",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4c0576f9-ac4b-f399-f1fc-12302b667d26",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "f023c6f9-8e27-5bbc-de22-ec025b6098af",
+    "name" : "icon_size",
+    "label" : "Icon Size",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select an icon size",
+    "choices" : [ [ "multi-col__logo--small", "Small Icon" ], [ "multi-col__logo--big", "Large Icon" ], [ "natural", "Natural sizing" ] ],
+    "type" : "choice",
+    "default" : "natural"
+  }, {
+    "id" : "dffb1851-05be-494d-97a3-d0b4b6a61f8c",
+    "name" : "custom_class",
+    "label" : "Custom Class",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white",
+    "icon_size" : "natural"
+  }
+} ]

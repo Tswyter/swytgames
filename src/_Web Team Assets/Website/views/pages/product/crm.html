@@ -1,0 +1,24 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Core Product CRM
+!-->
+{% extends "../../_layouts/master.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ get_asset_url('../../../assets/css/styles.css') }}{{ qaTimestamp }}" type="text/css">
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+    {% module "hero" path="/_Web Team Assets/Website/views/pages/homepage/modules/homepage-hero", label="Homepage - Hero" %}
+    {% module "product" path="/_Web Team Assets/Website/views/pages/homepage/modules/homepage-products", label="Homepage - Product Section" %}
+
+    <section class="home-community-board hsg-bg" data-background="gradient4">
+        {% module "community" path="/_Web Team Assets/Website/views/pages/homepage/modules/homepage-community", label="Homepage - Community Section" %}
+    </section>
+
+    {% module "customers" path="/_Web Team Assets/Website/views/pages/homepage/modules/homepage-customers", label="Homepage - Customers Section" %}
+{% endblock content %}

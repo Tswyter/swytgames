@@ -1,0 +1,75 @@
+{#
+CHANGE LOG
+---------------
+
+#}
+
+{# MACROS #}
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{# VARIABLES #}
+{%- set logoUrl = '//cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_white_orangeSprocket.svg' if (module.options.image.src) else '//cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_white.svg' -%}
+
+{% if !canvasAudit %}
+<section class="hsg-cta-card--large"
+  data-background="{{ module.options.background_theme }}"
+  data-alignment="{{ module.options.alignment }}">
+  <div class="hs-page-width-normal">
+    <div class="hsg-cta-card__heading"{% if module.options.image.src %} style="background-image: url('{{ module.options.image.src }}');"{% endif %}>
+      <div class="hsg-cta-card__heading-content">
+        <img src="{{ logoUrl }}" alt="HubSpot logo">
+        {% if module.has_product_name and module.product_name -%}
+          <h3>{{ module.product_name }}</h3>
+        {%- endif %}
+      </div>
+    </div>
+    <div class="hsg-cta-card__content">
+      {% if module.header -%}
+        <h4>{{ module.header }}</h4>
+      {%- endif %}
+      {%- for description in module.description -%}
+        <p>{{ description }}</p>
+      {%- endfor -%}
+
+      {{ generateModuleCtas({
+        'ctas': [module.cta],
+        'noStyle': true,
+        'moduleClass': 'cta--primary-dark cta--medium'
+      }) }}
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="hsg-full-width-cta-card" data-background="{{ module.options.background_theme }}">
+  <div class="hsg-full-width-cta-card__container">
+    <div class="hsg-full-width-cta-card__card" data-alignment="{{ module.options.alignment }}">
+      <div class="hsg-full-width-cta-card__product" {% if module.options.image.src %} style="background-image: url('{{ module.options.image.src }}');"{% endif %}>
+        <div class="hsg-full-width-cta-card__product-text">
+          <img src="{{ logoUrl }}" alt="HubSpot logo">
+          {% if module.has_product_name and module.product_name -%}
+            <h3 class="hsg-full-width-cta-card__product-heading">{{ module.product_name }}</h3>
+          {%- endif %}
+        </div>
+      </div>
+      <div class="hsg-full-width-cta-card__content">
+				{% if module.header -%}
+					<h4 class="hsg-full-width-cta-card__heading">{{ module.header }}</h4>
+				{%- endif %}
+				{%- for description in module.description -%}
+					<p class="hsg-full-width-cta-card__description">{{ description }}</p>
+				{%- endfor -%}
+				{{ generateModuleCtas({
+					'ctas': [module.cta],
+					'noStyle': true,
+					'moduleClass': 'hsg-full-width-cta-card__cta'
+				}) }}
+				{% if module.disclaimer -%}
+          <div class="hsg-full-width-cta-card__disclaimer">{{ module.disclaimer }}</div>
+				{%- endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

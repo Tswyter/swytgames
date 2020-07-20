@@ -1,0 +1,52 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{%- set gtmIds = {
+  'com': {
+    'www': 'GTM-N5LT88',
+    'blog': 'GTM-T7FPMN',
+    'offers': 'GTM-NL7Q7M',
+    'local': 'GTM-N5LT88',
+    'academy': 'GTM-WFZ7LR3',
+    'knowledge': 'GTM-N5LT88',
+    'hsb1': 'GTM-TESTTT',
+	'br': 'GTM-W2NQ4BJ',
+	'help': 'GTM-N5LT88'
+  },
+  'es': {
+    'www': 'GTM-N6TMSJJ',
+    'blog': 'GTM-PP4FTBL',
+    'offers': 'GTM-W24DPQ5'
+  },
+  'de': {
+    'www': 'GTM-MHKKMS',
+    'blog': 'GTM-MP6P9P',
+    'offers': 'GTM-K838FT'
+  },
+  'fr': {
+    'www': 'GTM-KQ3HB8',
+    'blog': 'GTM-NZGQZ7',
+    'offers': 'GTM-5W43WB'
+  },
+  'pt': {
+    'br': 'GTM-W2NQ4BJ',
+    'blog': 'GTM-W2NQ4BJ',
+    'offers': 'GTM-W2NQ4BJ'
+  },
+  'jp': {
+    'www': 'GTM-K2QPHRR',
+    'blog': 'GTM-N4GBFLM',
+    'offers': 'GTM-PWTK4PR'
+  }
+} -%}
+
+{%- set extraDomainsGtmIds = {
+    'stateofinbound': 'GTM-PK4HV35'
+} -%}
+
+{%- set splitDomain = content.resolved_domain|split('.') -%}
+{%- set tld = splitDomain[2] -%}
+{%- set subdomain = splitDomain[0] -%}
+{%- set domainName = splitDomain[1] -%}
+{%- set gtmId = (extraDomainsGtmIds[domainName] ? extraDomainsGtmIds[domainName] : gtmIds[tld][subdomain]) -%}

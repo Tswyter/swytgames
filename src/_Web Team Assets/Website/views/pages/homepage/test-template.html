@@ -1,0 +1,28 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Homepage Core 2020 - Code Recess - TEST
+-->
+{% extends "../../_layouts/master.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ get_asset_url('../../../assets/css/styles.css') }}{{ qaTimestamp }}" type="text/css">
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+{% module "module_156330936818048" path="/_Web Team Assets/Style Guide/Modules/SG - Promo Bar" label="SG - Promo Bar" %}
+{% module "hero" path="./modules/homepage-hero", label="Homepage - Hero" %}
+{% module "product" path="./modules/homepage-products", label="Homepage - Product Section" %}
+TEST!
+<section class="home-community-board hsg-bg" data-background="gradient4">
+  {% module "module_158100233712830" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="SG - Section Header" %}
+  {% module "community" path="./modules/homepage-community", label="Homepage - Community Section" %}
+</section>
+
+{% module "customers" path="./modules/homepage-customers", label="Homepage - Customers Section" %}
+{% module "module_158083774357693" path="/_Web Team Assets/Style Guide/Modules/SG - CTA Content Block", label="SG - CTA Content Block" %}
+{% module "module_1580840709351146" path="/Custom modules/Messages Options [SG]", label="Messages Options [SG]" %}
+{% endblock content %}

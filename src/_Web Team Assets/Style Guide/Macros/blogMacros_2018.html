@@ -1,0 +1,1112 @@
+<!--
+  templateType: "page"
+  isAvailableForNewContent: false
+-->
+{# MIGRATED from /Custom/page/Web_Team/blogMacros_2018.html #}
+{% import "./blogInfo.html" as blogInfo_raw %}
+{% import '/SEO Lane Projects/Topic Learning Path/blogs.html' as blogData %}
+{% global_module "global_language_variable_constructor" %}
+
+{% set blogInfo = blogInfo_raw.info[pageLang] %}
+
+
+{% set isNewsTrends = content_group_id == 6570228137 %}
+{% set isCompanyNews = (content.content_group_id == '3072053186') or (content.content_group_id == '27439902') %}
+{% set isCustomersBlog = (content.group_id == '390887438') or (content.absolute_url is string_containing 'blog.hubspot.com/customers') %}
+{% set isCareersBlog = (content.content_group_id == '4186963521') or (content.content_group_id == '3997793668') %}
+
+{% if isCompanyNews %}
+  {% set blogInfo = blogInfo_raw.info['companyNews'] %}
+{% elif isCustomersBlog %}
+  {% set blogInfo = blogInfo_raw.info['customers'] %}
+{% elif isCareersBlog %}
+  {% set blogInfo = blogInfo_raw.info['careers'] %}
+{% else %}
+  {% set blogInfo = blogInfo_raw.info[pageLang] %}
+{% endif %}
+
+
+
+{# DEFAULT ENGLISH BLOG IDs #}
+{% set currentBlogs = {
+    'marketing': {
+        'status': blogInfo.blogs[0].status,
+        'id': blogInfo.blogs[0].blogId,
+        'name': blogInfo.blogs[0].name,
+        'slug': blogInfo.blogs[0].slug,
+        'tag': blogInfo.blogs[0].displayTag
+    },
+    'sales': {
+        'status': blogInfo.blogs[1].status,
+        'id': blogInfo.blogs[1].blogId,
+        'name': blogInfo.blogs[1].name,
+        'slug': blogInfo.blogs[1].slug,
+        'tag': blogInfo.blogs[1].displayTag
+    },
+    'success': {
+        'status': blogInfo.blogs[2].status,
+        'id': blogInfo.blogs[2].blogId,
+        'name': blogInfo.blogs[2].name,
+        'slug': blogInfo.blogs[2].slug,
+        'tag': blogInfo.blogs[2].displayTag
+    },
+    'agency': {
+        'status': blogInfo.blogs[3].status,
+        'id': blogInfo.blogs[3].blogId,
+        'name': blogInfo.blogs[3].name,
+        'slug': blogInfo.blogs[3].slug,
+        'tag': blogInfo.blogs[3].displayTag
+    },
+    'news': {
+        'status': blogInfo.blogs[4].status,
+        'id': blogInfo.blogs[4].blogId,
+        'name': blogInfo.blogs[4].name,
+        'slug': blogInfo.blogs[4].slug,
+        'tag': blogInfo.blogs[4].displayTag
+    },
+    'website': {
+        'status': blogInfo.blogs[5].status,
+        'id': blogInfo.blogs[5].blogId,
+        'name': blogInfo.blogs[5].name,
+        'slug': blogInfo.blogs[5].slug,
+        'tag': blogInfo.blogs[5].displayTag
+    }
+} %}
+
+{% set has_sales_blog = currentBlogs.sales.status %}
+{% set has_success_blog = currentBlogs.success.status %}
+
+{% set activeBlogs = blogInfo.blogs|selectattr('status') %}
+{% set allBlogs = blogInfo.blogs %}
+
+{% set subscriptionStrings = blogInfo.strings.subscriptionDetails %}
+{% set table_id = blogInfo.hubdbTable %}
+{% set byline_prefix = blogInfo.strings.writtenBy %}
+{% set topics_prefix = blogInfo.strings.topics %}
+{% set publish_date_prefix = blogInfo.strings.publishDate %}
+{% set update_date_prefix = blogInfo.strings.updateDate %}
+{% set related_articles_heading = blogInfo.strings.relatedArticles %}
+{% set min_read = blogInfo.strings.minRead %}
+
+
+{% macro createVariables() %}
+  {{ currentBlogs }}
+{% endmacro %}
+
+{# VIDEO SCHEMA MACRO #}
+{% macro render_videoSchema(module) %}
+  <section class="post-video-player">
+    <div class="post-video-player__fixed-wrapper">
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "VideoObject",
+          "name": "{{ module.name }}",
+          "@id": "{{ module.id }}",
+          "description": "{{ module.description|escapejson }}",
+          "thumbnailURL": "{{ module.thumbnail }}",
+          "thumbnail": "http://i3.ytimg.com/vi/{{ module.id }}/maxresdefault.jpg",
+          "duration": "{{ module.duration }}",
+          "uploadDate": "{{ module.date }}",
+          "author": {
+            "@type": "{{ module.author.type }}",
+            "name": "{{ module.author.name }}"
+          }
+        }
+      </script>
+      <div class="post-video-player__video-close"><i></i></div>
+      <div id="post-video-player__video" data-youtube="{{ module.id }}"></div>
+    </div>
+  </section>
+{% endmacro %}
+
+{# HOW TO SCHEMA MACRO #}
+{% macro render_howToSchema(module) %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "VideoObject",
+      "name": "{{ module.name }}",
+      "@id": "{{ module.id }}",
+      "description": "{{ module.description|escapejson }}",
+      "thumbnailURL": "{{ module.thumbnail }}",
+      "thumbnail": "http://i3.ytimg.com/vi/{{ module.id }}/maxresdefault.jpg",
+      "duration": "{{ module.duration }}",
+      "uploadDate": "{{ module.date }}",
+      "author": {
+        "@type": "{{ module.author.type }}",
+        "name": "{{ module.author.name }}"
+      }
+    }
+   </script>
+
+{% endmacro %}
+
+{# SIDEBAR AND RELATED CONTENT #}
+{% set max_linked_posts = 3 %}
+
+{# RENDER READ TIME #}
+{##
+    NOTE:
+        Due to adding the ability to embed modules
+        into blog posts, we are unable to access
+        post.post_body on the template level because
+        it doesn't know what to do with the macros.
+        This will prevent saving your template.
+
+        Solution: Put comments around macros using
+        the post_body, save your template succes-
+        sfully, uncomment the macros and save this
+        file. The macros will now render and you
+        are able to save the template! Congratulations!
+##}
+
+{% macro render_read_time(post) %}
+  {% set body = post.post_body %}
+  {% set str = body|lower %}
+  {% set img_count = str|split('<img')|length %}
+  {% set img_minutes = ((img_count * 12) / 60)|round(0, 'common') %}
+  {% set read_time = (str|striptags|wordcount / 275)|round(0, 'common') + img_minutes %}
+  {% set minReadString = blogInfo.strings.minRead|split('[NUMBER]') %}
+  {% if minReadString|length > 1 %}
+    {{ minReadString|join(' ' ~ read_time|string|trim ~ ' ') }}
+  {% else %}
+    {{ read_time|string|trim ~ ' ' ~ min_read|trim }}
+  {% endif %}
+
+{% endmacro %}
+
+{# ENGLISH ONLY (+ preparing for FR, DE) #}
+{# NOTE: topics must be an array of objects, the structure is: {name: 'Example Topic', hs_path: 'example-topic-path'} #}
+{% macro displayMoreTopics(topics, limit) %}
+  {% if is_english or is_french or is_german %}
+    {% set baseUrl = blogData.pillarPages[html_lang].url ~ "/" ~ blogData.pillarPages[html_lang].url_path %}
+    {% set title = blogData.pillarPages[html_lang].more_topics_title %}
+    {% set description = blogData.pillarPages[html_lang].more_topics_desc %}
+
+
+    <section class="tlp-more-topics">
+      <h3>{{ title }}</h3>
+      <p class="tlp-more-topics__description">{{ description }}</p>
+      <div class="tlp-more-topics__row">
+
+        {% for topic in topics %}
+          {% if loop.index <= limit %}
+            {% set color = loop.index % 5 %}
+            {% set topicUrl = baseUrl ~ "/" ~ topic.hs_path %}
+            <a class="tlp-more-topics__row-item color-scheme-{{ color }}" href="{{ topicUrl }}">{{ topic.name }}</a>
+            {% if loop.index is divisibleby 3 %}
+              </div>
+              <div class="tlp-more-topics__row">
+            {% endif %}
+            {% if loop.last || loop.index == limit %}
+              {% set remainder = loop.index % 3 %}
+              {% if remainder > 0 %}
+                <a class="tlp-more-topics__row-item-empty" href=""></a>
+                {% if remainder == 1 %}
+                  <a class="tlp-more-topics__row-item-empty" href=""></a>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        </div>
+    </section>
+  {% endif %}
+{% endmacro %}
+
+{# NEW - RENDER FULL POST METADATA #}
+{% macro render_full_post_metadata(post, group_id) %}
+  <div class="blog-post__meta">
+    <a href="{{ blog.root_url }}">{{ content.parent_blog.public_title }}</a> | {{ render_read_time(post)|trim }}
+  </div>
+{% endmacro %}
+
+{% macro calculate_read_time(post) %}
+  {% set body = post.post_body %}
+  {% set str = body|lower %}
+  {% set img_count = str|split('<img')|length %}
+  {% set img_minutes = ((img_count * 12) / 60)|round(0, 'common') %}
+  {% set read_time = (str|striptags|wordcount / 275)|round(0, 'common') + img_minutes %}
+  {{ read_time }}
+{% endmacro %}
+
+{% macro render_news_sticky_nav(config) %}
+  {#
+config = {
+    'title': post title
+}
+#}
+  <nav class="news-trends-sticky-nav" id="blog-sticky-nav">
+    <div class="hs-page-width-normal news-trends-sticky-nav__wrapper">
+      <div class="news-trends-sticky-nav__logo">
+        <a href="https://blog.hubspot.com/news-trends">
+          <svg width="48px" height="32px" viewBox="0 0 48 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="**-LATEST-DESIGN-**" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="3_Listing-Scrolled" transform="translate(-180.000000, -21.000000)">
+                <g id="Group-17-Copy" transform="translate(180.000000, 21.000000)">
+                  <path d="M47.342,0.133333333 L47.5686667,5.82266667 L47.138,5.82266667 C46.4731078,3.81287884 45.8837803,2.44155922 45.37,1.70866667 C44.8562197,0.975774113 44.1157826,0.609333333 43.1486667,0.609333333 L42.8766667,0.609333333 L42.8766667,15.524 L44.8033333,15.524 L44.8033333,16 L36.53,16 L36.53,15.524 L38.4566667,15.524 L38.4566667,0.609333333 L38.162,0.609333333 C37.1948841,0.609333333 36.4468915,0.990885073 35.918,1.754 C35.3891085,2.51711493 34.8073365,3.87332359 34.1726667,5.82266667 L33.742,5.82266667 L33.9686667,0.133333333 L47.342,0.133333333 Z" id="T" fill="#FFFFFF"></path>
+                  <polygon id="N" fill="#FFFFFF" points="12.8466667 0.564 12.8466667 16 9.67333333 16 1.89866667 1.33466667 1.89866667 15.5693333 3.14533333 15.5693333 3.14533333 16 0.040000001 16 0.040000001 15.5693333 1.28666667 15.5693333 1.28666667 0.564 0.040000001 0.564 0.040000001 0.133333333 6.296 0.133333333 12.2346667 11.512 12.2346667 0.564 10.988 0.564 10.988 0.133333333 14.0933333 0.133333333 14.0933333 0.564"></polygon>
+                  <path d="M29,31.2008325 C30.0888943,31.2008325 30.9277748,30.6791589 31.5166667,29.635796 C32.1055585,28.5924332 32.4,27.3048984 32.4,25.773153 C32.4,24.2414075 31.811117,22.6874862 30.6333333,21.1113424 C28.944436,23.0426735 26.622237,24.0083247 23.6666667,24.0083247 C20.7110963,24.0083247 18.3611198,23.5088499 16.6166667,22.5098855 C14.8722135,21.5109211 14,19.9348009 14,17.7814776 C14,16.2941306 14.399996,15.0953913 15.2,14.1852237 C16.000004,13.2750561 17.344435,12.6090899 19.2333333,12.1873049 C17.277768,10.4113682 16.3,8.47451621 16.3,6.37669095 C16.3,4.27886568 17.0388815,2.69164604 18.5166667,1.61498439 C19.9944518,0.538322747 21.8333223,0 24.0333333,0 C26.2333443,0 27.8833278,0.399579771 28.9833333,1.1987513 C30.0833388,1.99792283 30.6333333,3.07456832 30.6333333,4.42872008 C30.6333333,6.78183625 28.8444623,8.57994522 25.2666667,9.82310094 C25.7111133,10.1116907 26.5222163,10.6222648 27.7,11.3548387 C30.166679,12.9531818 31.911106,14.2407166 32.9333333,15.2174818 C33.2666683,13.6413379 33.4555553,12.02082 33.5,10.3558793 L30.8666667,10.3558793 L30.8666667,9.68990635 L36.6666667,9.68990635 L36.6666667,10.3558793 L34.3333333,10.3558793 C34.2888887,12.442605 34.0777797,14.31841 33.7,15.9833507 C34.6555603,17.0489127 35.3777753,18.070061 35.8666667,19.0468262 C36.355558,20.0235914 36.6,21.2556291 36.6,22.7429761 C36.6,25.1404907 35.755564,27.2826822 34.0666667,29.169615 C32.3777693,31.0565478 30.4555663,32 28.3,32 C26.8555483,32 25.7333373,31.7003152 24.9333333,31.1009365 C24.1333293,30.5015579 23.7333333,29.7356966 23.7333333,28.8033299 C23.7333333,27.8709631 23.9944418,27.1439499 24.5166667,26.6222685 C25.0388915,26.1005871 25.699996,25.8397503 26.5,25.8397503 C28.2777867,25.8397503 29.1666667,26.6389098 29.1666667,28.2372529 C29.1666667,28.570241 29.1000007,28.9698208 28.9666667,29.4360042 L27.8,29.4360042 C27.399998,30.6125622 27.799994,31.2008325 29,31.2008325 Z M24.5030675,23.3333333 C26.8152808,23.3333333 28.6475733,22.4048217 30,20.5477707 C28.9965867,19.4607164 27.5896478,18.283092 25.7791411,17.014862 C22.6598344,14.8860474 20.6748509,13.4366634 19.8241309,12.6666667 C19.4969309,13.3913695 19.3333333,14.8634001 19.3333333,17.0828025 C19.3333333,19.302205 19.758687,20.898792 20.609407,21.8726115 C21.460127,22.8464309 22.7580008,23.3333333 24.5030675,23.3333333 Z M23.7504655,0.666666667 C22.9012993,0.666666667 22.1750496,0.925781972 21.5716946,1.44402036 C20.9683396,1.96225874 20.6666667,2.78370939 20.6666667,3.90839695 C20.6666667,5.0330845 20.9348204,5.95928389 21.4711359,6.6870229 C22.0074515,7.41476191 23.0353742,8.29685656 24.5549348,9.33333333 C25.493487,8.84817399 26.0800733,8.26378628 26.3147114,7.58015267 C26.5493494,6.89651906 26.6666667,5.89313639 26.6666667,4.56997455 C26.6666667,1.96775628 25.6946093,0.666666667 23.7504655,0.666666667 Z" id="&amp;-copy-10" fill="#F2545B"></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+      <div class="news-trends-sticky-nav__post-title">
+        <p>{{ config.title }}</p>
+      </div>
+      <div class="news-trends-sticky-nav__subscribe">
+        {% set newsTrendsBlog = blogInfo.blogs|selectattr('slug','equalto','/news-trends') %}
+        {% if newsTrendsBlog[0].subscriptionInfo.subscribable %}
+          <button class="cta cta--primary cta--small dropdown-button">
+            {{ blogInfo.strings.subscriptionDetails.button }}
+          </button>
+          <div class="news-trends-sticky-nav__subscribe-wrapper news-trends-subscribe">
+            {{ render_blog_subscribe({ 'style': 'dropdown', 'customFormId': 'sticky', 'theme': 'dark' }) }}
+          </div>
+        {% endif %}
+        <!-- <div class="blog-sticky-navigation__dropdown-container">
+            {{ render_blog_subscribe({ 'style': 'dropdown', 'customFormId': 'sticky' }) }}
+        </div>-->
+      </div>
+    </div>
+  </nav>
+{% endmacro %}
+
+{# NEW - RENDER STICKY NAV #}
+{% macro render_blog_sticky_nav(navCta) %}
+  {% import "custom/page/Web_Team/wtMacros.html" as wtMacros %}
+  {% if template_meta.id == '20099958683' %}
+    {# If Template is topics_timeline, only show the sticky subscribe #}
+    <div class="blog-sticky-navigation__subscribe">
+      {# Render blog subscribe macro #}
+      <button class="cta cta--primary cta--small dropdown-button">
+        {{ blogInfo.strings.subscriptionDetails.button }}
+      </button>
+      <div class="blog-sticky-navigation__dropdown-container">
+        {{ render_blog_subscribe({ 'style': 'dropdown', 'customFormId': 'sticky', 'theme': 'dark' }) }}
+      </div>
+    </div>
+  {% else %}
+    <nav class="blog-sticky-navigation" id="blog-sticky-nav">
+      <div class="hsg-page-width-normal">
+        <section class="blog-sticky-navigation__blog-navigation">
+          <ul>
+            {# List out each blog here #}
+            {% for blog in activeBlogs %}
+              <li><a href="//{{request.domain }}{{ blog.slug }}" class="{% if (blog.slug is string_containing content_group.slug) and (content_group.slug is truthy) %} active{% endif %}">{{ blog.displayTag }}</a></li>
+            {% endfor %}
+          </ul>
+        </section>
+        <section class="blog-sticky-navigation__ctas">
+          <div class="blog-sticky-navigation__search">
+            {{ wtMacros.siteSearch(
+                        false,
+                        'Search the blog...',
+                        true
+                      ) }}
+          </div>
+          <div class="blog-sticky-navigation__subscribe">
+            {# Render blog subscribe macro #}
+            <button class="cta cta--primary cta--small dropdown-button">
+              {{ blogInfo.strings.subscriptionDetails.button }}
+            </button>
+            <div class="blog-sticky-navigation__dropdown-container">
+              {{ render_blog_subscribe({ 'style': 'dropdown', 'customFormId': 'sticky', 'theme': 'dark' }) }}
+            </div>
+          </div>
+          <div class="blog-sticky-navigation__site-cta">
+            {% for cta in navCta %}
+              <a href="{{ cta.url }}?hubs_campaign=blog-sticky-nav&hubs_content=blog-posts&hubs_cta=blog-posts-blog-sticky-nav-cta" class="cta cta--primary cta--small homepage-nav blog-sticky-nav">{{ cta.text }}</a>
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+      <progress value="0" id="blog-progress-bar" class="blog-progress-bar"></progress>
+    </nav>
+  {% endif %}
+{% endmacro %}
+
+{# NEW - RENDER POST SUMMARY (Now render_post_card) #}
+{% macro render_post_card(post) %}
+  {# post = {
+        size (string = 'one-third' || 'two-thirds' || 'compact' || 'featured' || 'timeline'),
+        postData (obj),
+        showImage (bool = True by default),
+        topicRows (arr from HubDB),
+    } #}
+  <!-- hasFeaturedImage: {{ post.postData.featured_image }} -->
+  {% set pillarPages = [] %}
+  {% if post.topicRows|length > 0 %}
+    {% for topic in post.postData.topic_list %}
+      {% set matched_pillar_page = post.topicRows|selectattr('topic', 'equalto', topic.slug)|first %}
+      {% set newVar = pillarPages.append(matched_pillar_page) %}
+    {% endfor %}
+  {% endif %}
+  {% set snippet = post.postData.post_summary|striptags|truncate(140 if post.featured_image else 240, True, '...') %}
+  <article class="blog-card {% if post.size %}blog-card--{{ post.size }}{% endif %} {% if post.postData.featured_image|length <= 0 and post.size != 'compact' %} blog-card--no-img {% endif %}">
+    {% if post.size == 'timeline' %}
+      {% set snippet = post.postData.meta_description|striptags|truncate(140 if post.featured_image else 240, True, '...') %}
+      <div class="blog-card__content">
+        <h3 class="blog-card__content-title">
+          <a href="{{ post.postData.url }}">
+            {{ post.postData.name }}
+          </a>
+        </h3>
+        <p class="blog-card__content-date">
+          <a href="{{ post.postData.url }}">{{ post.postData.publish_date|datetimeformat('%B %e, %Y') }}</a>
+        </p>
+        <p class="blog-card__content-description">
+          <a href="{{ post.postData.url }}">{{ snippet }}</a>
+        </p>
+
+      </div>
+    {% endif %}
+
+    {% unless post.size == 'compact' or post.size == 'timeline' %}
+      <figure>
+        <a href="{{ post.postData.url }}">
+          <img src="{{ post.postData.featured_image }}" alt="{{ post.postData.name }}" />
+        </a>
+      </figure>
+    {% endunless %}
+
+    {% unless post.size == 'timeline' %}
+      <div class="blog-card__content">
+
+        {% unless post.size == 'compact' %}
+          {% if pillarPages[0].pillar_page_url %}
+            <p class="blog-card__content-topic">
+              <a href="{{ pillarPages[0].pillar_page_url }}">
+                {{ pillarPages[0].pillar_page_name }}
+              </a>
+            </p>
+          {% elif isCompanyNews and post.postData.topic_list[0].name %}
+            <p class="blog-card__content-topic">
+              <a>
+                {{ post.postData.topic_list[0].name }}
+              </a>
+            </p>
+          {% endif %}
+        {% endunless %}
+
+        <h3 class="blog-card__content-title">
+          <a href="{{ post.postData.url }}">
+            {{ post.postData.name }}
+          </a>
+        </h3>
+        {% if post.postData.featured_image == '' and post.size != 'compact' %}
+          <p class="blog-card__content-description">
+            <a href="{{ post.postData.url }}">{{ snippet }}</a>
+          </p>
+        {% endif %}
+
+        <div class="blog-card__meta">
+          <a href="{{ post.postData.parent_blog.root_url }}" class="blog-card__blog-link">
+            {{ post.postData.parent_blog.public_title }}&nbsp;
+          </a>
+          <a href="{{ post.postData.url }}" class="blog-card__read-time">
+            | {{ render_read_time(post.postData)|trim }}
+          </a>
+        </div>
+
+      </div>
+    {% endunless %}
+  </article>
+{% endmacro %}
+
+{# NEW - RENDER SUBSCRIBE #}
+{% macro render_blog_subscribe(options) %}
+  {# TODO: add an "isNews" option to filter out non-email subscription options on the news blog #}
+
+  {# options = {
+        style: 'full' | 'card' | 'dropdown',
+        customFormId: unique string,
+        theme: 'dark' | 'light'
+    } #}
+
+  {% set translatedGDPRMessage = subscriptionStrings.gdprDisclaimer|replace('[privacy-policy]', '<a href="'~ subscriptionStrings.privacyPolicy.link ~'" target="_blank">'~ subscriptionStrings.privacyPolicy.text ~'</a>') %}
+
+  {# CHECK EXISTING SUBSCRIPTIONS #}
+  {% set marketing_subscribed = True if contact.blog_default_blog_subscription in subscription_types else False  %}
+  {% set sales_subscribed = True if contact.blog_hubspots_inbound_sales_blog_subscription in subscription_types else False %}
+  {% set agency_subscribed = True if blog_inbound_hub_the_agency_post_subscription in subscription_types else False %}
+  {% set website_subscribed = True if contact.website_blog_subscription in subscription_types in subscription_types else False %}
+  {% set success_subscribed = True if contact.blog_hubspot_success_blog_5233357105_subscription|lower in subscription_types else False %}
+
+  {% set subscription_types = ['instant', 'daily', 'weekly', 'monthly', 'twice weekly'] %}
+
+  {% set singleBlog = blogInfo.blogs|length == 1 %}
+
+  {% set blogSizeClasses = {
+        "full": 'blog-subscribe-form--full-width',
+        "card": 'blog-subscribe-form--card blog-card--one-third',
+        "dropdown": 'blog-subscribe-form--dropdown'
+    } %}
+
+  {# The "light" theme is only used on the blog.hubspot.com/subscribe page. All others currenly use the "dark" theme. #}
+  {% set blogThemeClasses = {
+        "dark": 'gradient6',
+        "light": 'white'
+    } %}
+
+  {# These are used for GA tracking. They must be present on the buttons for each. Email tracking is done via the form submission to only fire on successful submissions #}
+  {% set trackingClasses = {
+        "dropdown": {
+            "email": "blog-dropdownSubscribe-email",
+            "slack": "blog-dropdownSubscribe-slack",
+            "messenger": "blog-dropdownSubscribe-messenger"
+        },
+        "full": {
+            "email": "blog-bottomSubscribe-email",
+            "slack": "blog-bottomSubscribe-slack",
+            "messenger": "blog-bottomSubscribe-messenger"
+        },
+        "card": {
+            "email": "blog-middleSubscribe-email",
+            "slack": "blog-middleSubscribe-slack",
+            "messenger": "blog-middleSubscribe-messenger"
+        }
+    } %}
+
+  {% set isFull = options.style == 'full' %}
+  {% set isCard = options.style == 'card' %}
+  {% set isDropdown = options.style == 'dropdown' %}
+  {% set isNewsTrends = content_group_id == 6570228137 %}
+  <article {% if options.theme %}data-background="{% if options.style != 'dropdown' %}{{ blogThemeClasses[options.theme] }}{% else %}gradient6-vertical{% endif %}"{% endif %} class="blog-subscribe-form  {{ blogSizeClasses[options.style] }} blog-card--no-hover">
+    <div class="blog-subscribe-form__error-text"></div>
+    <div class="blog-subscribe-form__overflow">
+      <div class="blog-subscribe-form__container" style="{% if (subscriptionStrings.options|length) <= 1 and !isFull %}transform: translateX(-100%){% endif %}">
+
+        {% if !isFull %}
+          <section class="blog-subscribe-form__options {% if (subscriptionStrings.options|length) > 1 %}show{% endif %}" data-slide="1">
+            <h2>{{ subscriptionStrings.subscribeToOurBlog }}</h2>
+            {% if subscriptionStrings.subscribeDescription|length > 0 %}<p>{{ subscriptionStrings.subscribeDescription }}</p>{% endif %}
+            <ul>
+              {% for subOption in subscriptionStrings.options %}
+                {% if subOption.url %}
+                  {% if !isNewsTrends %}
+
+                    <li><a href="{{ subOption.url }}" class="cta cta--medium cta--secondary-light blog-subscribe-form__button {{ trackingClasses[options.style][subOption.name|lower] }}" target="_blank">Subscribe on {{ subOption.name }}</a></li>
+                  {% endif %}
+                {% else %}
+                  <li><button class="cta cta--medium cta--secondary blog-subscribe-form__button" data-slideto="2">Subscribe via {{ subOption.name }}</button></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </section>
+        {% else %}
+          <section class="blog-subscribe-form__title show">
+            <h2>{{ subscriptionStrings.subscribeToOurBlog }}</h2>
+            {% if subscriptionStrings.subscribeDescription|length > 0 %}<p>{{ subscriptionStrings.subscribeDescription }}</p>{% endif %}
+          </section>
+        {% endif %}
+
+        {% for subOption in subscriptionStrings.options %}
+          {% unless subOption.url is defined %}
+            {% if !isFull %}
+              <section class="blog-subscribe-form__email {% if (subscriptionStrings.options|length) <= 1 %}show{% endif %}" data-slide="2">
+              <div class="blog-subscribe-form__thanks-positioning">
+              <h3 class="blog-subscribe-form__heading">{{ subscriptionStrings.emailSub.header }}</h3>
+            {% else %}
+              <section class="blog-subscribe-form__email show">
+              <div class="blog-subscribe-form__thanks-positioning">
+              <div class="blog-subscribe-form__form-container">
+              {% if subscriptionStrings.iWantTheLatestIn|length > 0 %}<h3 class="blog-subscribe-form__heading">{{ subscriptionStrings.iWantTheLatestIn }}</h3>{% endif %}
+            {% endif %}
+          <form data-formid="{{ blogInfo.subscribeForm }}" novalidate>
+            <input type="hidden" name="lifecyclestage" value="subscriber">
+            <input type="hidden" name="content_language" value="{{ contentLang }}">
+            <ul class="blog-subscribe-form__blog-list">
+              {# for each subscribable blog, loop through and add a checkbox/label for each. If there is only one, then don't add the label (invisible checkbox is still needed for the form) #}
+              {% for blog in blogInfo.blogs|selectattr('subscriptionInfo.subscribable') %}
+                <li style="display: none;">
+                  <input class="frequency" name="{{ blog.subscriptionInfo.frequencyField }}" data-frequency="{{ blog.subscriptionInfo.subscriptionFrequency }}">
+                </li>
+                <li style="{% if blogInfo.blogs|selectattr('status')|length == 1 %} display: none; {% endif %}">
+                  <input
+                          type="checkbox"
+                          id="hs-{{ blog.name }}-blog-{{ options.customFormId }}"
+                          name="{{ blog.subscriptionInfo.checkboxName }}"
+                          data-frequency="{{ blog.subscriptionInfo.subscriptionFrequency }}"
+                          data-frequency-field="{{ blog.subscriptionInfo.frequencyField }}"
+                          data-subscription-type-id="{{ blog.subscriptionInfo.subscriptionTypeId }}"
+                          {% if blog.subscribed or singleBlog or blogInfo.blogs|selectattr('status')|length == 1 %}checked disabled{% elif not blog.subscriptionInfo.subscriptionFrequency %}disabled{% endif %}
+                  />
+                  {% unless singleBlog %}<label for="hs-{{ blog.name }}-blog-{{ options.customFormId }}" class="blog-subscribe-form__checkbox">{{ blog.displayTag }}</label>{% endunless %}
+                </li>
+              {% endfor %}
+            </ul>
+            <ul class="hs-error-msgs inputs-list" role="alert">
+              <li data-reactid=".hbspt-forms-0.1:$1.1:$email.3.$0">
+                <label class="validation blog-list-validation"></label>
+              </li>
+            </ul>
+            <div class="blog-subscribe-form__email-input-container">
+              <div class="blog-subscribe-form__email-input">
+                <label for="email-address">{{ subscriptionStrings.emailSub.emailLabel }}</label>
+                <input type="email" placeholder="{{ subscriptionStrings.emailSub.emailPlaceholder }}" id="email-address" name="email" value="{% if contact.email %}{{ contact.email }}{% endif %}" required />
+              </div>
+              {% if isFull %}
+                <input type="submit" value="{{ subscriptionStrings.emailSub.submitText }}" class="blog-subscribe-form__button cta cta--primary-light cta--medium" />
+              {% endif %}
+            </div>
+            <ul class="hs-error-msgs inputs-list" role="alert">
+              <li data-reactid=".hbspt-forms-0.1:$1.1:$email.3.$0">
+                <label class="validation email-validation"></label>
+              </li>
+            </ul>
+            <p class="blog-subscribe-form__gdpr-notice">{{ translatedGDPRMessage }}</p>
+
+            {% if !isFull %}
+              <input type="submit" value="{{ subscriptionStrings.emailSub.submitText }}" class="blog-subscribe-form__button cta cta--primary-light cta--medium" />
+            {% endif %}
+          </form>
+          {% if isFull %}
+            </div>
+            <section class="blog-subscribe-form__thank-you">
+              <div class="blog-subscribe-form__lockup">
+                {% if options.theme == 'light' %}
+                  <img src="https://blog.hubspot.com/hubfs/assets/blog.hubspot.com/images/blue-checkmark.png" alt="{{ subscriptionStrings.thankYou }}">
+                {% else %}
+                  <img src="https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/white-checkmark.png" alt="{{ subscriptionStrings.thankYou }}">
+                {% endif %}
+                <h4>{{ subscriptionStrings.thankYou }}</h4>
+              </div>
+            </section>
+          {% endif %}
+          </div>
+
+          {# for full-width versions with more than one subscribe option, add an -or- section with the buttons to the other options #}
+          {% if isFull and subscriptionStrings.options|length > 1 and !isNewsTrends %}
+            <!-- {{ isNewsTrends }} | {{ blog_id }} -->
+            <section class="blog-subscribe-form__divider show">
+              <span>OR</span>
+            </section>
+            <section class="blog-subscribe-form__options show">
+              <ul>
+                {% for subOption in subscriptionStrings.options %}
+                  {% if subOption.url %}
+                    <li><a href="{{ subOption.url }}" class="cta cta--medium cta--secondary-light blog-subscribe-form__button {{ trackingClasses[options.style][subOption.name|lower] }}" target="_blank">{{ subOption.name }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </section>
+          {% else %}
+            {# otherwise if it is the card/dropdown version and there is more than one option, show a link to slide the user back to the options card. #}
+            {% if (subscriptionStrings.options|length) > 1 && !isFull %}
+              <button class="blog-subscribe-form__back-button" data-slideto="1">{{ subscriptionStrings.otherOptions }}</button>
+            {% endif %}
+          {% endif %}
+          </section>
+          {% endunless %}
+        {% endfor %}
+        {# If not the full-width version, add a "thank you" card to slide to on successful submissions. #}
+        {% if !isFull %}
+          <section class="blog-subscribe-form__thank-you" data-slide="3">
+            <div class="blog-subscribe-form__lockup">
+              <img src="https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/white-checkmark.png" alt="{{ subscriptionStrings.thankYou }}">
+              <h4>{{ subscriptionStrings.thankYou }}</h4>
+            </div>
+          </section>
+        {% endif %}
+        </div>
+      </div>
+  </article>
+{% endmacro %}
+
+{% macro render_related_posts(topics) %}
+  {#
+        - Get pillar pages
+        - loop topiclist (provided in function call)
+            - in first loop: render section header
+            - in second loop: define topic_one
+            - in third loop: define topic_two
+            - in fourth loop: define topic_three && related_posts
+    #}
+  {% set pillarPages = hubdb_table_rows(table_id) %}
+  <section class="related-posts">
+    {% if content.topic_list %}
+      {% if !isCompanyNews %}
+        {% set count = 0 %}
+        {% for topic in content.topic_list|rejectattr("slug", "equalto", "popular")|rejectattr("slug", "equalto", "canonical")|rejectattr("slug", "equalto", "recommended")|rejectattr("slug", "equalto", "featured-1")|rejectattr("slug", "equalto", "featured")|rejectattr("slug", "equalto", "daily")|rejectattr("slug", "equalto", "weekly")|rejectattr("slug", "equalto", "monthly")|rejectattr("slug", "equalto", "instant") %}
+
+
+          {% if loop.index == 1 %}
+            {% set topic_one = blog_recent_topic_posts(group.id, topic.slug, 100 ) %}
+          {% elif loop.index == 2 %}
+            {% set topic_two = blog_recent_topic_posts(group.id, topic.slug, 100 ) %}
+          {% elif loop.index == 3 %}
+            {% set topic_three = blog_recent_topic_posts(group.id, topic.slug, 100 ) %}
+          {% endif %}
+
+          {% if loop.length >= 3 and loop.index == 3 %}
+            {% set related_posts = (topic_one + topic_two + topic_three)|sort(True, False, 'publish_date')|unique('name') %}
+            {% set loop_count = 3 %}
+          {% elif loop.length == 2 and loop.index == 2 %}
+            {% set related_posts = (topic_one + topic_two)|sort(True, False, 'publish_date')|unique('name') %}
+            {% set loop_count = 2 %}
+          {% elif loop.length == 1 and loop.index == 1 %}
+            {% set related_posts = topic_one|sort(True, False, 'publish_date') %}
+            {% set loop_count = 1 %}
+          {% endif %}
+
+          {% if loop.index == loop_count %}
+            {% for post in related_posts %}
+              {% set hasFeaturedImage = post.featured_image|length > 0 %}
+              {% if content.absolute_url != post.absolute_url and loop.index <= 3 and (datetimeformat(post.publish_date_local_time, '%Y') > datetimeformat(unixtimestamp(y), '%Y') - 2) %}
+                {% set hasFeaturedImage = post.featured_image|length > 0 %}
+                {{ render_post_card({ postData: post, showImage: hasFeaturedImage, size: 'one-third' }) }}
+                {% set count = count + 1 %}
+              {% endif %}
+
+              {% if count < 3 and loop.last %}
+                {% for recent_post in related_posts[0:(max_linked_posts - count)] %}
+                  {{ render_post_card({ postData: post, showImage: hasFeaturedImage, size: 'one-third' }) }}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% set topicList = content.topic_list|rejectattr("slug", "equalto", "popular")|rejectattr("slug", "equalto", "canonical")|rejectattr("slug", "equalto", "recommended")|rejectattr("slug", "equalto", "featured-1")|rejectattr("slug", "equalto", "featured")|rejectattr("slug", "equalto", "daily")|rejectattr("slug", "equalto", "weekly")|rejectattr("slug", "equalto", "monthly")|rejectattr("slug", "equalto", "instant") %}
+
+        {% set posts = [] %}
+
+        {% for topic in topicList %}
+          {% set topicPosts = blog_recent_topic_posts(group.id, topic.slug, 10) %}
+          {% for post in topicPosts|rejectattr("id", "equalto", content.id) %}
+            {% set upd = posts.append(post) %}
+          {% endfor %}
+        {% endfor %}
+        {% for post in posts %}
+          {% if loop.index0 < 2 %}
+            {{ render_post_card({ postData: post, showImage: post.featured_image|length > 0, size: 'one-third' }) }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  </section>
+{% endmacro %}
+
+{% macro render_news_post_card(config) %}
+  {#
+        config = {
+            postData: content,
+            size: large || small || compact
+        }
+    #}
+  {% set snippet = config.postData.post_summary|striptags|truncate(140, True, '...') %}
+  {% set currentTime = local_dt|unixtimestamp %}
+  {% set postTime = config.postData.publish_date|unixtimestamp %}
+  {% set timeDifference = currentTime - postTime %}
+
+  {% set minutesSince = timeDifference / (1000 * 60 * 60 * 60)|round(0, 'floor') %}
+  {% set hoursSince = timeDifference / (1000 * 60 * 60)|round(0, 'floor') %}
+  {% set daysSince = (hoursSince / 24) %}
+  {% set weeksSince = (daysSince / 7) %}
+  {% set monthsSince = (daysSince / 30) %}
+  {% set yearsSince = (monthsSince / 12) %}
+
+
+  {% if is_english %}
+    {% set dateFormat = '%B %d, %Y' %}
+  {% elif is_german %}
+    {% set dateFormat = '%d. %B %Y' %}
+  {% elif is_french %}
+    {% set dateFormat = '%d %B %Y' %}
+  {% else %}
+    {% set dateFromat = '%B %d, %Y' %}
+  {% endif %}
+
+  <article class="news-trends-post news-trends-post--{{ config.size }}">
+    <a href="{{ config.postData.url }}">
+      <figure class="news-trends-post__image">
+        <img src="{{ config.postData.featured_image }}" alt="{{ config.postData.name }}" />
+      </figure>
+    </a>
+    <a href="{{ config.postData.url }}">
+      <div class="news-trends-post__text">
+        <h2>{{ config.postData.name }}</h2>
+        {% if config.size == 'large' %}
+          <p>{{ config.postData.post_summary|striptags|truncate(140, True, '...') }}</p>
+        {% endif %}
+        <div class="news-trends-post__author">
+          <p><small>By {{ config.postData.blog_post_author.display_name }}</small></p>
+          <p><small>
+            {%- if hoursSince > 24 %}
+              {{ config.postData.publish_date|datetimeformat(dateFormat) }}
+            {% else %}
+              {%- if (hoursSince|string == '1') %}
+                {{ hoursSince }} hour ago
+              {% elif (hoursSince|string == '0') %}
+                posted just now
+              {% else %}
+                {{ hoursSince|string }} hours ago
+              {% endif -%}
+            {% endif -%}</small></p>
+        </div>
+      </div>
+    </a>
+  </article>
+{% endmacro %}
+
+{# BRAND NEW! - RENDER BLOG SECTION HEADER #}
+{% macro render_blog_section_header(data) %}
+  {# takes: { headingText: '', topBorder: true, topCircles: true, arrowDown: false } #}
+
+  {% set classes = {
+        'topBorder': 'blog-section-header--border-top',
+        'topCircles': 'blog-section-header--top-circles',
+        'arrowDown': 'blog-section-header--arrow-down'
+    } %}
+
+
+  <section class="blog-section-header {% if data.topBorder %} {{ classes.topBorder }} {% endif %} {% if data.topCircles %} {{ classes.topCircles }} {% endif %} {% if data.arrowDown %} {{ classes.arrowDown }} {% endif %}">
+    <h3 class="blog-section-header__heading">{{ data.headingText }}</h3>
+  </section>
+{% endmacro %}
+
+{# NEW - RENDER BLOGROLL #}
+{% macro render_blogroll() %}
+  <section class="blog-roll">
+    {% for blog in activeBlogs %}
+      <article class="blog-roll__item">
+        <a href="{{ blog.slug }}">
+          {% if !isNewsTrends %}
+            <figure>
+              <img src="{{ blog.image }}" alt="{{ blog.displayTag }}" />
+            </figure>
+          {% endif %}
+          <div class="blog-roll__item-content">
+            <h3>{{ blog.displayTag }}</h3>
+            <p>{{ blog.description }}</p>
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </section>
+{% endmacro %}
+
+{# NEW - RENDER CODE SNIPPETS IN POST #}
+{% macro highlightSyntax(language) %}
+  <pre class="syntax {{ language }}">{{ caller() }}</pre>
+{% endmacro %}
+
+{# NEW - PAGINATION #}
+{% macro render_pagination(contents) %}
+  <!-- {{ contents.total_page_count }} -->
+  {% if contents.total_page_count > 1 %}
+    <section class="blog-pagination">
+      <div class="hsg-page-width-normal">
+        <ul class="blog-pagination__container">
+          {# NOTE: current page - 1 #}
+          <li><!-- 1 -->
+            <a
+                    class="blog-pagination__item{% if current_page_num - 1 <= 0 %}--disabled{% endif %}"
+                    rel="prev"
+                    href="
+										    {% if current_page_num - 1 <= 0 %}
+													 {{ page_meta.canonical_url }}
+												{% else %}
+													 {% if last_page_num == 1 %}
+													  {{ blog_page_link(last_page_num)|replace('/page/1','') }}
+													 {% else %}
+													  {{ blog_page_link(last_page_num) }}
+													 {% endif %}
+												{% endif %}
+										 ">‹&nbsp;{{ blogInfo.strings.prev }}</a>
+          </li>
+
+          {# NOTE: Only appears if we're on the last page #}
+          {% if (current_page_num == contents.total_page_count) and contents.total_page_count >= 5 %}
+            <li><!-- 2 -->
+              <a
+                      class="blog-pagination__item"
+                      href="
+												  {% if last_page_num - 3 == 1 %}
+														{{ blog_page_link(last_page_num - 3)|replace('/page/1', '') }}
+													{% else %}
+													  {{ blog_page_link(last_page_num - 3) }}
+													{% endif %}
+												 ">{{ last_page_num - 3 }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: Only appears if we're on the last or penultimate page #}
+          {% if (current_page_num == contents.total_page_count or current_page_num == contents.total_page_count - 1) and contents.total_page_count >= 4 %}
+            <li> <!-- 3 -->
+              <a
+                      class="blog-pagination__item"
+                      href="{% if last_page_num - 2 == 1 %}{{ blog_page_link(last_page_num - 2)|replace('/page/1', '') }}{% else %}{{ blog_page_link(last_page_num - 2) }}{% endif %}">{{ last_page_num - 2 }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: current page - 2 #}
+          {% if last_page_num > 1 and current_page_num <= contents.total_page_count %}
+            <li><!-- 4 -->
+              <a
+                      class="blog-pagination__item"
+                      href="{% if last_page_num - 1 == 1 %}{{ blog_page_link(last_page_num - 1)|replace('/page/1', '') }}{% else %}{{ blog_page_link(last_page_num - 1) }}{% endif %}">{{ last_page_num - 1 }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: current page - 1 #}
+          {% if last_page_num > 0 and current_page_num <= contents.total_page_count %}
+            <li><!-- 5 -->
+              <a
+                      class="blog-pagination__item"
+                      rel="prev"
+                      href="{% if last_page_num == 1 %}{{ blog_page_link(last_page_num)|replace('/page/1','') }}{% else %}{{ blog_page_link(last_page_num) }}{% endif %}">{{ last_page_num }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: Current Page #}
+          <li><!-- 6 -->
+            <a
+                    class="blog-pagination__item--current"
+                    href="{% if current_page_num == 1 %}{{ blog_page_link(current_page_num)|replace('/page/1', '') }}{% else %}{{ blog_page_link(current_page_num) }}{% endif %}">{{ current_page_num }}</a>
+          </li>
+
+          {# NOTE: current page + 1 #}
+          {% if next_page_num <= contents.total_page_count and next_page_num > current_page_num %}
+            <li><!-- 7 -->
+              <a
+                      class="blog-pagination__item"
+                      rel="next"
+                      href="{% if next_page_num == 1 %}{{ page_meta.canonical_url }}{% else %}{% if next_page_num == 1 %}{{ blog_page_link(next_page_num)|replace('/page/1') }}{% else %}{{ blog_page_link(next_page_num) }}{% endif %}{% endif %}">{{ next_page_num }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: current page + 2 #}
+          {% if next_page_num + 1 <= contents.total_page_count and next_page_num + 1 > current_page_num %}
+            <li><!-- 8 -->
+              <a
+                      class="blog-pagination__item"
+                      href="{% if next_page_num + 1 == 1 %}{{ page_meta.canonical_url }}{% else %}{% if next_page_num + 1 == 1 %}{{ blog_page_link(next_page_num + 1)|replace('/page/1', '') }}{% else %}{{ blog_page_link(next_page_num + 1) }}{% endif %}{% endif %}">{{ next_page_num + 1 }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: Only appears on the last or second page #}
+          {% if (current_page_num + 3 == 4 or current_page_num + 3 == 5) and contents.total_page_count >= 4 %}
+            <li><!-- 9 {{ current_page_num }}-->
+              <a
+                      class="blog-pagination__item"
+                      href="{% if current_page_num +3 == 1 %}{{ page_meta.canonical_url }}{% else %}{% if current_page_num + 3 == 1 %}{{ blog_page_link(current_page_num + 3)|replace('/page/1', '') }}{% else %}{{ blog_page_link(current_page_num + 3) }}{% endif %}{% endif %}">{{ next_page_num + 2 }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: Only appears on the last page #}
+          {% if current_page_num + 4 == 5 and contents.total_page_count >= 5 %}
+            <li><!-- 10 -->
+              <a
+                      class="blog-pagination__item"
+                      href="{% if current_page_num + 4 == 1 %}{{ page_meta.canonical_url }}{% else %}{% if next_page_num + 3 %}{{ blog_page_link(next_page_num + 3)|replace('/page/1', '') }}{% else %}{{ blog_page_link(next_page_num + 3) }}{% endif %}{% endif %}">{{ next_page_num + 3 }}</a>
+            </li>
+          {% endif %}
+
+          {# NOTE: current page + 1 #}
+          <li><!-- 11 -->
+            <a
+                    class="blog-pagination__item{% if current_page_num + 1 > contents.total_page_count %}--disabled{% endif %}"
+                    rel="next"
+                    href="{% if current_page_num + 1 > contents.total_page_count or current_page_num + 1 == 1 %}{{ page_meta.canonical_url }}{% else %}{% if next_page_num == 1 %}{{ blog_page_link(next_page_num)|replace('/page/1', '') }}{% else %}{{ blog_page_link(next_page_num) }}{% endif %}{% endif %}">{{ blogInfo.strings.next }}&nbsp;›</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro render_related_news_posts(options) %}
+  {#
+    options = {
+        topics: content.topic_list,
+        post: post data (use to filter out name)
+    }
+#}
+  {% set pillarPages = hubdb_table_rows(table_id) %}
+  {% if options.topics %}
+    {% for topic in options.topics|rejectattr("slug", "equalto", "popular")|rejectattr("slug", "equalto", "canonical")|rejectattr("slug", "equalto", "recommended")|rejectattr("slug", "equalto", "featured-1")|rejectattr("slug", "equalto", "featured")|rejectattr("slug", "equalto", "daily")|rejectattr("slug", "equalto", "weekly")|rejectattr("slug", "equalto", "monthly")|rejectattr("slug", "equalto", "instant")|rejectattr("slug", "equalto", "research_popular") %}
+      {% set topic_posts = blog_recent_topic_posts(group.id, topic.slug, 10)|rejectattr('id', 'equalto', options.post.id)|sort(True, False, 'publish_date')|unique('name') %}
+      {% for topic_post in topic_posts %}
+        {%- if loop.index0 < 3 %}
+          {{ render_news_post_card({ postData: topic_post, size: 'small' }) }}
+        {% endif %}
+      {% endfor -%}
+    {% endfor %}
+  {% endif %}
+{% endmacro %}
+
+
+
+{# OLD - RENDER POST SUMMARY METADATA #}
+{% macro old_render_post_metadata(post, group_id) %}
+  <div class="blog-post__meta">
+    <a href="{{ post.parent_blog.root_url }}">{{ post.parent_blog.public_title  }}</a><a class="blog-sidebar-link" href="{{ post.url }}">|{{ render_read_time(post)|trim }}</a>
+  </div>
+{% endmacro %}
+
+
+{# OLD - RENDER FULL POST METADATA #}
+{% macro old_render_full_post_metadata(post, group_id) %}
+  <div class="blog-post__meta">
+    <a href="{{ blog.root_url }}">{{ content.parent_blog.public_title }}</a> | {{ render_read_time(post)|trim }}
+  </div>
+{% endmacro %}
+
+
+{# OLD - RENDER SUBSCRIBE #}
+{% macro render_subscribe_v2(style, customFormId) %}
+  {% if style == 'full-width' %}{% endif %}
+
+  {# CHECK EXISTING SUBSCRIPTIONS #}
+  {% set marketing_subscribed = False %}
+  {% set sales_subscribed = False %}
+  {% set agency_subscribed = False %}
+  {% set success_subscribed = False %}
+
+  {% set subscription_types = ['instant', 'daily', 'weekly', 'monthly', 'twice weekly'] %}
+
+  {% if contact.blog_default_blog_subscription in subscription_types %}
+    {% set marketing_subscribed = True %}
+  {% endif %}
+
+  {% if contact.blog_hubspots_inbound_sales_blog_subscription in subscription_types %}
+    {% set sales_subscribed = True %}
+  {% endif %}
+
+  {% if contact.blog_inbound_hub_the_agency_post_subscription in subscription_types %}
+    {% set agency_subscribed = True %}
+  {% endif %}
+
+  {% if contact.blog_hubspot_success_blog_5233357105_subscription|lower in subscription_types %}
+    {% set success_subscribed = True %}
+  {% endif %}
+
+  {% set singleOption = subscriptionStrings.options|length == 1 %}
+  {% set singleBlog = blogInfo.blogs|length == 1 %}
+
+  {% set translatedGDPRMessage = subscriptionStrings.gdprDisclaimer|replace('[privacy-policy]', '<a href="'~ subscriptionStrings.privacyPolicy.link ~'" target="_blank">'~ subscriptionStrings.privacyPolicy.text ~'</a>') %}
+
+  {% if style == 'full-width' %}
+    <p class="gdpr-disclaimer gdpr-disclaimer--full-width">
+      {{ translatedGDPRMessage }}
+    </p>
+  {% endif %}
+  <aside class="wt-blog__subscribe {% if style == 'full-width' %}wt-blog__full-width{% elif style == 'dropdown' %} wt-blog__dropdown {% else %}wt-blog__one-third{% endif %}">
+    <div class="wt-blog__subscribe__errors">
+      <h5>{{ subscriptionStrings.errors.header }}</h5>
+      <ul>
+        <li class="wt-blog__subscribe--blog-error">
+          <p>{{ subscriptionStrings.errors.blogsNotSelected }}</p>
+        </li>
+        <li class="wt-blog__subscribe--form-error">
+          <p>{{ subscriptionStrings.errors.formError }}</p>
+        </li>
+        <li class="wt-blog__subscribe--email-error">
+          <p>{{ subscriptionStrings.errors.invalidEmail }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="wt-blog__subscribe--overflow">
+      {% if style == "dropdown" %}
+        <input type="checkbox" id="subscribe-dropdown-{{ customFormId }}" class="wt-blog__input--hidden" />
+        <label for="subscribe-dropdown-{{ customFormId }}" class="cta cta--primary cta--small">{{ subscriptionStrings.button }}</label>
+        <div class="wt-blog__subscribe__dropdown">
+      {% endif %}
+      <div class="wt-blog__subscribe__container">
+        <ul>
+          {% unless singleOption %}
+            <input type="radio" name="subscribe-card-{{ customFormId }}" id="wt-blog__input--options-{{ customFormId }}" class="wt-blog__subscribe__card-toggle--options wt-blog__input--hidden" checked>
+            <li class="wt-blog__subscribe__card wt-blog__subscribe__card--options">
+              <div class="wt-blog__subscribe__flex-container">
+                <div class="wt-blog__subscribe__heading">
+                  <h4>{{ subscriptionStrings.optionsHeader }}</h4>
+                </div>
+                <ul class="wt-blog__subscribe__options">
+                  {% for option in subscriptionStrings.options %}
+                    {% if option.url %}
+                      <li>
+                        <a href="{{ option.url }}" target="_blank">{{ option.name }}<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" class="at-icon at-icon-slack" style="fill: rgb(102, 102, 102); width: 32px; height: 32px;"><g><path d="M22.256 17.884l-1.426.477.494 1.476a1.14 1.14 0 1 1-2.162.724l-.494-1.475-2.94.984.494 1.474a1.14 1.14 0 0 1-2.162.725l-.494-1.476-1.426.477a1.14 1.14 0 0 1-.724-2.16l1.426-.48-.948-2.828-1.426.477a1.14 1.14 0 0 1-.724-2.164l1.425-.477-.495-1.476a1.14 1.14 0 0 1 2.163-.724l.494 1.475 2.94-.984-.495-1.474a1.14 1.14 0 0 1 2.163-.725l.494 1.476 1.426-.477a1.14 1.14 0 0 1 .724 2.16l-1.426.48.948 2.828 1.426-.477a1.14 1.14 0 1 1 .724 2.164zm-8.2-2.806l.948 2.83 2.94-.986-.948-2.83-2.94.986m12.023-2.102c-2.27-7.56-5.545-9.323-13.104-7.055-7.56 2.27-9.323 5.545-7.055 13.104 2.27 7.56 5.545 9.323 13.104 7.055 7.56-2.27 9.323-5.545 7.055-13.104z" fill-rule="evenodd"></path></g></svg></i></a>
+                      </li>
+                    {% else %}
+                      <li>
+                        <input type="radio" name="subscribe-card-{{ customFormId }}" id="wt-blog--email-{{ customFormId }}" class="wt-blog__input--hidden">
+                        <label for="wt-blog__input--email-{{ customFormId }}" >{{ option.name }}<i><svg xmlns="http://www.w3.org/2000/svg" viewBox="-9 -9 96 96"><path d="M1 12c-.553 0-1 .447-1 1v52c0 .553.447 1 1 1h76c.553 0 1-.447 1-1V13c0-.553-.447-1-1-1H1zm68.816 6L39 40.594 8.184 18h61.632zM72 60H6V23.84l29.452 21.593 3.548 2.6 3.548-2.6L72 23.838V60z" fill="currentcolor"></path></svg></i></label>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            </li>
+          {% endunless %}
+
+          {% for option in subscriptionStrings.options %}
+            {% unless option.url is defined %}
+              <input type="radio" name="subscribe-card-{{ customFormId }}" id="wt-blog__input--{{ option.type }}-{{ customFormId }}" class="wt-blog__subscribe__card-toggle--{{ option.type }} wt-blog__input--hidden" {% if singleOption %}checked{% endif %}>
+              <li class="wt-blog__subscribe__card wt-blog__subscribe__card--{{ option.type }}">
+                {% if option.type == "email" %}
+                  <div class="wt-blog__subscribe__heading">
+                    <h4>{{ subscriptionStrings.emailSub.header }}</h4>
+                  </div>
+                  <form class="wt-blog__subscribe__form" data-formId="{{ blogInfo.subscribeForm }}">
+                    <ul class="wt-blog__subscribe__form__checkboxes {% if singleBlog %}wt-blog__subscribe__form__checkboxes--singleblog{% endif %}">
+                      {% for blog in blogInfo.blogs|selectattr('status') %}
+                        {% if blog.status == true %}
+                          <li style="{% if blogInfo.blogs|selectattr('status')|length == 1 %} display: none; {% endif %}">
+                            <input type="checkbox" name="{{ blog.subscriptionInfo.checkboxName }}" data-frequency="{{ blog.subscriptionInfo.subscriptionFrequency }}" data-frequency-field="{{ blog.subscriptionInfo.frequencyField }}" id="hs-{{ blog.name }}-blg-{{ customFormId }}" class="wt-blog__input--hidden blog-checkbox" {% if blog.subscribed or singleBlog or blogInfo.blogs|selectattr('status')|length == 1 %}checked disabled{% elif not blog.subscriptionInfo.subscriptionFrequency %}disabled{% endif %}>
+                            {% unless singleBlog %}<label for="hs-{{ blog.name }}-blg-{{ customFormId }}">{{ blog.displayTag }}</label>{% endunless %}
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                    <input name="lifecyclestage" type="hidden" value="subscriber">
+                    <input name="hs_context" type="hidden" value='{"hutk":"{{ request.cookies.hubspotutk }}","pageUrl":"{{ request.full_url }}","pageName":"{{ page_meta.html_title|escape }}"}'>
+                    <input type="hidden" name="hs_legal_basis" value="Legitimate interest – prospect/lead">
+                    <input type="hidden" name="gdpr_notice_custom_forms_" value="{{ translatedGDPRMessage|striptags }}">
+                    <div class="wt-blog__subscribe__form__second">
+                      <div class="wt-blog__subscribe__form__email">
+                        <label for="hs-email">{{ subscriptionStrings.emailSub.emailLabel }}</label>
+                        <input type="email" id="hs-email" placeholder="{{ subscriptionStrings.emailSub.emailPlaceholder }}" name="email" value="{% if request.contact.contact.email %}{{ request.contact.contact.email }}{% endif %}">
+                      </div>
+                      <div class="wt-blog__subscribe__form__submit">
+                        {% unless style == 'full-width' %}
+                          <p class="gdpr-disclaimer">
+                            {{ translatedGDPRMessage }}
+                          </p>
+                        {% endunless %}
+                        <input type="submit" value="{{ subscriptionStrings.emailSub.submitText }}" id="email-submit">
+                      </div>
+                    </div>
+                    {% unless singleOption %}
+                      <div class="wt-blog__subscribe__back-button">
+                        <label for="wt-blog__input--options-{{ customFormId }}"><span>{{ subscriptionStrings.otherOptions }}</span></label>
+                      </div>
+                    {% endunless %}
+                  </form>
+                {% endif %}
+              </li>
+            {% endunless %}
+          {% endfor %}
+
+          <input type="radio" name="subscribe-card-{{ customFormId }}" id="wt-blog__input--thank-you-{{ customFormId }}" class="wt-blog__subscribe__card-toggle--thank-you wt-blog__input--hidden">
+          <li class="wt-blog__subscribe__card wt-blog__subscribe__card--thank-you">
+            <img src="https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/white-checkmark.png" alt="{{ subscriptionStrings.thankYou }}">
+            <h3>{{ subscriptionStrings.thankYou }}</h3>
+          </li>
+        </ul>
+      </div>
+      {% if style == "dropdown" %}
+        </div>
+      {% endif %}
+    </div>
+  </aside>
+{% endmacro %}

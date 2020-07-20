@@ -1,0 +1,80 @@
+[ {
+  "id" : "2eb36fdc-cb2d-2c23-fa58-015d390699da",
+  "name" : "photos",
+  "label" : "Photos",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 20,
+    "sorting_label_field" : "99c28891-61f0-1dc4-37c7-f153d6435bd9",
+    "default" : 4
+  },
+  "children" : [ {
+    "id" : "99c28891-61f0-1dc4-37c7-f153d6435bd9",
+    "name" : "photo",
+    "label" : "Photo",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/_defaults/sg-defaults_garden.png",
+      "alt" : "sg-defaults_garden",
+      "width" : 400,
+      "height" : 250
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "photo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/_defaults/sg-defaults_garden.png",
+      "alt" : "sg-defaults_garden",
+      "width" : 400,
+      "height" : 250
+    }
+  }, {
+    "photo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/_defaults/sg-defaults_garden.png",
+      "alt" : "sg-defaults_garden",
+      "width" : 400,
+      "height" : 250
+    }
+  }, {
+    "photo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/_defaults/sg-defaults_garden.png",
+      "alt" : "sg-defaults_garden",
+      "width" : 400,
+      "height" : 250
+    }
+  }, {
+    "photo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/_defaults/sg-defaults_garden.png",
+      "alt" : "sg-defaults_garden",
+      "width" : 400,
+      "height" : 250
+    }
+  } ]
+}, {
+  "id" : "c5ede88b-df1f-7141-72b9-256af6eb1a2c",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4f59478a-dd4d-e666-9571-df7de49b84ea",
+    "name" : "background_theme",
+    "label" : "Background theme",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : { }
+} ]

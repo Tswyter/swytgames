@@ -1,0 +1,69 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+CHANGELOG:
+---------------
+
+#}
+
+{% macro generateVideo(options={}) -%}
+  {# Destructure options - indicates what keys should be available #}
+  {%- set type = options.type or '' -%}{# wistia, youtube, facebook, url #}
+  {%- set id = options.id or '' -%}{# YouTube/Wistia video src ID #}
+  {%- set url = options.url or '' -%}{# mp4 url #}
+  {%- set mute = options.mute if (options.mute is defined) else true -%}{# boolean #}
+  {%- set controls = options.controls if (options.controls is defined) else true -%}{# boolean #}
+  {%- set autoplay = options.autoplay if (options.autoplay is defined) else false -%}{# boolean #}
+  {%- set facebookUrl = options.facebookUrl or '' -%}
+  {%- set facebookWidth = options.facebookWidth or '1080' -%}
+  {%- set playerColor = options.playerColor or '' -%}
+  {%- set defer = options.defer if (options.defer is defined) else true -%}
+  {%- set uniqueId = options.uniqueId -%}
+
+  {%- set adjustedIdAttributeValue = id -%}
+  {%- if type is equalto 'facebook' -%}
+    {%- set adjustedIdAttributeValue = facebookUrl|md5 -%}
+  {% elif type is equalto 'url' -%}
+    {%- set adjustedIdAttributeValue = url|md5 -%}
+  {% endif -%}
+
+  {%- set videoContainerUniqueId = uniqueId or ((name if (name is defined) else 'video') ~ '-' ~ adjustedIdAttributeValue) -%}
+
+  <div class="hsg-video-container"
+    id="{{ videoContainerUniqueId }}"
+    {% if facebookUrl -%}
+    data-fburl="{{ facebookUrl }}"
+    data-fbwidth="{{ facebookWidth }}"
+		{% else %}
+    data-video-src="{{ url if (type is equalto 'url') else id }}"
+    {% endif -%}
+    data-type="{{ type }}"
+    data-mute="{{ mute }}"
+    data-autoplay="{{ autoplay }}"
+    data-controls="{{ controls }}"
+    data-player-color="{{ playerColor }}"
+    data-defer="{{ defer }}">
+  </div>
+{% endmacro -%}
+
+{%- macro generateVideoModal(options={}) -%}
+  {%- set modalId = options.modalId or '' -%}
+  {%- set videoOptions = options.videoOptions or {} -%}
+
+  {%- if modalId is truthy -%}
+  <div class="hsg-modal-container"
+    data-modal="{{ modalId }}"
+    data-exit="0"
+    data-play-video-on-exit="0">
+    <div class="hsg-modal-contents hsg-modal-contents--video">
+      <div class="hsg-modal-header" data-background="secondary4">
+        <span class="hsg-icon hsg-icon-close"></span>
+      </div>
+
+      {%- call generateVideo(videoOptions) %}{% endcall -%}
+    </div>
+  </div>
+  {% endif -%}
+{% endmacro -%}

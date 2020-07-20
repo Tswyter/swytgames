@@ -1,0 +1,55 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+CHANGELOG:
+---------------
+
+#}
+{# Google Map Macro #}
+{# Parameters: (Location Name, Location Address, Map Width, Map Height) #}
+{%- macro generateGoogleMap(
+  mapLocationName='',
+  mapAddress='',
+  mapWidth='100%',
+  mapHeight='350px'
+) -%}
+	{% if canvasAudit %}
+		{# Draw Map #}
+		<div class="hsg-section-gmap__google-map" style="width: {{ mapWidth }}; height: {{ mapHeight }};"></div>
+
+		{# Map Place card #}
+		<div class="hsg-section-gmap__placecard">
+			<div class="hsg-section-gmap__placecard--left">
+				<p class="hsg-section-gmap__location-name">{{ mapLocationName }}</p>
+				<p class="hsg-section-gmap__placecard-location-address">{{ mapAddress }}</p>
+				<a class="hsg-section-gmap__map-view" href="//maps.google.com/maps?q={{ mapAddress }}&amp;z=18" target="_blank">View larger map</a>
+			</div>
+			<div class="hsg-section-gmap__placecard--right">
+				<a class="hsg-section-gmap__placecard-map-direction-link" href="//maps.google.com/maps?q={{ mapAddress }}" target="_blank">
+					<div class="hsg-section-gmap__placecard-map-direction-icon"></div>
+					Directions
+				</a>
+			</div>
+		</div>
+	{% else %}
+		{# Draw Map #}
+		<div class="hsg-section-gmap__google-map" style="width: {{ mapWidth }}; height: {{ mapHeight }};"></div>
+
+		{# Map Place card #}
+		<div class="hsg-section-gmap__placecard">
+			<div class="hsg-section-gmap__placecard__left">
+				<p class="hsg-section-gmap__placecard__left__location-name hsg-section-gmap__location-name">{{ mapLocationName }}</p>
+				<p class="hsg-section-gmap__placecard__left__location-address">{{ mapAddress }}</p>
+				<a class="hsg-section-gmap__placecard__left__map-view-large" href="//maps.google.com/maps?q={{ mapAddress }}&amp;z=18" target="_blank">View larger map</a>
+			</div>
+			<div class="hsg-section-gmap__placecard__right">
+				<a class="hsg-section-gmap__placecard__right__map-direction-link" href="//maps.google.com/maps?q={{ mapAddress }}" target="_blank">
+					<div class="hsg-section-gmap__placecard__right__map-direction-link__icon"></div>
+					Directions
+				</a>
+			</div>
+		</div>
+	{% endif %}
+{% endmacro -%}

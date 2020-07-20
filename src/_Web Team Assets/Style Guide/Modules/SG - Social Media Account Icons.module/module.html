@@ -1,0 +1,27 @@
+{#
+CHANGE LOG:
+-------------
+
+#}
+
+{%- if module.icons|length -%}
+<section class="hsg-social-icons"
+  data-background="{{ module.options.background_theme }}"
+  data-size="{{ module.options.display_sizing }}"
+  data-shape="{{ module.options.display_style }}">
+  {% for item in module.icons -%}
+    {%- set href = item.url.href -%}
+    {% if (item.service is equalto 'email') and (item.email.href is truthy) -%}
+      {%- set href = 'mailto:' ~ item.email.href -%}
+    {% endif -%}
+    {%- set itemAttributes = 'target="_blank"' if (not item.service is equalto 'email') -%}
+
+    {%- if href is truthy -%}
+    <a href="{{ href }}" {{ itemAttributes }}
+      class="hsg-social-icons__item">
+      <span class="hsg-icon hsg-icon-{{ item.service }}"></span>
+    </a>
+    {% endif -%}
+  {% endfor -%}
+</section>
+{% endif -%}

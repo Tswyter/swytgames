@@ -1,0 +1,32 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+CHANGELOG:
+---------------
+
+#}
+{# Module deprecation notice #}
+{% macro generateDeprecationNotice(
+    currentModuleName='',
+    newModuleName='',
+    additionalInfo=''
+) %} 
+
+{% if request.query_dict.inpageEditorUI -%}
+  {%- set adjustedCurrentModuleName = '<em>' ~ currentModuleName ~ '</em>' if currentModuleName else 'following' -%}
+  {%- set adjustedNewModuleName = 'the <em><strong>' ~ newModuleName ~ '</strong></em>' if newModuleName else 'another supported Style Guide' -%}
+
+  <div class="hsg-notice">
+    {% if currentModuleName or newModuleName  -%}
+    <p><strong>Warning: </strong>The {{ adjustedCurrentModuleName }} module has been deprecated. Please use {{ adjustedNewModuleName }} module instead.</p>
+    {% endif -%}
+
+    {% if additionalInfo -%}
+    <p style="font-size: 0.875rem;"><em>{{ additionalInfo }}</em></p>
+    {%- endif %}
+  </div>
+{%- endif %}
+
+{% endmacro %}

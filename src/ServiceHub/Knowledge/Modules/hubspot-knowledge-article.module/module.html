@@ -1,0 +1,76 @@
+{% set articleTitle = content.name %} 
+{% set articleSummary = content.article_summary %} 
+{% set articleBody = content.article_body %}
+
+<div class="kb-article {% if content.generator == 'TINYMCE' %}tinymce-content{% else %}draftjs-content{% endif %}">
+  <h1>{{ articleTitle }}</h1>
+  {% if articleSummary %}
+    <h2>{{ articleSummary }}</h2>
+  {% endif %} 
+  {{ articleBody }}
+</div>
+
+{# Commented out for now until we implement both of these features.
+
+<div class="kb-article__sentiment">
+  <div style="font-size: 2em; font-weight: bold; color: #666; text-align: center; position: absolute;">For placement only</div>
+  <span>Did this article solve your problem?</span>
+  <button>
+    <svg width="13px" height="11px" viewBox="0 0 13 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <desc>Created with Sketch.</desc>
+      <defs></defs>
+      <g id="Left-nav" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4---Article----Mul-Copy" transform="translate(-729.000000, -840.000000)" fill="#34516D">
+          <g id="Group-4" transform="translate(703.000000, 830.000000)">
+            <g id="Yes-button">
+              <g id="Group-10" transform="translate(26.000000, 10.000000)">
+                <g id="Page-1">
+                  <path d="M2,4.002 L1,4.002 C0.448,4.002 0,4.45 0,5.002 L0,10.002 C0,10.554 0.448,11.002 1,11.002 L2,11.002 C2.553,11.002 3,10.554 3,10.002 L3,5.002 C3,4.45 2.553,4.002 2,4.002"
+                   id="Fill-1"></path>
+                  <path d="M7,2 L7.005,2 L7,2 Z M7.005,0 L7,0 L6,0 C5.541,0 5.142,0.312 5.03,0.757 L4.03,4.757 C4.009,4.841 3.999,4.925 4,5.008 L4,10.002 C4,10.554 4.448,11.002 5,11.002 L11,11.002 C11.477,11.002 11.887,10.666 11.98,10.198 L12.98,5.198 C13.039,4.904 12.963,4.6 12.773,4.368 C12.583,4.136 12.3,4.002 12,4.002 L7.999,4.002 L8,1.071 C8.002,1.048 8.003,1.024 8.003,1 C8.003,0.448 7.558,0 7.005,0 Z M7,1 L6.998,5.002 L12,5.002 L11,10.002 L5,10.002 L5,5.002 L5.003,5.002 L5,5 L6,1 L7,1 Z M7,1 L7.005,1 L7,1 Z"
+                   id="Fill-3"></path>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+    Yes
+  </button>
+  <button>
+    <svg width="13px" height="11px" viewBox="0 0 13 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs></defs>
+      <g id="Left-nav" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4---Article----Mul-Copy" transform="translate(-834.000000, -841.000000)" fill="#425B76">
+          <g id="No-button" transform="translate(807.000000, 830.000000)">
+            <g id="icon" transform="translate(27.000000, 11.000000)">
+              <path d="M10.9999,7 L11.9999,7 C12.5529,7 12.9999,6.552 12.9999,6 L12.9999,1 C12.9999,0.448 12.5529,0 11.9999,0 L10.9999,0 C10.4479,0 9.9999,0.448 9.9999,1 L9.9999,6 C9.9999,6.552 10.4479,7 10.9999,7"
+               id="Fill-1"></path>
+              <path d="M5.9999,9.002 L5.9949,9.002 L5.9999,9.002 Z M5.9949,11.002 L5.9999,11.002 L6.9999,11.002 C7.4589,11.002 7.8589,10.689 7.9699,10.245 L8.9699,6.245 C8.9909,6.161 9.0009,6.077 8.9999,5.993 L8.9999,1 C8.9999,0.448 8.5529,0 7.9999,0 L1.9999,0 C1.5229,0 1.1129,0.336 1.0199,0.804 L0.0199,5.804 C-0.0391,6.098 0.0369,6.402 0.2269,6.634 C0.4169,6.866 0.6999,7 0.9999,7 L5.0019,7 L4.9999,9.93 C4.9979,9.954 4.9979,9.978 4.9979,10.002 C4.9979,10.554 5.4419,11.002 5.9949,11.002 Z M5.9999,10.002 L6.0019,6 L0.9999,6 L1.9999,1 L7.9999,1 L7.9999,6 L7.9979,6 L7.9999,6.002 L6.9999,10.002 L5.9999,10.002 Z M5.9999,10.002 L5.9949,10.002 L5.9999,10.002 Z"
+               id="Fill-3"></path>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+    No
+  </button>
+</div>
+#} 
+{#
+<div class="kb-article__related-posts">
+  <h3>Related articles</h3>
+  <ul>
+    <li>
+      <a href="#">Why doesn't my gift card work?</a>
+    </li>
+    <li>
+      <a href="#">What's this really small charge on my statement?</a>
+    </li>
+    <li>
+      <a href="#">Payment troubleshooting</a>
+    </li>
+  </ul>
+</div>
+#}

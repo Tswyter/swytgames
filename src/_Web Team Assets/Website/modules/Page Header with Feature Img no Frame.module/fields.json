@@ -1,0 +1,524 @@
+[ {
+  "id" : "d9634102-24ab-e13a-48b7-0868ef5c5a03",
+  "name" : "top_label",
+  "label" : "Top Label",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "89ad5d6e-5a95-c5b0-7fd7-f7555c2af6ee",
+    "name" : "icon",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  }, {
+    "id" : "2edd52c5-3972-5e4b-ca80-0bb74acdda16",
+    "name" : "text",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "1cabc4dc-0608-cce5-f896-d6ffe4ffbe93",
+    "name" : "flag",
+    "label" : "Flag Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "none" ], [ "add-on", "add-on" ], [ "beta", "beta" ], [ "new", "new" ], [ "popular", "popular" ] ],
+    "type" : "choice",
+    "default" : null
+  }, {
+    "id" : "79b31415-f259-6eb1-c7c3-47f3db4eb804",
+    "name" : "flag_text",
+    "label" : "Custom Flag Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "1cabc4dc-0608-cce5-f896-d6ffe4ffbe93",
+      "controlling_value_regex" : "none",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  }
+}, {
+  "id" : "0df6d2fb-fec2-79cd-002a-4e60413f68fb",
+  "name" : "header",
+  "label" : "Header",
+  "help_text" : "The main header for this module.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "placeholder" : "Enter a header...",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "dabe6bd9-0c02-e530-27a5-76ebdcadfabc",
+  "name" : "secondary_title",
+  "label" : "Secondary Title",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "ce8bdde6-7e28-4150-8c64-e86b975e3bc1",
+  "name" : "description",
+  "label" : "Description",
+  "help_text" : "(Optional). A paragraph of text that appears beneath the main header.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "placeholder" : "Enter a description...",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "d233b8d7-157b-1f46-6d89-93d0cb02aa02",
+  "name" : "ctas",
+  "label" : "CTAs",
+  "help_text" : "(Optional). Add up to two CTA buttons that appear beneath the header and optional description.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 2,
+    "sorting_label_field" : "6994ffc8-8ee0-8353-654f-e1eb3284e2d3",
+    "default" : 0
+  },
+  "children" : [ {
+    "id" : "69daebd3-4a0f-6eb8-f284-addde17422b9",
+    "name" : "type",
+    "label" : "Type",
+    "help_text" : "Link (default option); Product (choose a CTA from the CTA tool); Video (triggers a video modal)",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "link", "Link" ], [ "product", "Product CTA" ], [ "video", "Video" ], [ "modal", "Modal Trigger" ] ],
+    "type" : "choice",
+    "default" : "link"
+  }, {
+    "id" : "6994ffc8-8ee0-8353-654f-e1eb3284e2d3",
+    "name" : "cta_label",
+    "label" : "Label",
+    "required" : true,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "69daebd3-4a0f-6eb8-f284-addde17422b9",
+      "controlling_value_regex" : "product",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Get started"
+  }, {
+    "id" : "9a6ab0fb-6c7e-91de-3035-b1d76cbe94d0",
+    "name" : "cta_link",
+    "label" : "Link",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "69daebd3-4a0f-6eb8-f284-addde17422b9",
+      "controlling_value_regex" : "link",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+    "type" : "link",
+    "default" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.hubspot.com",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "06e1e297-2798-1415-9820-e30a85d834d0",
+    "name" : "product_cta",
+    "label" : "Product CTA",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "69daebd3-4a0f-6eb8-f284-addde17422b9",
+      "controlling_value_regex" : "product",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "type" : "cta",
+    "default" : null
+  }, {
+    "id" : "42de398a-d116-c4cf-e3de-503161c2a7e3",
+    "name" : "video",
+    "label" : "Video CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "69daebd3-4a0f-6eb8-f284-addde17422b9",
+      "controlling_value_regex" : "video",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "children" : [ {
+      "id" : "c9c106f7-7a69-c9db-c5e7-05dd57d993db",
+      "name" : "type",
+      "label" : "Video Type",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Select a type",
+      "choices" : [ [ "youtube", "YouTube" ], [ "wistia", "Wistia" ], [ "url", "MP4 URL" ], [ "vidyard", "Vidyard" ] ],
+      "type" : "choice",
+      "default" : null
+    }, {
+      "id" : "625ba8d3-9709-ee2a-96ef-0d00a51046f1",
+      "name" : "v_id",
+      "label" : "Video ID",
+      "help_text" : "Enter only the ID value for the YouTube, Wistia, or Vidyard video. This ID is typically found in the video's web URL.",
+      "required" : true,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "c9c106f7-7a69-c9db-c5e7-05dd57d993db",
+        "controlling_value_regex" : "url",
+        "operator" : "NOT_EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "placeholder" : "454f51lbca",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "27da5100-c5e3-2bd0-87ba-4d9ef3f9a1f4",
+      "name" : "url",
+      "label" : "MP4 URL",
+      "help_text" : "The mp4 video file path.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "c9c106f7-7a69-c9db-c5e7-05dd57d993db",
+        "controlling_value_regex" : "url",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "supported_types" : [ "EXTERNAL", "FILE" ],
+      "type" : "url",
+      "default" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      }
+    }
+  }, {
+    "id" : "eb975458-0133-7fe5-1b5c-ae0aab595a9f",
+    "name" : "options",
+    "label" : "Advanced Options",
+    "help_text" : "(Optional). Additional settings for this CTA.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "69daebd3-4a0f-6eb8-f284-addde17422b9",
+      "controlling_value_regex" : "product",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "children" : [ {
+      "id" : "a01efaf7-83b1-1ca6-ea14-33a2f0199b3d",
+      "name" : "custom_class",
+      "label" : "Custom Class",
+      "help_text" : "(Optional). A custom class for this CTA (generally used for tracking purposes).",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : { }
+  }, {
+    "id" : "64673b4a-72a4-6b4d-976f-00ed8758bf89",
+    "name" : "modal_id",
+    "label" : "Modal ID",
+    "required" : true,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "69daebd3-4a0f-6eb8-f284-addde17422b9",
+      "controlling_value_regex" : "modal",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "type" : "link",
+    "cta_label" : "Get started",
+    "cta_link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.hubspot.com",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "video" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      }
+    },
+    "options" : { }
+  }
+}, {
+  "id" : "56b214b3-49d2-f547-9110-63c77b125785",
+  "name" : "ctas_disclaimer",
+  "label" : "CTAs: Disclaimer",
+  "help_text" : "Meta copy that appears beneath this module's CTA(s).",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "06c67f04-a6d0-cf02-87b1-44e6e6304914",
+  "name" : "images",
+  "label" : "Image options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "87d63d7a-cc9c-ba5e-10a6-99db2bc96ae6",
+    "name" : "background_image",
+    "label" : "Background Image",
+    "help_text" : "(Optional). A background image for the module. If a Background Theme is chosen, that theme color will overlay this image to create a filtered effect.",
+    "required" : false,
+    "locked" : true,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "src" : "",
+      "alt" : null
+    }
+  }, {
+    "id" : "af9dffe5-ff47-ae1b-2b91-1e5f0a947b36",
+    "name" : "featured_image_placement",
+    "label" : "Featured Image: Placement",
+    "help_text" : "(Optional). Include an additional image, placed within the selected device graphic (appears beside the other header content).",
+    "required" : false,
+    "locked" : true,
+    "display" : "select",
+    "placeholder" : "None",
+    "choices" : [ [ "laptop", "In Laptop Screen" ], [ "phone", "In Phone Screen" ], [ "browser", "In Browser Window" ] ],
+    "type" : "choice",
+    "default" : ""
+  }, {
+    "id" : "a553c45f-6be2-6291-16df-ac5cac6df36d",
+    "name" : "featured_image",
+    "label" : "Featured Image",
+    "help_text" : "The featured image to be placed within the device graphic selected above.",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "src" : "",
+      "alt" : null
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_image" : {
+      "src" : "",
+      "alt" : null
+    },
+    "featured_image_placement" : "",
+    "featured_image" : {
+      "src" : "",
+      "alt" : null
+    }
+  }
+}, {
+  "id" : "c2518f56-ed30-c264-ede7-38b3f74766b9",
+  "name" : "logo_image",
+  "label" : "Logo Image",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "41d1686f-af22-a39f-01b2-5e1a6b87e0f7",
+    "name" : "desktop",
+    "label" : "Desktop",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  }, {
+    "id" : "6fd5534e-ba7a-ba9d-98e4-8485bb491a68",
+    "name" : "mobile",
+    "label" : "Mobile",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "desktop" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    },
+    "mobile" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  }
+}, {
+  "id" : "0c8a560a-02db-818a-0748-7e34b3725c6a",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "425cac43-3802-f2d9-13e3-b47ac8db97a7",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container. Note that, for branding and accessibility reasons, when using a background image plus the 'White' theme, the image will have an orange overlay.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "gradient1", "Lorax (Orange)" ], [ "gradient2", "Norman (Pink)" ], [ "gradient3", "Thunderdome (Blue)" ], [ "gradient4", "Calypso (Green)" ], [ "gradient5", "Sorbet (Light Orange)" ], [ "gradient6", "Candy Apple (Red)" ], [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "gradient3"
+  }, {
+    "id" : "73cd4cbb-a27c-655b-bff0-84881663ae24",
+    "name" : "edge_style",
+    "label" : "Bottom Edge Style",
+    "help_text" : "(Optional). Choose between no bottom edge styling or a wave pattern for this module. Defaults to Wave when using a Featured Image. (If you are using this effect, please ensure that the module immediately following this one has a white background).",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "",
+    "choices" : [ [ "none", "None" ], [ "wave", "Wave" ] ],
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "3e8314a9-25ce-319c-4666-d6f7ad948637",
+    "name" : "background_of_next_module",
+    "label" : "Background of next module",
+    "help_text" : "This selection should match the background color of the module that appears directly below the page header to ensure a smooth visual flow into the next module. ",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "73cd4cbb-a27c-655b-bff0-84881663ae24",
+      "controlling_value_regex" : "wave",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "light", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "fc29b0c1-9097-709a-ac0c-82d3748ff341",
+    "name" : "blob_style",
+    "label" : "Blob Style",
+    "help_text" : "Add blobs to your page header to add some color. ",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "None" ], [ "style1", "Style 1" ], [ "style2", "Style 2" ], [ "style3", "Style 3" ], [ "style4", "Style 4" ], [ "style5", "Style 5" ] ],
+    "type" : "choice",
+    "default" : "style1"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "gradient3",
+    "edge_style" : "none",
+    "background_of_next_module" : "white",
+    "blob_style" : "style1"
+  }
+} ]

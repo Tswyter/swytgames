@@ -1,0 +1,45 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{% 
+  set defaultConfig = {
+    'hideCarousel': true,
+    'logoHover': false,
+    'logos': [
+      { 'src': 'https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/case-studies/logos_band/Atlassian-horizontal-blue@1x.png', 'alt': 'Atlassian' }, 
+      { 'src': 'https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/case-studies/logos_band/doordash_owler_20181011_194113_original.png', 'alt': 'DoorDash' },
+      { 'src': 'https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/case-studies/logos_band/invision_logo_pink.png', 'alt': 'Invision' },
+      { 'src': 'https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/case-studies/logos_band/purple-logo.png', 'alt': 'Purple' },                                 
+      { 'src': 'https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/case-studies/logos_band/Wistia_logo.png', 'alt': 'Wistia' },                                 
+      { 'src': 'https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/case-studies/logos_band/VMware_logo_gry_RGB_300dpi.png', 'alt': 'VMware' }
+     ],
+  }
+%}
+{% macro logoBand(logoBandConfig = defaultConfig) %}
+  <section class="style-guide-logo-band hsg-logo-slider" data-background="off-white">
+    <div class="hsg-slider hsg-page-width-normal"
+      data-slides-to-scroll="2"
+      data-slides-to-scroll-mobile="2"
+      data-enable-mouse-events="true"
+      data-show-progress-dots="true"
+      data-rewind="false"
+      data-breakpoint="500"
+      data-autoplay="">
+      <figure class="hsg-slider__container">
+        <ul class="hsg-slider__slides">
+        {% for logo in logoBandConfig.logos %}    
+          <li class="hsg-slider__slide {% if !logoBandConfig.logoHover %}hsg-slider__slide--no-hover{% endif %}">
+            <img src="{{ logo.src }}" alt="{{ logo.alt }}">
+          </li>
+        {% endfor %}
+        </ul>
+      </figure>      
+      <div class="hsg-slider__carousel{% if logoBandConfig.hideCarousel %}--hidden{% endif %}">
+        <img class="hsg-slider__prev" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+        <img class="hsg-slider__next" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg">
+        <div class="hsg-slider__indicators"></div>
+      </div>                        
+    </div>
+  </section>
+{% endmacro %}

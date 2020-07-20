@@ -1,0 +1,73 @@
+{% set rootSlug = knowledge_base.slug %}
+{% set linksColor = knowledge_base.linksColor %}
+
+<div class="kb-mobile-header">
+  <div class="kb-mobile-menu">
+    <div class="kb-mobile-menu__current-page">
+      {% for cat in category_organization.categories %}
+        {% if selected_subcategory_id && cat.subcategories %}
+          {% for subCat in cat.subcategories %}
+            {% if subCat.id == selected_subcategory_id %}
+              {{subCat.name}}
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% if  cat.id == selected_category_id %}
+            {{cat.name}}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      <svg class="kb-mobile-menu__arrow" width="12" height="7" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.6817 1.6816l-4.5364 4-4.5364-3.9315" stroke="#00A38D" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  <ul>
+    {% for cat in category_organization.categories %}
+      <li 
+        {% if cat.id == selected_category_id %}
+          class="active open"
+        {% else %}
+          {% for item in cat.subcategories %}
+            {% if item.id == selected_subcategory_id %}
+              class="open"
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      >
+        <a href="{{ "/" ~ rootSlug if rootSlug }}{{ cat.fullPath }}">
+          {{ cat.name }}
+        </a>
+        <ul>
+          {% for subCat in cat.subcategories %}
+            <li {% if subCat.id == selected_subcategory_id %}class="active"{% endif %}>
+              <a href="{{ "/" ~ rootSlug if rootSlug }}/{{ subCat.fullPath|split('/')|join('#') }}">
+                {{ subCat.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+  </div>
+  <div class="kb-mobile-search kb-search">
+    <div class="kb-mobile-search__placeholder"></div>
+    <div class="kb-mobile-search__box">
+      <div class="kb-mobile-search__bar">
+        <svg class="kb-mobile-search__mag" width="15" height="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14.02 12.672l-3.64-3.64a5.687 5.687 0 0 0 1.06-3.312A5.726 5.726 0 0 0 5.72 0 5.726 5.726 0 0 0 0 5.72a5.726 5.726 0 0 0 5.72 5.72 5.687 5.687 0 0 0 3.311-1.06l3.641 3.64a.95.95 0 0 0 1.348 0 .953.953 0 0 0 0-1.348zm-8.3-3.139a3.813 3.813 0 1 1 0-7.626 3.813 3.813 0 0 1 0 7.626z" fill="#4A4A4A" fill-rule="evenodd"/>
+        </svg>
+        <form action="{{ "/" ~ rootSlug if rootSlug }}/kb-search-results">
+          <input type="text" class="kb-mobile-search__input kb-search__input" name="term" autocomplete="off" placeholder="{{shared_searchBarPlaceholder}}">
+          <input type="hidden" name="ref" value="{{ content.id }}">
+        </form>
+        <svg class="kb-mobile-search__close" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#4A4A4A" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12.314L12.314 1M12.314 12.314L1 1"/>
+          </g>
+        </svg>
+      </div>
+      <ul class="kb-search__suggestions" data-lang='{{search_withResults_title}}'></ul>
+    </div>
+  </div>
+</div>

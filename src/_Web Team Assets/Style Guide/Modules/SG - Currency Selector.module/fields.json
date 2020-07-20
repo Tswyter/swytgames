@@ -1,0 +1,82 @@
+[ {
+  "id" : "21cba060-e9b4-bebe-64d9-7552746c9db4",
+  "name" : "currency_options",
+  "label" : "Currency Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "5a922a5a-5223-d7ec-fd05-71e92cd5db9a",
+    "name" : "usd",
+    "label" : "USD",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  }, {
+    "id" : "e6f61f4e-0498-d448-53a7-d867f69a91c9",
+    "name" : "eur",
+    "label" : "EUR",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  }, {
+    "id" : "ef74037e-5374-e8e9-6889-ec9ebf6da896",
+    "name" : "gbp",
+    "label" : "GBP",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  }, {
+    "id" : "7c8b297f-d943-6839-1995-1d3610d67b4c",
+    "name" : "aud",
+    "label" : "AUD",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  }, {
+    "id" : "a5d4614e-db37-7480-c421-24f403abb559",
+    "name" : "sgd",
+    "label" : "SGD",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  }, {
+    "id" : "428921cc-c6a4-a13e-4166-e080cb83a3e3",
+    "name" : "jpy",
+    "label" : "JPY",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  }, {
+    "id" : "64229a4f-99fb-e996-d665-18d25585972d",
+    "name" : "cop",
+    "label" : "COP",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "usd" : true,
+    "eur" : true,
+    "gbp" : true,
+    "aud" : true,
+    "sgd" : true,
+    "jpy" : true,
+    "cop" : true
+  }
+} ]

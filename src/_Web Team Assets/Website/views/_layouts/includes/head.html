@@ -1,0 +1,62 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{# GLOBAL VARIABLES #}
+{%- set timestamp = now|unixtimestamp -%}
+
+{%- if request.full_url is string_containing "wthubspot.com" %}
+    {%- set qaTimestamp = "?"+now|unixtimestamp -%}
+{% endif %}
+
+{#{%- set SITE_ROOT_PATH = "/_Web Team Assets/Website" -%}#}
+{#{%- set MACROS_PATH = SITE_ROOT_PATH + "/macros" -%}#}
+{%- set SG_MODULES_PATH = "/_Web Team Assets/Style Guide/Modules/" -%}
+
+{#{%- from '/_Web Team Assets/Style Guide/Macros/dynamicPricing.html' import dynamicPricing -%}#}
+{% import "/_Web Team Assets/Website/macros/hreflangLogic.html" as hreflangMacro %}
+{#{%- from '/Custom/page/Web_Team/hreflang-logic.html' import hreflangMacro -%}#}
+
+{# LANGUAGE VARIABLE CONSTRUCTOR #}
+{#{%- global_module "global_language_variable_constructor", no_wrapper=True, export_to_template_context=True -%}#}
+{% include './_language-constructor.html' %}
+{% include './_hreflang-head.html' %}
+
+{{ hreflangMacro.findRelatedPages(request.full_url) }}
+{{ hreflangMacro.renderHreflang(widget_data.associated_pages) }}
+
+{%- set has_meta_image = (content.head_html is string_containing "og:image") or (content.featured_image) -%}
+{%- if not has_meta_image -%}
+    {# Adds default social image #}
+    <meta property="og:image" content="https://www.hubspot.com/hubfs/assets/hubspot.com/buzz/HubSpotOpenGraph.png"/>
+    <meta property="og:image:width" content="1206">
+    <meta property="og:image:height" content="633">
+    <meta name="twitter:image" content="https://www.hubspot.com/hubfs/assets/hubspot.com/buzz/HubSpotOpenGraph.png">
+{%- endif -%}
+
+<meta name="theme-color" content="#FF7A59" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="description" content="{{ page_meta.meta_description }}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{% if site_settings.favicon_src %}<link rel="shortcut icon" href="{{ site_settings.favicon_src }}" />{% endif %}
+<link rel="dns-prefetch" href="https://static.hsappstatic.net">
+<link rel="dns-prefetch" href="https://cdn2.hubspot.net">
+<link rel="dns-prefetch" href="https://api.hubspot.net">
+<link rel="dns-prefetch" href="https://app.hubspot.net">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+<!-- htmlmin:ignore -->
+{{ standard_header_includes
+    |cut("<script src=\"/hs/hsstatic/jquery-libs/static-1.1/jquery/jquery-1.7.1.js\"></script>")
+    |cut("<script>hsjQuery = window['jQuery'];</script>")
+    |cut("{% if request.query_dict.headLess %}\n<!--head less mode-->\n{% else request.query_dict.headLess %}\n\n\n<!-- Begin Domain Settings Code --> \n<!-- Meta -->\n<meta property=\"twitter:account_id\" content=\"14458280\" />\n<meta name=\"msvalidate.01\" content=\"C5553ABFC995043D86E2C15CA3DADD34\" />\n<meta name=\"p:domain_verify\" content=\"7f4fa0f1fccc171fd4d5af64f062521c\" />\n<meta http-equiv=\"content-language\" content=\"en-US\" />\n<meta property=\"fb:pages\" content=\"6039999393\" />\n\n{% include 'custom/page/Web_Team/hsg-head.html' %}\n\n<!-- Google Tag Manager - DS -->\n<!--<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-N5LT88');</script>-->\n<!-- End Google Tag Manager -->\n\n<!-- End Domain Settings Code -->\n\n\n{% endif %}")
+    |cut("{% include 'custom/page/Web_Team/hsg-head.html' %}")
+    |cut("{{ include_default_custom_css(content.include_default_custom_css, template_meta.include_default_custom_css, domain_settings.include_default_custom_css) }}")
+    |cut("{{ include_attached_css(content_group.attached_stylesheets or domain_settings.attached_stylesheets, content.enable_domain_stylesheets, template_meta.enable_domain_stylesheets, theme_meta.enable_domain_stylesheets, domain_settings.enable_domain_stylesheets) }}")
+    |cut("{{ include_attached_css(template_meta.attached_stylesheets, content.enable_layout_stylesheets) }}")
+    |cut("{{ include_attached_css(content.attached_stylesheets) }}")
+    |cut("{{ require_attached_js(template_meta.attached_js) }}")
+}}
+<!-- htmlmin:ignore -->

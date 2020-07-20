@@ -1,0 +1,101 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import "../../../../macros/wtMacros.html" as wtMacros %}
+
+{% set devMode = request.debug %}
+
+{% set NAV_HEADER_HUBDB_ID = '{#NAV_HEADER_HUBDB_ID#}' %}
+{%- if (NAV_HEADER_HUBDB_ID is string_containing "{#NAV_HEADER_HUBDB_ID#}") %}
+  {% set navHeaderData = "nav_primary_header" %} {# PROD #}
+{% else %}
+  {% set navHeaderData = NAV_HEADER_HUBDB_ID %}
+{% endif %}
+
+{#{% set navCustomCta = 2034256 %}#}
+{% set isPreview = false %}
+{%- if request.query_dict.hs_preview %}
+  {% set isPreview = true %}
+{% endif -%}
+<!-- absolute {{content.absolute_url}} -->
+<!-- isPreview {{isPreview}} -->
+
+{% if is_german %}
+  {%- set currentLanguage = 'de' %}
+  {%- set cx = '009219321729865762236:496a5wfc6x4' if is_blog else '009219321729865762236:1kczx_naofc' %}
+  {%- set currentLanguageName = 'Deutsch' %}
+  {%- set currentHomeLink = '//www.hubspot.de' %}
+  {%- set currentBlogHomeLink = '//blog.hubspot.de' %}
+{% elif is_french %}
+  {%- set currentLanguage = 'fr' %}
+  {%- set cx = '009219321729865762236:ba8x2a0scro' if is_blog else '009219321729865762236:evekf1vse58' %}
+  {%- set currentLanguageName = 'Français' %}
+  {%- set currentHomeLink = '//www.hubspot.fr' %}
+  {%- set currentBlogHomeLink = '//blog.hubspot.fr' %}
+{% elif is_spanish %}
+  {%- set currentLanguage = 'es' %}
+  {%- set cx = '004277018879803690427:uchhvqy6ac8' if is_blog else '009219321729865762236:8effq6e-rmu' %}
+  {%- set currentLanguageName = 'Español' %}
+  {%- set currentHomeLink = '//www.hubspot.es' %}
+  {%- set currentBlogHomeLink = '//blog.hubspot.es' %}
+{% elif is_portuguese %}
+  {%- set currentLanguage = 'pt' %}
+  {%- set cx = '009219321729865762236:bv8gxqzxqpo' if is_blog else '009219321729865762236:6ks7vjxvwjo' %}
+  {%- set currentLanguageName = 'Português' %}
+  {%- set currentHomeLink = '//br.hubspot.com' %}
+  {%- set currentBlogHomeLink = '//blog.hubspot.com/blog' %}
+{% elif is_japanese %}
+  {%- set currentLanguage = 'jp' %}
+  {%- set cx = '004277018879803690427:rvcirpqoxu0' if is_blog else '009219321729865762236:nxpyori8uxy' %}
+  {%- set currentLanguageName = '日本語' %}
+  {%- set currentHomeLink = '//www.hubspot.jp' %}
+  {%- set currentBlogHomeLink = '//blog.hubspot.jp' %}
+{% else %}
+  {# Default to english #}
+  {%- set currentLanguage = 'en' %}
+  {%- set currentLanguageName = 'English' %}
+  {%- set currentHomeLink = '//www.hubspot.com' %}
+  {%- set currentBlogHomeLink = '//blog.hubspot.com' %}
+  {%- set cx = '009219321729865762236:fzizmixjdmi' if is_blog else '009219321729865762236:z9gsnksfc30' %}
+{%- endif %}
+
+{# Translations #}
+{% set languageFilter = '&language=' ~ currentLanguage %}
+{% set hubdb_rows = hubdb_table_rows(navHeaderData, languageFilter) %}
+{#{% set hubdb_cta_rows = hubdb_table_rows(navCustomCta) %}#}
+{% set navMenu = hubdb_rows|selectattr('name', 'equalto', 'nav-menu')|sort(False, False, 'order') %}
+{% set softwareDropdown = hubdb_rows|selectattr('name', 'equalto', 'software-dropdown') %}
+{% set listTitles = hubdb_rows|selectattr('name', 'equalto', 'list-title') %}
+{% set listItems = hubdb_rows|selectattr('name', 'equalto', 'list-item') %}
+{% set login = hubdb_rows|selectattr('name', 'equalto', 'sign-in') %}
+{% set goToAccount = hubdb_rows|selectattr('name', 'equalto', 'go-to-account') %}
+{% set navCta = hubdb_rows|selectattr('name', 'equalto', 'nav-cta') %}
+{% set search = hubdb_rows|selectattr('name', 'equalto', 'search') %}
+{%- set contactUsLinks = hubdb_rows|selectattr('name', 'equalto', 'dropdown-contact-us') -%}
+{%- set home = hubdb_rows|selectattr('name', 'equalto', 'home') -%}
+
+{# FIXME: need i18n paths #}
+{% set pageType = "marketing" %}
+{% if request.path is string_containing "/products/crm" %}
+  {% set pageType = "crm" %}
+{% elif request.path is string_containing "/products/sales" %}
+  {% set pageType = "sales" %}
+{% elif request.path is string_containing "/products/marketing" %}
+  {% set pageType = "marketing-specific" %}
+{% elif request.path is string_containing "/products/customer-hub" %}
+  {% set pageType = "customer-hub" %}
+{% elif request.path is string_containing "/products/service" %}
+  {% set pageType = "service" %}
+{% endif %}
+
+{% if (request.path is string_containing "/products/marketing/lead-flows") or (request.path is string_containing "/products/marketing/free") %}
+  {% set pageType = "marketing" %}
+{% endif %}
+
+{% set pricingPaths = {
+   "crm": "/pricing/crm",
+	"sales": "/pricing/sales",
+	"marketing": "/pricing/marketing",
+   "marketing-specific": "/pricing/marketing"
+} %}

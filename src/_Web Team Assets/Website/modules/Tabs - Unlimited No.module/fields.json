@@ -1,0 +1,101 @@
+[ {
+  "id" : "0bc7eabd-514a-d054-8d41-3c05e80b02f0",
+  "name" : "tabs",
+  "label" : "Tabs",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "8a5b4b0a-fbc1-221e-81a4-ea4ee58e3c1a",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "8a5b4b0a-fbc1-221e-81a4-ea4ee58e3c1a",
+    "name" : "tab_label",
+    "label" : "Label",
+    "help_text" : "The label that appears for each tab section.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "New tab"
+  }, {
+    "id" : "fd9bd74f-2e42-c411-d23b-f032d9307970",
+    "name" : "content",
+    "label" : "Content",
+    "help_text" : "The hidden content for the tab (can include text, headers, images, etc).",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : "<p><img src=\"https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/tabs/sg-defaults_hq-large.png\" alt=\"HubSpot Cambridge Office\"></p>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit.</p>\n<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "tab_label" : "New tab",
+    "content" : "<p><img src=\"https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/tabs/sg-defaults_hq-large.png\" alt=\"HubSpot Cambridge Office\"></p>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit.</p>\n<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  }
+}, {
+  "id" : "a41b957e-79b6-ee97-37b2-eeb1f3a8e538",
+  "name" : "tab_options",
+  "label" : "Tab Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "9b13150a-8b7e-317d-38b6-8b57b42592f8",
+    "name" : "anchor_link_prefix",
+    "label" : "Anchor Link Prefix",
+    "help_text" : "Set a unique prefix, allowing you to link to specific tabs in the module from other pages. E.g. if your prefix was \"methodology,\" you could link people to https://www.hubspot.com/your-page-url#methodology2 — this will scroll directly to this module with Tab 2 open.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : { }
+}, {
+  "id" : "93a88422-161f-1416-6583-91ac31252d1d",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "9246b6df-8c67-53d0-5bf9-230201c2ce52",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "7acd81b5-bc5f-6ea9-e8b7-e6987ad835e4",
+    "name" : "mobile_sizing",
+    "label" : "Mobile Sizing",
+    "help_text" : "This module converts to an accordion view on mobile. This field determines the size of each accordion item.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a size",
+    "choices" : [ [ "large", "Large" ], [ "medium", "Medium" ], [ "small", "Small" ] ],
+    "type" : "choice",
+    "default" : "medium"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white",
+    "mobile_sizing" : "medium"
+  }
+} ]

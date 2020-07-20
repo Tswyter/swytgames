@@ -1,0 +1,50 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+MACRO BASED MODULES 
+Card Slider for Web Team Use Only (not an SG module)
+#}
+
+{% macro render_ftSnippet(module) %}
+<section class="wt-card-slider" data-background="{{ module.options.background_theme }}">
+  <div class="hsg-slider hsg-page-width-normal"
+     data-slides-to-scroll="1"
+     data-slides-to-scroll-mobile="1"
+     data-enable-mouse-events="true"
+     data-show-progress-dots="{% if module.show_indicator_dots %}true{% else %}false{% endif %}"
+     data-rewind="true"
+     data-autoplay="">
+    <div class="hsg-slider__container">
+      <ul class="hsg-slider__slides">
+        {% for card in module.cards -%}
+          <li class="hsg-slider__slide">
+            {% if card.card_image.src -%}
+              <img class="wt-card-slider__image" src="{{ card.card_image.src }}" alt="{{ card.card_image.alt }}">
+            {% endif -%}
+            {% if card.card_label -%}
+             <p class="wt-card-slider__label">{{ card.card_label }}</p>
+            {% endif -%}
+            {% if card.card_header -%}
+             <h4 class="wt-card-slider__header">{{ card.card_header }}</h4>
+            {% endif -%}
+            {% if card.card_paragraph -%}
+              <p class="wt-card-slider__paragraph">{{ card.card_paragraph }}</p>
+            {% endif -%}
+            {% if card.card_link.url.href -%}                  
+            <a class="wt-card-slider__link" href="{{ card.card_link.url.href }}"
+               {% if card.card_link.open_in_new_tab %}target="_blank"{% endif %}
+               {% if card.card_link.no_follow %}rel="nofollow"{% endif %}>{{ card.card_link_text }}</a>
+            {% endif -%}
+          </li>
+        {% endfor -%}
+      </ul>
+    </div>
+
+    <img tabindex="0" class="hsg-slider__prev" src="//cdn2.hubspot.net/hubfs/53/assets/careers/locations/remote/LeftArrow_Obsidian.svg" alt="left arrow" />
+    <img tabindex="0" class="hsg-slider__next" src="//cdn2.hubspot.net/hubfs/53/assets/careers/locations/remote/LeftArrow_Obsidian.svg" alt="right arrow"/>
+    <div class="hsg-slider__indicators"></div>
+  </div>
+</section>
+{% endmacro %}

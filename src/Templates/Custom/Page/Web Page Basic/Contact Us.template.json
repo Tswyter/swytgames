@@ -1,0 +1,418 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 4,
+  "attachedStylesheets" : [ {
+    "type" : "cos_extension_resource",
+    "path" : "/Coded files/Custom/page/css/Vast-style.css"
+  } ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "site-page two-column",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Header",
+        "label" : "hubtheme Theme/Header",
+        "type" : "global_group",
+        "params" : {
+          "css_class" : "",
+          "css_style" : "",
+          "generated_template_path" : "generated_global_groups/4317369719.html",
+          "html" : "",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369719.html",
+          "wrapping_html" : ""
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_29422393009683917942430969184282704598",
+        "label" : "Page Center",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "page-center padding60tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_159884225861098765933221098543131219009",
+            "label" : "Header",
+            "type" : "header",
+            "params" : {
+              "css_class" : "text-center accentColor1",
+              "css_style" : "",
+              "header_tag" : "h2",
+              "overrideable" : true,
+              "value" : "Drop us a line. We'd love to chat.",
+              "wrapping_html" : ""
+            },
+            "rows" : [ ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        }, {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_141663922226328972134407058138221453622",
+            "label" : "Sub Headline",
+            "type" : "text",
+            "params" : {
+              "css_class" : "sub-headline text-center",
+              "css_style" : "",
+              "overrideable" : true,
+              "value" : "We're never too busy to talk to someone as nice as you.",
+              "wrapping_html" : ""
+            },
+            "rows" : [ ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        }, {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_311865598604778426466096492319947223867",
+            "label" : "Group Padding",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "padding40tb",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 4,
+                "name" : "wizard_module_177453244297132695616142537417256589764",
+                "label" : "Well Module",
+                "type" : "custom_widget",
+                "params" : {
+                  "css_class" : "",
+                  "css_style" : "",
+                  "overrideable" : true,
+                  "type_of_well" : "plain",
+                  "well_size" : "small",
+                  "well_text_editor" : "<div style=\"text-align: center;\"><span style=\"font-size: 72px;\">[fa icon=\"envelope\"]</span></div>\n                                <h3 style=\"text-align: center;\">Email us:</h3>\n                                <p style=\"text-align: center;\"><a href=\"mailto:support@company.com\">support@company.com</a></p>\n                                <p style=\"text-align: center; padding-bottom: 10px;\"><a href=\"sales@company.com\">sales@company.com</a></p>",
+                  "widget_name" : "Well Module",
+                  "wrapping_html" : ""
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              },
+              "4" : {
+                "x" : 4,
+                "w" : 4,
+                "name" : "wizard_module_248037296170734925425237174537250842280",
+                "label" : "Well Module",
+                "type" : "custom_widget",
+                "params" : {
+                  "css_class" : "",
+                  "css_style" : "",
+                  "overrideable" : true,
+                  "type_of_well" : "plain",
+                  "well_size" : "small",
+                  "well_text_editor" : "<div style=\"text-align: center;\"><span style=\"font-size: 72px;\">[fa icon=\"phone\"]</span></div>\n                                <h3 style=\"text-align: center;\">Call us:</h3>\n                                <p style=\"text-align: center;\">555-0100</p>\n                                <p style=\"text-align: center; padding-bottom: 10px;\">Mon-Fri 9 am-5 pm (EST)</p>",
+                  "widget_name" : "Well Module",
+                  "wrapping_html" : ""
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              },
+              "8" : {
+                "x" : 8,
+                "w" : 4,
+                "name" : "wizard_module_303742693235573792622473934620079116386",
+                "label" : "Well Module",
+                "type" : "custom_widget",
+                "params" : {
+                  "css_class" : "",
+                  "css_style" : "",
+                  "overrideable" : true,
+                  "type_of_well" : "plain",
+                  "well_size" : "small",
+                  "well_text_editor" : "<div style=\"text-align: center;\"><span style=\"font-size: 72px;\">[fa icon=\"home\"]</span></div>\n                                <h3 style=\"text-align: center;\">Find us:</h3>\n                                <p style=\"text-align: center;\">123 Fake Street</p>\n                                <p style=\"text-align: center; padding-bottom: 10px;\">Anytown, USA</p>",
+                  "widget_name" : "Well Module",
+                  "wrapping_html" : ""
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_189616682243703262127748353184957971352",
+        "label" : "Google Map Embed Code",
+        "type" : "raw_html",
+        "params" : {
+          "overrideable" : true,
+          "value" : "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2947.723949750537!2d-71.07802099999996!3d42.36972199999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e370bc261e50e5%3A0xf3cba8437d505a26!2sHubSpot!5e0!3m2!1sen!2sus!4v1404174326409\" width=\"100%\" height=\"450\" frameborder=\"0\" style=\"border:0\"></iframe>"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_115160798118939936861707351202210426383",
+        "label" : "Page Center, Content Wrapper",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "page-center content-wrapper padding60tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 8,
+            "name" : "wizard_module_322948742920789905101456682427226438046",
+            "label" : "Main Content",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "main-content",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_9699436992662790945006246918501784391",
+                "label" : "Left Column",
+                "type" : "widget_container",
+                "params" : {
+                  "css_class" : "",
+                  "css_id" : "",
+                  "css_style" : "",
+                  "overrideable" : false,
+                  "per_widget_wrapper_html" : "",
+                  "value" : "",
+                  "wrapping_html" : ""
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          },
+          "8" : {
+            "x" : 8,
+            "w" : 4,
+            "name" : "wizard_module_305481629980260583808020554849533369297",
+            "label" : "Sidebar, Right",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "sidebar right",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ {
+              "0" : {
+                "x" : 0,
+                "w" : 12,
+                "name" : "wizard_module_40545932483675375307171181940392073455",
+                "label" : "Right Column",
+                "type" : "widget_container",
+                "params" : {
+                  "overrideable" : false
+                },
+                "rows" : [ ],
+                "rowMetaData" : [ ],
+                "cells" : [ ],
+                "cssId" : "",
+                "cssClass" : "",
+                "cssStyle" : "",
+                "styles" : null
+              }
+            } ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Full Width Blog Subscription Module",
+        "label" : "hubtheme Theme/Full Width Blog Subscription Module",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369759.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369759.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Footer",
+        "label" : "hubtheme Theme/Footer",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369739.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369739.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

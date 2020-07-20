@@ -1,0 +1,17 @@
+{
+  "content_tags" : [ {
+    "name" : "VIDEO",
+    "source" : "USER"
+  }, {
+    "name" : "GALLERY",
+    "source" : "USER"
+  }, {
+    "name" : "MULTIMEDIA",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 30862921658,
+  "is_available_for_new_content" : true
+}

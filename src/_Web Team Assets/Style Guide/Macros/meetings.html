@@ -1,0 +1,40 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+CHANGELOG:
+---------------
+05.24.19 Pat - Contact Sales tracking (temporary)
+#}
+{% macro generateMeetingsAppEmbed(
+  queryString=''
+) -%}
+  {% if is_french %}
+    {% set language = 'fr' %}
+    {{ require_js(get_asset_url('/_Web Team Assets/Style Guide/i18n/bam-fr.js')) }}
+  {% elif is_german %}
+    {% set language = 'de' %}
+    {{ require_js(get_asset_url('/_Web Team Assets/Style Guide/i18n/bam-de.js')) }}
+  {% elif is_spanish %}
+    {% set language = 'es' %}
+    {{ require_js(get_asset_url('/_Web Team Assets/Style Guide/i18n/bam-es.js')) }}
+  {% elif is_portuguese %}
+    {% set language = 'pt' %}
+    {{ require_js(get_asset_url('/_Web Team Assets/Style Guide/i18n/bam-pt.js')) }}
+  {% elif is_japanese %}
+    {% set language = 'jp' %}
+    {{ require_js(get_asset_url('/_Web Team Assets/Style Guide/i18n/bam-jp.js')) }}
+  {% else %}
+    {% set language = 'en' %}
+    {{ require_js(get_asset_url('/_Web Team Assets/Style Guide/i18n/bam-en.js')) }}
+  {% endif %}
+  {%- set userIsOwned = (contact.nurturing_owner_meetings_link is truthy) and (not contact.nurturing_owner_meetings_link is equalto 'contact.nurturing_owner_meetings_link'|upper) and (not contact.nurturing_owner_meetings_link is string_containing '/salesinquiries') -%}
+  {% if userIsOwned %}
+   
+    {%- set meetingsLink = contact.nurturing_owner_meetings_link ~ '?embed=true&meetings_funnel=Code' ~ (('&' ~ queryString) if queryString) ~ (('&' ~ request.query) if request.query) -%}
+    <div class="meetings-iframe-container" data-src="{{ meetingsLink }}"></div>
+  {% else %}
+      <div id="book-a-meeting-form-container" data-query-string="{{queryString}}" data-locale="{{ language }}" data-form-id="95c7a26e-eb03-4da7-bb69-4ca3c029983b" data-portal-id="53" ></div>
+  {% endif %}
+{% endmacro -%}

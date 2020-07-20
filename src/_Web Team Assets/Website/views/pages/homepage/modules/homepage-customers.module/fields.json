@@ -1,0 +1,59 @@
+[ {
+  "id" : "4e94658a-c225-68c3-0de1-b40400abbfe7",
+  "name" : "statistic",
+  "label" : "Statistic",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "84ef83f1-9ed7-7549-1b2e-d7b303ec8c95",
+  "name" : "description",
+  "label" : "Description",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "d074c691-cff7-011c-1362-1ff92cd06308",
+  "name" : "logo",
+  "label" : "Logo",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 8,
+    "sorting_label_field" : null,
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "5af166a0-7e4b-605b-171b-e96b8736251e",
+    "name" : "logo_image",
+    "label" : "Logo Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "type" : "image",
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "logo_image" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  }
+} ]

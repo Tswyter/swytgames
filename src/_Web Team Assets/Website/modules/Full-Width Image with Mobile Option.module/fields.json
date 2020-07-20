@@ -1,0 +1,53 @@
+[ {
+  "id" : "04e9ca25-ac55-a182-aef9-61cb8bc3b698",
+  "name" : "desktop_image",
+  "label" : "Desktop Image",
+  "required" : true,
+  "locked" : false,
+  "responsive" : true,
+  "resizable" : false,
+  "type" : "image",
+  "default" : {
+    "size_type" : "auto",
+    "src" : "",
+    "alt" : null
+  }
+}, {
+  "id" : "edb65442-1283-0188-bbf4-ddd9f3ca8445",
+  "name" : "mobile_image",
+  "label" : "Mobile Image",
+  "required" : true,
+  "locked" : false,
+  "responsive" : true,
+  "resizable" : false,
+  "type" : "image",
+  "default" : {
+    "size_type" : "auto",
+    "src" : "",
+    "alt" : null
+  }
+}, {
+  "id" : "f1c0c9d0-78d8-a7a2-2f0d-67f94aa8ba7c",
+  "name" : "image_link_url",
+  "label" : "Image Link URL",
+  "required" : false,
+  "locked" : false,
+  "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+  "type" : "url",
+  "default" : {
+    "content_id" : null,
+    "href" : "",
+    "type" : "EXTERNAL"
+  }
+}, {
+  "id" : "5c4862e2-3911-066f-3544-999795ebb492",
+  "name" : "custom_class",
+  "label" : "Custom Class",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+} ]

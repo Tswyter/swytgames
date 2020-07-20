@@ -1,0 +1,30 @@
+{% set prefix = 'homepage-hero' %}
+
+<section class="{{ prefix }}">
+    <div class="{{ prefix }}__content">
+        <div class="{{ prefix }}__container hsg-page-width-normal">
+            <div class="{{ prefix }}__text">
+                <h1>{{ module.header }}</h1>
+                <p>{{ module.subheader }}</p>
+                <div class="hsg-page-header__ctas">
+                    <a class="homepage-hero-convert cta--primary cta--large {{ module.cta_class }}" href="{{ module.cta_url.href }}">{{ module.cta_text }}</a>
+                    <p class="hsg-microcopy">{{ module.microcopy }}</p>
+                </div>
+            </div>
+            <picture>
+                <source media="(min-width: 1025px)" srcset="{{ get_asset_url('../../../../../assets/svg/hero.svg') }}" class="{{ prefix }}__svg">
+                <img class="{{ prefix }}__svg"
+                    alt="Garage Startup Enterprise Illustration"
+                    src="{{ get_asset_url('../../../../../assets/svg/hero.svg') }}"
+                >
+            </picture>
+        </div>
+    </div>
+    <div class="{{ prefix }}__img">
+    <div class="{{ prefix }}__img-mobile">
+        <img src="https://www.hubspot.net/hubfs/53/assets/hubspot.com/home/2019/garage.svg" alt="Garage Stage Illustration">
+        <img src="https://www.hubspot.net/hubfs/53/assets/hubspot.com/home/2019/startup.svg" alt="Startup Stage Illustration">
+        <img src="https://www.hubspot.net/hubfs/53/assets/hubspot.com/home/2019/enterprise.svg" alt="Enterprise Stage Illustration">
+    </div>
+    </div>
+</section>

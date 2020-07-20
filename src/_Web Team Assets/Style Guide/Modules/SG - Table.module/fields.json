@@ -1,0 +1,246 @@
+[ {
+  "id" : "0cc9cb78-1462-2a1a-7edd-ea19911a8483",
+  "name" : "header",
+  "label" : "Header",
+  "help_text" : "(Optional). A main header for this table. (NOTE: Recommended to use a separate 56 Section Header module for this header).",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "662ef6dd-940d-b879-a337-ad630126c304",
+  "name" : "columns",
+  "label" : "Column Headers",
+  "help_text" : "Define the label and optional description for each column header of this table (up to 6 columns).",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 6,
+    "sorting_label_field" : "05ef56ec-166f-e32b-066e-fe9818bd355e",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "05ef56ec-166f-e32b-066e-fe9818bd355e",
+    "name" : "column_label",
+    "label" : "Column Label",
+    "help_text" : "The header label for the column.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Column Label"
+  }, {
+    "id" : "882f25d6-dba3-0618-c889-55cd8174c1f8",
+    "name" : "description",
+    "label" : "Column Description",
+    "help_text" : "Optional. Add a description for your column label (if there is further context required).",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "label" : "Column Label"
+  }, {
+    "label" : "Column Label"
+  }, {
+    "label" : "Column Label"
+  } ]
+}, {
+  "id" : "37eb2ea7-19c0-dc31-1eef-221b3297b503",
+  "name" : "rows",
+  "label" : "Rows",
+  "help_text" : "Define the label, cell details, and optional tooltip for each row in this table (up to 25 rows).",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 75,
+    "sorting_label_field" : "09e9170d-c0bd-9fd8-deaf-724df3fc0a8b",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "09e9170d-c0bd-9fd8-deaf-724df3fc0a8b",
+    "name" : "row_label",
+    "label" : "Row Label",
+    "help_text" : "The left-side label for the row content.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Row Label"
+  }, {
+    "id" : "8e450abf-cdd7-7468-7da1-eb2384f96c18",
+    "name" : "tooltip",
+    "label" : "Tooltip Content",
+    "help_text" : "(Optional) To enable a hoverable tooltip to appear beside this row's label, enter content in this field.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "41fb9176-37b7-bab3-1d23-0ce6d3b4dabb",
+    "name" : "cells",
+    "label" : "Row Cells",
+    "help_text" : "The content for the row. The number of cells added here should correspond with the column headers in the table, in the same order.",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : 6,
+      "sorting_label_field" : "65cbd79d-4a71-5175-bf6c-0c0573a3b5c1",
+      "default" : 3
+    },
+    "children" : [ {
+      "id" : "65cbd79d-4a71-5175-bf6c-0c0573a3b5c1",
+      "name" : "content",
+      "label" : "Cell Content",
+      "help_text" : "The row content corresponding to the first column label in the table.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Cell Content"
+    }, {
+      "id" : "8c5b1c1a-7b05-898b-6f51-40b70112332f",
+      "name" : "show_checkmark",
+      "label" : "Show checkmark?",
+      "help_text" : "In place of, or in addition to, content for this column cell, add a stylized checkmark (good for feature comparison tables).",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : [ {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    } ]
+  }, {
+    "id" : "8fd6e80e-315f-7917-5984-74e443fc3e97",
+    "name" : "header",
+    "label" : "Row Header",
+    "help_text" : "(Optional, use sparingly). A full-width header inserted before this row's cell content. This is called a merged cell header, and should act as a section header for the following rows.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "label" : "Row Label",
+    "cells" : [ {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    } ]
+  }, {
+    "label" : "Row Label",
+    "cells" : [ {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    } ]
+  }, {
+    "label" : "Row Label",
+    "cells" : [ {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    }, {
+      "content" : "Cell Content",
+      "show_checkmark" : false
+    } ]
+  } ]
+}, {
+  "id" : "fdcb188a-6540-da64-5aa5-37ace4e15ba1",
+  "name" : "scroll_helper_tooltip",
+  "label" : "Scroll Helper Tooltip",
+  "help_text" : "Helper tooltip text to show when table can be scrolled on mobile display.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "placeholder" : "Scroll to see more",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "Scroll to see more"
+}, {
+  "id" : "3da2fa6e-ba73-bc7f-ac43-84b0f624f477",
+  "name" : "footer",
+  "label" : "Footer",
+  "help_text" : "(Optional). Add text content immediately beneath this table (typically used for some form of disclaimer text).",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "2f28541d-b1ac-a4ba-2057-c8c40b98d54f",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "18638935-e2f1-ab27-696a-696e91f5046e",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

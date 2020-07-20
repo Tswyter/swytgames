@@ -1,0 +1,17 @@
+{
+  "content_tags" : [ {
+    "name" : "OTHER_INDUSTRY",
+    "source" : "MARKETPLACE"
+  }, {
+    "name" : "EMAIL",
+    "source" : "MARKETPLACE"
+  }, {
+    "name" : "COMPATIBLE_EMAIL",
+    "source" : "MARKETPLACE"
+  } ],
+  "global" : true,
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "KNOWLEDGE_BASE" ],
+  "module_id" : 6793143,
+  "is_available_for_new_content" : true
+}

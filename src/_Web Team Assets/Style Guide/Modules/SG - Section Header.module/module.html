@@ -1,0 +1,44 @@
+{#
+CHANGE LOG:
+------------------
+
+#}
+
+{%- set anchorId = module.anchor_destination|replace('#', '')|replace(' ', '') -%}
+{%- set containerClasses = 'section-header' ~ ((' section-header--' ~ module.options.divider.type) if not module.options.divider.type is equalto 'none') -%}
+{%- set headerClasses = 'section-header__header' ~ (' section-header--divider' if module.descriptions|length) -%}
+
+{%- if (module.header is truthy) or module.descriptions|length -%}
+<section
+  class="{{ containerClasses }}"
+  data-background="{{ module.options.background_theme }}"
+  {%- if anchorId %}id="{{ anchorId }}"{% endif %}>
+
+  {# Show bubble divider (one) or background image (four) #}
+  {%- if module.options.divider.type is equalto 'one' -%}
+  {% include '_Web Team Assets/Style Guide/Modules/includes/section_header_svg_bubbles.html' %}
+  {% elif (module.options.divider.type is equalto 'four') and module.options.divider.image.src -%}
+  <div class="section-header--{{ module.options.divider.type }}__image-wrapper" data-background-overlay="gradient5">
+    <img src="{{ module.options.divider.image.src }}"
+      alt="{{ module.options.divider.image.alt }}"
+      width="{{ module.options.divider.image.width }}"
+      height="{{ module.options.divider.image.height }}"
+      data-background-overlay-img>
+  </div>
+  {% endif -%}
+     
+  <div class="hsg-page-width-normal">
+    {% if module.header is truthy -%}
+    <{{ module.options.header_type }} class="{{ headerClasses }}">
+      {{ module.header }}
+    </{{ module.options.header_type }}>
+    {% endif -%}
+
+    {%- for description in module.descriptions -%}
+      {% if description is truthy -%}
+      <p>{{ description }}</p>
+      {% endif -%}
+    {% endfor -%}
+  </div>
+</section>
+{% endif -%}

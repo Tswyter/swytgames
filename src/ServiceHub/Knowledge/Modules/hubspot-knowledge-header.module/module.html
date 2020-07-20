@@ -1,0 +1,74 @@
+{% set companyLogo = knowledge_base.companyLogo %}
+{% set knowledgeBaseName = knowledge_base.name %}
+{% set companyWebsiteLink = knowledge_base.companyWebsiteLink || "#" %}
+{% set companyWebsiteLinkText = knowledge_base.companyWebsiteLinkText || "return" %}
+{% set linkColor = knowledge_base.linksColor %}
+{% set supportFormEnabled = knowledge_base.supportFormEnabled && "KnowledgeContent:SupportForm" in gates %}
+{% if knowledge_base.slug %}
+	{% set knowledgeBaseRoot = "/" ~ knowledge_base.slug ~ "/" %}
+{% else %}
+	{% set knowledgeBaseRoot = "/" %}
+{% endif %}
+
+{% macro kb_nav_link_base(href) %}
+  <li><a href="{{href}}">{{ caller() }}</a></li>
+{% endmacro %}
+
+{% macro kb_nav_link_external_base(href) %}
+  <li><a href="{{href}}" target="_blank">{{ caller() }}</a></li>
+{% endmacro %}
+
+{% macro kb_nav_link(href, label) %}
+  {% call kb_nav_link_base(href) %}
+    {{ label }}
+  {% endcall %}
+{% endmacro %}
+
+<div class="kb-header" id="kb-header">
+  <div class="kb-header__logo">
+    <a href="{{ knowledgeBaseRoot }}">
+      <img src="{{ resize_image_url(companyLogo,0,120) }}">
+    </a>
+  </div>
+  <div class="kb-header__title">{{ knowledgeBaseName }}</div>
+  <nav id="kb-header__nav" class="kb-header__nav" role="navigation">
+    <ul>
+      {% call kb_nav_link_external_base(companyWebsiteLink if ('http://' in companyWebsiteLink or 'https://' in companyWebsiteLink or companyWebsiteLink == "#") else "//" ~ companyWebsiteLink) %}
+        {{ companyWebsiteLinkText }}
+        <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.11 10.223V7.0472l1.308-1.3077v4.4835c0 .9323-.7628 1.6952-1.6953 1.6952H1.6952C.7628 11.9182 0 11.1553 0 10.223V4.1955C0 3.2628.7628 2.5 1.6952 2.5h4.4833L4.8707 3.8082H1.6952c-.2099 0-.3872.1771-.3872.3873v6.0275c0 .2098.1773.387.3872.387h6.0275c.21 0 .3873-.1772.3873-.387zM5.9428.4417L12.0137 0l-.442 6.0708L9.6368 4.136 6.0925 7.68 4.3333 5.9207l3.544-3.5442L5.9428.4417z"
+           fill="{{ linkColor }}" />
+        </svg>
+      {% endcall %}
+			{% if supportFormEnabled %}
+				{{ kb_nav_link(knowledgeBaseRoot ~ "kb-tickets/new", knowledge_base.supportFormTitle) }}
+			{% endif %}
+      {% if has_restricted_articles %}
+        {% if request_contact is defined and request_contact.is_logged_in %}
+          {{ kb_nav_link("/" ~ "_hcms/mem/logout?redirect_url=" ~ knowledgeBaseRoot, shared_signOut) }}
+        {% else %}
+          {{ kb_nav_link("/" ~ "_hcms/mem/login?redirect_url=" ~ knowledgeBaseRoot, shared_signIn) }}
+        {% endif %}
+      {% endif %}
+    </ul>
+  </nav>
+  <a href="#" class="kb-header__nav-close" role="button" aria-controls="kb-header__nav">
+      <span class="kb-icon close" aria-hidden="true">
+    		<svg width="16" height="17" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#2D3E50" fill-rule="nonzero">
+            <path d="M15.07107 1.42893c.59587.59588.88893 1.23239.0505 2.07081L2.99975 15.62158c-.83842.83842-1.48089.5394-2.0708-.05051C.33305 14.97519.04 14.33868.87841 13.50026L13.00026 1.37842c.83842-.83842 1.48089-.5394 2.0708.05051z"/>
+            <path d="M15.07107 15.57107c-.59588.59587-1.23239.88893-2.07081.0505L.87842 3.49975C.04 2.66132.33902 2.01885.92893 1.42894 1.52481.83305 2.16132.54 2.99974 1.37841l12.12184 12.12184c.83842.83842.5394 1.48089-.05051 2.0708z"/>
+          </g>
+        </svg>
+    	</span>
+    </a>
+  <a href="#kb-header" class="kb-header__nav-toggle" role="button" aria-controls="kb-header__nav">
+    <span class="kb-icon menu">
+      <svg width="25" height="17" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#2D3E50" fill-rule="nonzero">
+          <path d="M24.56897 2.295c0 .85-.2931 1.513-1.72414 1.513H2.15517C.72414 3.808.43103 3.1365.43103 2.295c0-.85.2931-1.513 1.72414-1.513h20.68966c1.43103 0 1.72414.6715 1.72414 1.513zM24.56897 8.8315c0 .85-.2931 1.513-1.72414 1.513H2.15517c-1.43103 0-1.72414-.6715-1.72414-1.513 0-.85.2931-1.513 1.72414-1.513h20.68966c1.43103 0 1.72414.6715 1.72414 1.513zM24.56897 15.3595c0 .85-.2931 1.513-1.72414 1.513H2.15517c-1.43103 0-1.72414-.6715-1.72414-1.513 0-.85.2931-1.513 1.72414-1.513h20.68966c1.43103 0 1.72414.6715 1.72414 1.513z"/>
+        </g>
+    	</svg>
+    </span>
+  </a>
+</div>

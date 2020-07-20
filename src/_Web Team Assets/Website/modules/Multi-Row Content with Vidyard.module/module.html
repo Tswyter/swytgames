@@ -1,0 +1,120 @@
+{#
+CHANGE LOG:
+---------------------
+
+#}
+
+{%- unless videoMacros is defined -%}
+  {% import '_Web Team Assets/Style Guide/Macros/video.html' as videoMacros %}
+{%- endunless -%}
+
+{%- if module.rows|length -%}
+  <section
+    class="hsg-multi-row"
+    data-background="{{ module.options.background_theme }}"
+    data-alignment="{{ module.row_options.alignment }}"
+    data-image-size="{{ module.options.image_sizing }}">
+    <ol class="hsg-page-width-normal">
+      {% for row in module.rows -%}
+
+        {%- set videoSrc = row.videos.facebook_url if (row.videos.type is equalto 'facebook') else row.videos.v_id  -%}
+        {%- set videoId = row.videos.facebook_url|md5 if (row.videos.type is equalto 'facebook') else row.videos.v_id -%}
+        {%- set videoContainerId = name ~ '-' ~ loop.index ~ '-' ~ videoId -%}
+        {%- set videoModalId = name ~ '-' ~ loop.index ~ '__modal' -%}
+
+        {%- if row.header or row.description or videoSrc -%}
+
+        <li class="hsg-multi-row__item">
+
+          <div class="hsg-multi-row__text-content">
+            {% if row.header -%}
+              {% if canvasAudit %}
+                <h3 class="hsg-multi-row__heading">{{ row.header }}</h3>
+              {% else %}
+                <h4>{{ row.header }}</h4>
+              {% endif %}
+            {% endif -%}
+
+            {%- if row.description -%}
+            <div class="hsg-multi-row__description">{{ row.description }}</div>
+            {% endif -%}
+            {% if row.employee_name %}
+            <div class="hsg-multi-row__employee-name">{{ row.employee_name }}</div>
+            {% endif %}
+            {% if row.employee_title %}
+              <div class="hsg-multi-row__employee-title">{{ row.employee_title }}</div>
+            {% endif %}
+          </div>
+
+          {# MODAL MARKUP #}
+          {%- if videoSrc -%}
+            {{ videoMacros.generateVideoModal({
+              modalId: videoModalId,
+              videoOptions: {
+                type: row.videos.type,
+                id: videoSrc,
+                mute: (true if row.videos.autoplay else false),
+                controls: row.videos.controls,
+                autoplay: row.videos.autoplay,
+                facebookUrl: (row.videos.facebook_url if (row.videos.type is equalto 'facebook') else ''),
+                uniqueId: videoContainerId
+              }
+            }) }}
+
+              {% if row.videos.type is equalto 'hsvideo' %}
+                <div class="hsg-video-gallery__item">
+                  <div class="hsg-video-gallery__playbar">
+                  {%- if row.videos.caption -%}
+                  <h5>{{ row.videos.caption }}</h5>
+                  <span class="hsg-video-gallery__playbar-line"></span>
+                  {% endif -%}
+                </div>
+                <iframe id="vidyard_iframe_{{ videoId }}" allowfullscreen="" allowtransparency="true" aria-label="Video" class="vidyard_iframe" frameborder="0" height="100%" width="100%" scrolling="no" title="Video" src="//play.vidyard.com/{{ videoId }}?v=3.1&amp;type=inline&autoplay=0"></iframe>
+                </div>
+              {% else %}
+                <a href="#" class="hsg-video-gallery__item"
+                  data-type="{{ row.videos.type }}"
+                  data-src="{{ videoSrc }}"
+                  data-target-modal="{{ videoModalId }}">
+
+                {%- if not row.videos.type is equalto 'facebook' -%}
+                <div class="hsg-video-gallery__playbar">
+                  {%- if row.videos.caption -%}
+                  <h5>{{ row.videos.caption }}</h5>
+                  <span class="hsg-video-gallery__playbar-line"></span>
+                  {% endif -%}
+                </div>
+
+                <i class="hsg-icon hsg-icon-play hsg-video-gallery__playbar-button"></i>
+                {% endif -%}
+
+                <div class="hsg-video-gallery__img-wrapper">
+                  {% if row.videos.type is equalto 'youtube' -%}
+                  <img src="//img.youtube.com/vi/{{ videoSrc }}/hqdefault.jpg" alt="{{ row.videos.caption }}">
+                  {% elif row.videos.type is equalto 'facebook' -%}
+                  {{ videoMacros.generateVideo({
+                    type: row.videos.type,
+                    id: videoSrc,
+                    mute: (true if row.videos.autoplay else false),
+                    controls: row.videos.controls,
+                    autoplay: row.videos.autoplay,
+                    facebookUrl: row.videos.facebook_url,
+                    defer: false,
+                    uniqueId: (videoContainerId ~ '-inline')
+                  }) }}
+                  {% endif -%}
+                </div>
+               </a>
+            {% endif %}
+          {% endif -%}
+
+
+        </li>
+
+
+
+        {% endif -%}
+      {% endfor -%}
+    </ol>
+  </section>
+{% endif -%}

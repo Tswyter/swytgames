@@ -1,0 +1,55 @@
+<!--
+  templateType: "page"
+  isAvailableForNewContent: false
+-->
+{% macro g(opts={}) -%}
+  {%- set numberType = opts.numberType or 'main' -%}
+  {%- set numberLabel = opts.numberLabel -%}
+  {%- set invocaNumber = opts.invocaNumber -%}
+  {%- set customClasses = opts.customClasses -%}
+  {%- set showIcon = opts.showIcon if (opts.showIcon is defined) else false -%}
+  {#
+    Classes for additional wrapping container for phone number content
+    (primary use case: main nav phone number dropdown)
+  #}
+  {%- set additionalContainerClasses = opts.additionalContainerClasses -%}
+
+  {# Logic for determining default number #}
+  {%- set localNumber = '1 857 829 5060' -%}
+  {%- set mainNumber = '1 888 482 7768' -%}
+
+  {%- set number = mainNumber if numberType == 'main' else localNumber -%}
+  {%- set containerClasses = 'hsg-sales-number' ~ (' ' ~ customClasses if customClasses) -%}
+
+  <a href="tel:+{{ number|replace(' ', '') }}"
+     class="{{ containerClasses }}"
+     data-sales-number="{{ numberType }}"
+          {% if invocaNumber is truthy -%}
+     data-invoca-number="{{ invocaNumber }}"
+          {% endif -%}
+     aria-hidden="false"
+     data-loaded="false">
+    {% if additionalContainerClasses -%}
+      <span class="{{ additionalContainerClasses }}">
+    {% endif -%}
+    {% if showIcon is truthy %}<span class="hsg-icon hsg-icon-phone"></span>{% endif %}
+    {{ numberLabel }}
+    <span class="hsg-sales-number__number">+{{ number }}</span>
+    {% if additionalContainerClasses -%}
+      </span>
+    {% endif -%}
+  </a>
+  <noscript>
+    <a href="tel:+{{ number|replace(' ', '') }}" class="{{ customClasses }}">
+      {% if additionalContainerClasses -%}
+        <span class="{{ additionalContainerClasses }}">
+      {% endif -%}
+      {% if showIcon is truthy %}<span class="hsg-icon hsg-icon-phone"></span>{% endif %}
+      {{ numberLabel }}
+      <span>+{{ number }}</span>
+      {% if additionalContainerClasses -%}
+        </span>
+      {% endif -%}
+    </a>
+  </noscript>
+{% endmacro -%}

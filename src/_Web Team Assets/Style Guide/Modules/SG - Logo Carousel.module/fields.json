@@ -1,0 +1,211 @@
+[ {
+  "id" : "f75a152d-6b25-52c2-9a90-62a9d8c8a907",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "73b44dd3-fd2c-8f2c-0027-df673ab35631",
+  "name" : "logos",
+  "label" : "Logos",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 12,
+    "sorting_label_field" : "f4c8da42-d63f-81be-1713-2581e9751c46",
+    "default" : 6
+  },
+  "children" : [ {
+    "id" : "f4c8da42-d63f-81be-1713-2581e9751c46",
+    "name" : "logo",
+    "label" : "Logo",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    }
+  }, {
+    "id" : "8518db61-f97f-b0d0-cc00-ea4e550540c5",
+    "name" : "add_link",
+    "label" : "Add link",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "d9fd04a6-b574-261d-ac3a-77f651d8296b",
+    "name" : "link",
+    "label" : "Link",
+    "help_text" : "Optional. When this logo is clicked, it will open this URL.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "8518db61-f97f-b0d0-cc00-ea4e550540c5",
+      "controlling_value_regex" : "true",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+    "type" : "link",
+    "default" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "logo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    },
+    "add_link" : false,
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "logo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    },
+    "add_link" : false,
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "logo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    },
+    "add_link" : false,
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "logo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    },
+    "add_link" : false,
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "logo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    },
+    "add_link" : false,
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "logo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color.svg",
+      "alt" : "HSLogo_color",
+      "width" : 106,
+      "height" : 30
+    },
+    "add_link" : false,
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ]
+}, {
+  "id" : "a9e3583f-a136-79ad-08d6-e0c664f497bd",
+  "name" : "options",
+  "label" : "Display options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "7575f4ef-c484-dad9-78fa-ccdfa4d508c8",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : null
+  }, {
+    "id" : "da95ee51-d4db-7036-7c93-e95384465793",
+    "name" : "display_width",
+    "label" : "Logo Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "55px", "Square" ], [ "auto", "Rectangle" ] ],
+    "type" : "choice",
+    "default" : ""
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "display_width" : ""
+  }
+} ]

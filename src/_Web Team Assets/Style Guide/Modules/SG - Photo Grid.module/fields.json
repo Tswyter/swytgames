@@ -1,0 +1,55 @@
+[ {
+  "id" : "184fbf48-9154-274c-85c5-697361a47976",
+  "name" : "photos",
+  "label" : "Photos",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 0,
+    "max" : 14,
+    "sorting_label_field" : "f2041df1-fa71-5e10-ec2c-a16d6ca8b6b7",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "f2041df1-fa71-5e10-ec2c-a16d6ca8b6b7",
+    "name" : "photo",
+    "label" : "Photo",
+    "help_text" : "See https://www.hubspot.com/style-guide/modules/photo-grid for recommended sizes.",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/templates/sg-defaults_1-col-flex.jpg",
+      "alt" : "sg-defaults_1-col-flex",
+      "width" : 576,
+      "height" : 360
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "photo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/templates/sg-defaults_1-col-flex.jpg",
+      "alt" : "sg-defaults_1-col-flex",
+      "width" : 576,
+      "height" : 360
+    }
+  }, {
+    "photo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/templates/sg-defaults_1-col-flex.jpg",
+      "alt" : "sg-defaults_1-col-flex",
+      "width" : 576,
+      "height" : 360
+    }
+  }, {
+    "photo" : {
+      "src" : "https://cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/templates/sg-defaults_1-col-flex.jpg",
+      "alt" : "sg-defaults_1-col-flex",
+      "width" : 576,
+      "height" : 360
+    }
+  } ]
+} ]

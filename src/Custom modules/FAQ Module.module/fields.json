@@ -1,0 +1,40 @@
+[ {
+  "id" : "9956c563-2849-90fe-591b-5ddd5dadbbc5",
+  "name" : "faq_question",
+  "label" : "FAQ Question",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "Why is the sky blue and the grass green?"
+}, {
+  "id" : "6ebe4920-da27-a60c-9349-6f2b7cb7c0c7",
+  "name" : "faq_answer",
+  "label" : "FAQ Answer",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "default" : "<span>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</span>"
+}, {
+  "id" : "d8e72cc7-09b4-66c5-f692-4d0b3698a075",
+  "name" : "expanded",
+  "label" : "Expanded?",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "default" : null
+}, {
+  "id" : "9e6c8756-3670-f4fa-13fa-811b1347a98c",
+  "name" : "email_field",
+  "label" : "Email address field",
+  "required" : false,
+  "locked" : false,
+  "type" : "email",
+  "default" : [ "tswyter@hubspot.com" ]
+} ]

@@ -1,0 +1,454 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{#
+CHANGE LOG:
+-------------------
+- (PW | 4.10) Remove comment from Meetings embed
+#}
+
+{% macro generateCta(
+    ctaText='',
+    ctaUrl='',
+    productId,
+    ctaClass='cta--primary',
+    smartRuleType='',
+    listId='',
+    lifecycleStage='',
+    smartCtaText='',
+    smartCtaLink='',
+    customClass='',
+    customClassSmart='',
+    modalName,
+    openInNewTab=False,
+    noCrawl=False
+) %}
+  {% if productId -%}
+  <span class="hs-cta-wrapper" data-cta-product-id="{{ productId }}" id="hs-cta-wrapper-{{ productId }}">
+    <span class="hs-cta-node hs-cta-{{ productId }}" id="hs-cta-{{ productId }}">
+      <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]-->
+      <a href="http://cta-redirect.hubspot.com/cta/redirect/53/{{ productId }}" >
+        <img class="hs-cta-img" id="hs-cta-img-{{ productId }}" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/53/{{ productId }}.png" />
+      </a>
+    </span>
+  </span>
+  {% else %}
+    {% if modalName -%}
+    <a class="launch-modal no-style {{ctaClass}} {{ customClass }}" {% if is_legacy_page %}data-modal="{{ modalName }}"{% else %}data-target-modal="{{ modalName }}"{% endif %}>{{ ctaText }}</a>            
+    {% elif ctaUrl -%}
+      {% if ctaUrl is string_startingwith "#" -%}
+        {% if (smartRuleType == 'lifecycle' && lifecycleStage|lower == request_contact.lifecycle_stage|lower) or (smartRuleType == 'list-member' && listId|int in request_contact.list_memberships) -%}
+        <a class="{{ ctaClass }} {{ customClassSmart }}" href="{{ smartCtaLink }}" {% if openInNewTab %}target="_blank" data-mce-target="_blank"{% endif %}{% if noCrawl %} rel="nofollow" data-mce-rel="nofollow"{% endif %}>
+          {{ smartCtaText }}
+        </a>
+        {% else %}
+        <a class="{{ ctaClass }} {{ customClass }}" href="{{ ctaUrl  }}" {% if openInNewTab %} target="_blank" data-mce-target="_blank"{% endif %}{% if noCrawl %} rel="nofollow" data-mce-rel="nofollow"{% endif %}>
+          {{ ctaText }}
+        </a>
+        {% endif -%}
+      {% else %}
+        {% if (smartRuleType == 'lifecycle' && lifecycleStage|lower == request_contact.lifecycle_stage|lower) or (smartRuleType == 'list-member' && listId|int in request_contact.list_memberships) -%}
+        <a class="{{ ctaClass }} {{ customClassSmart }}" href="{{ smartCtaLink }}" {% if openInNewTab %}target="_blank" data-mce-target="_blank"{% endif %}{% if noCrawl %} rel="nofollow" data-mce-rel="nofollow"{% endif %}>
+          {{ smartCtaText }}
+        </a>
+        {% else %}
+        <a class="{{ ctaClass }} {{ customClass }}" href="{{ ctaUrl }}" {% if openInNewTab %} target="_blank" data-mce-target="_blank"{% endif %}{% if noCrawl %} rel="nofollow" data-mce-rel="nofollow"{% endif %}>
+          {{ ctaText }}
+        </a>
+        {% endif -%}
+      {% endif -%}
+    {% endif -%}
+  {% endif -%}
+{% endmacro %}
+
+{# Look for and store any UTM parameters passed by the referral URL #}
+{% macro generateUtmUrl(url) %}
+    
+        {% set paramString = [] %}
+        {% for key, value in request.query_dict.items() %}
+            {% if key is string_containing 'utm' %}
+                {% set pair = key ~ "=" ~ value|urlencode %}
+                {% if paramString.append(pair) %}{% endif %}
+            {% endif %}
+        {% endfor %}
+        {% if paramString|length > 0 %}
+            {% if url is string_containing '?' %}
+                {{ url ~ '&' ~ paramString|join('&') }}
+            {% else %}
+                {{ url ~ '?' ~ paramString|join('&') }}
+            {% endif %}
+        {% else %}
+            {{ url }}
+        {% endif %}
+{% endmacro %}
+
+{# Pass request query through filtering before generating link URL -- resolved IE vulnerability #}
+{% macro generateSafeQueryUrl(url) -%}
+  {%- set filteredQueryString = [] -%}
+
+  {%- for k, v in request.query_dict.items() -%}
+    {%- set filteredKey = k|striptags|urlencode -%}
+    {%- set filteredValue = v|striptags|urlencode -%}
+    {% if k -%}
+      {%- set filterPair = filteredKey ~ '=' ~ filteredValue -%}
+      {%- do filteredQueryString.append(filterPair) -%}
+    {% endif -%}
+  {% endfor -%}
+  
+  {%- if filteredQueryString|length -%}
+    {% if url is string_containing '?' -%}
+      {{ url ~ '&' ~ filteredQueryString|join('&') }}
+    {% else %}
+      {{ url ~ '?' ~ filteredQueryString|join('&') }}
+    {% endif -%}
+  {% else %}
+    {{ url }}
+  {% endif -%}
+{% endmacro -%}
+
+{# Download via FBM Link Macro #}
+{% macro facebookMessengerLink(startModule, pageId, target='blank', otherProps={}) %}
+    {% set ref = [] %}
+    {% set props = { utk: request.cookies.hubspotutk, email: contact.email, pageId: pageId, startModule: startModule  } %}
+    {% for key, value in props.items() %}
+        {% if value is defined %}
+            {% set param = key ~ '=' ~ value %}
+            {% set _ = ref.append(param) %}
+        {% endif %}
+    {% endfor %}
+    <!--<a class="hsg-download-via-fbm" href="https://ed248b24.ngrok.io/fbm-handler/262932527497057?{{ ref|unique|join('&') }}" target="{{target}}">Download via FBM</a>-->
+    <a id="cta--fbm" class="cta--fbm cta--primary cta--medium" href="https://fbm.hubspot.com/fbm-handler/6039999393?{{ request.query }}&{{ ref|unique|join('&') }}" target="{{target}}">Download on Facebook Messenger</a>
+{% endmacro %}
+
+{# Google Map Macro #}
+{# Parameters: (Location Name, Location Address, Map Width, Map Height) #}
+{% macro drawGoogleMap(
+    mapLocationName = '',
+    mapAddress =  '',
+    mapWidth = '100%',
+    mapHeight = '350px'
+) %}
+
+ {# Draw Map #}
+    <div class="hsg-section-gmap__google-map" style="width:{{mapWidth}}; height:{{mapHeight}}"></div>
+
+ {# Map Place card #}
+    <div class="hsg-section-gmap__placecard">
+        <div class="hsg-section-gmap__placecard__left">
+            <p class="hsg-section-gmap__placecard__left__location-name hsg-section-gmap__location-name">{{ mapLocationName }}</p>
+            <p class="hsg-section-gmap__placecard__left__location-address">{{ mapAddress }}</p>
+            <a class="hsg-section-gmap__placecard__left__map-view-large" href="//maps.google.com/maps?q={{ mapAddress }}&amp;z=18" target="_blank">View larger map</a>
+        </div>
+        <div class="hsg-section-gmap__placecard__right">
+            <a class="hsg-section-gmap__placecard__right__map-direction-link" href="//maps.google.com/maps?q={{ mapAddress }}" target="_blank">
+               <div class="hsg-section-gmap__placecard__right__map-direction-link__icon"></div>
+              Directions
+            </a>
+        </div>
+    </div>
+{% endmacro %}
+
+{# Add To Calendar Macro #}
+{% macro addToCalendar(
+    button_text='Add to Your Calendar', 
+    start_date_time='', 
+    end_date_time='', 
+    timezone='America/New_York', 
+    event_title='', 
+    event_description='', 
+    event_location='', 
+    event_organizer='', 
+    event_organizer_email='' 
+) %}
+
+<div class="hsg-add-to-calendar">
+     <span class=" addtocalendar atc-style-blue">
+        <a class="hsg-atcb__link atcb-link cta--primary cta--medium">{{ button_text }}</a>
+        <var class="atc_event hsg-atcb__event">
+            <var class="atc_date_start">{{ start_date_time }}</var>
+            <var class="atc_date_end">{{ end_date_time }}</var>
+            <var class="atc_timezone">{{ timezone }}</var>
+            <var class="atc_title">{{ event_title }}</var>
+            <var class="atc_description">{{ event_description }}</var>
+            <var class="atc_location">{{ event_location }}</var>
+            <var class="atc_organizer">{{ event_organizer }}</var>
+            <var class="atc_organizer_email">{{ event_organizer_email }}</var>
+        </var>
+    </span>
+</div>
+
+{% endmacro %}
+
+{% macro generateMeetingsAppEmbed(
+  queryString=''
+) -%}
+  {%- set userIsOwned = (contact.nurturing_owner_meetings_link is truthy) and (not contact.nurturing_owner_meetings_link is equalto 'contact.nurturing_owner_meetings_link'|upper) and (not contact.nurturing_owner_meetings_link is string_containing '/salesinquiries') -%}
+  {%- set meetingsLinkRoot = contact.nurturing_owner_meetings_link if userIsOwned else 'https://app.hubspot.com/meetings/salesinquiries' -%}
+  {%- set meetingsLink = meetingsLinkRoot ~ '?embed=true' ~ (('&' ~ queryString) if queryString) -%}
+
+  {#
+    Date: May 24th, 2019
+    DRI: Pat Wilver
+    Purpose: Logic added for Contact Sales control page tracking
+  #}
+  {% if userIsOwned and (content.absolute_url is equalto 'https://offers.hubspot.com/contact-sales') -%}
+  {# REP #}
+  <script>
+    dataLayer.push({
+      'event': 'meeting-rep-cal'
+    });
+  </script>
+  {% elif (content.absolute_url is equalto 'https://offers.hubspot.com/contact-sales') -%}
+  {# SHARED #}
+  <script>
+    dataLayer.push({
+      'event': 'meeting-shared-cal'
+    });
+  </script>
+  {% endif -%}
+
+  <!-- Start of Meetings Embed Script -->
+  <div class="meetings-iframe-container" data-src="{{ meetingsLink }}"></div>
+  <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+  <!-- End of Meetings Embed Script -->
+{%- endmacro %}
+
+{# Module deprecation notice #}
+{% macro moduleDeprecationNotice(
+    currentModuleName='',
+    newModuleName='',
+    additionalInfo=''
+) %}
+
+{% if request.query_dict.inpageEditorUI -%}
+  {%- set adjustedCurrentModuleName = '<em>' ~ currentModuleName ~ '</em>' if currentModuleName else 'following' -%}
+  {%- set adjustedNewModuleName = 'the <em><strong>' ~ newModuleName ~ '</strong></em>' if newModuleName else 'another supported Style Guide' -%}
+
+  <div class="hsg-notice">
+    {% if currentModuleName or newModuleName  -%}
+    <p><strong>Warning: </strong>The {{ adjustedCurrentModuleName }} module has been deprecated. Please use {{ adjustedNewModuleName }} module instead.</p>
+    {% endif -%}
+
+    {% if additionalInfo -%}
+    <p style="font-size: 0.875rem;"><em>{{ additionalInfo }}</em></p>
+    {%- endif %}
+  </div>
+{%- endif %}
+
+{% endmacro %}
+
+{# PAGE HEADER -- SVG EDGE GENERATORS #}
+{% macro generateSvgWaveEdge(adjacentModuleBgColor='') %}
+{# Add ability to update color? #}
+<svg viewBox="0 0 500 50" preserveAspectRatio="xMinYMin meet">
+  <path d="M0,50 L0,4 C95,-23 285,115 500,2 L500,50 L0,50 Z" style="stroke: none; fill: #fff;"></path>
+</svg>
+{% endmacro %}
+
+{% macro siteSearch(contexts, placeholder, hasButton) -%}
+  {# contexts = [
+    {
+      selected: bool,
+      id: 'string',
+      cx: 'string', 
+      label: 'string'
+    }
+  ] #}
+  {%- set loadMoreTextStrings = {
+    'en': 'Load More Results',
+    'es': 'Cargar más resultados',
+    'de': '',
+    'fr': '',
+    'pt': '',
+    'jp': ''
+  } -%}
+
+  {%- set defaultPlaceholders = {
+    'en': {
+		  'website': 'Search...',
+			'blog': 'search the blog'
+		},
+    'es': {
+		  'website': 'Buscar...',
+			'blog': 'Buscar'
+		},
+    'de': {
+		  'website': 'Suchen...',
+			'blog': 'Suchen'
+		},
+    'fr': {
+		  'website': 'Recherche...',
+			'blog': 'Recherche'
+		},
+    'pt': {
+		  'website': 'Buscar...',
+			'blog': 'Buscar'
+		},
+    'jp': {
+		  'website': '検索...',
+			'blog': '検索'
+		}
+  } -%}
+
+  {%- set defaultContexts = {
+    'en': [
+      { 
+        "selected": !widget_data.is_blog, 
+        "id": "website", 
+        "cx": "009219321729865762236:z9gsnksfc30",
+        "label": "Search HubSpot.com"
+      },
+      {
+        "selected": widget_data.is_blog,
+        "id": "blog",
+        "cx": "009219321729865762236:fzizmixjdmi",
+        "label": "Search the blog"
+      }
+    ],
+    'de': [
+      {
+        "selected": !widget_data.is_blog,
+        "id": "website",
+        "cx": "009219321729865762236:1kczx_naofc",
+        "label": "Im Web suchen"
+      },
+      {
+        "selected": widget_data.is_blog,
+        "id": "blog",
+        "cx": "009219321729865762236:496a5wfc6x4",
+        "label": "Im Blog suchen"
+      }
+    ],
+    'es': [
+      {
+        "selected": !widget_data.is_blog,
+        "id": "website",
+        "cx": "009219321729865762236:8effq6e-rmu",
+        "label": "Buscar en la web"
+      },
+      {
+        "selected": widget_data.is_blog,
+        "id": "blog",
+        "cx": "004277018879803690427:uchhvqy6ac8",
+        "label": "Buscar en el blog"
+      }
+    ],
+    'fr': [
+      {
+        "selected": !widget_data.is_blog,
+        "id": "website",
+        "cx": "009219321729865762236:evekf1vse58",
+        "label": "Chercher sur le site"
+      },
+      {
+        "selected": widget_data.is_blog,
+        "id": "blog",
+        "cx": "009219321729865762236:ba8x2a0scro",
+        "label": "Chercher sur le blog"
+      }
+    ],
+    'pt': [
+      {
+        "selected": !widget_data.is_blog,
+        "id": "website",
+        "cx": "009219321729865762236:6ks7vjxvwjo",
+        "label": "Busca no site"
+      },
+      {
+        "selected": widget_data.is_blog,
+        "id": "blog",
+        "cx": "009219321729865762236:bv8gxqzxqpo",
+        "label": "Busca no blog"
+      }
+    ],
+    'jp': [
+      {
+        "selected": !widget_data.is_blog,
+        "id": "website",
+        "cx": "009219321729865762236:nxpyori8uxy",
+        "label": "ウェブ検索"
+      },
+      {
+        "selected": widget_data.is_blog,
+        "id": "blog",
+        "cx": "004277018879803690427:rvcirpqoxu0",
+        "label": "ブログ検索"
+      }
+    ]
+  } -%}
+
+  {%- set context = contexts or defaultContexts[hreflangLang] -%}
+  {%- set loadMoreText = loadMoreTextStrings[hreflangLang] -%}
+  {%- set placeholders = defaultPlaceholders[hreflangLang] -%}
+
+  {%- set searchConfig = {
+    'en': {
+      "contexts": context,
+      "loadMoreButton": loadMoreText,
+      "noResults": [
+        "That&apos;s odd...",
+        "couldn&apos;t find quite the right match.",
+        "Don&apos;t worry, try searching again up top."
+      ]
+    },
+    'es': {
+      "contexts": context,
+      "loadMoreButton": loadMoreText,
+      "noResults": [
+			  "Qué extraño…",
+				"No pudimos encontrar ningún resultado.",
+				"No te preocupes, vuelve a intentarlo buscando en la parte superior."
+			]
+    },
+    'de': {
+      "contexts": context,
+      "loadMoreButton": loadMoreText,
+      "noResults": [
+			  "Merkwürdig ...",
+				"Es wurde nicht ganz das Richtige gefunden.",
+				"Versuchen Sie es noch einmal, indem Sie oben eine neue Suchanfrage eingeben."
+			]
+    },
+    'fr': {
+      "contexts": context,
+      "loadMoreButton": loadMoreText,
+      "noResults": [
+				"C&apos;est étrange...",
+				"Nous n&apos;avons pas trouvé de résultat pertinent.",
+				"Voulez-vous renouveler votre recherche ?"
+			]
+    },
+    'pt': {
+      "contexts": context,
+      "loadMoreButton": loadMoreText,
+      "noResults": [
+        "Estranho...",
+				"Não foi possível encontrar a palavra desejada.",
+				"Não se preocupe, você pode pesquisar novamente lá em cima."
+      ]
+    },
+    'jp': {
+      "contexts": context,
+      "loadMoreButton": loadMoreText,
+      "noResults": [
+			  "変ですね...",
+				"完全に一致した結果が見つかりませんでした。",
+				"心配いりません。もう一度検索ワードを変えてお試しください。"
+			]
+    }
+  } -%}
+
+  {%- if widget_data.is_blog -%}
+    {%- set class = 'blog-sticky-navigation__search-input' -%}
+    {%- set placeholderText = placeholder or placeholders.blog -%}
+  {% else %}
+    {%- set class = "" -%}
+    {%- set placeholderText = placeholder or placeholders.website -%}
+  {% endif -%}
+  <!-- pageLang: {{ hreflangLang }} -->
+  <input type="search" class="{{ class }}" data-id="hsg-nav__search-input" placeholder="{{ placeholderText }}" data-config='{{ searchConfig[hreflangLang]|tojson|safe }}' />
+  {% if hasButton -%}
+  <button class="blog-sticky-navigation__search-button"></button>
+  {% endif -%}
+{% endmacro -%}

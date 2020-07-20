@@ -1,0 +1,45 @@
+{% set prefix = 'home-products-feature' %}
+
+<section class="home-growth-stack" data-background="off-white">
+  <div class="{{ prefix }}__container hsg-page-width-normal">
+      <div class="home-growth-stack__logo-wrapper">
+        <h2 class="home-growth-stack__logo-header">{{ module.header }}</h2>
+        <p class="home-growth-stack__logo-description">{{ module.subheader }}</p>
+      </div>
+
+  {% for card in module.card %}
+    <div class="{{ prefix }}__card{% if card.card_full_width %} full-width-card{% endif %}{% if module.full_width_card %} single{% endif %}{% if card.card_ribbon_text %} has-ribbon{% endif %}">
+      {%- if card.card_ribbon_text -%}
+        <p class="hsg-ribbon--oz">{{ card.card_ribbon_text }}</p>
+      {%- endif -%}
+      <div class="{{ prefix }}__card--text-wrapper">
+        <div class="{{ prefix }}__card--image-wrapper">
+          <svg class="{{ prefix }}__card--image"><use xlink:href="#{{ card.card_image_svg }}" /></svg>
+          <h4 class="{{ prefix }}__card--headline">{{ card.card_header }}</h4>
+        </div>
+        <div class="{{ prefix }}__card--content">
+            <p>{{ card.card_description }}</p>
+            <div class="{{ prefix }}__features">
+                <p>{{ module.popular_features }}</p>
+                <div class="{{ prefix }}__card--list">
+                  <ul>
+                    {% for feature in card.card_features %}
+                      <li>{{ feature }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% if card.card_full_width %}
+                     <a class="cta--primary cta--medium {{ card.card_custom_class }}" href="{{ card.card_cta_url.href }}">{{ card.card_cta_text }}</a>
+                  {% endif %}
+                </div>
+                {% unless card.card_full_width %}
+                <div class="{{ prefix }}__cta">
+                  <a class="cta--primary cta--medium {{ card.card_custom_class }}" href="{{ card.card_cta_url.href }}">{{ card.card_cta_text }}</a>
+                </div>
+                {% endunless %}
+            </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+   </div>
+</section>

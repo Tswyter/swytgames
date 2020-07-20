@@ -1,0 +1,17 @@
+{
+  "content_tags" : [ {
+    "name" : "LOGO",
+    "source" : "USER"
+  }, {
+    "name" : "BANNER",
+    "source" : "USER"
+  }, {
+    "name" : "HEADERS",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 30863353048,
+  "is_available_for_new_content" : true
+}

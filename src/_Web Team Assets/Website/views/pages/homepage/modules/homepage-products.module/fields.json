@@ -1,0 +1,197 @@
+[ {
+  "id" : "202e5070-6dbf-e630-1e47-3b71d1d7196c",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "d92e7365-40b7-40c0-78bf-216a12780627",
+  "name" : "subheader",
+  "label" : "Subheader",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "e4f56c3e-edb1-5452-d8aa-d5567d86a2d2",
+  "name" : "popular_features",
+  "label" : "Popular Features",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "26fcd877-49d7-2917-7230-0c9c5c6c9da7",
+  "name" : "card",
+  "label" : "Card",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "2c346c01-5a3b-9331-9924-5fa1e264076c",
+    "name" : "card_header",
+    "label" : "Card Header",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : ""
+  }, {
+    "id" : "2cc9599d-2478-eff6-6335-025fed42e585",
+    "name" : "card_description",
+    "label" : "Card Description",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : ""
+  }, {
+    "id" : "ba0f070a-0463-8cce-3074-5fab4526a5c6",
+    "name" : "card_image",
+    "label" : "Card Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "type" : "image",
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    }
+  }, {
+    "id" : "card.card_image_svg",
+    "name" : "card_image_svg",
+    "label" : "Card Image SVG ID",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "marketing",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "3fe0742f-3494-46de-bba8-88fa8ab73cb4",
+    "name" : "card_ribbon_text",
+    "label" : "Card Ribbon Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "new",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : ""
+  }, {
+    "id" : "ad640ce8-45a5-a0dc-019d-8dee516436f6",
+    "name" : "card_cta_text",
+    "label" : "Card CTA Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : ""
+  }, {
+    "id" : "b1de44ec-a48b-3e7c-1dc2-0ec322dbcbc0",
+    "name" : "card_cta_url",
+    "label" : "Card CTA URL",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "5ccc03ff-c27e-b922-f493-7a7f21051dfe",
+    "name" : "card_custom_class",
+    "label" : "Card Custom Class",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "fdf47dc5-4a20-359e-a385-124089fedb31",
+    "name" : "card_features",
+    "label" : "Card Features",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 3,
+      "sorting_label_field" : null,
+      "default" : null
+    },
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "d4c1bbd9-97ff-c07e-7bff-8879ec3606b2",
+    "name" : "card_full_width",
+    "label" : "Full-Width?",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "card_header" : "",
+    "card_description" : "",
+    "card_image" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null
+    },
+    "card_ribbon_text" : "",
+    "card_cta_text" : "",
+    "card_cta_url" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    },
+    "card_full_width" : false
+  }
+}, {
+  "id" : "60b44b48-2696-c89f-c449-4a8f51dd3fcf",
+  "name" : "full_width_card",
+  "label" : "Full Width Card",
+  "help_text" : "Is there at least one full-width card in the layout?",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "default" : false
+} ]

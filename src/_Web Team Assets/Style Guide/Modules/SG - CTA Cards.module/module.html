@@ -1,0 +1,106 @@
+{#
+CHANGE LOG
+---------------
+(04.11.19) PW: Add wrapping display condition
+#}
+
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web_Team_Assets/Website/macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- set containerClasses = 'hsg-cards-grid' ~ (' {{ module.options.custom_class }}' if module.options.custom_class) -%}
+{%- if module.cards|length -%}
+{% if (module.options.background_theme == 'white' && module.options.card_color == 'dark') %}
+  {% set bgColor = 'light' %}
+{% else %}
+  {% set bgColor = module.options.background_theme %}
+{% endif %}
+
+<section class="{{ containerClasses }}" data-background="{% if canvasAudit %}{{ bgColor }}{% else %}{{ module.options.background_theme }}{% endif %}">
+  {% for row in module.cards|batch(3, null) -%}
+    {%- set rowIndex = loop.index -%}
+    <div class="hsg-cards-grid__wrapper hsg-page-width-normal">
+    {% for card in row|reject('none') -%}
+      {%- set cardIndex = loop.index -%}
+      {%- set image = card.image -%}
+      {%- set header = card.header|striptags -%}
+      {%- set teaser = card.teaser|replace(" style =", " data-invalid=")|replace("style=", "data-invalid=")|replace("center>", "span>") -%}
+
+      {%- if image.src or header or teaser or card.cta.cta_label -%}
+      <div class="hsg-card">
+        <div class="hsg-card__content">
+          {% if image.src -%}
+          <img src="{{ resize_image_url(image.src, 338) }}" alt="{{ image.alt }}">
+          {% endif -%}
+
+          <div class="hsg-card__text">
+            {% if card.has_product_header -%}
+              <div class="hsg-card__header">
+								{% if canvasAudit %}
+								  {% if module.options.card_color == 'dark' %}
+								    <img src="{{ resize_image_url('https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_white.svg', 106) }}" alt="HubSpot logo" />
+								  {% else %}
+										<img src="{{ resize_image_url('https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_color_png.png', 106) }}" alt="HubSpot logo" />
+								  {% endif %}
+								{% else %}
+									<img src="{{ resize_image_url('https://cdn2.hubspot.net/hubfs/53/HubSpot_Logos/HSLogo_white.svg', 106) }}" alt="HubSpot logo" />
+								{% endif %}
+                {%- if card.product_header %}<h3>{{ card.product_header }}</h3>{% endif -%}
+              </div>
+            {% endif -%}
+
+						{% if canvasAudit %}
+						  {% if card.has_product_header %}
+								<p class="hsg-card__heading-text">{{ header }}</p>
+							{% else %}
+								<h3 class="hsg-card__heading-text">{{ header }}</h3>
+							{% endif %}
+						{% else %}
+						  <h5>{{ header }}</h5>
+						{% endif %}
+            <p>{{ teaser }}</p>
+
+            {%- set smartRules = [] -%}
+						{%- set ctaClass = 'hsg-card__cta' if (canvasAudit) else 'cta--secondary-light cta--medium' -%}
+            {% if card.cta.use_smart_rule is truthy -%}
+              {%- do smartRules.append({
+                'type': card.cta.rule_type,
+                'list_id': card.cta.rule_list_id,
+                'lifecycle_stage': card.cta.rule_lifecycle_stage,
+                'lifecycle_stage_other': card.cta.rule_lifecycle_stage_other,
+                'rule_label': card.cta.rule_label,
+                'rule_link': card.cta.rule_link,
+                'custom_class': card.cta.rule_custom_class
+              }) -%}
+            {% endif -%}
+
+            {{ generateModuleCtas({
+              'ctas': [{
+                'type': card.cta.type,
+                'cta_label': card.cta.cta_label,
+                'cta_link': card.cta.cta_link,
+                'product_cta': card.cta.product_cta,
+                'video': {
+                  'type': card.cta.video_type,
+                  'id': card.cta.video_id,
+                  'url': card.cta.video_url
+                },
+                'modal_id': card.cta.modal_id,
+                'smart_rules': smartRules,
+                'options': {
+                  'custom_class': card.cta.custom_class
+                },
+                'customIndex': (rowIndex ~ cardIndex)
+              }],
+              'noStyle': true,
+              'moduleClass': ctaClass
+            }) }}
+          </div>{# __text #}
+        </div>{# __content #}
+      </div>
+      {%- endif -%}
+    {% endfor -%}{# card loop #}
+    </div>
+  {% endfor -%}{# row of max 3 loop #}
+</section>
+{% endif -%}

@@ -1,0 +1,25 @@
+{#
+CHANGE LOG: 
+------------
+
+#}
+
+{%- if module.chapters|length -%}
+<section class="hsg-chapters">
+  <div class="hsg-chapters__wrapper">
+    <ol>
+      {% for chapter in module.chapters -%}
+        {%- set url = chapter.anchor_destination if (chapter.link_type is equalto 'anchor') else chapter.url.href -%}
+
+        {%- if chapter.title -%}
+        <li>
+          <a href="{{ url }}">
+            <h6>{{ chapter.title }}</h6>
+          </a>
+        </li>
+        {% endif -%}
+      {% endfor -%}
+    </ol>
+  </div>
+</section>
+{% endif -%}

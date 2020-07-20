@@ -1,0 +1,73 @@
+<!--
+  templateType: "page"
+  isAvailableForNewContent: false
+-->
+{# MIGRATED from /Custom/page/Web_Team/hscmMacros.html #}
+{% macro gdprLocalizedNotice(opts={}) %}
+  {#
+    CHANGE LOG (10.3): Update to strings, all languages as hubspot/partner policy string format
+    Dynamic replace tokens used in strings: [PARTNER_NAME], [PARTNER_PRIVACY_URL]
+
+  #}
+
+  {%- set pName = opts.partnerName -%}
+  {%- set pUrl = opts.partnerPrivacyUrl -%}
+  {%- set lang = opts.lang or 'en' -%}
+
+  {%- set partnerNamesArray = pName|split('|') -%}
+  {%- set partnerPrivacyUrlsArray = pUrl|split('|') -%}
+
+  {%- set gdprInformationUseStrings = {
+    en: 'HubSpot uses the information you provide to us to contact you about our relevant content, products, and services. HubSpot will share the information you provide to us with the following partners, who will use your information for similar purposes: [PARTNER_LIST].',
+    es: 'HubSpot utiliza la información que proporcionas para ponerse en contacto contigo en relación con contenido, productos y servicios relevantes para ti. HubSpot compartirá esta información con los siguientes partners, quienes utilizarán tu información para propósitos similares: [PARTNER_LIST].',
+    de: 'HubSpot verwendet die von Ihnen zur Verfügung gestellten Informationen, um Sie in Bezug auf relevante Inhalte, Produkte und Dienstleistungen zu kontaktieren. HubSpot teilt die von Ihnen angegebenen Daten mit den folgenden Partnern, die diese für ähnliche Zwecke verwenden: [PARTNER_LIST].',
+    fr: 'HubSpot se réserve le droit d\'utiliser les données fournies afin de vous faire parvenir des informations au sujet de contenus, produits et services pertinents. Ces données, qui seront utilisées à des fins similaires, seront partagées avec : [PARTNER_LIST].',
+    br: 'A HubSpot usa os dados que você fornece para entrar em contato a respeito de nosso conteúdo, nossos produtos e os serviços relevantes. Nós compartilharemos os dados informados com os seguintes parceiros, que podem usá-los para fins similares: [PARTNER_LIST].',
+    jp: 'ハブスポットは、コンテンツ、製品、サービスに関連する情報を配信するため、お客様から提供された情報を利用します。またハブスポットは同様の目的で、お客様から提供された情報を以下のパートナー企業と共有する場合があります。パートナー企業とは、（[PARTNER_LIST]）です。'
+  } -%}
+
+  {%- set gdprPrivacyPolicyStrings = {
+    en: {
+      hubspot: 'You can unsubscribe from communications from HubSpot at any time. For more information, check out HubSpot\'s <a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.',
+      partner: 'To unsubscribe from [PARTNER_NAME]\'s communications, see [PARTNER_NAME]\'s <a href="[PARTNER_PRIVACY_URL]" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.'
+    },
+    es: {
+      hubspot: 'Puedes darte de baja para dejar de recibir comunicaciones de parte de HubSpot en cualquier momento. Para más información, consulta la <a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Política de Privacidad</a> de HubSpot.',
+      partner: 'Para darte de baja y dejar de recibir comunicaciones de parte de [PARTNER_NAME], consulta la <a href="[PARTNER_PRIVACY_URL]" target="_blank" rel="noopener noreferrer">Política de Privacidad</a> de [PARTNER_NAME].'
+    },
+    de: {
+      hubspot: 'Sie können sich jederzeit von jeglicher Kommunikation seitens HubSpot abmelden. Weitere Informationen dazu finden Sie in unserer <a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.',
+      partner: 'Um sich von der Kommunikation seitens [PARTNER_NAME] abzumelden, ziehen Sie bitte die <a href="[PARTNER_PRIVACY_URL]" target="_blank" rel="noopener noreferrer">Datenschutzrichtlinie</a> von [PARTNER_NAME] zurate.'
+    },
+    fr: {
+      hubspot: 'Vous pouvez vous désinscrire de ce type de communications de la part de HubSpot à tout moment. Pour plus d\'informations, consultez la <a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">politique de confidentialité</a> de HubSpot.',
+      partner: 'Pour vous désinscrire des communications envoyées par [PARTNER_NAME], consultez leur <a href="[PARTNER_PRIVACY_URL]" target="_blank" rel="noopener noreferrer">politique de confidentialité</a>.'
+    },
+    br: {
+      hubspot: 'Você pode cancelar a assinatura das comunicações da HubSpot a qualquer momento. Para ter mais informações, confira a <a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> da HubSpot.',
+      partner: 'Para cancelar a inscrição das comunicações da [PARTNER_NAME], consulte a <a href="[PARTNER_PRIVACY_URL]" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> da [PARTNER_NAME].'
+    },
+    jp: {
+      hubspot: 'ハブスポットからの情報配信はいつでも停止できます。詳細については弊社の<a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>をご覧ください。',
+      partner: '[PARTNER_NAME]からの情報配信を停止する方法については、[PARTNER_NAME]の<a href="[PARTNER_PRIVACY_URL]" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>をご覧ください。'
+    }
+  } -%}
+
+  {# Compile partner privacy policy strings #}
+  {%- set partnerPolicyStrings = [] -%}
+  {% for policyUrl in partnerPrivacyUrlsArray -%}
+    {%- set stringTemplate = gdprPrivacyPolicyStrings[lang].partner -%}
+    {%- set partnerName = partnerNamesArray[loop.index0] -%}
+
+    {% if partnerName -%}
+      {# Push to strings array #}
+      {%- set pushString = partnerPolicyStrings.append(stringTemplate|replace('[PARTNER_NAME]', partnerName)|replace('[PARTNER_PRIVACY_URL]', policyUrl)) -%}
+    {% endif -%}
+  {% endfor -%}
+
+  {# Rendered notice content #}
+  <p>
+    {{ gdprInformationUseStrings[lang]|replace('[PARTNER_LIST]', partnerNamesArray|join(', ')) }}
+    {{ gdprPrivacyPolicyStrings[lang].hubspot }} {{ partnerPolicyStrings|join(' ') }}
+  </p>
+{% endmacro %}

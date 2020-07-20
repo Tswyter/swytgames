@@ -1,0 +1,13 @@
+{#
+CHANGE LOG:
+------------------
+- Jul 25, 2019
+- Updated to use data structure method of creating modules
+- Module HTML is generated from a macro
+- Module is supplied via a data-object, or this module's options
+- This module will behave normally on the page level
+#}
+
+{% import '/_Web Team Assets/Style Guide/Macros/featuredSnippets.html' as sgMacro %}
+
+{{ sgMacro.render_ftSnippet(module) }}

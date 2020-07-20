@@ -1,0 +1,45 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<div {% if not is_blog %}data-fixed-element="placeholder" {% endif %}>
+  <nav class="hsg-nav-bar hsg-nav-top-bar" {% if not is_blog %}data-fixed-element="target" {% endif %} data-cx="{{ cx }}">
+    <div class="hsg-page-width-normal">
+      <div class="hsg-nav__inner">
+
+{#      {% global_module "global_language_dropdown" overrideable=False, label="Language Dropdown" %}#}
+        {% include "./_header-language-dropdown.html" %}
+
+        <ul class="hsg-nav__group">
+          <li class="hsg-nav__group-item hsg-nav__group-item--search">
+            {% for search in search %}
+              {{ wtMacros.siteSearch(false, search.text) }}
+            {% endfor %}
+          </li>
+          <li class="hsg-nav__group-item hsg-nav__group-item--login">
+            {% for login in login %}
+              {% set loggedInRow = goToAccount[loop.index0] %}
+              {% set textDataAttr = loggedInRow[3] if loggedInRow else false %}
+              {% set urlDataAttr = loggedInRow.url if loggedInRow else false %}
+              <a class="cta--secondary cta--small" {%- if loggedInRow[3] -%}
+                 data-logged-in-text="{{ loggedInRow[3] }}" {%- endif -%} {%- if urlDataAttr -%}
+                 data-logged-in-href="{{ urlDataAttr }}" {%- endif -%}
+                 href="{{ login.url }}">{{ login.text }}</a>
+            {% endfor %}
+          </li>
+
+          {% if is_blog and is_english %}
+            {% import "custom/page/Web_Team/blogMacros.html" as blogMacros %}
+            <li class="hsg-nav__group-item hsg-nav__group-item--cta">
+              {{ blogMacros.render_subscribe_v2('dropdown', 'blog-static-nav') }}
+            </li>
+          {% endif %}
+
+          <li class="hsg-nav__group-item hsg-nav__group-item--cta">
+            {% include './_header-nav-top-bar--cta.html' %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

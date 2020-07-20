@@ -1,0 +1,234 @@
+{
+  "isAvailableForNewContent" : true,
+  "templateType" : 4,
+  "attachedStylesheets" : [ {
+    "type" : "cos_extension_resource",
+    "path" : "/Coded files/Custom/page/css/Vast-style.css"
+  } ],
+  "attachedJs" : [ ],
+  "customHead" : "",
+  "customFooter" : "",
+  "bodyClass" : "site-page two-column",
+  "bodyCss" : "",
+  "bodyEditable" : false,
+  "layoutData" : {
+    "x" : 0,
+    "w" : 12,
+    "name" : "",
+    "label" : "",
+    "type" : "cell",
+    "params" : { },
+    "rows" : [ {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Header",
+        "label" : "hubtheme Theme/Header",
+        "type" : "global_group",
+        "params" : {
+          "css_class" : "",
+          "css_style" : "",
+          "generated_template_path" : "generated_global_groups/4317369719.html",
+          "html" : "",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369719.html",
+          "wrapping_html" : ""
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "wizard_module_252096570770596018439393378817456990939",
+        "label" : "Title Background",
+        "type" : "cell",
+        "params" : {
+          "css_class" : "title-background padding20tb",
+          "css_id" : "",
+          "css_style" : "",
+          "overrideable" : false,
+          "value" : "",
+          "wrapping_html" : ""
+        },
+        "rows" : [ {
+          "0" : {
+            "x" : 0,
+            "w" : 12,
+            "name" : "wizard_module_313944663852712745036144250639567809540",
+            "label" : "Page Center",
+            "type" : "cell",
+            "params" : {
+              "css_class" : "page-center",
+              "css_id" : "",
+              "css_style" : "",
+              "overrideable" : false,
+              "value" : "",
+              "wrapping_html" : ""
+            },
+            "rows" : [ ],
+            "rowMetaData" : [ ],
+            "cells" : [ ],
+            "cssId" : "",
+            "cssClass" : "page-center",
+            "cssStyle" : "",
+            "styles" : null
+          }
+        } ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "title-background padding20tb",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "module_15549971035361720",
+        "label" : "HTML",
+        "type" : "custom_widget",
+        "params" : {
+          "css_class" : "",
+          "css_id" : "",
+          "css_id_str" : "",
+          "css_style" : "",
+          "html" : "{% module \"repeater_test\" path='/Custom modules/Repeater Test' title=\"test title\" accordion_items='[{title: \"things\"}]' %}\n\n {% module_block module \"repeatMeBlock\" path='./Repeater Test' %}\n\t{% module_attribute \"accordion_items\" %}\n\t\t[\n\t\t\t{\n\t\t\t\t\"title\": \"BANANAS\"\n\t\t\t }\n\t\t]\n\t{% end_module_attribute %}\n{% end_module_block %}",
+          "overrideable" : false,
+          "path" : "/Marketplace/HubSpot/HTML/HTML",
+          "per_widget_wrapper_html" : "",
+          "schema_version" : 2,
+          "widget_name" : "HTML",
+          "wrapping_html" : ""
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "module_15549962771001543",
+        "label" : "Repeater Test",
+        "type" : "custom_widget",
+        "params" : {
+          "css_class" : "",
+          "css_id" : "",
+          "css_id_str" : "",
+          "css_style" : "",
+          "overrideable" : true,
+          "path" : "/Custom modules/Repeater Test",
+          "per_widget_wrapper_html" : "",
+          "schema_version" : 2,
+          "widget_name" : "Repeater Test",
+          "wrapping_html" : ""
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "module_155499298302655",
+        "label" : "HTML",
+        "type" : "custom_widget",
+        "params" : {
+          "css_class" : "",
+          "css_id" : "",
+          "css_id_str" : "",
+          "css_style" : "",
+          "html" : "\n{% for widget in content.widgets %}\n\t{{ widget.name }}<br/>\n\t{% if widget.name == 'repeater_test'%}\n\t\tWIDGET {{ widget.body.accordion_items }}<br/>\n{% for item in widget.body.accordion_items %}\n\t{{ item.title }}\n{% endfor %}\n\t{% endif %}\n{% endfor %}",
+          "overrideable" : true,
+          "path" : "/Marketplace/HubSpot/HTML/HTML",
+          "per_widget_wrapper_html" : "",
+          "schema_version" : 2,
+          "widget_name" : "HTML",
+          "wrapping_html" : ""
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "",
+        "label" : "",
+        "type" : "section_delimiter",
+        "params" : { },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    }, {
+      "0" : {
+        "x" : 0,
+        "w" : 12,
+        "name" : "hubtheme Theme/Footer",
+        "label" : "hubtheme Theme/Footer",
+        "type" : "global_group",
+        "params" : {
+          "generated_template_path" : "generated_global_groups/4317369739.html",
+          "overrideable" : false,
+          "path" : "generated_global_groups/4317369739.html"
+        },
+        "rows" : [ ],
+        "rowMetaData" : [ ],
+        "cells" : [ ],
+        "cssId" : "",
+        "cssClass" : "",
+        "cssStyle" : "",
+        "styles" : null
+      }
+    } ],
+    "rowMetaData" : [ ],
+    "cells" : [ ],
+    "cssId" : "",
+    "cssClass" : "",
+    "cssStyle" : "",
+    "styles" : null
+  }
+}

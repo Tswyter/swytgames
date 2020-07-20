@@ -1,0 +1,38 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<script type="application/json" id="deferred-scripts">
+  {
+    "deferredScripts": [
+      {
+        "id": "hs-convert",
+        "src": "//cdn-3.convertexperiments.com/js/10031559-1003891.js"
+      },
+      {
+        "id": "gtm",
+        "src": "https://www.hubspot.com/wt-assets/static-files/1982/gdpr-domain-settings/scripts.js",
+        "data": {
+          "key": "gtmId",
+          "value": "{{ gtmId }}"
+        }
+      },
+      {
+        "id": "hs-script-loader",
+        "src": "/hs/scriptloader/{{ hub_id }}.js"
+      },
+      {
+        "id": "messaging-functions",
+        "src": "//www.hubspot.com/wt-assets/static-files/2383/messaging-functions/scripts.js"
+      },
+      {
+        "id": "tools-menu",
+        "src": "/hs/hsstatic/HubspotToolsMenu/static-1.66/js/index.js"
+      }
+    ]
+  }
+</script>
+
+{# Loads IE 11 polyfills #}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Symbol.iterator%2Cdefault%2CObject.entries"></script>
+<script src="{{ get_asset_url('../../../assets/js/scripts.js') }}{{ qaTimestamp }}"></script>

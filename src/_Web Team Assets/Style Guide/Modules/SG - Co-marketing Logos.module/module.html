@@ -1,0 +1,37 @@
+{#
+CHANGE LOG:
+---------------
+10.18.19 Taylor - Added links to logos (and link formatting macro)
+#}
+
+
+{% macro formatUrl(urlToFormat) %}
+  {% set linkUrl = urlToFormat %}
+	{% if linkUrl is not string_containing '//' %}
+		{% set linkUrl = '//' ~ linkUrl %}
+	{% endif %}
+  {{ linkUrl }}
+{% endmacro %}
+
+{%- if module.logos|length -%}
+<section class="hsg-comarketing-header"
+  data-background="{{ module.options.background_theme }}">
+  <div class="hsg-page-width-normal">
+    <ul class="hsg-comarketing-header__list">
+      {% for logo in module.logos -%}
+        {% if logo.image.src -%}
+        <li class="hsg-comarketing-header__item">
+					{%- if logo.logo_link.url.href %}
+						<a href="{{ formatUrl(logo.logo_link.url.href) }}" {%- if logo.logo_link.open_in_new_tab %}target="_blank"{% endif -%} {%- if logo.logo_link.no_follow %}rel="noreferrer"{% endif -%}>
+					{% endif -%}
+          <img src="{{ logo.image.src }}" alt="{{ logo.image.alt }}">
+					{%- if logo.logo_link.url.href %}
+						</a>
+					{% endif -%}
+        </li>
+        {% endif -%}
+      {% endfor -%}
+    </ul>
+  </div>
+</section>
+{% endif -%}

@@ -1,0 +1,11 @@
+{
+  "content_tags" : [ {
+    "name" : "NAVIGATION",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "ANY" ],
+  "module_id" : 7429977,
+  "is_available_for_new_content" : true
+}

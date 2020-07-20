@@ -1,0 +1,14 @@
+{% set hasDesktopImage = (module.desktop_image.src is truthy) %}
+{% set hasMobileImage = (module.mobile_image.src is truthy) %}
+
+{% if hasDesktopImage and hasMobileImage %}
+  {% set imageLinkUrl = module.image_link_url.href || ""  %}
+  <div class="hsg-page-width-normal mhe-badge">
+    {% if imageLinkUrl %}<a href="{{ imageLinkUrl }}">{% endif %}
+      <picture>
+        <source media="(max-width: 500px)" srcset="{{ module.mobile_image.src }}">
+        <img class="mhe-badge__img {% if module.custom_class %}{{ module.custom_class }}{% endif %}" src="{{ module.desktop_image.src }}" alt="{{ module.desktop_image.alt }}">
+      </picture>
+    {% if imageLinkUrl %}</a>{% endif %}
+  </div>
+{% endif %}

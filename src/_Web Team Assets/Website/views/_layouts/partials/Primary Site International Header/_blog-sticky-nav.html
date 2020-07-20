@@ -1,0 +1,18 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% set isCareersBlog = (content.content_group_id == '4186963521') or (content.content_group_id == '3997793668') %} {# uses hsb1.hubspot.com/careers-blog-qa to test #}
+
+{% if widget_data.is_blog %}
+  {% if content.content_group_id == 6570228137 or isCareersBlog %}
+    {# news and trends sticky nav - If N&T someday needs the CTA #}
+  {% else %}
+    {# blogInfo is needed to render the applicable blogs (IE in JP, there is only marketing, in french there is only Marketing and Sales #}
+    {% import "/Custom/page/Web_Team/BlogInfo.html" as blogInfo_raw %}
+    {% import "/Custom/page/Web_Team/blogMacros_2018.html" as blogMacros %}
+    {% if template_meta.id == '6247066410' or template_meta.id == '6247100313' %}
+      {{ blogMacros.render_blog_sticky_nav(navCta) }}
+    {% endif %}
+  {% endif %}
+{% endif %}

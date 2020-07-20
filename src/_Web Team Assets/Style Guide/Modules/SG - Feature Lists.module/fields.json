@@ -1,0 +1,283 @@
+[ {
+  "id" : "a5505dbf-f477-051a-c890-b41b3137f26f",
+  "name" : "feature_lists",
+  "label" : "Feature Lists",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 3,
+    "sorting_label_field" : "5c5ec642-c693-8b2c-afd1-66aa112a757c",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "5c5ec642-c693-8b2c-afd1-66aa112a757c",
+    "name" : "header",
+    "label" : "Header",
+    "help_text" : "The company or product name for which you are listing features.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "Product X",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Product Name"
+  }, {
+    "id" : "3368ffae-ccb4-0cc5-5eef-f41557daf61e",
+    "name" : "description",
+    "label" : "Description",
+    "help_text" : "(Optional). Use this field to provide more context around the company/product.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "2062e734-3c15-8bd3-e35e-a920c7eaabf5",
+    "name" : "available_features",
+    "label" : "Available Features",
+    "help_text" : "A collection of available features pertaining to the company or product. These will appear first in the list, and will be displayed with an orange checkmark.",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 12,
+      "sorting_label_field" : null,
+      "default" : 2
+    },
+    "validation_regex" : "",
+    "placeholder" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : [ "Available feature", "Available feature" ]
+  }, {
+    "id" : "4e97b67e-2a4c-681f-3dd2-366e7ed42eda",
+    "name" : "unavailable_features",
+    "label" : "Unavailable Features",
+    "help_text" : "A collection of unavailable features, compared to the other company or product within this module. These will appear after the Available Features, and will be displayed with a greyed-out checkmark.",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 12,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : [ "Unavailable feature" ]
+  }, {
+    "id" : "1a1878dc-aa00-44b6-1247-5e86dfd06a62",
+    "name" : "primary_cta",
+    "label" : "Primary CTA",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "ed88556b-3857-782a-d889-82df59c36648",
+      "name" : "type",
+      "label" : "Type",
+      "help_text" : "Link (default option); Modal Trigger (triggers a modal with the ID specified).",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "link", "Link" ], [ "modal", "Modal Trigger" ] ],
+      "type" : "choice",
+      "default" : "link"
+    }, {
+      "id" : "130120c1-47f5-bb7a-0eab-af7bfcb936b6",
+      "name" : "cta_label",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Learn more",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Learn more"
+    }, {
+      "id" : "76a831d8-5633-0140-bf4a-41d99d696d0d",
+      "name" : "cta_link",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "ed88556b-3857-782a-d889-82df59c36648",
+        "controlling_value_regex" : "link",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "id" : "1f171b94-a508-5c1a-251c-240fc571da9d",
+      "name" : "modal_id",
+      "label" : "Modal ID",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "^(?!(#|\\d)).*",
+      "visibility" : {
+        "controlling_field" : "ed88556b-3857-782a-d889-82df59c36648",
+        "controlling_value_regex" : "modal",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "placeholder" : "example-modal-id",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "type" : "link",
+      "cta_label" : "Learn more",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "modal_id" : ""
+    }
+  }, {
+    "id" : "97e4bdb6-0106-009c-ffe3-b0cf8b4d13d4",
+    "name" : "secondary_link",
+    "label" : "Secondary Link",
+    "help_text" : "(Optional). A secondary link beneath the primary CTA.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "832d2264-47a8-be61-91a3-a597511c5771",
+      "name" : "cta_label",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "e593cf9a-cf55-b2b9-88d9-01c570a6b905",
+      "name" : "cta_link",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "header" : "Product Name",
+    "available_features" : [ "Available feature", "Available feature" ],
+    "unavailable_features" : [ "Unavailable feature" ],
+    "primary_cta" : {
+      "cta_label" : "Learn more",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "type" : "link",
+      "modal_id" : ""
+    },
+    "secondary_link" : {
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ]
+}, {
+  "id" : "a428c114-74e3-622d-5625-b9899ce8ab4a",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "1822ab75-7bbe-0957-45f1-81848ec0a5f5",
+    "name" : "display_type",
+    "label" : "Display Type",
+    "help_text" : "Choose to display the feature list(s) as an inline list (only available for single Feature Lists) or a card style list.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a list type",
+    "choices" : [ [ "inline", "Inline" ], [ "card", "Card" ] ],
+    "type" : "choice",
+    "default" : "card"
+  }, {
+    "id" : "d0944e30-2b12-18a6-c240-1918189ba80a",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "light", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "light"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "display_type" : "card",
+    "background_theme" : "light"
+  }
+} ]

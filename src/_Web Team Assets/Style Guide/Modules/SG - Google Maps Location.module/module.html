@@ -1,0 +1,85 @@
+{#
+
+CHANGE LOG:
+-------------------
+04.03.20 Nathan - Re-ordered DOM elements for canvas audit.
+#}
+
+{%- unless generateGoogleMap is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/googleMaps.html' import generateGoogleMap %}
+{% endunless -%}
+
+{%- if canvasAudit %}
+	{%- if module.map.address|length -%}
+	<section class="hsg-section-gmap" data-background="{{ module.options.background_theme }}">
+		<div class="hsg-section-gmap__wrapper">
+      <div class="hsg-section-gmap__content-wrapper">
+				<div class="hsg-section-gmap__address-block">
+					<h4 class="hsg-section-gmap__address-block-title">{{ module.map.title }}</h4>
+					{% for line in module.map.address -%}
+						{%- if line %}<p class="hsg-section-gmap__address-block-info">{{ line }}</p>{% endif -%}
+					{% endfor -%}
+				</div>
+        {%- for item in module.info -%}
+          {% if item.description or item.header -%}
+            <div class="hsg-section-gmap__info-block">
+              {% if item.header -%}
+              <h5 class="hsg-section-gmap__info-block-heading">{{ item.header }}</h5>
+              {% endif -%}
+              {%- if item.description %}
+              <p class="hsg-section-gmap__info-block--content">{{ item.description }}</p>
+              {%- endif %}
+            </div>
+          {%- endif %}
+				{% endfor -%}
+			</div>
+			<div class="hsg-section-gmap__map-wrapper">
+				{%- set fullAddress = module.map.address|join(', ') -%}
+				{{ generateGoogleMap(
+					'{{ module.map.title }}',
+					'{{ fullAddress }}',
+					'100%',
+					'500px'
+				) }}
+			</div>
+		</div>
+	</section>
+	{% endif -%}
+{% else %}
+	{%- if module.map.address|length -%}
+	<section class="hsg-section-gmap" data-background="{{ module.options.background_theme }}">
+		<div class="hsg-section-gmap__wrapper">
+			<div class="hsg-section-gmap__map-wrapper">
+				{%- set fullAddress = module.map.address|join(', ') -%}
+				{{ generateGoogleMap(
+					'{{ module.map.title }}',
+					'{{ fullAddress }}',
+					'100%',
+					'500px'
+				) }}
+			</div>
+
+			<div class="hsg-section-gmap__content-wrapper">
+				<div class="hsg-section-gmap__info-block hsg-section-gmap__address-block">
+					<h4>{{ module.map.title }}</h4>
+					{% for line in module.map.address -%}
+						{%- if line %}<p class="hsg-section-gmap__address-block__info">{{ line }}</p>{% endif -%}
+					{% endfor -%}
+				</div>
+							{%- for item in module.info -%}
+								{% if item.description or item.header -%}
+									<div class="hsg-section-gmap__info-block">
+										{% if item.header -%}
+										<h5>{{ item.header }}</h5>
+										{% endif -%}
+										{%- if item.description %}
+										<p class="hsg-section-gmap__info-block--content">{{ item.description }}</p>
+										{%- endif %}
+									</div>
+								{%- endif %}
+				{% endfor -%}
+			</div>
+		</div>
+	</section>
+	{% endif -%}
+{% endif -%}

@@ -1,0 +1,468 @@
+[ {
+  "id" : "17aff1e8-7f56-b6ba-e880-d128ed082d3e",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "Start Growing With HubSpot Today"
+}, {
+  "id" : "d53e004a-5d98-a501-1826-7d708403d13b",
+  "name" : "has_product_name",
+  "label" : "Include Product Name",
+  "help_text" : "Checking this box will brand the card with a HubSpot logo followed by a product name.",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "default" : false
+}, {
+  "id" : "79f92a44-24a2-f010-abb6-95b5ae95da1e",
+  "name" : "product_name",
+  "label" : "Product Name",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "visibility" : {
+    "controlling_field" : "d53e004a-5d98-a501-1826-7d708403d13b",
+    "controlling_value_regex" : "true",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "de4e394a-058e-1d83-7359-51281f94e374",
+  "name" : "description",
+  "label" : "Description",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 2,
+    "sorting_label_field" : null,
+    "default" : 1
+  },
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : [ "Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna." ]
+}, {
+  "id" : "54fe2a9a-5cbf-2e37-390b-b6d124a1de26",
+  "name" : "cta",
+  "label" : "CTA",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+    "name" : "type",
+    "label" : "Type",
+    "help_text" : "Link (default option); Product (choose a CTA from the CTA tool); Video (triggers a video modal); Modal Trigger (triggers a modal with the ID specified).",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "link", "Link" ], [ "product", "Product CTA" ], [ "video", "Video" ], [ "modal", "Modal Trigger" ] ],
+    "type" : "choice",
+    "default" : "link"
+  }, {
+    "id" : "e54416f4-c207-9406-2681-14dfd061b535",
+    "name" : "cta_label",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "controlling_value_regex" : "product",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Get started"
+  }, {
+    "id" : "4547cd08-0501-b72e-b8b1-ed4640ada6ba",
+    "name" : "cta_link",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "controlling_value_regex" : "link",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+    "type" : "link",
+    "default" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.hubspot.com",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "b8baba23-746a-b999-00cd-e5085e5a6fae",
+    "name" : "product_cta",
+    "label" : "Product CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "controlling_value_regex" : "product",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "type" : "cta",
+    "default" : null
+  }, {
+    "id" : "7afb10b3-6183-1a33-395a-b36fc392e49f",
+    "name" : "video",
+    "label" : "Video CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "controlling_value_regex" : "video",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "children" : [ {
+      "id" : "ced1113e-0f7f-3f6c-1f9d-2ec570273893",
+      "name" : "type",
+      "label" : "Video Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "wistia", "Wistia" ], [ "youtube", "YouTube" ], [ "url", "MP4 URL" ] ],
+      "type" : "choice",
+      "default" : "youtube"
+    }, {
+      "id" : "770b023e-a276-b103-2f76-ac419017d5b5",
+      "name" : "video_id",
+      "label" : "Video ID",
+      "help_text" : "Enter only the ID value for the YouTube or Wistia video. This ID is typically found in the video's web URL.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "ced1113e-0f7f-3f6c-1f9d-2ec570273893",
+        "controlling_value_regex" : "url",
+        "operator" : "NOT_EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "placeholder" : "eb6v2Ktdn8s",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    }, {
+      "id" : "a01fa3cf-6e64-f064-5a18-5c0065210e27",
+      "name" : "url",
+      "label" : "MP4 URL",
+      "help_text" : "The mp4 video file path.",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "ced1113e-0f7f-3f6c-1f9d-2ec570273893",
+        "controlling_value_regex" : "url",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "supported_types" : [ "EXTERNAL", "FILE" ],
+      "type" : "url",
+      "default" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "type" : "youtube",
+      "id" : "",
+      "url" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      }
+    }
+  }, {
+    "id" : "f2384fbc-b6bd-41cb-21f9-5ec26f76c377",
+    "name" : "modal_id",
+    "label" : "Modal ID",
+    "help_text" : "The id value for the corresponding modal that will launch when the CTA is clicked. Format: \"example-modal-id\".",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "^(?!(#|\\d)).*",
+    "visibility" : {
+      "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "controlling_value_regex" : "modal",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "placeholder" : "example-modal-id",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "3ce4d911-8ddd-4671-335a-a580a202d6a2",
+    "name" : "smart_rules",
+    "label" : "Smart Rules",
+    "help_text" : "(Optional). Create up to two smart variations for this CTA, based on either contact lifecycle stage or list membership. The order of these rules determines the hierarchy in which they are applied. **Note: if you're looking to use a Product CTA here, it's best to create a Smart CTA through the CTA tool directly.",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 2,
+      "sorting_label_field" : "a5a75e9c-e869-27e1-8f0e-37b902e5693b",
+      "default" : null
+    },
+    "visibility" : {
+      "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "controlling_value_regex" : "link",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "children" : [ {
+      "id" : "a5a75e9c-e869-27e1-8f0e-37b902e5693b",
+      "name" : "type",
+      "label" : "Rule Type",
+      "help_text" : "Choose whether this variation should display based on a contact's lifecycle stage or membership in a list.",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Select a rule type",
+      "choices" : [ [ "lifecycle", "Lifecycle Stage" ], [ "list-member", "List Member" ] ],
+      "type" : "choice",
+      "default" : null
+    }, {
+      "id" : "403afbfa-3304-6672-07cf-51e724bb6138",
+      "name" : "list_id",
+      "label" : "List ID",
+      "help_text" : "The ID corresponding to the contact list against which the contact should be compared.",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "a5a75e9c-e869-27e1-8f0e-37b902e5693b",
+        "controlling_value_regex" : "list-member",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "display" : "text",
+      "step" : 1,
+      "type" : "number",
+      "default" : null
+    }, {
+      "id" : "2c3edc59-1720-720f-2acd-5205ea424263",
+      "name" : "lifecycle_stage",
+      "label" : "Lifecycle Stage",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "a5a75e9c-e869-27e1-8f0e-37b902e5693b",
+        "controlling_value_regex" : "lifecycle",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "display" : "select",
+      "placeholder" : "Select a Lifecycle Stage",
+      "choices" : [ [ "subscriber", "Subscriber" ], [ "lead", "Lead" ], [ "marketingqualifiedlead", "Marketing Qualified Lead" ], [ "salesqualifiedlead", "Sales Qualified Lead" ], [ "opportunity", "Opportunity" ], [ "customer", "Customer" ], [ "evangelist", "Evangelist" ], [ "other", "Other" ] ],
+      "type" : "choice",
+      "default" : null
+    }, {
+      "id" : "a7e1f3ac-b860-9156-074f-042fba30a835",
+      "name" : "lifecycle_stage_other",
+      "label" : "Lifecycle Stage (Other)",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "visibility" : {
+        "controlling_field" : "2c3edc59-1720-720f-2acd-5205ea424263",
+        "controlling_value_regex" : "other",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "16f41011-d78f-8af7-5604-99d31dbe15f6",
+      "name" : "rule_label",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "f18a7033-c528-677a-515f-23faf97fe658",
+      "name" : "rule_link",
+      "label" : "URL",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "https://...",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "3eea452c-1a1e-a10f-84a6-e51fadd4476d",
+      "name" : "custom_class",
+      "label" : "Custom Class",
+      "help_text" : "Optional. Typically used for tracking purposes.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : { }
+  }, {
+    "id" : "73aa0774-630c-3f2b-fdd5-77532959f6a3",
+    "name" : "options",
+    "label" : "Advanced Options",
+    "help_text" : "(Optional). Additional settings for this CTA.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "ccb8a7a1-6f54-c514-d9fc-fdad0a6365f0",
+      "controlling_value_regex" : "product",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "children" : [ {
+      "id" : "ae4f98f9-e6d9-cf3d-20cd-660a72f83d63",
+      "name" : "custom_class",
+      "label" : "Custom Class",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : { }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "type" : "link",
+    "cta_label" : "Get started",
+    "cta_link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.hubspot.com",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "video" : {
+      "type" : "youtube",
+      "id" : "",
+      "url" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "EXTERNAL"
+      }
+    },
+    "smart_rules" : { },
+    "options" : { }
+  }
+}, {
+  "id" : "609c8a3b-0fcb-1163-d139-013b441bccae",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4c0576f9-ac4b-f399-f1fc-12302b667d26",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "off-white"
+  }, {
+    "id" : "b5b9b4c8-0f8b-9e53-1641-37cff93d3235",
+    "name" : "alignment",
+    "label" : "Logo Alignment",
+    "help_text" : "Switch the orientation of the logo container to either the left or the right of the CTA content.",
+    "required" : false,
+    "locked" : false,
+    "display" : "radio",
+    "choices" : [ [ "left", "Left" ], [ "right", "Right" ] ],
+    "type" : "choice",
+    "default" : "left"
+  }, {
+    "id" : "02031188-bf98-17f2-5609-c0345804c103",
+    "name" : "image",
+    "label" : "Background Image",
+    "help_text" : "Optional. This adds a background image in place of the gradient background of this module.",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : false,
+    "type" : "image",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "off-white",
+    "alignment" : "left"
+  }
+}, {
+  "id" : "87539c77-e21b-7bd1-4b01-0c4c36727890",
+  "name" : "disclaimer",
+  "label" : "Disclaimer",
+  "help_text" : "This will add some disclaimer text that will appear under the CTA.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "placeholder" : "Disclaimer Text",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+} ]

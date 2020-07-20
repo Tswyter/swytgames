@@ -1,0 +1,35 @@
+[ {
+  "id" : "8dbfba6d-ef92-7019-5f45-b7be9d1072e5",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "58d49405-a47b-afb0-4277-abcacbeaaa74",
+  "name" : "tagline",
+  "label" : "Tagline",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "c1b4767c-6221-af1f-25ca-0bddbe1ca994",
+  "name" : "firebase_endpoint",
+  "label" : "Firebase Endpoint",
+  "help_text" : "A URL for the questions database, provided to you by the Web Team.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+} ]

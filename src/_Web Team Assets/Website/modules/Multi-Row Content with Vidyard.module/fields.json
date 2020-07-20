@@ -1,0 +1,227 @@
+[ {
+  "id" : "1ad3d8d1-3069-cdd4-c047-b039db54e280",
+  "name" : "rows",
+  "label" : "Rows",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 6,
+    "sorting_label_field" : "1d8c5fbf-8db4-cfd5-88df-37f2072b3942",
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "1d8c5fbf-8db4-cfd5-88df-37f2072b3942",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "e84f7c06-7533-c8f4-6dd3-2bd3cc6186c2",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : null
+  }, {
+    "id" : "b97607bc-91e1-c51a-f185-33700c1bb579",
+    "name" : "employee_name",
+    "label" : "Name (for quotes)",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "e1a264e2-bfd9-f78b-50e6-b6b9a9945fd9",
+    "name" : "employee_title",
+    "label" : "Employee Title (for quotes)",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "b64ebeb4-0fdb-3434-6eeb-02fe3b0d6d09",
+    "name" : "videos",
+    "label" : "Videos",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "4fe78efd-7c1b-70e1-89bc-f5bc8e7bba13",
+      "name" : "type",
+      "label" : "Video Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Select a video type",
+      "choices" : [ [ "youtube", "YouTube" ], [ "wistia", "Wistia" ], [ "facebook", "Facebook" ], [ "hsvideo", "Vidyard" ] ],
+      "type" : "choice",
+      "default" : "youtube"
+    }, {
+      "id" : "5ff5d0cf-d6a9-71f8-8599-52d849af5732",
+      "name" : "v_id",
+      "label" : "Video ID",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "eb6v2Ktdn8s",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "eb6v2Ktdn8s"
+    }, {
+      "id" : "be3cd2a2-b0f6-7097-e011-96dbc4f72a78",
+      "name" : "caption",
+      "label" : "Caption",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Watch the full video",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Watch the full video"
+    }, {
+      "id" : "2d11327c-0f9d-3b7b-71e2-8db80c668169",
+      "name" : "facebook_url",
+      "label" : "Video URL",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "c120ddc4-6981-300f-69ce-6944afef9100",
+      "name" : "autoplay",
+      "label" : "Autoplay",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "c5275216-4bd0-92f8-f1d7-ad99e12c14bc",
+      "name" : "controls",
+      "label" : "Show Controls",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : true
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "type" : "youtube",
+      "v_id" : "eb6v2Ktdn8s",
+      "caption" : "Watch the full video",
+      "autoplay" : false,
+      "controls" : true
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "videos" : {
+      "type" : "youtube",
+      "v_id" : "eb6v2Ktdn8s",
+      "caption" : "Watch the full video",
+      "autoplay" : false,
+      "controls" : true
+    }
+  }, {
+    "videos" : {
+      "type" : "youtube",
+      "v_id" : "eb6v2Ktdn8s",
+      "caption" : "Watch the full video",
+      "autoplay" : false,
+      "controls" : true
+    }
+  } ]
+}, {
+  "id" : "78e12ff6-8244-1be6-de5f-5dc56b4dee7f",
+  "name" : "row_options",
+  "label" : "Row options",
+  "help_text" : "",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "f34de4b8-09d1-fc68-9eaf-c33835aade67",
+    "name" : "alignment",
+    "label" : "First Row Alignment",
+    "help_text" : "This will determine the alignment of the first row's image, with the remaining rows alternating the image orientation.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "",
+    "choices" : [ [ "left", "Image to the left" ], [ "right", "Image to the right" ] ],
+    "type" : "choice",
+    "default" : "left"
+  }, {
+    "id" : "ebcc5242-22ba-f05b-6933-24f74c95559b",
+    "name" : "image_deferment",
+    "label" : "Defer image loading",
+    "help_text" : "This option will load images only when the module's content comes into view on-page. Enabling this option will improve initial page load speed.",
+    "required" : true,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : true
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "alignment" : "left",
+    "image_deferment" : true
+  }
+}, {
+  "id" : "6b6862ca-cb96-b35b-3ac0-9587f3040649",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4c0576f9-ac4b-f399-f1fc-12302b667d26",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "4c924f04-b392-ec19-23cd-7129caf0cd77",
+    "name" : "image_sizing",
+    "label" : "Image sizing",
+    "help_text" : "The sizing option for all images within this module.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a size",
+    "choices" : [ [ "small", "Small" ], [ "large", "Large (Default)" ] ],
+    "type" : "choice",
+    "default" : "large"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white",
+    "image_sizing" : "large"
+  }
+} ]

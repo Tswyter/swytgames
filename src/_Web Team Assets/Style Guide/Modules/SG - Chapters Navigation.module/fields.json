@@ -1,0 +1,101 @@
+[ {
+  "id" : "4889cd7a-aa11-cb1d-99d1-57fc5c47dd8f",
+  "name" : "chapters",
+  "label" : "Chapters",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 6,
+    "sorting_label_field" : "6794287c-53ce-94e7-c317-ba0b5601766a",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "6794287c-53ce-94e7-c317-ba0b5601766a",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "What is inbound marketing?",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "a412c2db-22a3-a6ff-047e-c57b537ba3bc",
+    "name" : "link_type",
+    "label" : "Link Type",
+    "help_text" : "Anchor: this chapter links to a Section Header (or similar location) on this same page; Standard: this chapter links to a separate page or blog post.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "anchor", "Anchor" ], [ "standard", "Standard" ] ],
+    "type" : "choice",
+    "default" : "anchor"
+  }, {
+    "id" : "9f098b73-2244-c57c-e4da-ee040c4c26f4",
+    "name" : "anchor_destination",
+    "label" : "Anchor Destination",
+    "help_text" : "Note: This field must start with a \"#\" symbol!",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "^#(?!(\\d)).*",
+    "visibility" : {
+      "controlling_field" : "a412c2db-22a3-a6ff-047e-c57b537ba3bc",
+      "controlling_value_regex" : "anchor",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "placeholder" : "#anchor-id",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "2cd0c547-0a56-4340-2023-09b36693790d",
+    "name" : "url",
+    "label" : "URL",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "a412c2db-22a3-a6ff-047e-c57b537ba3bc",
+      "controlling_value_regex" : "standard",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "link_type" : "anchor",
+    "url_field" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "link_type" : "anchor",
+    "url_field" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "link_type" : "anchor",
+    "url_field" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  } ]
+} ]

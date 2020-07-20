@@ -1,0 +1,130 @@
+[ {
+  "id" : "913fb0c9-460c-8eb2-2868-6fe1ded700f2",
+  "name" : "countdown",
+  "label" : "Timer Details",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "b6248b31-e357-4d6c-a35c-207c3cce77b4",
+    "name" : "date",
+    "label" : "Date",
+    "help_text" : "The date to count down toward.",
+    "required" : false,
+    "locked" : false,
+    "step" : 15,
+    "type" : "datetime",
+    "default" : null
+  }, {
+    "id" : "af93f980-f57a-ea37-17dc-bf89924ae62f",
+    "name" : "timezone",
+    "label" : "Timezone",
+    "help_text" : "Select a timezone to ensure the countdown is always relative to the viewer's timezone. Select \"None\" to create an agnostic countdown (e.g. New Year's).",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "None" ], [ "GMT-12", "GMT-12" ], [ "GMT-11", "GMT-11" ], [ "GMT-10", "GMT-10" ], [ "GMT-9", "GMT-9" ], [ "GMT-8", "GMT-8" ], [ "GMT-7", "GMT-7 (PDT)" ], [ "GMT-6", "GMT-6" ], [ "GMT-5", "GMT-5" ], [ "GMT-4", "GMT-4 (EDT)" ], [ "GMT-3", "GMT-3" ], [ "GMT-2", "GMT-2" ], [ "GMT-1", "GMT-1" ], [ "GMT+0", "GMT+0" ], [ "GMT+1", "GMT+1 (IST)" ], [ "GMT+2", "GMT+2 (CEST)" ], [ "GMT+3", "GMT+3" ], [ "GMT+4", "GMT+4" ], [ "GMT+5", "GMT+5" ], [ "GMT+6", "GMT+6" ], [ "GMT+7", "GMT+7" ], [ "GMT+8", "GMT+8 (SGT)" ], [ "GMT+9", "GMT+9 (JST)" ], [ "GMT+10", "GMT+10 (AEST)" ], [ "GMT+11", "GMT+11" ], [ "GMT+12", "GMT+12" ] ],
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "ad6987b3-58c1-380c-8d0a-019e03161e0c",
+    "name" : "expiration_message",
+    "label" : "Expiration Message",
+    "help_text" : "The message that will display once the wait is over and the countdown date has passed.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "Sorry we missed you!",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "timezone" : "none"
+  }
+}, {
+  "id" : "17bb8bfd-6245-2ce9-f20e-ffe0567ac39c",
+  "name" : "optional_fields",
+  "label" : "Additional Fields (Optional)",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "84edfa1c-4020-c2f2-1f21-a88b0028e183",
+    "name" : "header",
+    "label" : "Header",
+    "help_text" : "(Optional). A main header for this module.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "0e76b731-1fba-d217-62d4-07acad97d1d8",
+    "name" : "tagline",
+    "label" : "Tagline",
+    "help_text" : "(Optional). A secondary headline (H4) to accompany the main header of this module.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : ""
+  }, {
+    "id" : "be443b08-35ba-6341-2b4e-5ed682f32408",
+    "name" : "top_description",
+    "label" : "Top Description",
+    "help_text" : "(Optional). A paragraph of text above the countdown timer.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "e6f6cea6-ee30-70b5-bc4a-a0a650ba77c1",
+    "name" : "bottom_description",
+    "label" : "Bottom Description",
+    "help_text" : "(Optional). A paragraph of text beneath the countdown timer.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "tagline" : ""
+  }
+}, {
+  "id" : "b6fc885a-5970-a1e7-5083-97466f15ce75",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "51ee28f7-5935-4b3a-f5c4-d5b2d73e2314",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Off-white" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

@@ -1,0 +1,136 @@
+[ {
+  "id" : "ed0adae6-581b-18c6-677a-b76133e0f39c",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : ""
+}, {
+  "id" : "9b00e327-6c72-762d-5cda-fef3ec5e62d9",
+  "name" : "descriptions",
+  "label" : "Descriptions",
+  "help_text" : "(Optional). Add a paragraph of text below the main header (up to three paragraphs).",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 3,
+    "sorting_label_field" : null,
+    "default" : null
+  },
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+}, {
+  "id" : "e0969093-f64d-98c8-18f3-fd577e996247",
+  "name" : "anchor_destination",
+  "label" : "Anchor Destination",
+  "help_text" : "(Optional). Use this field to create an ID reference to this header. This allows for the user to be brought to this location when clicking a link with a matching value. Choose a distinct name that isn't used anywhere else on the page. Formatting: no spaces or special characters, e.g. \"sign-up-now\" or \"watch-video-testimonial\".",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "placeholder" : "example-id",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "d038088c-b56c-2f0e-feb6-57e476bd3f61",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "5a934a2b-7445-1d21-e3be-0dea46c3740e",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "3f51e0b8-499b-3b2d-8339-dae272110381",
+    "name" : "header_type",
+    "label" : "Header Type",
+    "help_text" : "Choose between a more prominent, standard header (h2) or a smaller, secondary header (h3).",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "h2", "Standard (H2)" ], [ "h3", "Secondary (H3)" ] ],
+    "type" : "choice",
+    "default" : "h2"
+  }, {
+    "id" : "3ee6761c-d48c-464a-b8f6-1b6fa68bdbe2",
+    "name" : "divider",
+    "label" : "Divider",
+    "help_text" : "(Optional). Display a stylized divider above this module's content.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "a7957e6f-c4a4-65f4-acb1-0fdbe5696b9a",
+      "name" : "type",
+      "label" : "Type",
+      "help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Select a divider style",
+      "choices" : [ [ "none", "None" ], [ "one", "Bubbles" ], [ "four", "Custom Image" ] ],
+      "type" : "choice",
+      "default" : "none"
+    }, {
+      "id" : "50b25482-f7b2-6d2d-dddc-a01ff81e9fbb",
+      "name" : "image",
+      "label" : "Image",
+      "help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "a7957e6f-c4a4-65f4-acb1-0fdbe5696b9a",
+        "controlling_value_regex" : "four",
+        "operator" : "EQUAL",
+        "access" : null,
+        "hidden_subfields" : null
+      },
+      "responsive" : false,
+      "resizable" : false,
+      "type" : "image",
+      "default" : {
+        "src" : "",
+        "alt" : null
+      }
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "type" : "none",
+      "image" : {
+        "src" : "",
+        "alt" : null
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white",
+    "header_type" : "h2",
+    "divider" : {
+      "type" : "none",
+      "image" : {
+        "src" : "",
+        "alt" : null
+      }
+    }
+  }
+} ]

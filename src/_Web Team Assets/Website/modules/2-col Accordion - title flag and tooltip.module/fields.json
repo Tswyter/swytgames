@@ -1,0 +1,306 @@
+[ {
+  "id" : "50b7bb59-9f42-f332-50c0-9184c66ce501",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "928279eb-2628-9449-90db-7fb99bdd4bd2",
+  "name" : "accordion_type",
+  "label" : "Accordion Type",
+  "required" : true,
+  "locked" : false,
+  "display" : "radio",
+  "choices" : [ [ "1-col", "1 column" ], [ "2-col", "2 columns" ] ],
+  "type" : "choice",
+  "default" : "1-col"
+}, {
+  "id" : "3fd57bf6-1e76-8387-d114-1c0acbce614d",
+  "name" : "items",
+  "label" : "Items",
+  "help_text" : "The accordion items (up to 10 items allowed).",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 12,
+    "sorting_label_field" : "8d07b0e2-e817-ec3d-a538-2ac7cf8903ad",
+    "default" : 2
+  },
+  "visibility" : {
+    "controlling_field" : "928279eb-2628-9449-90db-7fb99bdd4bd2",
+    "controlling_value_regex" : "1-col",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "8d07b0e2-e817-ec3d-a538-2ac7cf8903ad",
+    "name" : "title",
+    "label" : "Title",
+    "help_text" : "The visible header text of the accordion item.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Fancy new header goes here"
+  }, {
+    "id" : "796915e2-387d-6280-86ad-85cb31bed453",
+    "name" : "content",
+    "label" : "Content",
+    "help_text" : "The hidden content of the accordion item, which appears when the user clicks on the accordion title.",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  }, {
+    "id" : "7e5964ad-edc8-5359-be69-e6644424326b",
+    "name" : "flag",
+    "label" : "Flag",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "none" ], [ "add-on", "add-on" ], [ "beta", "beta" ], [ "new", "new" ], [ "popular", "popular" ] ],
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "fc8ddc76-60eb-da1d-6229-cd477b406ee4",
+    "name" : "tooltip_text",
+    "label" : "Tooltip Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>",
+    "flag" : "none"
+  }, {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>",
+    "flag" : "none"
+  } ]
+}, {
+  "id" : "9c049b97-7768-5bfe-1e7b-3effd9e58ebe",
+  "name" : "left_column",
+  "label" : "Left column",
+  "help_text" : "The accordion items (up to 10 items allowed).",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 12,
+    "sorting_label_field" : "8d07b0e2-e817-ec3d-a538-2ac7cf8903ad",
+    "default" : 2
+  },
+  "visibility" : {
+    "controlling_field" : "928279eb-2628-9449-90db-7fb99bdd4bd2",
+    "controlling_value_regex" : "2-col",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "b2a301ae-7a16-1fb4-daf5-187e62d49dab",
+    "name" : "title",
+    "label" : "Title",
+    "help_text" : "The visible header text of the accordion item.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Fancy new header goes here"
+  }, {
+    "id" : "9540aa60-26a5-0222-1199-85328e21b77d",
+    "name" : "content",
+    "label" : "Content",
+    "help_text" : "The hidden content of the accordion item, which appears when the user clicks on the accordion title.",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  }, {
+    "id" : "e09f1982-47a7-efb6-6c6a-325fe71817a3",
+    "name" : "flag",
+    "label" : "Flag",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "none" ], [ "add-on", "add-on" ], [ "beta", "beta" ], [ "new", "new" ], [ "popular", "popular" ] ],
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "aec31456-ee4b-b886-6d46-30a5a0217ac1",
+    "name" : "tooltip_text",
+    "label" : "Tooltip Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>",
+    "flag" : "none"
+  }, {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>",
+    "flag" : "none"
+  } ]
+}, {
+  "id" : "a56409cc-73a9-adfc-a7df-262d314058b3",
+  "name" : "right_column",
+  "label" : "Right column",
+  "help_text" : "The accordion items (up to 10 items allowed).",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 12,
+    "sorting_label_field" : "8d07b0e2-e817-ec3d-a538-2ac7cf8903ad",
+    "default" : 2
+  },
+  "visibility" : {
+    "controlling_field" : "928279eb-2628-9449-90db-7fb99bdd4bd2",
+    "controlling_value_regex" : "2-col",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "54edac0a-88b7-1f13-2cd4-38d6d742e364",
+    "name" : "title",
+    "label" : "Title",
+    "help_text" : "The visible header text of the accordion item.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Fancy new header goes here"
+  }, {
+    "id" : "710c9827-d8e1-075e-c602-bbe48cf824b2",
+    "name" : "content",
+    "label" : "Content",
+    "help_text" : "The hidden content of the accordion item, which appears when the user clicks on the accordion title.",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>"
+  }, {
+    "id" : "681535e8-774a-9643-46b2-52391e4b6a7f",
+    "name" : "flag",
+    "label" : "Flag",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "none" ], [ "add-on", "add-on" ], [ "beta", "beta" ], [ "new", "new" ], [ "popular", "popular" ] ],
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "225ee1b6-3aca-071e-4b63-ff0b28297e1a",
+    "name" : "tooltip_text",
+    "label" : "Tooltip Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>",
+    "flag" : "none"
+  }, {
+    "title" : "Fancy new header goes here",
+    "content" : "<h6>Tell me more!</h6>\n<p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Duis aute irure dolor in reprehenderit in voluptate velit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>",
+    "flag" : "none"
+  } ]
+}, {
+  "id" : "f33ac239-8af6-fc19-d7fe-a08568f17139",
+  "name" : "footer",
+  "label" : "Footer",
+  "help_text" : "(Optional). Additional information — typically used for disclaimer content — that appears beneath all accordion items.",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "9c1358df-9fcd-b4a9-e081-41e6dd20fafa",
+  "name" : "options",
+  "label" : "Display Options",
+  "help_text" : "Sizing and display settings for the items in this module.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "89f1d5ad-416e-01d5-bdfb-3b51b55b4392",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "off-white"
+  }, {
+    "id" : "7517016f-3c0e-8c84-91e5-d2dfd0af1f96",
+    "name" : "display_style",
+    "label" : "Style",
+    "help_text" : "Determines the display style of each accordion item in this module.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a display style",
+    "choices" : [ [ "plain", "Basic" ], [ "card", "Card" ] ],
+    "type" : "choice",
+    "default" : "card"
+  }, {
+    "id" : "eb27982b-4f55-8b82-05a7-60da7e17dd9a",
+    "name" : "display_sizing",
+    "label" : "Sizing",
+    "help_text" : "Determines the display size of each accordion item in this module.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "small", "Small" ], [ "medium", "Medium" ], [ "large", "Large" ] ],
+    "type" : "choice",
+    "default" : "medium"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "off-white",
+    "display_style" : "card",
+    "display_sizing" : "medium"
+  }
+} ]

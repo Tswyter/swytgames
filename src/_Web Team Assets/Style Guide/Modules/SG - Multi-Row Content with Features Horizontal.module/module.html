@@ -1,0 +1,84 @@
+{#
+CHANGE LOG:
+---------------------
+
+#}
+
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- if module.rows|length -%}
+<section
+  class="hsg-multi-row"
+  data-background="{{ module.options.background_theme }}"
+  data-alignment="{{ module.row_options.alignment }}"
+  data-image-size="{{ module.options.image_sizing }}">
+  <ol class="hsg-page-width-normal">
+    {% for row in module.rows -%}
+      {%- set imageClasses = 'hsg-multi-row__image' ~ (' hsg-deferred' if module.row_options.image_deferment is truthy) -%}
+      {%- set imageSrc = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' if (module.row_options.image_deferment is truthy) else row.image.src -%}
+
+      {%- if row.header or row.description or row.image.src -%}
+      <li class="hsg-multi-row__item">
+        {% if row.image.src -%}
+        <div class="hsg-multi-row__image-wrapper">
+          <img
+            class="{{ imageClasses }}"
+            data-box-shadow="{{ row.image_drop_shadow }}"
+            {% if module.row_options.image_deferment is truthy -%}
+            data-src="{{ row.image.src }}"
+            {% endif -%}
+            src="{{ imageSrc }}"
+            alt="{{ row.image.alt }}">
+        </div>
+        {% endif -%}
+
+        <div class="hsg-multi-row__text-content">
+          {% if row.header -%}
+          <h4>{{ row.header }}</h4>
+          {% endif -%}
+
+          {%- if row.description -%}
+          <div class="hsg-multi-row__description">{{ row.description }}</div>
+          {% endif -%}
+
+          {# if CTA group can be nested, this should be `row.cta` here #}
+          {{ generateModuleCtas({
+            'ctas': [{
+              'type': row.cta.type,
+              'cta_label': row.cta.cta_label,
+              'cta_link': row.cta.cta_link,
+              'product_cta': row.cta.product_cta,
+              'video': {
+                'type': row.cta.video_type,
+                'id': row.cta.video_id,
+                'url': row.cta.video_url
+              },
+              'modal_id': row.cta.modal_id,
+              'options': {
+                'custom_class': row.cta.custom_class
+              }
+            }],
+            'noStyle': true,
+            'moduleClass': 'hsg-multi-row__cta'
+          }) }}
+        </div>
+        {%- if row.feature_items -%}
+          <div class="hsg-multi-row__description hsg-multi-row__description-features">
+            <span class="wat-multi-row__header">
+              {{ module.options.features_heading }}
+            </span>
+            <ul class="wat-multi-row__links">
+              {%- for item in row.feature_items %}
+                <li class="wat-multi-row__link">{{ item }}</li>
+              {% endfor -%}
+            </ul>
+          </div>
+        {% endif -%}
+      </li>
+      {% endif -%}
+    {% endfor -%}
+  </ol>
+</section>
+{% endif -%}

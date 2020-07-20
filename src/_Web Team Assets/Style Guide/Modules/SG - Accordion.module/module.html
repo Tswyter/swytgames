@@ -1,0 +1,62 @@
+{#
+CHANGE LOG:
+------------------
+
+#}
+
+{# Style accordions differently when background is white (value for attribute: data-display-option) #}
+{%- set displayOption = module.options.display_style -%}
+{%- if canvasAudit %}
+	{%- if module.items|length %}
+    <section class="hsg-accordion" data-background="{{ module.options.background_theme }}">
+			<div class="hsg-accordion__container hsg-page-width-normal">
+				<ul class="hsg-accordion__wrapper" data-size="{{ module.options.display_sizing }}" data-display-option="{{ displayOption }}">
+					{%- for item in module.items %}
+						{%- if item.title is truthy %}
+							<li class="hsg-accordion__item">
+                <button class="hsg-accordion__label">
+								  <h3 class="hsg-accordion__label-text">
+										{{ item.title }}
+									</h3>
+								</button>
+								<div class="hsg-accordion__content">
+									<div>
+										{{ item.content }}
+									</div>
+								</div>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</section>
+  {%- endif %}
+{%- else %}
+	{%- if module.items|length -%}
+	<section data-background="{{ module.options.background_theme }}">
+		<div class="hsg-page-width-normal">
+			<ul class="hsg-accordion" data-size="{{ module.options.display_sizing }}" data-display-option="{{ displayOption }}">
+				{% for item in module.items -%}
+					{%- set uId = name ~ '-' ~ loop.index -%}
+
+					{%- if item.title is truthy -%}
+					<li class="hsg-accordion__item">
+						<input type="checkbox" class="hsg-accordion__checkbox" name="{{ uId }}" id="{{ uId }}">
+						<label class="hsg-accordion__label" for="{{ uId }}">
+							<h3>{{ item.title }}</h3>
+						</label>
+						<div class="hsg-accordion__content">
+							<div>{{ item.content }}</div>
+						</div>
+					</li>
+					{% endif -%}
+				{% endfor -%}
+			</ul>
+
+			{%- if module.footer is truthy-%}
+			<p class="hsg-microcopy">{{ module.footer|striptags }}</p>
+			{% endif -%}
+		</div>
+	</section>
+	{% endif -%}
+{% endif %}

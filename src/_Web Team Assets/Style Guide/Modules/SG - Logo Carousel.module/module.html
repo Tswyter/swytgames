@@ -1,0 +1,50 @@
+{#
+CHANGE LOG:
+----------------
+04.08.19 Pat - Replace default logo, add wrapping container logic based on logos repeater
+#}
+
+{%- if module.header -%}
+<h3 class="hsg-logo-slider__title">{{ module.header }}</h3>
+{% endif -%}
+
+{%- if module.logos|length -%}
+<section class="hsg-logo-slider" data-background="{{ module.options.background_theme }}">
+  <div class="hsg-slider hsg-page-width-normal"
+       data-slides-to-scroll="1"
+       data-slides-to-scroll-mobile="1"
+       data-enable-mouse-events="true"
+       data-show-progress-dots="true"
+       data-rewind="true"
+       data-autoplay="">
+    <figure class="hsg-slider__container">
+      <ul class="hsg-slider__slides">
+        {%- set imgStyles = ('style="width: ' ~ module.options.display_width ~ ';"') if (module.options.display_width is truthy) else '' -%}
+        {% for item in module.logos -%}
+          {% if item.logo.src -%}
+            {%- set has_link = (item.add_link is truthy) and item.link.url.href -%}
+
+            <li class="hsg-slider__slide">
+              {% if has_link -%}                  
+              <a href="{{ item.link.url.href }}"
+                 {% if item.link.open_in_new_tab %}target="_blank"{% endif %}
+                 {% if item.link.no_follow %}rel="nofollow"{% endif %}>
+              {% endif -%}
+
+              <img src="{{ item.logo.src }}" alt="{{ item.logo.alt }}" {{ imgStyles }}>
+
+              {%- if has_link -%}
+              </a>
+              {% endif -%}
+            </li>
+          {% endif -%}
+        {% endfor -%}
+      </ul>
+    </figure>
+
+    <img class="hsg-slider__prev" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg"/>
+    <img class="hsg-slider__next" src="//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/style-guide/modules/forms/rightArrow.svg"/>
+    <div class="hsg-slider__indicators"></div>
+  </div>
+</section>
+{% endif -%}

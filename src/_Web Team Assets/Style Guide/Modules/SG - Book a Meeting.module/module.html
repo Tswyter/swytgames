@@ -1,0 +1,50 @@
+{#
+CHANGE LOG:
+--------------
+04.08.19 Pat - Add proper default form
+#}
+
+{%- unless generateMeetingsAppEmbed is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/meetings.html' import generateMeetingsAppEmbed %}
+{% endunless -%}
+
+{%- set userIsOwned = (contact.nurturing_owner_meetings_link is truthy) and (not contact.nurturing_owner_meetings_link is equalto 'contact.nurturing_owner_meetings_link'|upper) and (not contact.nurturing_owner_meetings_link is string_containing '/salesinquiries') -%}
+<div class="hsg-bookameeting">
+  {% if module.type is equalto 'modal' -%}
+  {# --- MODAL TYPE --- #}
+  <div class="hsg-bookameeting-wrapper--modal">
+    <div class="hs-page-width-normal hsg-bookameeting__content-wrapper"  style="text-align: center; margin-bottom: 60px">
+      <a class="cta--primary cta--large" href="#" data-target-modal="meetings">{{ module.options_modal.cta_label }}</a>
+    </div>
+    <div class="hsg-modal-container" data-modal="meetings">
+      <div class="hsg-modal-contents">
+        <div class="hsg-modal-header" data-background="secondary4">
+          <span class="hsg-icon hsg-icon-close"></span>
+        </div>
+        {{ generateMeetingsAppEmbed(module.querystring) }}
+      </div>
+    </div>
+  </div>
+  {% else %}
+  {# --- FORM TYPE --- #}
+  <div class="hsg-bookameeting__content-wrapper">
+    <div class="hsg-bookameeting__header">
+      {% if module.options_embed.header -%}
+        <h3 class="form-title">{{ module.options_embed.header }}</h3>
+      {% endif -%}
+      {% if userIsOwned -%}
+        {% if module.options_embed.tagline -%}
+          <p>{{ module.options_embed.tagline }}</p>
+        {% endif -%}
+       {% else %}
+        {% if module.options_embed.header_alternate -%}
+          <p>{{ module.options_embed.header_alternate }}</p>
+        {% endif -%}
+      {% endif -%}
+    </div>
+    <div class="hsg-bookameeting__content-wrapper--iframe">
+      {{ generateMeetingsAppEmbed(module.querystring) }}
+    </div>
+  </div>
+  {% endif -%}
+</div>

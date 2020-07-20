@@ -1,0 +1,97 @@
+{#
+CHANGE LOG:
+---------------
+Jul 30, 2019: Kara updated module with new SG design, and updated image references
+#}
+
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- set images = {
+  'white': [
+	  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/white-1.png',
+		'//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/white-2.png',
+		'//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/white-3.png'
+	],
+	'off-white': [
+	  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/light-1.png',
+	  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/light-2.png',
+	  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/light-3.png'
+	],
+	'dark': [
+	  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/dark-1.png',
+	  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/dark-2.png',
+	  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sg-module-images/dark-3.png'
+	]
+} %}
+
+{# VARIABLES #}
+{%- set imageSrcs = [
+  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sword-sprocket/Variation-2@2x.png',
+  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sword-sprocket/Variation-1@2x.png',
+  '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sword-sprocket/Variation-3@2x.png'
+] -%}
+{%- set imageSrcKey = (local_dt|datetimeformat('%k')|int) % 3 -%}
+{# Choose one of the images above to use #}
+{%- set jpImageSrc = '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sword-sprocket/Variation-4@2x.png' -%}
+{%- set careersImageSrc = '//cdn2.hubspot.net/hubfs/53/assets/hubspot.com/_style-guide/sword-sprocket/Variation-5@2x.png' -%}
+{%- set isCareers = content.absolute_url is string_containing 'careers' -%}
+{%- set selectedImageSrc = jpImageSrc if is_japanese else careersImageSrc if isCareers else imageSrcs[imageSrcKey] -%}
+
+{% if canvasAudit %}
+	{%- set selectedImageSrc = jpImageSrc if is_japanese else careersImageSrc if isCareers else images[module.options.background_theme][imageSrcKey] -%}
+{% else %}
+	{%- set selectedImageSrc = jpImageSrc if is_japanese else careersImageSrc if isCareers else imageSrcs[imageSrcKey] -%}
+{% endif %}
+
+{%- if module.ctas|length -%}
+<section class="hsg-cta-block custom-cta-block"
+  data-background="{{ module.options.background_theme }}">
+  <div class="hsg-page-width-normal hsg-cta-block__inner">
+    <div class="hsg-flex hsg-cta-block__content-wrapper">
+      <div class="hsg-cta-block__content">
+        {% if module.header_style == 'h3' %}
+          <h3 class="hsg-cta-block__header">{{ module.header }}</h3>
+        {% else %}
+          <h2 class="hsg-cta-block__header">{{ module.header }}</h2>
+        {% endif %}
+
+        <p class="hsg-cta-block__subheader">{{ module.description }}</p>
+
+        <div class="hsg-cta-block__cta-wrapper">
+          {{ generateModuleCtas({
+            'ctas': module.ctas,
+            'sizingClass': module.cta_size
+          }) }}
+        </div>
+
+        {%- if module.disclaimer -%}
+          <small class="hsg-microcopy hsg-cta-block__disclaimer">{{ module.disclaimer }}</small>
+        {% endif -%}
+      </div>
+
+        {% if module.media_type != 'vidyard' %}
+          {% set isDefaultImg = (module.media_type == 'default') %}
+          {% set imageSrc = (isDefaultImg) ? selectedImageSrc : module.image_field.src %}
+          {% set imageAlt = (isDefaultImg) ? "Smiling Person" : module.image_field.alt %}
+          <div class="hsg-cta-block__image">
+            <img class="hsg-deferred {% if module.img_shadow is truthy %}img-shadow{% endif %}" data-src="{{ imageSrc }}" alt="{{ imageAlt }}" />
+          </div>
+        {% else %}
+          {% if module.video_id %}
+            <div class="hsg-video-gallery__item">
+              <div class="hsg-video-gallery__playbar">
+                  {% if module.video_caption %}
+                    <h5>{{ module.video_caption }}</h5>
+                    <span class="hsg-video-gallery__playbar-line"></span>
+                  {% endif %}
+              </div>
+              <iframe id="vidyard_iframe_{{ module.video_id }}" allowfullscreen="" allowtransparency="true" aria-label="Video" class="vidyard_iframe" frameborder="0" height="100%" width="100%" scrolling="no" title="Video" src="//play.vidyard.com/{{ module.video_id }}?v=3.1&amp;type=inline&autoplay=0"></iframe>
+            </div>
+          {% endif %}
+        {% endif %}
+    </div>
+  </div>
+</section>
+{% endif -%}

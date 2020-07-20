@@ -1,0 +1,8 @@
+{
+  "global" : false,
+  "smart_type" : "NOT_SMART",
+  "icon" : "https://cdn2.hubspot.net/hubfs/2406023/promotion-svgrepo-com.svg",
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 4314188,
+  "is_available_for_new_content" : true
+}

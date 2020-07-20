@@ -1,0 +1,36 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<!doctype html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+<head>
+    <meta charset="utf-8">
+    <title>{{ page_meta.html_title }}</title>
+    {% include "./includes/head.html" %}
+
+    {# Preload Bold and Regular Font Weights #}
+    <link rel="preload" href="https://static.hsappstatic.net/ui-fonts/static-1.223/fonts/AvenirNext-Regular.woff2" as="font" crossorigin>
+    <link rel="preload" href="https://static.hsappstatic.net/ui-fonts/static-1.223/fonts/AvenirNext-Bold.woff2" as="font" crossorigin>
+
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    {# SVG sprite #}
+    {# TODO separate svg symbols file, one for the Header and the rest of master #}
+    {% include "../../assets/svg/SVG.symbols.html" %}
+
+    <div class="body-container-wrapper">
+        {# Primary Header Module #}
+        {%- include "./partials/Primary Site International Header/Primary Site International Header.html" -%}
+
+        {% block content %}{% endblock %}
+
+        {# Primary Footer Module #}
+        {%- include "./partials/Primary Site International Footer.html" -%}
+    </div>
+
+    {% include "./includes/footer.html" %}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

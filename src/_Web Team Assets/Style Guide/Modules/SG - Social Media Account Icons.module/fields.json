@@ -1,0 +1,126 @@
+[ {
+  "id" : "59489331-8143-79ec-d11c-f334f25b9e90",
+  "name" : "icons",
+  "label" : "Icons",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 10,
+    "sorting_label_field" : "dd0a8873-93b2-1b91-f752-673b294090ac",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "dd0a8873-93b2-1b91-f752-673b294090ac",
+    "name" : "service",
+    "label" : "Service",
+    "help_text" : "NOTE: Only choose each Service once per module!",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "facebook", "Facebook" ], [ "linkedin", "LinkedIn" ], [ "instagram", "Instagram" ], [ "soundcloud", "Soundcloud" ], [ "youtube", "YouTube" ], [ "twitter", "Twitter" ], [ "flickr", "Flickr" ], [ "github", "GitHub" ], [ "pinterest", "Pinterest" ], [ "email", "Email Address" ] ],
+    "type" : "choice",
+    "default" : "facebook"
+  }, {
+    "id" : "91e23a6b-5716-758d-f394-16ab0808a69a",
+    "name" : "url",
+    "label" : "URL",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "dd0a8873-93b2-1b91-f752-673b294090ac",
+      "controlling_value_regex" : "email",
+      "operator" : "NOT_EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "supported_types" : [ "EXTERNAL" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "3e9d61b8-b73d-f535-a7f4-77a6eec3d0b0",
+    "name" : "email",
+    "label" : "Email address",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "dd0a8873-93b2-1b91-f752-673b294090ac",
+      "controlling_value_regex" : "email",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "supported_types" : [ "EMAIL_ADDRESS" ],
+    "type" : "url",
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EMAIL_ADDRESS"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "service" : "facebook",
+    "url" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    },
+    "email" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EMAIL_ADDRESS"
+    }
+  }
+}, {
+  "id" : "7dcfdc87-6e39-4479-795a-3dd38dda12e2",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "c6585734-8971-6e67-9622-44fd0f09d1b9",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "23e841e7-32c9-4dbc-62f2-889e6041040d",
+    "name" : "display_sizing",
+    "label" : "Icon Sizing",
+    "required" : false,
+    "locked" : false,
+    "display" : "radio",
+    "choices" : [ [ "small", "Small" ], [ "medium", "Medium" ], [ "large", "Large" ] ],
+    "type" : "choice",
+    "default" : "medium"
+  }, {
+    "id" : "edf8773f-a0f0-93aa-1762-c6cd0f57ddc4",
+    "name" : "display_style",
+    "label" : "Icon Style",
+    "required" : false,
+    "locked" : false,
+    "display" : "radio",
+    "choices" : [ [ "primary", "Circle" ], [ "secondary", "Rounded Corners" ] ],
+    "type" : "choice",
+    "default" : "primary"
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white",
+    "display_sizing" : "medium",
+    "display_style" : "primary"
+  }
+} ]

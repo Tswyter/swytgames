@@ -1,0 +1,130 @@
+[ {
+  "id" : "3174e989-c586-c743-5672-74d9190b68d4",
+  "name" : "charts",
+  "label" : "Charts",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 2,
+    "sorting_label_field" : "e2919b73-a6c2-171c-8adc-a1c666d46a90",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "e2919b73-a6c2-171c-8adc-a1c666d46a90",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Annual growth"
+  }, {
+    "id" : "69338662-a03d-2529-6ed6-2a1b2f23e811",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : ""
+  }, {
+    "id" : "8b175cd1-c66b-82b0-cfb2-8e444f7cc53e",
+    "name" : "json",
+    "label" : "JSON",
+    "help_text" : "Copy and paste your JSON data here. For CSV2JSON conversion, please visit http://www.csvjson.com/csv2json",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "[ { \"name\": \"Product A\", \"value\": 25, \"category\": 2015 }, { \"name\": \"Product A\", \"value\": 60, \"category\": 2016 }, { \"name\": \"Product A\", \"value\": 90, \"category\": 2017 }, { \"name\": \"Product A\", \"value\": 30, \"category\": 2018 }, { \"name\": \"Product A\", \"value\": 85, \"category\": 2019 }, { \"name\": \"Product B\", \"value\": 45, \"category\": 2015 }, { \"name\": \"Product B\", \"value\": 50, \"category\": 2016 }, { \"name\": \"Product B\", \"value\": 10, \"category\": 2017 }, { \"name\": \"Product B\", \"value\": 30, \"category\": 2018 }, { \"name\": \"Product B\", \"value\": 65, \"category\": 2019 }, { \"name\": \"Product C\", \"value\": 145, \"category\": 2015 }, { \"name\": \"Product C\", \"value\": 150, \"category\": 2016 }, { \"name\": \"Product C\", \"value\": 110, \"category\": 2017 }, { \"name\": \"Product C\", \"value\": 130, \"category\": 2018 }, { \"name\": \"Product C\", \"value\": 165, \"category\": 2019 } ]"
+  }, {
+    "id" : "aff84046-cf96-b537-0895-f0425e42ecab",
+    "name" : "type",
+    "label" : "Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "pie", "Pie" ], [ "bar", "Bar Chart" ], [ "column", "Column" ], [ "line", "Line Chart" ], [ "donut", "Donut" ] ],
+    "type" : "choice",
+    "default" : "bar"
+  }, {
+    "id" : "300ee027-e50a-80ad-0f4b-ac5cc0fbd766",
+    "name" : "x_axis_label",
+    "label" : "X Axis Label",
+    "help_text" : "Optional. Leave blank for no x axis label.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "638d7a7f-7d45-f3b1-61ff-ad5efda8add1",
+    "name" : "y_axis_label",
+    "label" : "Y Axis Label",
+    "help_text" : "Optional. Leave blank for no y axis label.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : [ {
+    "title" : "Annual growth",
+    "subtitle" : "",
+    "json" : "[ { \"name\": \"Product A\", \"value\": 25, \"category\": 2015 }, { \"name\": \"Product A\", \"value\": 60, \"category\": 2016 }, { \"name\": \"Product A\", \"value\": 90, \"category\": 2017 }, { \"name\": \"Product A\", \"value\": 30, \"category\": 2018 }, { \"name\": \"Product A\", \"value\": 85, \"category\": 2019 }, { \"name\": \"Product B\", \"value\": 45, \"category\": 2015 }, { \"name\": \"Product B\", \"value\": 50, \"category\": 2016 }, { \"name\": \"Product B\", \"value\": 10, \"category\": 2017 }, { \"name\": \"Product B\", \"value\": 30, \"category\": 2018 }, { \"name\": \"Product B\", \"value\": 65, \"category\": 2019 }, { \"name\": \"Product C\", \"value\": 145, \"category\": 2015 }, { \"name\": \"Product C\", \"value\": 150, \"category\": 2016 }, { \"name\": \"Product C\", \"value\": 110, \"category\": 2017 }, { \"name\": \"Product C\", \"value\": 130, \"category\": 2018 }, { \"name\": \"Product C\", \"value\": 165, \"category\": 2019 } ]",
+    "type" : "bar"
+  } ]
+}, {
+  "id" : "d2ed7a5a-eb49-ad85-6b88-46bf60d44863",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "244b2f6b-cb04-fa84-653a-5fc68bbb82d1",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "0a631b57-ff98-ed0f-fe11-2246582804f8",
+    "name" : "description_alignment",
+    "label" : "Description alignment",
+    "required" : false,
+    "locked" : false,
+    "display" : "radio",
+    "choices" : [ [ "left", "Left" ], [ "right", "Right" ] ],
+    "type" : "choice",
+    "default" : null
+  }, {
+    "id" : "5b8addba-9f18-117f-f076-8a5f7df4d4cc",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : null
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white"
+  }
+} ]

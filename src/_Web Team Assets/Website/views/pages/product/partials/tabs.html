@@ -1,0 +1,55 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+<!-- Begin partial -->
+{% text "tab_1_title" label="Tab 1 Title", export_to_template_context=True %}
+{% text "tab_2_title" label="Tab 2 Title", export_to_template_context=True %}
+{% text "tab_3_title" label="Tab 3 Title", export_to_template_context=True %}
+
+<section class="hsg-tabs module-bg--white" data-color="module-bg--white" data-mobile-theme="medium">
+    <div class="span12 widget-span widget-type-custom_widget cms-tabs" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+        <ul class="hsg-tabs__titles hsg-visible-gt-mobile" data-background="dark">
+            <li id="persona1" data-tab="0" class="hsg-tabs__active hsg-tabs__heading">{{ widget_data.tab_1_title.value }}</li>
+            <li id="persona2" data-tab="1" class="hsg-tabs__heading">{{ widget_data.tab_2_title.value }}</li>
+            <li id="persona3" data-tab="2" class="hsg-tabs__heading">{{ widget_data.tab_3_title.value }}</li>
+        </ul>
+    </div>
+</section>
+
+<a class="persona-anchor" href="#persona1_top"><h4 id="persona1_top" class="hsg-tabs__heading hsg-visible-lte-mobile hsg-tabs__active-mobile" data-tab="0">{{ widget_data.tab_1_title.value }}</h4></a>
+<div data-tab="0" class="hsg-tabs__content hsg-tabs__active hsg-tabs__active-mobile">
+    <div id="persona1" class="span12 widget-span widget-type-cell " style="" data-widget-type="cell" data-x="0" data-w="12">
+        {% module "module_158393298573049" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="Tab 1 - SG - Section Header" %}
+        {% module "module_158401047007087" path="/_Web Team Assets/Website/modules/CTA Content Block with Vidyard", label="Tab 1 - CTA Content Block with Vidyard" %}
+        {% module "module_158393370980264" path="/_Web Team Assets/Website/modules/Full-Width Image with Mobile Option", label="Tab 1 - Full-Width Image with Mobile Option" %}
+        {% module "module_158400753137573" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="Tab 1 - Feature Section Header" %}
+        {% module "module_158393376283067" path="/_Web Team Assets/Website/modules/Multi-Column Content with Video Popup", label="Tab 1 - Multi-Column Content with Video Popup Line 1" %}
+        {% module "module_158393377287068" path="/_Web Team Assets/Website/modules/Multi-Column Content with Video Popup", label="Tab 1 - Multi-Column Content with Video Popup Line 2" %}
+    </div>
+</div>
+
+<a class="persona-anchor" href="#persona2_top"><h4 id="persona2_top" class="hsg-tabs__heading hsg-visible-lte-mobile" data-tab="1">{{ widget_data.tab_2_title.value }}</h4></a>
+<div data-tab="1" class="hsg-tabs__content">
+    <div id="persona2" class="span12 widget-span widget-type-cell " style="" data-widget-type="cell" data-x="0" data-w="12">
+        {% module "module_158393301487551" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="Tab 2 - SG - Section Header" %}
+        {% module "module_158411049810423" path="/_Web Team Assets/Website/modules/CTA Content Block with Vidyard", label="Tab 2 - CTA Content Block with Vidyard" %}
+        {% module "module_158393371769465" path="/_Web Team Assets/Website/modules/Full-Width Image with Mobile Option", label="Tab 2 - Full-Width Image with Mobile Option" %}
+        {% module "module_158400757021874" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="Tab 2 - Feature Section Header" %}
+        {% module "module_158393377909569" path="/_Web Team Assets/Website/modules/Multi-Column Content with Video Popup", label="Tab 2 - Multi-Column Content with Video Popup Line 1" %}
+        {% module "module_158393378565370" path="/_Web Team Assets/Website/modules/Multi-Column Content with Video Popup", label="Tab 2 - Multi-Column Content with Video Popup Line 2" %}
+    </div>
+</div>
+
+<a class="persona-anchor" href="#persona3_top"><h4 id="persona3_top" class="hsg-tabs__heading hsg-visible-lte-mobile" data-tab="2">{{ widget_data.tab_3_title.value }}</h4></a>
+<div data-tab="2" class="hsg-tabs__content">
+    <div id="persona3" class="span12 widget-span widget-type-cell " style="" data-widget-type="cell" data-x="0" data-w="12">
+        {% module "module_158393302611152" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="Tab 3 - SG - Section Header" %}
+        {% module "module_158411052318324" path="/_Web Team Assets/Website/modules/CTA Content Block with Vidyard", label="Tab 3 - CTA Content Block with Vidyard" %}
+        {% module "module_158393372740066" path="/_Web Team Assets/Website/modules/Full-Width Image with Mobile Option", label="Tab 3 - Full-Width Image with Mobile Option" %}
+        {% module "module_158400757673475" path="/_Web Team Assets/Style Guide/Modules/SG - Section Header", label="Tab 3 - Feature Section Header" %}
+        {% module "module_158393379291271" path="/_Web Team Assets/Website/modules/Multi-Column Content with Video Popup", label="Tab 3 - Multi-Column Content with Video Popup Line 1" %}
+        {% module "module_158393379888572" path="/_Web Team Assets/Website/modules/Multi-Column Content with Video Popup", label="Tab 3 - Multi-Column Content with Video Popup Line 2" %}
+    </div>
+</div>
+<!-- End partial -->

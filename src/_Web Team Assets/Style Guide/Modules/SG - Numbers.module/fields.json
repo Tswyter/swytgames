@@ -1,0 +1,126 @@
+[ {
+  "id" : "8e86ae6a-d5cf-21cd-1561-c3321a8c95fb",
+  "name" : "stats",
+  "label" : "Stats Columns",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 4,
+    "sorting_label_field" : "8ef2eb61-3ec9-1a71-9285-4fcf3c8021df",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "8ef2eb61-3ec9-1a71-9285-4fcf3c8021df",
+    "name" : "value",
+    "label" : "Stat Value",
+    "help_text" : "Number, percentage, currency, multiplier, etc. Please add any relevant units.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "placeholder" : "53%",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "51529e3d-a020-c284-987f-75ca4abaf060",
+    "name" : "optional_fields",
+    "label" : "Additional Fields (Optional)",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "a76bc3e0-880d-3cbc-ddc8-7e2af8f080ed",
+      "name" : "icon",
+      "label" : "Icon",
+      "help_text" : "This field is being deprecated. An icon image that helps to describe or visually display the highlighted stat. Appears above the stat value.",
+      "required" : false,
+      "locked" : true,
+      "responsive" : false,
+      "resizable" : true,
+      "type" : "image",
+      "default" : {
+        "src" : "",
+        "alt" : null
+      }
+    }, {
+      "id" : "085d4d59-c540-9925-cc26-12027ea07b3d",
+      "name" : "header",
+      "label" : "Header (above stat)",
+      "help_text" : "A small header above the stat value.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    }, {
+      "id" : "7a5cbbd3-6483-6fba-6913-5910f1cbcfe1",
+      "name" : "description",
+      "label" : "Description (below stat)",
+      "help_text" : "A short description below the stat value.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : null
+    } ],
+    "tab" : "CONTENT",
+    "type" : "group",
+    "default" : {
+      "icon" : {
+        "src" : "",
+        "alt" : null
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "optional_fields" : {
+      "icon" : {
+        "src" : "",
+        "alt" : null
+      }
+    }
+  }
+}, {
+  "id" : "6dad063e-d07c-9233-58e6-08fc1bed916f",
+  "name" : "options",
+  "label" : "Display Options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4c0576f9-ac4b-f399-f1fc-12302b667d26",
+    "name" : "background_theme",
+    "label" : "Background Theme",
+    "help_text" : "The background color theme for the module container.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Select a theme",
+    "choices" : [ [ "white", "White" ], [ "off-white", "Light" ], [ "dark", "Dark" ] ],
+    "type" : "choice",
+    "default" : "white"
+  }, {
+    "id" : "c4329896-4a25-7e26-8b2e-44ad11e66835",
+    "name" : "layout",
+    "label" : "Layout",
+    "help_text" : "Choose between a 4-column layout, or a 2-by-2 grid. (Layout is responsive, and converts to a slider on mobile).",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ " ", "4-Column" ], [ "--2up", "2x2 Grid" ] ],
+    "type" : "choice",
+    "default" : " "
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "background_theme" : "white",
+    "layout" : " "
+  }
+} ]

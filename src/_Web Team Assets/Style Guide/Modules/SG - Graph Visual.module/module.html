@@ -1,0 +1,45 @@
+{#
+CHANGE LOG:
+--------------
+
+#}
+
+{%- set background = module.options.background_theme -%}
+{%- set spacesword_theme = '#fea58e,#51d3d9,#bda9ea,#f5c78e,#ea90b1,#81c1fd,#a2d28f' -%}
+
+{%- if module.charts|length -%}
+<section class="hsg-chart" data-background="{{ background }}" data-alignment="{{ module.options.description_alignment }}">
+  <div class="hsg-chart--outer hsg-chart__layout">
+    {% if module.options.description -%}
+    <div class="hsg-chart--inner">
+      <div class="hsg-chart-rich-text">
+        {{ module.options.description }}
+      </div>
+    </div>
+    {% endif -%}
+
+    <div class="hsg-chart--inner">
+      {%- for chart in module.charts -%}
+        {% if chart.json -%}
+          <div class="hsg-chart--module hsg-chart__loading"
+            data-graph-bg-color="{{ background }}"
+            data-graph-subtitle="{{ chart.subtitle|urlencode }}"
+            data-graph-theme="{{ spacesword_theme }}"
+            data-graph-type="{{ chart.type }}"
+            data-graph-json="{{ chart.json|urlencode }}"
+            data-graph-json-nonce="{{ chart.json|md5 }}"
+            data-graph-id="{{ chart.title|md5 }}"
+            data-graph-x-axis-title="{{ chart.x_axis_label }}"
+            data-graph-y-axis-title="{{ chart.y_axis_label }}"
+            data-graph-title="{{ chart.title|urlencode }}">
+            <span>{{ chart.title }}</span>
+          </div>
+        {%- else -%}
+          <h4>Please add data for the chart to display.</h4>
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+  </div>
+</section>
+{% endif -%}

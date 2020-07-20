@@ -1,0 +1,19 @@
+{#
+CHANGE LOG:
+-----------
+
+#}
+{# Strip hash in ID value #}
+{%- set anchorId = module.optional_fields.anchor_id|replace('#', '') -%}
+{# Strip <h1> tags, replace with <h2> #}
+{%- set richText = module.content|replace('<h1>','<h2>')|replace('</h1>','</h2>') -%}
+
+{%- if richText -%}
+<section id="{{ anchorId }}"
+  class="hsg-rich-text"
+  data-background="{{ module.options.background_theme }}">
+  <div class="hsg-rich-text__wrapper">
+    {{ richText }}
+  </div>
+</section>
+{% endif -%}

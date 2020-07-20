@@ -1,0 +1,965 @@
+<!--
+  templateType: "page"
+  isAvailableForNewContent: false
+-->
+{# MIGRATED from /Custom/page/Web_Team/BlogInfo.html #}
+{% set info = {
+  "careers": {
+	  "subscribeForm": "",
+    "homepageCTA": "",
+		"strings": {
+      "next": "next",
+      "prev": "prev",
+      "moreFrom": "more from",
+      "mostPopular": "Most Popular",
+      "editorsPicks": "Editor's Picks",
+			"mostRecent": "Most Recent",
+      "minRead": "min read",
+      "writtenBy": "Written by ",
+      "topics": "Topics",
+      "publishDate": "Originally published",
+      "updateDate": "updated",
+      "relatedArticles": "Related Articles",
+      "blogRollHeader": "Visit the HubSpot Blogs",
+			"footerCta": {
+			  "heading": "We'd love to get to know you.",
+				"body": "Browse our open positions, find a job you love, tell imposter syndrome to take the day off, and apply.",
+				"button": {
+				  "link": "#",
+          "text": "See all open positions"
+				}
+			},
+      "subscriptionDetails": {
+        "subscribeToOurBlog": "Subscribe to Our Blog",
+        "subscribeDescription": "Learn how to use HubSpot and inbound to grow better.",
+        "iWantTheLatestIn": "I want the latest in...",
+        "gdprDisclaimer": "We're committed to your privacy. HubSpot uses the information you provide to us to contact you about our relevant content, products, and services. You may unsubscribe from these communications at any time. For more information, check out our [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/privacy-policy",
+          "text": "privacy policy"
+        },
+        "optionsHeader": "Subscribe",
+        "button": "Subscribe",
+        "options": [
+          {
+            "type": "email",
+            "name": "Email"
+          }
+        ],
+        "otherOptions": "Back to other options",
+        "thankYou": "Thank You!",
+        "emailSub": {
+          "header": "Subscribe via Email",
+          "emailLabel": "Email Address",
+          "submitText": "Subscribe"
+        },
+        "errors": {
+          "header": "There seem to be some errors with your submission",
+          "blogsNotSelected": "Please select one of the blogs to subscribe to.",
+          "formError": "There seems to be an error with the form. Please try again later!",
+          "invalidEmail": "This email address is invalid."
+        }
+      }
+    },
+		"blogs": [
+		  {
+        "status": true,
+        "subscribed": false,
+        "blogId": "3997793668",
+        "displayTag": "Careers Blog",
+        "name": "careers",
+        "slug": "/careers",
+        "title": "HubSpot Careers Blog",
+        "description": "",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+        "landingPageCTA": "",
+        "subscriptionInfo": {
+          "subscribable": false,
+          "subscriptionTypeId": "",
+          "checkboxName": "test",
+          "subscriptionFrequency": "instant",
+          "frequencyField": "blog_development_hubspot_product_news_subscription"
+        }
+      }
+		]
+	},
+  "companyNews": {
+	  "subscribeForm": "e30fed8f-a3d0-4af1-bce0-c53ac8cf8a29",
+    "homepageCTA": "134ccf81-94a7-4cd5-9b26-d9e80dbeba34",
+		"strings": {
+      "next": "next",
+      "prev": "prev",
+      "moreFrom": "more from",
+      "mostPopular": "Most Popular",
+      "editorsPicks": "Editor's Picks",
+      "minRead": "min read",
+      "writtenBy": "Written by ",
+      "topics": "Topics",
+      "publishDate": "Originally published",
+      "updateDate": "updated",
+      "relatedArticles": "Related Articles",
+      "blogRollHeader": "Visit the HubSpot Blogs",
+      "subscriptionDetails": {
+        "subscribeToOurBlog": "Subscribe to Our Blog",
+        "subscribeDescription": "Learn how to use HubSpot and inbound to grow better.",
+        "iWantTheLatestIn": "I want the latest in...",
+        "gdprDisclaimer": "We're committed to your privacy. HubSpot uses the information you provide to us to contact you about our relevant content, products, and services. You may unsubscribe from these communications at any time. For more information, check out our [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/privacy-policy",
+          "text": "privacy policy"
+        },
+        "optionsHeader": "Subscribe",
+        "button": "Subscribe",
+        "options": [
+          {
+            "type": "email",
+            "name": "Email"
+          }
+        ],
+        "otherOptions": "Back to other options",
+        "thankYou": "Thank You!",
+        "emailSub": {
+          "header": "Subscribe via Email",
+          "emailLabel": "Email Address",
+          "submitText": "Subscribe"
+        },
+        "errors": {
+          "header": "There seem to be some errors with your submission",
+          "blogsNotSelected": "Please select one of the blogs to subscribe to.",
+          "formError": "There seems to be an error with the form. Please try again later!",
+          "invalidEmail": "This email address is invalid."
+        }
+      }
+    },
+		"blogs": [
+		  {
+        "status": true,
+        "subscribed": contact.blog_development_hubspot_product_news_subscription in subscription_types,
+        "blogId": "390887438",
+        "displayTag": "Company News",
+        "name": "companyNews",
+        "slug": "/company-news",
+        "title": "HubSpot Company News Blog",
+        "description": "",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+        "landingPageCTA": "134ccf81-94a7-4cd5-9b26-d9e80dbeba34",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "149639",
+          "checkboxName": "test",
+          "subscriptionFrequency": "instant",
+          "frequencyField": "blog_development_hubspot_product_news_subscription"
+        }
+      }
+		]
+	},
+  "customers": {
+    "subscribeForm": "4b4dae5b-f773-4c66-871b-a2a35bca785d",
+    "strings": {
+      "next": "next",
+      "prev": "prev",
+      "moreFrom": "more from",
+      "mostPopular": "Most Popular",
+      "editorsPicks": "Editor's Picks",
+      "minRead": "min read",
+      "writtenBy": "Written by ",
+      "topics": "Topics",
+      "publishDate": "Originally published",
+      "updateDate": "updated",
+      "relatedArticles": "Related Articles",
+      "blogRollHeader": "Visit the HubSpot Blogs",
+      "subscriptionDetails": {
+        "subscribeToOurBlog": "Subscribe to Our Blog",
+        "subscribeDescription": "Learn how to use HubSpot and inbound to grow better.",
+        "iWantTheLatestIn": "",
+        "gdprDisclaimer": "We're committed to your privacy. HubSpot uses the information you provide to us to contact you about our relevant content, products, and services. You may unsubscribe from these communications at any time. For more information, check out our [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/privacy-policy",
+          "text": "privacy policy"
+        },
+        "optionsHeader": "Subscribe",
+        "button": "Subscribe",
+        "options": [
+          {
+            "type": "email",
+            "name": "Email"
+          }
+        ],
+        "otherOptions": "Back to other options",
+        "thankYou": "Thank You!",
+        "emailSub": {
+          "header": "Subscribe via Email",
+          "emailLabel": "Email Address",
+          "submitText": "Subscribe"
+        },
+        "errors": {
+          "header": "There seem to be some errors with your submission",
+          "blogsNotSelected": "Please select one of the blogs to subscribe to.",
+          "formError": "There seems to be an error with the form. Please try again later!",
+          "invalidEmail": "This email address is invalid."
+        }
+      }
+    },
+    "blogs": [
+      {
+        "status": true,
+        "subscribed": contact.blog_default_blog_subscription in subscription_types,
+        "blogId": "390887438",
+        "displayTag": "Customers",
+        "name": "customers",
+        "slug": "/customers",
+        "title": "HubSpot User Blog",
+        "description": "Insights, ideas, and inspiration for modern marketers.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+        "landingPageCTA": "e149d12e-f050-470b-8cf9-d367c4f4c4b9",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "216937",
+          "checkboxName": "customers_checkbox_not_in_COS",
+          "subscriptionFrequency": "daily",
+          "frequencyField": "blog_inbound_hub_customer_subscription"
+        }
+      }
+    ]
+  },
+  "en": {
+    "language": "en",
+    "hubdbTable": "669242",
+    "subscribeForm": "4ea5f424-2d32-44c7-b603-887d06d6bde0",
+    "homepageCTA": "134ccf81-94a7-4cd5-9b26-d9e80dbeba34",
+    "strings": {
+      "next": "next",
+      "prev": "prev",
+      "moreFrom": "more from",
+      "mostPopular": "Most Popular",
+      "editorsPicks": "Editor's Picks",
+      "minRead": "min read",
+      "writtenBy": "Written by ",
+      "topics": "Topics",
+      "publishDate": "Originally published",
+      "updateDate": "updated",
+      "relatedArticles": "Related Articles",
+      "blogRollHeader": "Visit the HubSpot Blogs",
+      "newsTrends": {
+        "backToAllArticles": "Back to All Articles",
+        "disclaimer": {
+          "text": "As part of being a fully transparent organization, we wanted to tell you a few things about this blog. [DISCLAIMER_LINK].",
+          "link": {
+            "text": "Read more here",
+            "url": "https://blog.hubspot.com/news-trends/disclaimer"
+          }
+        },
+        "researchDisclaimer": {
+          "text": "This is a previously published research report that contains links to HubSpot Products and Services. Learn more about this blog [DISCLAIMER_LINK].",
+          "link": {
+            "text": "here",
+            "url": "https://blog.hubspot.com/news-trends/disclaimer"
+          }
+        },
+        "tipLine": {
+          "text": "Have a cool tech story or original data to share? Send tips to [TIPLINE_LINK].",
+          "link": {
+            "text": "tips@hubspot.com",
+            "url": "mailto:tips@hubspot.com?subject=News%20%26%20Trends%20by%20HubSpot%20tip%20line"
+          }
+        }
+      },
+      "subscriptionDetails": {
+        "subscribeToOurBlog": "Subscribe to Our Blog",
+        "subscribeDescription": "Stay up to date with the latest marketing, sales, and service tips and news.",
+        "iWantTheLatestIn": "I want the latest in...",
+        "gdprDisclaimer": "We're committed to your privacy. HubSpot uses the information you provide to us to contact you about our relevant content, products, and services. You may unsubscribe from these communications at any time. For more information, check out our [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/privacy-policy",
+          "text": "privacy policy"
+        },
+        "optionsHeader": "Subscribe",
+        "button": "Subscribe",
+        "options":  [
+          {
+            "type": "email",
+            "name": "Email"
+          },
+          {
+            "type": "slack",
+            "name": "Slack",
+            "url": "https://offers.hubspot.com/hubspot-blog-on-slack"
+          }
+        ],
+        "otherOptions": "Back to other options",
+        "thankYou": "Thank You!\nYou have been subscribed.",
+        "emailSub": {
+          "header": "Subscribe via Email",
+          "emailLabel": "Email Address",
+          "submitText": "Subscribe"
+        },
+        "errors": {
+          "header": "There seem to be some errors with your submission",
+          "blogsNotSelected": "Please select one of the blogs to subscribe to.",
+          "formError": "There seems to be an error with the form. Please try again later!",
+          "invalidEmail": "This email address is invalid."
+        }
+      }
+    },
+    "blogs": [
+      {
+        "status": true,
+        "subscribed": contact.blog_default_blog_subscription in subscription_types,
+        "blogId": "58774",
+        "displayTag": "Marketing",
+        "name": "marketing",
+        "slug": "/marketing",
+        "title": "The HubSpot Marketing Blog",
+        "description": "Insights, ideas, and inspiration for modern marketers.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/2018/blogroll-images/marketing-blog-image.jpg",
+        "landingPageCTA": "30db2890-9aaf-410f-a524-7de3b393119c",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "98684",
+          "checkboxName": "marketing_blog_subscribe_check_box_via_comments",
+          "subscriptionFrequency": "daily",
+          "frequencyField": "blog_default_blog_subscription"
+        }
+      },
+      {
+        "status": true,
+        "subscribed": contact.blog_hubspots_inbound_sales_blog_subscription in subscription_types,
+        "blogId": "279673741",
+        "displayTag": "Sales",
+        "name": "sales",
+        "slug": "/sales",
+        "title": "The HubSpot Sales Blog",
+        "description": "Sell smarter, better, and faster.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/2018/blogroll-images/sales-blog-image.jpg",
+        "landingPageCTA": "180e17b3-35cb-4fd0-a311-292d53c19f79",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "171105",
+          "checkboxName": "sales_blog_subscribe_check_box_via_comments",
+          "subscriptionFrequency": "daily",
+          "frequencyField": "blog_hubspots_inbound_sales_blog_subscription"
+        }
+      },
+      {
+        "status": true,
+        "subscribed": contact.blog_hubspot_success_blog_5233357105_subscription|lower in subscription_types,
+        "blogId": "5233357105",
+        "displayTag": "Service",
+        "name": "service",
+        "slug": "/service",
+        "title": "The HubSpot Customer Service Blog",
+        "description": "Helping you help your customers.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/2018/blogroll-images/service-blog-image.jpg",
+        "landingPageCTA": "bc4448e9-c611-4499-b340-be55b4394e16",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4071241",
+          "checkboxName": "success_blog_subscribe_check_box_general_use_",
+          "subscriptionFrequency": "weekly",
+          "frequencyField": "customer_success_subscription"
+        }
+      },
+      {
+        "status": false,
+        "subscribed": contact.blog_inbound_hub_the_agency_post_subscription in subscription_types,
+        "blogId": "1477755110",
+        "displayTag": "Agency",
+        "name": "agency",
+        "slug": "/agency",
+        "title": "The HubSpot Agency Blog",
+        "description": "",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/2018/blogroll-images/agency-blog-image.jpg",
+        "landingPageCTA": "",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "324319",
+          "checkboxName": "agency_blog_subscribe_check_box_general_use_",
+          "subscriptionFrequency": "weekly",
+          "frequencyField": "blog_inbound_hub_the_agency_post_subscription"
+        }
+      },
+      {
+        "status": false,
+        "subscribed": false,
+        "blogId": "6570228137",
+        "pillarTable": "1030673",
+        "displayTag": "News & Trends",
+        "name": "news and trends",
+        "slug": "/news-trends",
+        "title": "News and Trends",
+        "description": "Stay up-to-date about the latest happenings in the industry.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/2018/blogroll-images/news-blog-image.jpg",
+        "landingPageCTA": "",
+        "subscriptionInfo": {
+          "subscribable": false,
+          "subscriptionTypeId": "",
+          "checkboxName": "",
+          "subscriptionFrequency": "",
+          "frequencyField": ""
+        }
+      },
+      {
+        "status": true,
+        "subscribed": contact.website_blog_subscription in subscription_types,
+        "blogId": "9901938527",
+        "displayTag": "Website",
+        "name": "website",
+        "slug": "/website",
+        "title": "Website",
+        "description": "All the nuts and bolts that go into building your website.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/2018/blogroll-images/website-blog-image.jpg",
+        "landingPageCTA": "",
+        "subscriptionInfo": {
+          "subscribable": false,
+          "subscriptionTypeId": "6772329",
+          "checkboxName": "hubspot_website_blog_email_subscription",
+          "subscriptionFrequency": "daily",
+          "frequencyField": "website_blog_subscription"
+        }
+      }
+    ]
+	},
+	"es": {
+    "language": "es",
+    "hubdbTable": "675535",
+		"subscribeForm": "dca67fcb-ee70-4526-90ea-dedca75dafb1",
+		"homepageCTA": "460b7fa5-769d-4d01-878a-cbbff4bb709b",
+		"strings": {
+      "next": "Siguiente",
+      "prev": "Anterior",
+      "moreFrom": "Lee más artículos de",
+      "mostPopular": "Publicaciones más populares",
+      "editorsPicks": "Publicaciones recomendadas",
+      "minRead": "Lectura de [NUMBER] min.",
+      "writtenBy": "Escrito por ",
+      "topics": "Topics",
+      "publishDate": "Publicado originalmente en",
+      "updateDate": "actualizado",
+      "relatedArticles": "Related Articles",
+      "blogRollHeader": "Visita los blogs de HubSpot",
+      "shareText": "Únete a la conversación, te invitamos a compartir este artículo.",
+      "subscriptionDetails": {
+        "subscribeToOurBlog": "Suscríbete a nuestro blog",
+        "subscribeDescription": "No te pierdas las últimas noticias y consejos sobre marketing, ventas y servicio de atención al cliente.",
+        "iWantTheLatestIn": "Quiero leer más sobre...",
+        "gdprDisclaimer": "Tu privacidad es importante para nosotros. HubSpot utiliza la información que proporcionas para ponerse en contacto contigo en relación con contenido, productos y servicios relevantes para ti. Puedes darte de baja para dejar de recibir este tipo de comunicaciones en cualquier momento. Si deseas obtener más información sobre la protección de tus datos en HubSpot, consulta nuestra [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/es/privacy-policy",
+          "text": "Política de Privacidad"
+        },
+        "options":  [
+          {
+            "type": "email",
+            "name": "Email"
+          }
+        ],
+        "optionsHeader": "Suscribirse",
+        "button": "Suscribirse",
+        "otherOptions": "Ver otras opciones",
+        "thankYou": "¡Gracias!",
+        "emailSub": {
+          "header": "Suscribirse por correo",
+          "emailLabel": "Dirección de correo",
+          "submitText": "Enviar"
+        },
+        "errors": {
+          "header": "Parece que se han producido algunos errores en el envío:",
+          "blogsNotSelected": "Selecciona uno de los blogs para suscribirte.",
+          "formError": "Parece que se ha producido un error con el formulario. Inténtalo de nuevo más tarde.",
+          "invalidEmail": "Esta dirección de correo no es válida."
+        }
+      }
+    },
+    "blogs": [
+      {
+        "status": true,
+        "blogId": "1450727207",
+        "displayTag": "Marketing",
+        "name": "marketing",
+        "slug": "/marketing",
+        "title": "Blog de marketing",
+        "description": "Ideas, inspiración y tendencias para los profesionales de marketing modernos.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+        "landingPageCTA": "4d2ba2d2-ae39-4990-92c0-129821736a6c",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "306823",
+          "checkboxName": "es_marketing_blog_subscribe_check_box",
+          "subscriptionFrequency": "daily",
+          "frequencyField": "blog_spanish_language_inbound_marketing_blog_subscription"
+        }
+      },
+      {
+        "status": true,
+        "blogId": "5451755204",
+        "displayTag": "Ventas",
+        "name": "sales",
+        "slug": "/sales",
+        "title": "Blog de sales",
+        "description": "Sé más eficiente, vende más rápido y mejor.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/sales-blog-link.png",
+        "landingPageCTA": "0e4d88d6-dec8-4870-b115-15d7f3708dc9",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4588683",
+          "checkboxName": "es_sales_blog_subscribe_check_box",
+          "subscriptionFrequency": "daily",
+          "frequencyField": "blog_es_sales_5451755204_subscription"
+        }
+      },
+      {
+        "status": true,
+        "blogId": "5451963302",
+        "displayTag": "Gestión de Clientes",
+        "name": "service",
+        "slug": "/service",
+        "title": "Blog de gestión de clientes",
+        "description": "Ayuda a tus clientes para ser exitosos.",
+        "image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/success-blog-link.png",
+        "landingPageCTA": "4aec4ec0-740f-4d6d-ae47-0e9c3967ec94",
+        "subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4586168",
+          "checkboxName": "es_success_blog_subscribe_check_box",
+          "subscriptionFrequency": "daily",
+          "frequencyField": "blog_es_customer_success_5451963302_subscription"
+        }
+      }
+    ]
+  },
+	"de": {
+    "language": "de",
+    "hubdbTable": "675542",
+		"subscribeForm": "e4ac1f39-60c0-48fd-ad91-08fa6dc06e1f",
+		"homepageCTA": "43a2ea26-2ace-4626-a75a-501f03027119",
+		"strings": {
+      "next": "Weiter",
+      "prev": "Zurück",
+      "moreFrom": "Weitere Artikel von",
+      "mostPopular": "Beliebteste Beiträge",
+      "editorsPicks": "Von HubSpot empfohlen",
+			"minRead": "Min. Lesezeit",
+			"writtenBy": "Verfasst von ",
+			"topics": "Themen",
+			"publishDate": "Ursprünglich veröffentlicht am",
+			"updateDate": "aktualisiert am",
+			"relatedArticles": "Artikel zu ähnlichen Themen",
+			"blogRollHeader": "Visit the HubSpot Blogs",
+			"shareText": "Diesen Artikel weiterempfehlen:",
+			"subscriptionDetails": {
+        "subscribeToOurBlog": "Abonnieren Sie unseren Blog",
+        "subscribeDescription": "Tipps und Neuigkeiten aus den Bereichen Marketing, Vertrieb und Kundenservice.",
+        "iWantTheLatestIn": "Ich interessiere mich für die Themenbereiche...",
+        "gdprDisclaimer": "Ihr Datenschutz ist uns wichtig. HubSpot nutzt Ihre Angaben, um Sie hinsichtlich relevanter Inhalte, Produkte und Dienstleistungen zu kontaktieren. Sie können sich jederzeit von jeglicher Kommunikation seitens HubSpot abmelden. Weitere Informationen finden Sie in unserer [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/de/privacy-policy",
+          "text": "Datenschutzerklärung"
+        },
+        "options":  [
+          {
+            "type": "email",
+            "name": "Email"
+          }
+        ],
+        "optionsHeader": "Abonnieren",
+        "button": "Abonnieren",
+        "otherOptions": "Zurück zu den anderen Optionen",
+        "thankYou": "Vielen Dank!",
+        "emailSub": {
+          "header": "Per E-Mail abonnieren",
+          "emailLabel": "E-Mail-Adresse",
+          "submitText": "Abonnieren"
+        },
+        "errors": {
+          "header": "Beim Ausfüllen des Formulars sind Fehler aufgetreten:",
+          "blogsNotSelected": "Bitte wählen Sie mindestens einen der Blogs aus, den Sie abonnieren möchten.",
+          "formError": "Es ist ein Fehler mit dem Formular aufgetreten. Bitte versuchen Sie es später erneut!",
+          "invalidEmail": "Die angegebene E-Mail-Adresse ist ungültig."
+        }
+			},
+			"blogRollHeader": "Besuchen Sie die Blogs von HubSpot"
+		},
+		"blogs": [
+			{
+        "status": true,
+				"blogId": "257813144",
+				"displayTag": "Marketing-Blog",
+				"name": "marketing",
+				"slug": "/marketing",
+				"title": "Marketing-Blog",
+				"description": "Einblicke, Ideen und Inspiration für moderne Marketer.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+				"landingPageCTA": "26c50d6b-6586-4fcc-b26e-103306f17059",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4595188",
+					"checkboxName": "de_marketing_blog_subscribe_check_box",
+					"subscriptionFrequency": "weekly",
+					"frequencyField": "blog_german_language_inbound_marketing_blog_subscription"
+				}
+			},
+			{
+        "status": true,
+				"blogId": "5451729060",
+				"displayTag": "Vertriebsblog",
+				"name": "sales",
+				"slug": "/sales",
+				"title": "Vertriebsblog",
+				"description": "Schneller und effizienter verkaufen mit einem intelligenten Vertriebsprozess.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/sales-blog-link.png",
+				"landingPageCTA": "d4895142-3ec3-4d6d-9410-d6feab70c4dd",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4586418",
+					"checkboxName": "de_sales_blog_subscribe_check_box",
+					"subscriptionFrequency": "monthly",
+					"frequencyField": "blog_de_sales_5451729060_subscription"
+				}
+			},
+			{
+        "status": true,
+				"blogId": "5451746745",
+				"displayTag": "Service-Blog",
+				"name": "service",
+				"slug": "/service",
+				"title": "Service-Blog",
+				"description": "Wir helfen Ihnen, Ihren Kunden zu helfen.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/success-blog-link.png",
+				"landingPageCTA": "87053d14-15f7-42ab-a805-464956c88b22",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4588682",
+					"checkboxName": "de_success_blog_subscribe_check_box",
+					"subscriptionFrequency": "monthly",
+					"frequencyField": "blog_de_customer_success_5451746745_subscription"
+				}
+			}
+		]
+	},
+	"fr": {
+    "language": "fr",
+    "hubdbTable": "675543",
+		"subscribeForm": "a1bb4f4c-b360-4329-b245-cbcf4b90244f",
+		"homepageCTA": "2be08245-9d46-41fe-b179-92204e9920b",
+		"strings": {
+      "next": "Suivante",
+      "prev": "Précédente",
+      "moreFrom": "Autres publications de ",
+      "mostPopular": "Articles populaires",
+      "editorsPicks": "Articles à la une",
+			"minRead": "Lecture : [NUMBER] min.",
+			"writtenBy": "Par ",
+			"topics": "Sujet(s)",
+			"publishDate": "Publication originale le ",
+			"updateDate": "mise à jour le ",
+			"relatedArticles": "Articles recommandés",
+			"blogRollHeader": "Explorez les blogs de HubSpot",
+			"shareText": "Vous avez aimé cet article ? Partagez-le avec vos collègues ou amis :",
+      "timeRemainingPrefix": "Temps de lecture :",
+      "timeRemainingSuffix": "min",
+			"subscriptionDetails": {
+        "subscribeToOurBlog": "Inscription",
+        "subscribeDescription": "Abonnez-vous pour connaître les dernières nouveautés de HubSpot.",
+        "iWantTheLatestIn": "Je souhaite m'abonner au contenu suivant :",
+        "gdprDisclaimer": "La protection des données nous tient à cœur. HubSpot utilise les informations que vous fournissez afin de vous proposer des informations et du contenu pertinent sur nos produits et services. Vous pouvez vous désinscrire de ce type de communications à tout moment. Pour plus d'informations, consultez notre [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/fr/privacy-policy",
+          "text": "politique de confidentialité"
+        },
+        "options": [
+          {
+            "type": "email",
+            "name": "E-mail"
+          }
+        ],
+        "optionsHeader": "Inscription",
+        "button": "Inscription",
+        "otherOptions": "Plus d'options",
+        "thankYou": "Merci !",
+        "emailSub": {
+          "header": "Inscription par e-mail",
+          "emailLabel": "Adresse e-mail",
+          "submitText": "S'inscrire"
+        },
+        "errors": {
+          "header": "Une erreur s'est produite :",
+          "blogsNotSelected": "Sélectionner les blogs qui vous intéressent ",
+          "formError": "Une erreur s'est produite avec le formulaire. Réessayez ultérieurement.",
+          "invalidEmail": "Adresse e-mail non valide."
+        }
+			}
+		},
+		"blogs": [
+			{
+        "status": true,
+				"blogId": "3067118630",
+				"displayTag": "Marketing",
+				"name": "marketing",
+				"slug": "/marketing",
+				"title": "Blog marketing de HubSpot",
+				"description": "Trouver les informations, les idées et l'inspiration pour moderniser le marketing.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+				"landingPageCTA": "f70089db-42c2-4be3-8b3c-ed9f383751a1",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "559546",
+					"checkboxName": "fr_marketing_blog_subscribe_check_box",
+					"subscriptionFrequency": "weekly",
+					"frequencyField": "blog_french_inbound_marketing_blog_subscription"
+				}
+			},
+			{
+        "status": true,
+				"blogId": "5451975668",
+				"displayTag": "Ventes",
+				"name": "sales",
+				"slug": "/sales",
+				"title": "Blog ventes de HubSpot",
+				"description": "Des idées et des conseils pour améliorer son processus de vente.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/sales-blog-link.png",
+				"landingPageCTA": "0f9d87f4-4ed1-4c8d-ac61-4e7e8a59f3a6",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4589231",
+					"checkboxName": "fr_sales_blog_subscribe_check_box",
+					"subscriptionFrequency": "monthly",
+					"frequencyField": "blog_fr_sales_5451975668_subscription"
+				}
+			},
+			{
+        "status": false,
+				"blogId": "5451977376",
+				"displayTag": "Satisfaction clients",
+				"name": "service",
+				"slug": "/service",
+				"title": "Blog relation client de HubSpot",
+				"description": "Nous vous aider à satisfaire vos clients.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/success-blog-link.png",
+				"landingPageCTA": "",
+				"subscriptionInfo": {
+          "subscribable": false,
+          "subscriptionTypeId": "",
+					"checkboxName": "fr_agency_blog_subscribe_check_box",
+					"subscriptionFrequency": "",
+					"frequencyField": "blog_fr_customer_success_5451977376_subscription"
+				}
+			}
+		]
+	},
+	"pt": {
+    "language": "pt",
+    "hubdbTable": "675549",
+		"subscribeForm": "f8a146a6-cb1d-4b48-94c4-5a7bee0028dc",
+		"homepageCTA": "f7ef46b5-9531-4596-975e-1fef67ae0697",
+		"strings": {
+      "next": "Última",
+      "prev": "Primeira",
+      "moreFrom": "Mais artigos escritos por",
+      "mostPopular": "Publicações populares",
+      "editorsPicks": "Publicações recomendadas",
+			"minRead": " minutos para ler",
+			"writtenBy": "Escrito por ",
+			"topics": "Temas",
+			"publishDate": "Originalmente publicado",
+			"updateDate": "atualizado",
+			"relatedArticles": "Artigos relacionados",
+			"blogRollHeader": "Visite os blogs da HubSpot",
+			"shareText": "Gostou deste artigo? Não esqueça de compartilhar.",
+			"subscriptionDetails": {
+        "subscribeToOurBlog": "Inscreva-se no nosso blog",
+        "subscribeDescription": "Fique atualizado com as notícias mais recentes de marketing, vendas, dicas de atendimento e muito mais.",
+        "iWantTheLatestIn": "Quero as novidades sobre...",
+        "gdprDisclaimer": "Somos comprometidos com a sua privacidade. A HubSpot usa as informações que você nos fornece para entrar em contato sobre conteúdo, produtos e serviços relevantes. Você pode cancelar a assinatura dessas comunicações a qualquer momento. Para ter mais informações, consulte a nossa [privacy-policy].",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/br/privacy-policy",
+          "text": "Política de Privacidade"
+        },
+        "options":  [
+          {
+            "type": "email",
+            "name": "Email"
+          }
+        ],
+        "optionsHeader": "Assine",
+        "button": "Assine",
+        "otherOptions": "Volte",
+        "thankYou": "obrigado!",
+        "emailSub": {
+          "header": "Assine com e-mail",
+          "emailLabel": "E-mail",
+          "submitText": "Assine"
+        },
+        "errors": {
+          "header": "Há um erro com seu email",
+          "blogsNotSelected": "Selecione um dos blogs",
+          "formError": "Há um erro no formulário. Por favor, tente novamente mais tarde!",
+          "invalidEmail": "Este endereço de e-mail é inválido."
+        }
+			}
+		},
+		"blogs": [
+			{
+        "status": true,
+				"blogId": "2081157751",
+				"displayTag": "Marketing",
+				"name": "marketing",
+				"slug": "/blog/marketing",
+				"title": "The HubSpot Marketing Blog",
+				"description": "Insights, idéias e inspiração para profissionais de marketing.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+				"landingPageCTA": "cf101c0d-2727-4ee6-b4e6-d9f30ca7e159",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "326942",
+					"checkboxName": "pt_marketing_blog_subscribe_check_box",
+					"subscriptionFrequency": "weekly",
+					"frequencyField": "blog_brazil_marketing_blog_subscription"
+				}
+			},
+			{
+        "status": true,
+				"blogId": "5451973150",
+				"displayTag": "Vendas",
+				"name": "sales",
+				"slug": "/blog/sales",
+				"title": "Blog de sales",
+				"description": "Como vender de forma mais inteligente e mais rápida.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/sales-blog-link.png",
+				"landingPageCTA": "4030a702-8ea9-4552-9b2f-53d233abdf84",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4589284",
+					"checkboxName": "pt_sales_blog_subscribe_check_box",
+					"subscriptionFrequency": "weekly",
+					"frequencyField": "blog_pt_sales_5451973150_subscription"
+				}
+			},
+			{
+        "status": true,
+				"blogId": "5451974464",
+				"displayTag": "Service",
+				"name": "service",
+				"slug": "/blog/service",
+				"title": "Blog de customer success",
+				"description": "Ajude seus clientes a serem bem sucedidos",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/success-blog-link.png",
+				"landingPageCTA": "5dc4ee94-4899-4a1e-8789-c90a130eb15d",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "4589230",
+					"checkboxName": "pt_success_blog_subscribe_check_box",
+					"subscriptionFrequency": "weekly",
+					"frequencyField": "blog_pt_customer_success_5451974464_subscription"
+				}
+			}
+		]
+	},
+	"jp": {
+    "language": "jp",
+    "hubdbTable": "675544",
+		"subscribeForm": "32ad5601-b58a-4fea-888b-a543610cb8be",
+		"homepageCTA": "ac5e958e-81ed-4a35-8621-9aa4ccad0a1e",
+		"strings": {
+      "next": "進む",
+      "prev": "戻る",
+      "moreFrom": "more from",
+      "mostPopular": "人気記事",
+      "editorsPicks": "お勧め記事",
+			"minRead": "本記事は[NUMBER]分で読むことができます",
+			"writtenBy": "執筆者： ",
+			"topics": "トピック：",
+			"publishDate": "元記事発行日：",
+			"updateDate": "最終更新日：",
+			"relatedArticles": "関連記事",
+			"blogRollHeader": "ハブスポットのブログを読む",
+			"shareText": "いかがでしたか？お気に召したのであればシェアはこちらから。",
+			"subscriptionDetails": {
+        "subscribeToOurBlog": "メルマガに登録する",
+        "subscribeDescription": "",
+        "iWantTheLatestIn": "",
+        "gdprDisclaimer": "ハブスポットはお客様のプライバシー保護に全力で取り組んでいます。ハブスポットは、コンテンツ、製品、サービスに関連する情報を配信するため、お客様から提供された情報を利用します。この情報配信はいつでも停止できます。詳細については弊社の「[privacy-policy]をご覧ください。",
+        "privacyPolicy": {
+          "link": "https://legal.hubspot.com/jp/privacy-policy",
+          "text": "プライバシーポリシー」"
+        },
+        "options": [
+          {
+            "type": "email",
+            "name": "Email"
+          }
+        ],
+        "optionsHeader": "登録する",
+        "button": "メルマガに登録する",
+        "otherOptions": "前の画面に戻る",
+        "thankYou": "ありがとうございました！",
+        "emailSub": {
+          "header": "メルマガに登録する",
+          "emailLabel": "Eメールアドレス",
+          "submitText": "メルマガに登録する"
+        },
+        "errors": {
+          "header": "エラーが発生しました：",
+          "blogsNotSelected": "登録するブログをお選びください。",
+          "formError": "エラーが発生しました。しばらく待ってからやり直してください。",
+          "invalidEmail": "Eメールアドレスが無効です。"
+        }
+			}
+		},
+		"blogs": [
+			{
+        "status": true,
+				"blogId": "3067207205",
+				"displayTag": "マーケティングブログ",
+				"name": "marketing",
+				"slug": "",
+				"title": "マーケティングブログ",
+				"description": "マーケターの感性を刺激するアイデア、ヒント、最新情報。",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/marketing-blog-link.png",
+				"landingPageCTA": "ac5e958e-81ed-4a35-8621-9aa4ccad0a1e",
+				"subscriptionInfo": {
+          "subscribable": true,
+          "subscriptionTypeId": "559530",
+					"checkboxName": "jp_marketing_blog_subscribe_check_box",
+					"subscriptionFrequency": "weekly",
+					"frequencyField": "blog_japanese_inbound_marketing_blog_subscription"
+				}
+			},
+			{
+        "status": false,
+				"blogId": "5451775941",
+				"displayTag": "Sales",
+				"name": "sales",
+				"slug": "/sales",
+				"title": "Blog de sales",
+				"description": "Insights, ideas, and inspiration for modern marketers.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/sales-blog-link.png",
+				"landingPageCTA": "",
+				"subscriptionInfo": {
+          "subscribable": false,
+          "subscriptionTypeId": "",
+					"checkboxName": "jp_sales_blog_subscribe_check_box",
+					"subscriptionFrequency": "",
+					"frequencyField": "blog_jp_sales_5451775941_subscription"
+				}
+			},
+			{
+        "status": false,
+				"blogId": "5451979982",
+				"displayTag": "Service",
+				"name": "service",
+				"slug": "/service",
+				"title": "Blog de service",
+				"description": "Insights, ideas, and inspiration for modern marketers.",
+				"image": "https://cdn2.hubspot.net/hubfs/53/assets/blog.hubspot.com/images/blogroll/success-blog-link.png",
+				"landingPageCTA": "",
+				"subscriptionInfo": {
+          "subscribable": false,
+          "subscriptionTypeId": "",
+					"checkboxName": "jp_success_blog_subscribe_check_box",
+					"subscriptionFrequency": "",
+					"frequencyField": "blog_jp_customer_success_5451979982_subscription"
+				}
+			}
+		]
+	}
+} %}

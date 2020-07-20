@@ -1,0 +1,185 @@
+[ {
+  "id" : "42cb3c79-4c4b-a160-b59e-b6d3cd1bc355",
+  "name" : "querystring",
+  "label" : "Query String",
+  "help_text" : "If you need to add a query string to the meetings link, you may enter it here. (No need to include a '?' or '&' at the beginning of your query params).",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : null
+}, {
+  "id" : "cf35dc69-9b8c-385e-497c-d081ecfb4c65",
+  "name" : "type",
+  "label" : "Display Option",
+  "help_text" : "Select if the visitor should see a modal popup on button click, or an iframe or form depending on their nurturing_owner_meetings_link contact property.",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "modal", "Modal" ], [ "embed", "Form or iFrame" ] ],
+  "type" : "choice",
+  "default" : "embed"
+}, {
+  "id" : "97c35957-f31a-356d-2d93-566b1e0e99cf",
+  "name" : "options_modal",
+  "label" : "Modal Options",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "cf35dc69-9b8c-385e-497c-d081ecfb4c65",
+    "controlling_value_regex" : "modal",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "3996d9c6-46a0-2192-a0a8-ec5dd2886069",
+    "name" : "cta_label",
+    "label" : "CTA Label",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Book a Meeting"
+  }, {
+    "id" : "6fee4d2c-b82f-8734-7435-10ebf89ee529",
+    "name" : "inactive_cta_label",
+    "label" : "Inactive CTA Label",
+    "help_text" : "If the user's meeting link isn't available, this label will show on the CTA instead.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : ""
+  }, {
+    "id" : "c6dee92b-8306-b141-6197-efbf855f6f85",
+    "name" : "inactive_cta_link",
+    "label" : "Inactive CTA Link",
+    "help_text" : "If the user's meeting link isn't available, the button will link to this URL instead.",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+    "type" : "link",
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "cta_label" : "Book a Meeting",
+    "inactive_cta_label" : "",
+    "inactive_cta_link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }
+}, {
+  "id" : "e5fbe7a4-08bd-3c32-e7fc-ec949d5943a0",
+  "name" : "options_embed",
+  "label" : "iFrame and Form Options",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "cf35dc69-9b8c-385e-497c-d081ecfb4c65",
+    "controlling_value_regex" : "embed",
+    "operator" : "EQUAL",
+    "access" : null,
+    "hidden_subfields" : null
+  },
+  "children" : [ {
+    "id" : "20b3030f-59a8-a7c4-e5bf-2804dce28ebd",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Book a Meeting"
+  }, {
+    "id" : "a65e68c2-81aa-a6fd-d1c9-2772c2b868c0",
+    "name" : "tagline",
+    "label" : "Tagline",
+    "help_text" : "Shown only to contacts whose \"nurturing_owner_meetings_link\" property does not contain \"/meeting-link-contact-sales\".",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "4dc1f873-b030-38d2-9bcf-4ee7db3205ed",
+    "name" : "sfdc",
+    "label" : "SFDC Campaign ID",
+    "help_text" : "Insert desired SDFC Campaign ID here.",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "70170000000"
+  }, {
+    "id" : "d2a2cf70-f9d1-e22b-e8cb-aeca15bc2135",
+    "name" : "header_alternate",
+    "label" : "Alternate Header",
+    "help_text" : "This header is shown to users with a \"nurturing_owner_meetings_link\" contact property that contains \"/meeting-link-contact-sales\".",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : null
+  }, {
+    "id" : "0e437385-cd47-6842-687a-6558970617fd",
+    "name" : "form",
+    "label" : "Form",
+    "help_text" : "A form is shown to contacts whose \"nurturing_owner_meetings_link\" property contains \"/meeting-link-contact-sales\".",
+    "required" : false,
+    "locked" : false,
+    "type" : "form",
+    "default" : {
+      "form_id" : "582ee53d-766b-40ca-bfd4-fc5071c54d57",
+      "response_type" : "redirect",
+      "redirect_url" : "http://www.example.com/redirect-page",
+      "redirect_id" : null,
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "type" : "group",
+  "default" : {
+    "header" : "Book a Meeting",
+    "sfdc" : "70170000000",
+    "form" : {
+      "form_id" : "582ee53d-766b-40ca-bfd4-fc5071c54d57",
+      "response_type" : "redirect",
+      "redirect_url" : "http://www.example.com/redirect-page",
+      "redirect_id" : null,
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    }
+  }
+} ]

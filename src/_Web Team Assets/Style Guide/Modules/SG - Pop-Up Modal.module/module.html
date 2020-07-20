@@ -1,0 +1,115 @@
+{#
+CHANGE LOG:
+-----------------
+
+#}
+{%- unless generateModuleCtas is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/cta.html' import generateModuleCtas %}
+{% endunless -%}
+
+{%- unless videoMacros is defined -%}
+  {% import '/_Web Team Assets/Style Guide/Macros/video.html' as videoMacros %}
+{% endunless -%}
+
+{%- unless generateGDPRCompliantForm is defined -%}
+  {% from '/_Web Team Assets/Style Guide/Macros/forms.html' import generateGDPRCompliantForm %}
+{% endunless -%}
+
+
+{%- set contentsContainerClasses = 'hsg-modal-contents ' ~ ('hsg-modal-contents--video' if (module.type is equalto 'video') else 'hsg-modal-contents--columns') -%}
+{%- set videoSrc = module.video.url.href if (module.video.type is equalto 'url') else module.video.id -%}
+{%- set gdprNotice = module.form.gdpr_partner_notice ? true : false -%}
+
+{%- set videoOptions = {
+  'type': module.video.type,
+  'id': module.video.id,
+  'url': module.video.url.href,
+  'mute': (true if module.video.autoplay else false),
+  'controls': module.video.controls,
+  'autoplay': module.video.autoplay,
+  'uniqueId': name ~ '-popup-modal'
+} -%}
+
+{%- if module.modal_id -%}
+  {% if module.type is equalto 'video' -%}
+  {{ videoMacros.generateVideoModal({
+    'modalId': module.modal_id,
+    'videoOptions': videoOptions
+  }) }}
+  {% else %}
+  <div class="hsg-modal-container {% if gdprNotice %}gdpr-notice-hidden{% endif %}"
+    data-modal="{{ module.modal_id }}"
+    data-exit="{{ '1' if (module.options.show_on_exit_intent is truthy) else '0' }}"
+    {% if (module.options.show_on_exit_intent is truthy) or (module.options.show_after_time_delay is truthy) -%}
+    data-time="{{ module.options.delay_time }}"
+    {% endif -%}
+    {%- if not module.type is equalto 'video_content' %}data-play-video-on-exit="1"{% endif %}>
+    <div class="{{ contentsContainerClasses }}">
+      {# Close button #}
+      <div data-background="secondary4" class="hsg-modal-header">
+        <span class="hsg-icon hsg-icon-close"></span>
+      </div>
+
+      {%- if videoSrc and (not module.type is equalto 'video_content') -%}
+      {{ videoMacros.generateVideo(videoOptions) }}
+      {% endif -%}
+
+
+      <div class="hsg-modal-text">
+				{%- if (module.content.header or module.content.description or module.content.cta.cta_label) and module.type != 'form' -%}
+          {% if module.content.header -%}
+          <h2>{{ module.content.header }}</h2>
+          {% endif -%}
+
+          {%- if module.content.description -%}
+          <div>{{ module.content.description }}</div>
+          {% endif -%}
+          {{ generateModuleCtas({
+            'ctas': [{
+              'type': module.content.cta.type,
+              'cta_label': module.content.cta.cta_label,
+              'cta_link': module.content.cta.cta_link,
+              'product_cta': module.content.cta.product_cta,
+              'options': {
+                'custom_class': module.content.cta.custom_class
+              }
+            }],
+            'sizingClass': 'cta--medium'
+          }) }}
+        {% endif -%}
+
+        {% if module.type is equalto 'form' -%}
+          {% if module.form.gdpr_partner_notice %}
+            {{ generateGDPRCompliantForm({
+                'header': module.form.header,
+                'partners': module.form.gdpr_partner_notice,
+                'form': module.form.form_field,
+                'formEmail': module.form.follow_up_email_id,
+                'notice_lang': moduleLang
+              }) }}
+
+          {% else module.form.header -%}
+              <h2>{{ module.form.header }}</h2>
+              {% set kickback_email = module.form.follow_up_email_id ? true : false %}
+				      {% set redirect_url = '' if module.form.form_field.redirect_url is string_containing 'example.com' else module.form.form_field.redirect_url %}
+				      {# response_response_type should equal 'inline' or 'redirect'. That value can be dynamically added per user selection with `form.resopnse_type` (NOT IN THE DOCS) #}
+              <!-- SWYT: {{ module.form.form_field.response_type }} || {{ module.form.form_field.message }} -->
+              {% form
+                  form_to_use='{{ module.form.form_field.form_id }}',
+                  title='{{ module.form.title }}',
+                  extra_classes= '',
+									response_message="{{ module.form.form_field.message }}"
+									response_response_type="{{ module.form.form_field.response_type }}",
+                  response_redirect_id="{{ module.form.form_field.redirect_id }}",
+                  response_redirect_url="{{ redirect_url }}",
+                  simple_email_for_live_id="{{ module.form.follow_up_email_id }}",
+                  follow_up_email_id="{{ module.form.follow_up_email_id }}",
+                  follow_up_type_simple="{{ kickback_email }}",
+                %}
+          {% endif -%}
+        {%- endif %}
+      </div>
+    </div>
+  </div>
+  {% endif -%}
+{% endif -%}
